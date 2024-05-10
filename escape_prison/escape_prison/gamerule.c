@@ -1,7 +1,7 @@
 #include "main.h"
 
 // 게임 방법 설명 함수
-int gameRulesDraw(void) {
+void gameRulesDraw(void) {
 	int x = 26, y = 8;
 	reset();
     Setcolor(4);

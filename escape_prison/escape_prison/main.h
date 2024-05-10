@@ -8,15 +8,16 @@
 
 /* main */
 
-// Å° °ª Á¤ÀÇ  //
+// í‚¤ ê°’ ì •ì˜  //
 #define LEFT1 75
 #define RIGHT1 77
 #define UP1 72
 #define DOWN1 80
 #define PAUSE1 112
+#define BACK 113
 #define ESC 27
 
-// MAP °ª
+// MAP ê°’
 #define MAP_X 3 // 3 2
 #define MAP_Y 2
 #define MAP_WIDTH 39  // 30 20
@@ -27,23 +28,20 @@
 #define DOWN 1
 #define LEFT 2
 #define RIGHT 3
-#define SUBMIT 4 // ¼±ÅÃ(Å°)
+#define SUBMIT 4 // ì„ íƒ(í‚¤)
 
 void Setcolor(WORD color);
 void gotoxy(int x, int y, const char* s);
-void title(void); //°ÔÀÓ ½ÃÀÛÈ­¸é 
-void reset(void); //°ÔÀÓÀ» ÃÊ±âÈ­ 
-void draw_map(void); // °ÔÀÓÆÇ Å×µÎ¸®¸¦ ±×¸² 
-void load_menu(void); // ¸Ş´º¸¦ ºÒ·¯¿À´Â ÇÔ¼ö.
+void title(void); //ê²Œì„ ì‹œì‘í™”ë©´ 
+void reset(void); //ê²Œì„ì„ ì´ˆê¸°í™” 
+void draw_map(void); // ê²Œì„íŒ í…Œë‘ë¦¬ë¥¼ ê·¸ë¦¼ 
+void load_menu(void); // ë©”ë‰´ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” í•¨ìˆ˜.
 void gotoxy1(int x, int y);
-int menuDraw1();
-int keyControl1();
+int menuDraw1(void);
+int keyControl1(void);
 
 
 /* gamerule */
 
-#define RULE_MOVE "1. Use arrow keys to move the character."
-#define RULE_NAVIGATE "2. Navigate through different stages."
-
-void showGameRules();
+void gameRulesDraw();
 void displayRules();

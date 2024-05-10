@@ -1,12 +1,12 @@
-#include<stdio.h>
-#include<windows.h>
-#include<conio.h>
-#include<stdlib.h>
-#include<time.h>
+#include <stdio.h>
+#include <windows.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <time.h>
 #include <string.h>
 
 
-// Å° °ª Á¤ÀÇ  //
+// í‚¤ ê°’ ì •ì˜  //
 #define LEFT1 75
 #define RIGHT1 77
 #define UP1 72
@@ -14,7 +14,7 @@
 #define PAUSE1 112
 #define ESC 27
 
-// MAP °ª
+// MAP ê°’
 #define MAP_X 3 // 3 2
 #define MAP_Y 2
 #define MAP_WIDTH 39  // 30 20
@@ -25,11 +25,11 @@
 #define DOWN 1
 #define LEFT 2
 #define RIGHT 3
-#define SUBMIT 4 // ¼±ÅÃ(Å°)
+#define SUBMIT 4 // ì„ íƒ(í‚¤)
 
-int x[100], y[100]; //x,y ÁÂÇ¥°ªÀ» ÀúÀå ÃÑ 100°³ 
-int key; //ÀÔ·Â¹ŞÀº Å° ÀúÀå 
-int speed; //°ÔÀÓ ¼Óµµ 
+int x[100], y[100]; //x,y ì¢Œí‘œê°’ì„ ì €ì¥ ì´ 100ê°œ 
+int key; //ì…ë ¥ë°›ì€ í‚¤ ì €ì¥ 
+int speed; //ê²Œì„ ì†ë„ 
 
 
 
@@ -47,10 +47,10 @@ void gotoxy(int x, int y, const char* s)
     printf("%s", s);
 }
 
-void title(void); //°ÔÀÓ ½ÃÀÛÈ­¸é 
-void reset(void); //°ÔÀÓÀ» ÃÊ±âÈ­ 
-void draw_map(void); // °ÔÀÓÆÇ Å×µÎ¸®¸¦ ±×¸² 
-void load_menu(void); // ¸Ş´º¸¦ ºÒ·¯¿À´Â ÇÔ¼ö.
+void title(void); //ê²Œì„ ì‹œì‘í™”ë©´ 
+void reset(void); //ê²Œì„ì„ ì´ˆê¸°í™” 
+void draw_map(void); // ê²Œì„íŒ í…Œë‘ë¦¬ë¥¼ ê·¸ë¦¼ 
+void load_menu(void); // ë©”ë‰´ë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” í•¨ìˆ˜.
 
 
 
@@ -66,7 +66,7 @@ int main() {
     title();
 
     while (1) {
-        if (_kbhit()) do { key = _getch(); } while (key == 224); //Å° ÀÔ·Â¹ŞÀ½
+        if (_kbhit()) do { key = _getch(); } while (key == 224); //í‚¤ ì…ë ¥ë°›ìŒ
         Sleep(speed);
 
 
@@ -79,10 +79,10 @@ int main() {
 void title(void) {
     int i, j;
 
-    while (_kbhit()) _getch(); //¹öÆÛ¿¡ ÀÖ´Â Å°°ªÀ» ¹ö¸² 
+    while (_kbhit()) _getch(); //ë²„í¼ì— ìˆëŠ” í‚¤ê°’ì„ ë²„ë¦¼ 
 
-    draw_map();    //¸Ê Å×µÎ¸®¸¦ ±×¸² 
-    for (i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) { // ¸Ê Å×µÎ¸® ¾ÈÂÊÀ» ºóÄ­À¸·Î Ã¤¿ò 
+    draw_map();    //ë§µ í…Œë‘ë¦¬ë¥¼ ê·¸ë¦¼ 
+    for (i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) { // ë§µ í…Œë‘ë¦¬ ì•ˆìª½ì„ ë¹ˆì¹¸ìœ¼ë¡œ ì±„ì›€ 
         for (j = MAP_X + 1; j < MAP_X + MAP_WIDTH - 1; j++) gotoxy(j, i, "  ");
     }
     Setcolor(4);
@@ -92,17 +92,17 @@ void title(void) {
     Setcolor(7);
     gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 14, " < PRESS ANY KEY TO START > ");
 
-    gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 17, "   ¡Ş ¡ç(a),¡æ(d),¡è(w),¡é(s) : Move    ");
-    gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 18, "   ¡Ş P : Pause             ");
-    gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 19, "   ¡Ş ESC : Quit              ");
+    gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 17, "   â—‡ â†(a),â†’(d),â†‘(w),â†“(s) : Move    ");
+    gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 18, "   â—‡ P : Pause             ");
+    gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 19, "   â—‡ ESC : Quit              ");
 
     gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 21, "   KU CSE REPRESENT ");
 
     while (1) {
-        if (_kbhit()) { //Å°ÀÔ·Â¹ŞÀ½ 
+        if (_kbhit()) { //í‚¤ì…ë ¥ë°›ìŒ 
             key = _getch();
-            if (key == ESC) exit(0); // ESCÅ°¸é Á¾·á 
-            else break; //¾Æ´Ï¸é ±×³É °è¼Ó ÁøÇà 
+            if (key == ESC) exit(0); // ESCí‚¤ë©´ ì¢…ë£Œ 
+            else break; //ì•„ë‹ˆë©´ ê·¸ëƒ¥ ê³„ì† ì§„í–‰ 
         }
         gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 14, " < PRESS ANY KEY TO START > ");
         Sleep(300);
@@ -110,36 +110,36 @@ void title(void) {
         Sleep(600);
 
     }
-    reset(); // °ÔÀÓÀ» ÃÊ±âÈ­  
+    reset(); // ê²Œì„ì„ ì´ˆê¸°í™”  
 }
 
-//¸Ê Å×µÎ¸® ±×¸®´Â ÇÔ¼ö 
+//ë§µ í…Œë‘ë¦¬ ê·¸ë¦¬ëŠ” í•¨ìˆ˜ 
 
 void draw_map(void) {
     int i, j;
     for (i = 0; i < MAP_WIDTH; i++) {
-        gotoxy(MAP_X + i, MAP_Y, "¡á");
+        gotoxy(MAP_X + i, MAP_Y, "â– ");
     }
     for (i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) {
-        gotoxy(MAP_X, i, "¡á");
-        gotoxy(MAP_X + MAP_WIDTH - 1, i, "¡á");
+        gotoxy(MAP_X, i, "â– ");
+        gotoxy(MAP_X + MAP_WIDTH - 1, i, "â– ");
     }
     for (i = 0; i < MAP_WIDTH; i++) {
-        gotoxy(MAP_X + i, MAP_Y + MAP_HEIGHT - 1, "¡á");
+        gotoxy(MAP_X + i, MAP_Y + MAP_HEIGHT - 1, "â– ");
     }
 }
 
-//È­¸é Áö¿ì±â ÇÔ¼ö
+//í™”ë©´ ì§€ìš°ê¸° í•¨ìˆ˜
 
 void reset(void) {
     int i;
-    system("cls"); //È­¸éÀ» Áö¿ò 
-    draw_map(); //¸Ê Å×µÎ¸®¸¦ ±×¸² 
+    system("cls"); //í™”ë©´ì„ ì§€ì›€ 
+    draw_map(); //ë§µ í…Œë‘ë¦¬ë¥¼ ê·¸ë¦¼ 
 	
 	
 
 	int menuCode = menuDraw1();
-	printf("¼±ÅÃÇÑ ¸Ş´º: %d\n", menuCode);
+	printf("ì„ íƒí•œ ë©”ë‰´: %d\n", menuCode);
 
 
 }
@@ -161,13 +161,13 @@ int menuDraw1()
 {
 	int x = 24, y = 16;
 	gotoxy1(MAP_X + (MAP_WIDTH / 2) - 9, MAP_Y + 14);
-	printf("> °ÔÀÓ½ÃÀÛ        w(UP)");   // ¼±ÅÃÇÏ¸é ³­ÀÌµµ ¼±ÅÃ È­¸éÀ¸·Î ÀÌµ¿
+	printf("> ê²Œì„ì‹œì‘        w(UP)");   // ì„ íƒí•˜ë©´ ë‚œì´ë„ ì„ íƒ í™”ë©´ìœ¼ë¡œ ì´ë™
 	gotoxy1(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 15);
-	printf("°ÔÀÓ¹æ¹ı        a(LEFT)");     // ³­ÀÌµµ º° ½ÇÇà ¹× Á¶ÀÛ¹ı Ãâ·Â
+	printf("ê²Œì„ë°©ë²•        a(LEFT)");     // ë‚œì´ë„ ë³„ ì‹¤í–‰ ë° ì¡°ì‘ë²• ì¶œë ¥
 	gotoxy1(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 16);
-	printf("È¯°æ¼³Á¤        s(DOWN)");
+	printf("í™˜ê²½ì„¤ì •        s(DOWN)");
 	gotoxy1(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 17);
-	printf("  Á¾·á          d(RIGHT)\n\n\n");
+	printf("  ì¢…ë£Œ          d(RIGHT)\n\n\n");
 
 	printf("             **** spacebar to select ****     ");
 	

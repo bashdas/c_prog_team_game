@@ -4,8 +4,22 @@ int x[100], y[100]; //x,y 좌표값을 저장 총 100개
 int key; //입력받은 키 저장 
 int speed; //게임 속도 
 
-int main() {
-	title();
+int main(void) {
+	int menuCode = 0;
+	while (1) {
+		title();
+		do {
+			menuCode = menuDraw1(); // y - 15 = 1 ~ 4
+			if (menuCode == 1) {
+				printf("선택한 메뉴: %d\n", menuCode);
+			}
+			else if (menuCode == 2) gameRulesDraw();
+			else if (menuCode == 3) {
+				printf("선택한 메뉴: %d\n", menuCode);
+			}
+			else if (menuCode == 4) exit(0);
+		} while (menuCode != BACK);
+	}
 
 	while (1) {
 		if (_kbhit()) do { key = _getch(); } while (key == 224); //키 입력받음
@@ -44,26 +58,21 @@ void gotoxy(int x, int y, const char* s) {
 
 */
 void title(void) {
-	int i, j;
-
 	while (_kbhit()) _getch(); //버퍼에 있는 키값을 버림 
 
 	draw_map();    //맵 테두리를 그림 
-	for (i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) { // 맵 테두리 안쪽을 빈칸으로 채움 
-		for (j = MAP_X + 1; j < MAP_X + MAP_WIDTH - 1; j++) gotoxy(j, i, "  ");
-	}
+	
 	Setcolor(4);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 5, "+--------------------------+");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 5, "┌--------------------------┐");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 6, "|     DUNGEON  RUNNER      |");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 7, "+--------------------------+");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 7, "└--------------------------┘");
 	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 14, " < PRESS ANY KEY TO START > ");
 
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 17, "   ◇ ←(a),→(d),↑(w),↓(s) : Move    ");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 18, "   ◇ P : Pause             ");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 19, "   ◇ ESC : Quit              ");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 17, "  ◇ ←(a),→(d),↑(w),↓(s) : Move    ");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 18, "  ◇ ESC : Quit              ");
 
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 21, "   KU CSE REPRESENT ");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 20, "   KU CSE REPRESENT ");
 
 	while (1) {
 		if (_kbhit()) { //키입력받음 
@@ -77,13 +86,13 @@ void title(void) {
 		Sleep(600);
 
 	}
-	reset(); // 게임을 초기화  
+	reset();
 }
 
 //맵 테두리 그리는 함수 
 
 void draw_map(void) {
-	int i;
+	int i,j;
 	for (i = 0; i < MAP_WIDTH; i++) {
 		gotoxy(MAP_X + i, MAP_Y, "■");
 	}
@@ -94,40 +103,17 @@ void draw_map(void) {
 	for (i = 0; i < MAP_WIDTH; i++) {
 		gotoxy(MAP_X + i, MAP_Y + MAP_HEIGHT - 1, "■");
 	}
+	for (i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) { // 맵 테두리 안쪽을 빈칸으로 채움 
+		for (j = MAP_X + 1; j < MAP_X + MAP_WIDTH - 1; j++) gotoxy(j, i, "  ");
+	}
 }
 
 //화면 지우기 함수
 
 void reset(void) {
-	int i;
 	system("cls"); //화면을 지움 
-	draw_map(); //맵 테두리를 그림 
-
-
-
-	int menuCode = menuDraw1(); // y - 15 = 1 ~ 4
-	// printf("선택한 메뉴: %d\n", menuCode);
-	switch (menuCode)
-	{
-	case 1:
-		printf("선택한 메뉴: %d\n", menuCode);
-		break;
-	case 2:
-		printf("선택한 메뉴: %d\n", menuCode);
-		break;
-	case 3:
-		printf("선택한 메뉴: %d\n", menuCode);
-		break;
-	case 4:
-		printf("선택한 메뉴: %d\n", menuCode);
-		break;
-	default:
-		exit(0);
-		break;
-	}
-
+	draw_map(); //맵 테두리를 그림
 }
-
 
 void gotoxy1(int x, int y)
 {
@@ -138,9 +124,10 @@ void gotoxy1(int x, int y)
 	SetConsoleCursorPosition(consoleHandle, pos);
 }
 
-int menuDraw1()
+int menuDraw1(void)
 {
 	int x = 24, y = 16;
+	reset();
 	gotoxy1(MAP_X + (MAP_WIDTH / 2) - 9, MAP_Y + 14);
 	printf("◇ 게임시작        w(UP)");   // 선택하면 난이도 선택 화면으로 이동
 	gotoxy1(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 15);
@@ -174,6 +161,9 @@ int menuDraw1()
 			}
 			break;
 		}
+		case BACK: {
+			return BACK;
+		}
 		case SUBMIT: {
 			return y - 15;
 		}
@@ -182,22 +172,29 @@ int menuDraw1()
 
 }
 
-int keyControl1() {
+int keyControl1(void) {
 	char a = _getch();
 
 	switch (a) {
+	case 'W':
 	case 'w':
 	case UP1:
 		return UP;
+	case 'S':
 	case 's':
 	case DOWN1:
 		return DOWN;
+	case 'A':
 	case 'a':
 	case LEFT1:
 		return LEFT;
+	case 'D':
 	case 'd':
 	case RIGHT1:
 		return RIGHT;
+	case 'Q':
+	case 'q':
+		return BACK;
 	case ' ':
 		return SUBMIT;
 	default:

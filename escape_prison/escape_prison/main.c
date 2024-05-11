@@ -5,18 +5,21 @@ int key; //입력받은 키 저장
 int speed; //게임 속도 
 
 int main(void) {
-	char menuCode = 0;
+	int menuCode = 0;
+	int gameCode = 0;
 	while (1) {
 		title();
 		do {
 			menuCode = menuDraw1(); // y - 15 = 1 ~ 4
-			if (menuCode == 1) gameDraw();
+			if (menuCode == 1) {
+				gameCode = gameDraw();
+			}
 			else if (menuCode == 2) gameRulesDraw();
 			else if (menuCode == 3) {
 				printf("선택한 메뉴: %d\n", menuCode);
 			}
 			else if (menuCode == 4) exit(0);
-		} while (menuCode != BACK);
+		} while (menuCode != BACK || gameCode == HOME);
 	}
 
 	while (1) {

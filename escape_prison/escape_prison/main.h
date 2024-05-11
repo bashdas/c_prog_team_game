@@ -46,7 +46,7 @@ void slowPrint(const char* s, int x, int y);
 #define HOME 5					// 스테이지 성공 또는 실패 시 메인으로 복귀
 int gameDraw(void);				// HOME 반환
 void titleStory(void);
-char modeSelect(void);			// EASY(0), NORMAL(1), HARD(1) 반환
+int modeSelect(void);			// EASY(0), NORMAL(1), HARD(1) 반환
 void modeSelectMapDraw(int ctitle, int ceasy, int cnormal, int chard);  // 컬러색 매개변수
 void easyStory(void);
 void normalStory(void);

@@ -61,19 +61,24 @@ void gotoxy(int x, int y, const char* s) {
 void title(void) {
 	while (_kbhit()) _getch(); //버퍼에 있는 키값을 버림 
 
-	drawMap();    //맵 테두리를 그림 
-	
-	Setcolor(4);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 5, "┌--------------------------┐");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 6, "|     DUNGEON  RUNNER      |");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 7, "└--------------------------┘");
+	reset();    //맵 테두리를 그림 
+	Setcolor(12);
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3,  "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4,  "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5,  "▒▒▒     ▒▒      ▒▒     ▒      ▒       ▒    ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6,  "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7,  "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8,  "▒▒▒     ▒▒      ▒▒▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9,  "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒  ▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 10, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 11, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 12, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒     ▒      ▒       ▒ ▒▒    ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 13, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 14, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	Setcolor(2);
+	gotoxy(MAP_X + (MAP_WIDTH -14) / 2, MAP_Y + 18, " < PRESS ANY KEY TO START > ");
 	Setcolor(7);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 14, " < PRESS ANY KEY TO START > ");
-
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 17, "  ◇ ←(a),→(d),↑(w),↓(s) : Move    ");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 8, MAP_Y + 18, "  ◇ ESC : Quit              ");
-
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 20, "   KU CSE REPRESENT ");
+	gotoxy(MAP_X + (MAP_WIDTH - 5) / 2, MAP_HEIGHT - 3, "ESC : Quit");
 
 	while (1) {
 		if (_kbhit()) { //키입력받음 
@@ -81,13 +86,17 @@ void title(void) {
 			if (key == ESC) exit(0); // ESC키면 종료 
 			else break; //아니면 그냥 계속 진행 
 		}
-		gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 14, " < PRESS ANY KEY TO START > ");
+		Setcolor(2);
+		gotoxy(MAP_X + (MAP_WIDTH - 14) / 2 , MAP_Y + 18, " < PRESS ANY KEY TO START > ");
+		gotoxy1(MAP_X * 2 + (MAP_WIDTH + 14) / 2 - 2, MAP_Y + 18);
 		Sleep(300);
-		gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 14, "                            ");
+		Setcolor(7);
+		gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 18,  "                            ");
+		gotoxy1(MAP_X * 2 + (MAP_WIDTH + 14) / 2 - 2, MAP_Y + 18);
 		Sleep(600);
 
 	}
-	reset();
+	resetMapInner();
 }
 
 //맵 테두리 그리는 함수 
@@ -97,23 +106,42 @@ void drawMap(void) {
 	for (i = 0; i < MAP_WIDTH; i++) {
 		gotoxy(MAP_X + i, MAP_Y, "■");
 	}
-	for (i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) {
+	for (i = MAP_Y + 1; i < MAP_HEIGHT + 1; i++) {
 		gotoxy(MAP_X, i, "■");
 		gotoxy(MAP_X + MAP_WIDTH - 1, i, "■");
 	}
 	for (i = 0; i < MAP_WIDTH; i++) {
 		gotoxy(MAP_X + i, MAP_Y + MAP_HEIGHT - 1, "■");
 	}
-	for (i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) { // 맵 테두리 안쪽을 빈칸으로 채움 
-		for (j = MAP_X + 1; j < MAP_X + MAP_WIDTH - 1; j++) gotoxy(j, i, "  ");
-	}
+	resetMapInner();
 }
 
 //화면 지우기 함수
-
 void reset(void) {
 	system("cls"); //화면을 지움 
 	drawMap(); //맵 테두리를 그림
+}
+
+// 화면 내부만 지우기
+// 이중 중첩으로 하면 안지워 지는 거 있음
+void resetMapInner(void) {
+	for (int i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) {
+		gotoxy(MAP_X, i, "■                                                                           ■");
+	}
+}
+// 목숨창만 지우기
+void resetMapTitle(void) {
+	gotoxy(MAP_X, MAP_Y + 1, "■                                                                           ■");
+}
+// 게임창만 지우기 3 ~ MAP_Y + MAP_HEIGHT - 7
+void resetMapMain(void) {
+	for (int i = MAP_Y + 3; i < MAP_Y + MAP_HEIGHT - 6; i++)
+		gotoxy(MAP_X, i, "■                                                                           ■");
+}
+// 상호작용창만 지우기
+void resetMapBottom(void) {
+	for (int i = MAP_Y + MAP_HEIGHT - 5; i < MAP_Y + MAP_HEIGHT - 1; i++)
+		gotoxy(MAP_X, i, "■                                                                           ■");
 }
 
 void gotoxy1(int x, int y)
@@ -128,17 +156,17 @@ void gotoxy1(int x, int y)
 int menuDraw1(void)
 {
 	int x = 24, y = 16;
-	reset();
-	gotoxy1(MAP_X + (MAP_WIDTH / 2) - 9, MAP_Y + 14);
+	resetMapInner();
+	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 14);
 	printf("◇ 게임시작        w(UP)");   // 선택하면 난이도 선택 화면으로 이동
-	gotoxy1(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 15);
-	printf("게임방법        a(LEFT)");     // 난이도 별 실행 및 조작법 출력
-	gotoxy1(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 16);
-	printf("환경설정        s(DOWN)");
-	gotoxy1(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 17);
-	printf("  종료          d(RIGHT)\n\n\n");
-
-	printf("      ■      **** spacebar to select ****     ");
+	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 15);
+	printf("  게임방법        a(LEFT)");     // 난이도 별 실행 및 조작법 출력
+	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 16);
+	printf("  환경설정        s(DOWN)");
+	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 17);
+	printf("  종료          d(RIGHT)");
+	gotoxy1(MAP_X * 2, MAP_Y + 20);
+	printf("■      **** spacebar to select ****     ");
 	
 	while (1)
 	{
@@ -146,18 +174,18 @@ int menuDraw1(void)
 		switch (n) {
 		case UP: {
 			if (y > MAP_Y + 14) {
-				gotoxy1(MAP_X + (MAP_WIDTH / 2) - 9, y);
+				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, y);
 				printf(" ");
-				gotoxy1(MAP_X + (MAP_WIDTH / 2) - 9, --y);
+				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, --y);
 				printf("◇\b");
 			}
 			break;
 		}
 		case DOWN: {
 			if (y < MAP_Y + 17) {
-				gotoxy1(MAP_X + (MAP_WIDTH / 2) - 9, y);
+				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, y);
 				printf(" ");
-				gotoxy1(MAP_X + (MAP_WIDTH / 2) - 9, ++y);
+				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, ++y);
 				printf("◇\b");
 			}
 			break;

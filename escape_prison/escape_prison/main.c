@@ -217,7 +217,6 @@ void slowPrint(const char* s, int x, int y) {
 		}
 	}
 	if (ch = SUBMIT) {
-		gameMapDraw();
 		gotoxy1(x, y);
 		for (int i = 0; s[i] != '\0'; i++) {
 			putchar(s[i]);

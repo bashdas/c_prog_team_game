@@ -18,7 +18,7 @@
 #define ESC 27
 
 // MAP 값
-#define MAP_X 10 // 3 2
+#define MAP_X 11 // 3 2
 #define MAP_Y 2
 #define MAP_WIDTH 39  // 30 20
 #define MAP_HEIGHT 26

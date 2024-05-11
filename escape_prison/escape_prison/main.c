@@ -5,14 +5,12 @@ int key; //입력받은 키 저장
 int speed; //게임 속도 
 
 int main(void) {
-	int menuCode = 0;
+	char menuCode = 0;
 	while (1) {
 		title();
 		do {
 			menuCode = menuDraw1(); // y - 15 = 1 ~ 4
-			if (menuCode == 1) {
-				printf("선택한 메뉴: %d\n", menuCode);
-			}
+			if (menuCode == 1) gameDraw();
 			else if (menuCode == 2) gameRulesDraw();
 			else if (menuCode == 3) {
 				printf("선택한 메뉴: %d\n", menuCode);
@@ -60,7 +58,7 @@ void gotoxy(int x, int y, const char* s) {
 void title(void) {
 	while (_kbhit()) _getch(); //버퍼에 있는 키값을 버림 
 
-	draw_map();    //맵 테두리를 그림 
+	drawMap();    //맵 테두리를 그림 
 	
 	Setcolor(4);
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 5, "┌--------------------------┐");
@@ -91,7 +89,7 @@ void title(void) {
 
 //맵 테두리 그리는 함수 
 
-void draw_map(void) {
+void drawMap(void) {
 	int i,j;
 	for (i = 0; i < MAP_WIDTH; i++) {
 		gotoxy(MAP_X + i, MAP_Y, "■");
@@ -112,7 +110,7 @@ void draw_map(void) {
 
 void reset(void) {
 	system("cls"); //화면을 지움 
-	draw_map(); //맵 테두리를 그림
+	drawMap(); //맵 테두리를 그림
 }
 
 void gotoxy1(int x, int y)
@@ -161,9 +159,8 @@ int menuDraw1(void)
 			}
 			break;
 		}
-		case BACK: {
+		case BACK:
 			return BACK;
-		}
 		case SUBMIT: {
 			return y - 15;
 		}
@@ -195,6 +192,7 @@ int keyControl1(void) {
 	case 'Q':
 	case 'q':
 		return BACK;
+	case '\r':
 	case ' ':
 		return SUBMIT;
 	default:
@@ -202,3 +200,24 @@ int keyControl1(void) {
 	}
 }
 
+
+void slowPrint(const char* s, int x, int y) {
+	char ch = 0;
+	gotoxy1(x, y);
+	for (int i = 0; s[i] != '\0'; i++) {
+		putchar(s[i]);
+		fflush(stdout);
+		Sleep(50);
+		if (_kbhit()) {
+			ch = _getch();
+			if (ch == '\r' || ch == ' ') break;
+		}
+	}
+	if (ch = SUBMIT) {
+		gameMapDraw();
+		gotoxy1(x, y);
+		for (int i = 0; s[i] != '\0'; i++) {
+			putchar(s[i]);
+		}
+	}
+}

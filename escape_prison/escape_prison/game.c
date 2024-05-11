@@ -2,26 +2,26 @@
 
 // 게임 화면 출력
 int gameDraw(void) {
-	int gameCode = 0;
+	int gameCode = 0, stageCode=0;
 	titleStory();
-	while (1) {
+	do {
 		gameCode = modeSelect();
-		do {
+		while (stageCode != BACK) {
 			if (gameCode == EASY) {
 				easyStory();
-				gameCode = easyMode();
+				stageCode = easyMode();
 			}
 			else if (gameCode == NORMAL) {
 				normalStory();
-				gameCode = normalMode();
+				stageCode = normalMode();
 			}
 			else if (gameCode == HARD) {
 				hardStory();
-				gameCode = hardMode();
+				stageCode = hardMode();
 			}
 			else exit(0);
-		} while (gameCode != BACK);
-	}
+		}
+	} while ((gameCode != BACK));
 }
 
 void titleStory(void) {
@@ -37,7 +37,7 @@ void titleStory(void) {
 
 // blue: 1, green: 2, skyblue:3,  red:4, purple:5, yellow:6, white:7, gray: 8, blue2:9 d에메랄드:11, 23: 배경색
 // x 위치에 따라 색반전
-char modeSelect(void) {
+int modeSelect(void) {
 	int x = MAP_X + (MAP_WIDTH / 2) - 8, y = 24; // 초기 위치
 	modeSelectMapDraw(353, 2, 7, 7);
 	gotoxy1(x, y);
@@ -68,7 +68,7 @@ char modeSelect(void) {
 			}
 			break;
 		case BACK:
-			return 0; // 뒤로가기
+			return BACK;
 		case SUBMIT:
 			if (x = MAP_X + (MAP_WIDTH / 2) - 8) {
 				x = EASY;

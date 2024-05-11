@@ -25,20 +25,29 @@ int gameDraw(void) {
 }
 
 void titleStory(void) {
+	char titlestr[7][47] = {
+		"      ■      stroy.......................   ",
+		"      ■      stroy.......................   ",
+		"      ■      stroy.......................   ",
+		"      ■      stroy.......................   ",
+		"      ■      stroy.......................   ",
+		"      ■      stroy.......................   ",
+		"      ■      stroy.......................   "
+	};
 	gameMapDraw();
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 4);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 6);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 8);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 10);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 12);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 14);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 16);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 4);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 6);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 8);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 10);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 12);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 14);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 16);
+	Sleep(500);
 }
 
-// blue: 1, green: 2, skyblue:3,  red:4, purple:5, yellow:6, white:7, gray: 8, blue2:9 d에메랄드:11, 23: 배경색
 // x 위치에 따라 색반전
 int modeSelect(void) {
-	int x = MAP_X + (MAP_WIDTH / 2) - 8, y = 24; // 초기 위치
+	int x = MAP_X + (MAP_WIDTH / 2) - 2, y = 24; // 초기 위치
 	modeSelectMapDraw(353, 2, 7, 7);
 	gotoxy1(x, y);
 	printf("◇\b");
@@ -46,23 +55,23 @@ int modeSelect(void) {
 		int n = keyControl1();
 		switch (n) {
 		case LEFT:
-			if (x > MAP_X + (MAP_WIDTH / 2) - 8) {
+			if (x > MAP_X + (MAP_WIDTH / 2) - 2) {
 				gotoxy1(x, y);
 				printf(" ");
 				x -= 24;
-				if (x == MAP_X + (MAP_WIDTH / 2) - 8) modeSelectMapDraw(353, 2, 7, 7);
-				else if (x == MAP_X + (MAP_WIDTH / 2) + 16) modeSelectMapDraw(353, 7, 2, 7);
+				if (x == MAP_X + (MAP_WIDTH / 2) - 2) modeSelectMapDraw(353, 2, 7, 7);
+				else if (x == MAP_X + (MAP_WIDTH / 2) + 22) modeSelectMapDraw(353, 7, 2, 7);
 				gotoxy1(x, y);
 				printf("◇\b");
 			}
 			break;
 		case RIGHT:
-			if (x < MAP_X + (MAP_WIDTH / 2) + 40) {
+			if (x < MAP_X + (MAP_WIDTH / 2) + 46) {
 				gotoxy1(x, y);
 				printf(" ");
 				x += 24;
-				if (x == MAP_X + (MAP_WIDTH / 2) + 16) modeSelectMapDraw(353, 7, 2, 7);
-				else if (x == MAP_X + (MAP_WIDTH / 2) + 40) modeSelectMapDraw(353, 7, 7, 2);
+				if (x == MAP_X + (MAP_WIDTH / 2) + 22) modeSelectMapDraw(353, 7, 2, 7);
+				else if (x == MAP_X + (MAP_WIDTH / 2) + 46) modeSelectMapDraw(353, 7, 7, 2);
 				gotoxy1(x, y);
 				printf("◇\b");
 			}
@@ -70,13 +79,13 @@ int modeSelect(void) {
 		case BACK:
 			return BACK;
 		case SUBMIT:
-			if (x = MAP_X + (MAP_WIDTH / 2) - 8) {
+			if (x = MAP_X + (MAP_WIDTH / 2) - 2) {
 				x = EASY;
 			}
-			else if (x = MAP_X + (MAP_WIDTH / 2) + 16) {
+			else if (x = MAP_X + (MAP_WIDTH / 2) + 22) {
 				x = NORMAL;
 			}
-			else if (x = MAP_X + (MAP_WIDTH / 2) + 40) {
+			else if (x = MAP_X + (MAP_WIDTH / 2) + 46) {
 				x = HARD;
 			}
 			return x;
@@ -86,61 +95,62 @@ int modeSelect(void) {
 
 // 타이틀 색, easy 색, normla 색, hard 색을 인자로 받음
 void modeSelectMapDraw(int ctitle, int ceasy, int cnormal, int chard) {
-	gameMapDraw();
+	resetMapMain();
+	resetMapBottom();
 	Setcolor(ctitle);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 5, "┌--------------------------┐");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 6, "|        GAME   MODE       |");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 7, "└--------------------------┘");
+	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 5, "┌--------------------------┐");
+	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 6, "|        GAME   MODE       |");
+	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 7, "└--------------------------┘");
 	Setcolor(ceasy);
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 12, "┌----------┐");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 13, "|   EASY   |");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 14, "└----------┘");
 	Setcolor(cnormal);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 3, MAP_Y + 12, "┌----------┐");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 3, MAP_Y + 13, "|  NORMAL  |");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 3, MAP_Y + 14, "└----------┘");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 12, "┌----------┐");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 13, "|  NORMAL  |");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 14, "└----------┘");
 	Setcolor(chard);
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 12, "┌----------┐");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 13, "|   HARD   |");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 14, "└----------┘");
 	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 22, "  1. EASY");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 3, MAP_Y + 22,  "  2. NORMAL");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 22,  "  2. NORMAL");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 22,  "  3. HARD");
 }
 
 
 void easyStory(void) {
-	gameMapDraw();
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 4);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 6);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 8);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 10);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 12);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 14);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 16);
+	resetMapMain();
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 4);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 6);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 8);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 10);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 12);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 14);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 16);
 }
 
 void normalStory(void) {
-	gameMapDraw();
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 4);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 6);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 8);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 10);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 12);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 14);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 16);
+	resetMapMain();
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 4);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 6);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 8);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 10);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 12);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 14);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 16);
 }
 
 void hardStory(void) {
-	gameMapDraw();
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 4);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 6);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 8);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 10);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 12);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 14);
-	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 16);
+	resetMapMain();
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 4);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 6);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 8);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 10);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 12);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 14);
+	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 16);
 }
 // BACK, -1, HOME 반환
 int easyMode(void) {
@@ -207,7 +217,7 @@ int playerMove(void) {
 
 void gameMapDraw(void) {
 	int i;
-	reset();
+	resetMapInner();
 	for (i = 1; i < MAP_WIDTH - 1; i++) {
 		gotoxy(MAP_X + i, MAP_Y + 2, "■");
 	}

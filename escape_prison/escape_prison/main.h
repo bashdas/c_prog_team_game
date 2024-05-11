@@ -46,7 +46,8 @@ void slowPrint(const char* s, int x, int y);
 /* game */
 void gameDraw(void);
 void story(void);
-void modeSelect(void);
+char modeSelect(void);
+void modeSelectMapDraw(int ctitle, int ceasy, int cnormal, int chard);
 void easyStory(void);
 void normalStory(void);
 void hardStory(void);
@@ -57,6 +58,6 @@ void gameMapDraw(void);
 
 /* gamerule */
 #define EASY 0;
-#define NOMAL 1;
+#define NORMAL 1;
 #define HARD 2;
 void gameRulesDraw(void);

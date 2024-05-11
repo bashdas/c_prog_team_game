@@ -1,31 +1,30 @@
 #include "main.h"
 
 // 게임 화면 출력
-void gameDraw(void) {
-	char gameCode;
-	story();
+int gameDraw(void) {
+	int gameCode = 0;
+	titleStory();
 	while (1) {
-		// EASY, NORMAL, HARD 사용하면 ')' 뜨는데 이유 모름
 		gameCode = modeSelect();
 		do {
-			if (gameCode == 0) { // EASY
+			if (gameCode == EASY) {
 				easyStory();
-				easyMode();
+				gameCode = easyMode();
 			}
-			else if (gameCode == 1) {
+			else if (gameCode == NORMAL) {
 				normalStory();
-				normalMode();
+				gameCode = normalMode();
 			}
-			else if (gameCode == 2) {
+			else if (gameCode == HARD) {
 				hardStory();
-				hardMode();
+				gameCode = hardMode();
 			}
 			else exit(0);
 		} while (gameCode != BACK);
 	}
 }
 
-void story(void) {
+void titleStory(void) {
 	gameMapDraw();
 	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 4);
 	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 6);
@@ -143,23 +142,67 @@ void hardStory(void) {
 	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 14);
 	slowPrint("  stroy.......................   ", MAP_X + 5, MAP_Y + 16);
 }
-
-void easyMode(void) {
+// BACK, -1, HOME 반환
+int easyMode(void) {
+	int keyvalue; // BACK, -1
 	gameMapDraw();
 	gotoxy(MAP_X + MAP_WIDTH - 7, MAP_Y + 1, "easy ♥ ♥ ♥");
-	Sleep(50000);
+	while (1) {
+		keyvalue = playerMove();
+		if (keyvalue == BACK) return BACK; // modeSelct로 복귀
+	}
+	// 클리어 성공하면 성공 화면 출력 하고 HOME 반환
+	// 클리어 실패하면 다시 시도 하시겠습니까(BACK) OR 종료하시겠습니까 출력
+	return 0;
 }
-
-void normalMode(void) {
+// BACK, -1, HOME 반환
+int normalMode(void) {
+	int keyvalue;
 	gameMapDraw();
 	gotoxy(MAP_X + MAP_WIDTH - 7, MAP_Y + 1, "normal ♥ ♥ ♥");
-	Sleep(50000);
+	int n = keyControl1();
+	while (1) {
+		keyvalue = playerMove();
+		if (keyvalue == BACK) return BACK; // modeSelct로 복귀
+	}
+	// 클리어 성공하면 성공 화면 출력 하고 HOME 반환
+	// 클리어 실패하면 다시 시도 하시겠습니까(BACK) OR 종료하시겠습니까 출력
+	return 0;
 }
-
-void hardMode(void) {
+// BACK, -1, HOME 반환
+int hardMode(void) {
+	int keyvalue;
 	gameMapDraw();
 	gotoxy(MAP_X + MAP_WIDTH - 7, MAP_Y + 1, "hard ♥ ♥ ♥");
-	Sleep(50000);
+	while (1) {
+		keyvalue = playerMove();
+		if (keyvalue == BACK) return BACK; // modeSelct로 복귀
+	}
+	// 클리어 성공하면 성공 화면 출력 하고 HOME 반환
+	// 클리어 실패하면 다시 시도 하시겠습니까(BACK) OR 종료하시겠습니까 출력
+	return 0;
+}
+// BACK, -1 반환
+int playerMove(void) {
+	int n = keyControl1();
+	switch (n)
+	{
+	case UP:		// 캐릭터 이동
+		break;
+	case DOWN:
+		break;
+	case LEFT:
+		break;
+	case RIGHT:
+		break;
+	case BACK:		// 뒤로가기
+		return BACK;
+	case SUBMIT:	// 상호작용
+		break;
+	default:
+		return -1;
+	}
+	return 0;
 }
 
 void gameMapDraw(void) {

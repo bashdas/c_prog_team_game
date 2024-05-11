@@ -34,14 +34,29 @@ void Setcolor(WORD color);
 void gotoxy(int x, int y, const char* s);
 void title(void); //게임 시작화면 
 void reset(void); //게임을 초기화 
-void draw_map(void); // 게임판 테두리를 그림 
-void load_menu(void); // 메뉴를 불러오는 함수.
+void drawMap(void); // 게임판 테두리를 그림 
+// void load_menu(void); // 메뉴를 불러오는 함수.
+void reset(void);
 void gotoxy1(int x, int y);
 int menuDraw1(void);
 int keyControl1(void);
+void slowPrint(const char* s, int x, int y);
 
+
+/* game */
+void gameDraw(void);
+void story(void);
+void modeSelect(void);
+void easyStory(void);
+void normalStory(void);
+void hardStory(void);
+void easyMode(void);
+void normalMode(void);
+void hardMode(void);
+void gameMapDraw(void);
 
 /* gamerule */
-
-void gameRulesDraw();
-void displayRules();
+#define EASY 0;
+#define NOMAL 1;
+#define HARD 2;
+void gameRulesDraw(void);

@@ -85,3 +85,11 @@ void gameRulesDraw(void);
 14	: 밝은 노란색
 15	: 밝은 흰색
 */
+
+// option.c
+void initOption();
+int selectOption();
+int setMusic();
+int selectMusic();
+int setTheme();
+int selectTheme();

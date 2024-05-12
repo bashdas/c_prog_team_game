@@ -95,23 +95,23 @@ int modeSelect(void) {
 }
 
 // 타이틀 색, easy 색, normla 색, hard 색을 인자로 받음
-void modeSelectMapDraw(int ctitle, int ceasy, int cnormal, int chard) {
+void modeSelectMapDraw(int c1, int c2, int c3, int c4) {
 	resetMapTitle();
 	resetMapMain();
 	resetMapBottom();
-	Setcolor(ctitle);
+	Setcolor(c1);
 	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 5, "┌--------------------------┐");
 	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 6, "|        GAME   MODE       |");
 	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 7, "└--------------------------┘");
-	Setcolor(ceasy);
+	Setcolor(c2);
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 12, "┌----------┐");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 13, "|   EASY   |");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 14, "└----------┘");
-	Setcolor(cnormal);
+	Setcolor(c3);
 	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 12, "┌----------┐");
 	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 13, "|  NORMAL  |");
 	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 14, "└----------┘");
-	Setcolor(chard);
+	Setcolor(c4);
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 12, "┌----------┐");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 13, "|   HARD   |");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 14, "└----------┘");
@@ -235,6 +235,7 @@ int playerMove(void) {
 void gameMapDraw(void) {
 	int i;
 	resetMapInner();
+	Setcolor(7);
 	for (i = 1; i < MAP_WIDTH - 1; i++) {
 		gotoxy(MAP_X + i, MAP_Y + 2, "■");
 	}

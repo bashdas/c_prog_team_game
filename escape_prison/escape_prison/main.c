@@ -15,9 +15,7 @@ int main(void) {
 				gameCode = gameDraw();
 			}
 			else if (menuCode == 2) gameRulesDraw();
-			else if (menuCode == 3) {
-				printf("선택한 메뉴: %d\n", menuCode);
-			}
+			else if (menuCode == 3) initOption();
 			else if (menuCode == 4) exit(0);
 		} while (menuCode != BACK || gameCode == HOME);
 	}
@@ -164,7 +162,7 @@ int menuDraw1(void)
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 16);
 	printf("  환경설정        s(DOWN)");
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 17);
-	printf("  종료          d(RIGHT)");
+	printf("  종료            d(RIGHT)");
 	gotoxy1(MAP_X * 2, MAP_Y + 20);
 	printf("■      **** spacebar to select ****     ");
 	
@@ -230,7 +228,6 @@ int keyControl1(void) {
 		return -1; // 다른 키를 눌렀을 경우 처리
 	}
 }
-
 
 void slowPrint(const char* s, int x, int y) {
 	char ch = 0;

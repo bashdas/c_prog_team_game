@@ -19,7 +19,7 @@ int gameDraw(void) {
 				hardStory();
 				stageCode = hardMode();
 			}
-			else exit(0);
+			else stageCode = BACK;
 		}
 	} while ((gameCode != BACK));
 }

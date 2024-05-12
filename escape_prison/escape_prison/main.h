@@ -41,6 +41,7 @@ void resetMapBottom(void);		// 상호작용창만 지움
 void drawMap(void);				// 게임판 테두리를 그림 
 void gotoxy1(int x, int y);
 int menuDraw1(void);			// BACK, y- 15(1~4) 반환
+void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6);
 int keyControl1(void);			// keyboard value 반환
 void slowPrint(const char* s, int x, int y);
 
@@ -86,10 +87,11 @@ void gameRulesDraw(void);
 15	: 밝은 흰색
 */
 
-// option.c
-void initOption();
-int selectOption();
-int setMusic();
-int selectMusic();
-int setTheme();
-int selectTheme();
+
+/* option */
+// 색 바꿀 변수 추후에
+int setTheme(void);
+int setMusic(void);
+int selectTheme(void);
+int selectOption(void);
+void initOption(void);

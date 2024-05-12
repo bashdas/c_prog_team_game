@@ -2,10 +2,11 @@
 
 // 게임 화면 출력
 int gameDraw(void) {
-	int gameCode = 0, stageCode=0;
+	int gameCode = 0, stageCode;
 	titleStory();
 	do {
 		gameCode = modeSelect();
+		stageCode = 0;
 		while (stageCode != BACK) {
 			if (gameCode == EASY) {
 				easyStory();
@@ -47,7 +48,7 @@ void titleStory(void) {
 
 // x 위치에 따라 색반전
 int modeSelect(void) {
-	int x = MAP_X + (MAP_WIDTH / 2) - 2, y = 24; // 초기 위치
+	int x = MAP_X + (MAP_WIDTH / 2) - 1, y = 24; // 초기 위치
 	modeSelectMapDraw(353, 2, 7, 7);
 	gotoxy1(x, y);
 	printf("◇\b");
@@ -55,23 +56,23 @@ int modeSelect(void) {
 		int n = keyControl1();
 		switch (n) {
 		case LEFT:
-			if (x > MAP_X + (MAP_WIDTH / 2) - 2) {
+			if (x > MAP_X + (MAP_WIDTH / 2) - 1) {
 				gotoxy1(x, y);
 				printf(" ");
 				x -= 24;
-				if (x == MAP_X + (MAP_WIDTH / 2) - 2) modeSelectMapDraw(353, 2, 7, 7);
-				else if (x == MAP_X + (MAP_WIDTH / 2) + 22) modeSelectMapDraw(353, 7, 2, 7);
+				if (x == MAP_X + (MAP_WIDTH / 2) - 1) modeSelectMapDraw(353, 2, 7, 7);
+				else if (x == MAP_X + (MAP_WIDTH / 2) + 23) modeSelectMapDraw(353, 7, 2, 7);
 				gotoxy1(x, y);
 				printf("◇\b");
 			}
 			break;
 		case RIGHT:
-			if (x < MAP_X + (MAP_WIDTH / 2) + 46) {
+			if (x < MAP_X + (MAP_WIDTH / 2) + 47) {
 				gotoxy1(x, y);
 				printf(" ");
 				x += 24;
-				if (x == MAP_X + (MAP_WIDTH / 2) + 22) modeSelectMapDraw(353, 7, 2, 7);
-				else if (x == MAP_X + (MAP_WIDTH / 2) + 46) modeSelectMapDraw(353, 7, 7, 2);
+				if (x == MAP_X + (MAP_WIDTH / 2) + 23) modeSelectMapDraw(353, 7, 2, 7);
+				else if (x == MAP_X + (MAP_WIDTH / 2) + 47) modeSelectMapDraw(353, 7, 7, 2);
 				gotoxy1(x, y);
 				printf("◇\b");
 			}
@@ -79,13 +80,13 @@ int modeSelect(void) {
 		case BACK:
 			return BACK;
 		case SUBMIT:
-			if (x = MAP_X + (MAP_WIDTH / 2) - 2) {
+			if (x == MAP_X + (MAP_WIDTH / 2) - 1) {
 				x = EASY;
 			}
-			else if (x = MAP_X + (MAP_WIDTH / 2) + 22) {
+			else if (x == MAP_X + (MAP_WIDTH / 2) + 23) {
 				x = NORMAL;
 			}
-			else if (x = MAP_X + (MAP_WIDTH / 2) + 46) {
+			else if (x == MAP_X + (MAP_WIDTH / 2) + 47) {
 				x = HARD;
 			}
 			return x;
@@ -95,6 +96,7 @@ int modeSelect(void) {
 
 // 타이틀 색, easy 색, normla 색, hard 색을 인자로 받음
 void modeSelectMapDraw(int ctitle, int ceasy, int cnormal, int chard) {
+	resetMapTitle();
 	resetMapMain();
 	resetMapBottom();
 	Setcolor(ctitle);
@@ -122,6 +124,7 @@ void modeSelectMapDraw(int ctitle, int ceasy, int cnormal, int chard) {
 
 void easyStory(void) {
 	resetMapMain();
+	resetMapBottom();
 	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 4);
 	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 6);
 	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 8);
@@ -133,6 +136,7 @@ void easyStory(void) {
 
 void normalStory(void) {
 	resetMapMain();
+	resetMapBottom();
 	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 4);
 	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 6);
 	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 8);
@@ -144,6 +148,7 @@ void normalStory(void) {
 
 void hardStory(void) {
 	resetMapMain();
+	resetMapBottom();
 	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 4);
 	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 6);
 	slowPrint("stroy.......................   ", MAP_X * 2 + 4, MAP_Y + 8);
@@ -156,7 +161,11 @@ void hardStory(void) {
 int easyMode(void) {
 	int keyvalue; // BACK, -1
 	gameMapDraw();
-	gotoxy(MAP_X + MAP_WIDTH - 7, MAP_Y + 1, "easy ♥ ♥ ♥");
+	Setcolor(7);
+	gotoxy(MAP_X + 1, MAP_Y + 1, "EASY");
+	Setcolor(4);
+	gotoxy(MAP_X + MAP_WIDTH - 4, MAP_Y + 1, "♥ ♥ ♥");
+	Setcolor(7);
 	while (1) {
 		keyvalue = playerMove();
 		if (keyvalue == BACK) return BACK; // modeSelct로 복귀
@@ -169,7 +178,11 @@ int easyMode(void) {
 int normalMode(void) {
 	int keyvalue;
 	gameMapDraw();
-	gotoxy(MAP_X + MAP_WIDTH - 7, MAP_Y + 1, "normal ♥ ♥ ♥");
+	Setcolor(7);
+	gotoxy(MAP_X + 1, MAP_Y + 1, "NORMAL");
+	Setcolor(4);
+	gotoxy(MAP_X + MAP_WIDTH - 4, MAP_Y + 1, "♥ ♥ ♥");
+	Setcolor(7);
 	int n = keyControl1();
 	while (1) {
 		keyvalue = playerMove();
@@ -183,7 +196,11 @@ int normalMode(void) {
 int hardMode(void) {
 	int keyvalue;
 	gameMapDraw();
-	gotoxy(MAP_X + MAP_WIDTH - 7, MAP_Y + 1, "hard ♥ ♥ ♥");
+	Setcolor(7);
+	gotoxy(MAP_X + 1, MAP_Y + 1, "HARD");
+	Setcolor(4);
+	gotoxy(MAP_X + MAP_WIDTH - 4, MAP_Y + 1, "♥ ♥ ♥");
+	Setcolor(7);
 	while (1) {
 		keyvalue = playerMove();
 		if (keyvalue == BACK) return BACK; // modeSelct로 복귀

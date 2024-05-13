@@ -59,7 +59,6 @@ int easyMode(void);				// BACK, -1, HOME 반환
 int normalMode(void);			// BACK, -1, HOME 반환
 int hardMode(void);				// BACK, -1, HOME 반환
 int playerMove(void);			// BACK, -1, HOME 반환
-int playermove(void);
 void gameMapDraw(void);
 
 /* gamerule */

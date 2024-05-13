@@ -1,5 +1,9 @@
 #include "main.h"
 
+void playMusic(const char* address);
+void setConsoleTheme(int textColor, int bgColor);
+
+
 // 환경설정 실행 함수
 void initOption() {
 	int optionCode = 0, subjectCode = -1;
@@ -70,10 +74,11 @@ int setMusic(void) {
 	keyInput = selectMusic();
 	switch (keyInput) {
 	case 1:
-		printf("  1번 실행됨\n");// 첫 번째 브금 실행// 첫 번째 브금 실행
+		//playMusic("첫번쨰 음악 /주소/주소/주소");//전체 브금 요소 끄고 첫 번째 브금 실행
 		break;
 	case 2:
-		printf("  2번 실행\n");// 두 번째 브금 실행문 추가 예정
+		//playMusic("두번쨰 음악 /주소/주소/주소");//전체 브금 요소 끄고 두 번째 브금 실행
+		break;
 		// 브금 종류 추가 시 case 추가 후 select Music에 3번 음악 목록 추가
 	}
 	return BACK;
@@ -130,10 +135,10 @@ int setTheme(void) {
 	keyInput = selectTheme();
 	switch (keyInput) {
 	case 1:
-		printf("1번 실행됨\n");// 첫 번째 테마 실행문 추가 예정
+		setConsoleTheme(12, 34);// 첫 번째 테마(글자색, 배경색)
 		break;
 	case 2:
-		printf("2번 실행\n");// 두 번째 테마 실행문 추가 예정
+		setConsoleTheme(56, 78);// 두 번째 테마 (글자색, 배경색)
 		break;
 		// 테마 종류 추가 시 case 추가 후 selectTheme에 3번 음악 목록 추가
 	}
@@ -180,4 +185,20 @@ int selectTheme(void) {
 		}
 		}
 	}
+}
+
+// 음악 파일에 접근하여 재생하는 함수 
+void playMusic(const char* address) { // 음악 파일의 주소를 인수로 받는다.
+	mciSendString("stop music", NULL, 0, NULL);
+	mciSendString("close music", NULL, 0, NULL);// 기존에 재생되던 음악을 종료
+	char command[256];
+	snprintf(command, sizeof(command), "open \"%s\" type mpegvideo alias music", address);
+	mciSendString(command, NULL, 0, NULL);
+	mciSendString("play music repeat", NULL, 0, NULL);
+}
+
+// 콘솔의 배경과 글자색을 변경하는 함수 - 불변의 색을 정하고 싶다면 전역변수를 이용하여 고정할 것..
+void setConsoleTheme(int textColor, int bgColor) {
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, textColor | (bgColor << 4));
 }

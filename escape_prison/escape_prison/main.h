@@ -46,6 +46,7 @@ int menuDraw1(void);			// BACK, y- 15(1~4) 반환
 void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6);
 int keyControl1(void);			// keyboard value 반환
 void slowPrint(const char* s, int x, int y);
+void gameExit(void);			// 게임 끄기전에 보여주는 화면
 
 
 /* game */
@@ -62,6 +63,7 @@ int normalMode(void);			// BACK, -1, HOME 반환
 int hardMode(void);				// BACK, -1, HOME 반환
 int playerMove(void);			// BACK, -1, HOME 반환
 void gameMapDraw(void);
+
 
 /* gamerule */
 #define EASY 0

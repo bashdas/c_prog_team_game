@@ -71,6 +71,10 @@ void gameMapDraw(void);
 #define HARD 2
 void gameRulesDraw(void);
 
+/*theme*/
+static int theme = 7;
+static int* ptheme = &theme;
+
 
 /*
 0	: 검은색

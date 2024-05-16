@@ -1,5 +1,7 @@
 #include "main.h"
 
+void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6);
+
 int x[100], y[100]; //x,y 좌표값을 저장 총 100개 
 int key; //입력받은 키 저장 
 int speed; //게임 속도 
@@ -64,20 +66,20 @@ void title(void) {
 
 	reset();    //맵 테두리를 그림 
 	Setcolor(12);
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3,  "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4,  "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5,  "▒▒▒     ▒▒      ▒▒     ▒      ▒       ▒    ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6,  "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7,  "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8,  "▒▒▒     ▒▒      ▒▒▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9,  "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒  ▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5, "▒▒▒     ▒▒      ▒▒     ▒      ▒       ▒    ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6, "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7, "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8, "▒▒▒     ▒▒      ▒▒▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒  ▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 10, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 11, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 12, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒     ▒      ▒       ▒ ▒▒    ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 13, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 14, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
 	Setcolor(2);
-	gotoxy(MAP_X + (MAP_WIDTH -14) / 2, MAP_Y + 18, " < PRESS ANY KEY TO START > ");
+	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 18, " < PRESS ANY KEY TO START > ");
 	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH - 5) / 2, MAP_HEIGHT - 3, "ESC : Quit");
 
@@ -91,11 +93,11 @@ void title(void) {
 			else break; //아니면 그냥 계속 진행 
 		}
 		Setcolor(2);
-		gotoxy(MAP_X + (MAP_WIDTH - 14) / 2 , MAP_Y + 18, " < PRESS ANY KEY TO START > ");
+		gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 18, " < PRESS ANY KEY TO START > ");
 		gotoxy1(MAP_X * 2 + (MAP_WIDTH + 14) / 2 - 2, MAP_Y + 18);
 		Sleep(300);
 		Setcolor(7);
-		gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 18,  "                            ");
+		gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 18, "                            ");
 		gotoxy1(MAP_X * 2 + (MAP_WIDTH + 14) / 2 - 2, MAP_Y + 18);
 		Sleep(600);
 
@@ -106,7 +108,7 @@ void title(void) {
 //맵 테두리 그리는 함수 
 
 void drawMap(void) {
-	int i,j;
+	int i;
 	Setcolor(7);
 	for (i = 0; i < MAP_WIDTH; i++) {
 		gotoxy(MAP_X + i, MAP_Y, "■");

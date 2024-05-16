@@ -1,7 +1,6 @@
 #include "main.h"
 
 void playMusic(const char* address);
-void setConsoleTheme(int textColor, int bgColor);
 
 
 // 환경설정 실행 함수
@@ -30,9 +29,9 @@ int selectOption(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	resetMapInner();
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 14);
-	printf("  배경음악 설정");   
+	printf("  배경음악 설정 ");
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 15);
-	printf("  테마 설정");  
+	printf("  테마 설정  ");
 	gotoxy1(MAP_X * 2, MAP_Y + 17);
 	printf("■      **** spacebar to select ****     ");
 
@@ -74,11 +73,18 @@ int setMusic(void) {
 	keyInput = selectMusic();
 	switch (keyInput) {
 	case 1:
-		//playMusic("첫번째 음악 /주소/주소/주소");//전체 브금 요소 끄고 첫 번째 브금 실행
+		PlaySound(TEXT("c_team_bgm1.wav"), NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);//첫 번째 브금 실행
 		break;
 	case 2:
-		//playMusic("두번째 음악 /주소/주소/주소");//전체 브금 요소 끄고 두 번째 브금 실행
+		PlaySound(TEXT("c_team_bgm2.wav"), NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);//두 번째 브금 실행
 		break;
+	case 3:
+		PlaySound(TEXT("c_team_bgm3.wav"), NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);//두 번째 브금 실행
+		break;
+	case 4:
+		PlaySound(TEXT("c_team_bgm4.wav"), NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);//두 번째 브금 실행
+		break;
+
 		// 브금 종류 추가 시 case 추가 후 select Music에 3번 음악 목록 추가
 	}
 	return BACK;
@@ -89,12 +95,15 @@ int selectMusic(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	resetMapInner();
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 14);
-	printf("◇ 1번음악");   
+	printf("◇ 1번음악 ");
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 15);
-	printf("  2번음악");    
+	printf("  2번음악  ");
+	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 16);
+	printf("  3번음악  ");
+	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 17);
+	printf("  4번음악  ");
 
-
-	gotoxy1(MAP_X * 2, MAP_Y + 17);
+	gotoxy1(MAP_X * 2, MAP_Y + 18);
 	printf("■      **** spacebar to select ****     ");
 
 	while (1)
@@ -111,7 +120,7 @@ int selectMusic(void) {
 			break;
 		}
 		case DOWN: {
-			if (y < MAP_Y + 15) {
+			if (y < MAP_Y + 17) {
 				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, y);
 				printf(" ");
 				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, ++y);
@@ -129,18 +138,24 @@ int selectMusic(void) {
 }
 
 // 테마 설정 기능
-int setTheme(void) {
+int setTheme() {
+
 	resetMapInner();
 	int keyInput;
 	keyInput = selectTheme();
 	switch (keyInput) {
 	case 1:
-		setConsoleTheme(1, 0);// 첫 번째 테마(글자색, 배경색)
+		*ptheme = 1;//파란색
 		break;
 	case 2:
-		setConsoleTheme(0, 7);// 두 번째 테마 (글자색, 배경색)
+		*ptheme = 5;//자주색
 		break;
-		// 테마 종류 추가 시 case 추가 후 selectTheme에 3번 음악 목록 추가
+	case 3:
+		*ptheme = 6;//노란색
+		break;
+	case 4:
+		*ptheme = 15;//밝은 흰색
+		break;
 	}
 	return BACK;
 }
@@ -150,10 +165,14 @@ int selectTheme(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	resetMapInner();
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 14);
-	printf("◇  1번테마");   
+	printf("◇  사파이어 ");
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 15);
-	printf("   2번테마");    
-	gotoxy1(MAP_X * 2, MAP_Y + 17);
+	printf("   자수정 ");
+	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 16);
+	printf("   토파즈 ");
+	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 17);
+	printf("   다이아몬드");
+	gotoxy1(MAP_X * 2, MAP_Y + 18);
 	printf("■      **** spacebar to select ****     ");
 
 	while (1)
@@ -170,7 +189,7 @@ int selectTheme(void) {
 			break;
 		}
 		case DOWN: {
-			if (y < MAP_Y + 15) {
+			if (y < MAP_Y + 17) {
 				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, y);
 				printf(" ");
 				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, ++y);
@@ -187,18 +206,15 @@ int selectTheme(void) {
 	}
 }
 
+/*
 // 음악 파일에 접근하여 재생하는 함수 
 void playMusic(const char* address) { // 음악 파일의 주소를 인수로 받는다.
-	mciSendString("stop music", NULL, 0, NULL);
-	mciSendString("close music", NULL, 0, NULL);// 기존에 재생되던 음악을 종료
 	char command[256];
-	snprintf(command, sizeof(command), "open \"%s\" type mpegvideo alias music", address);
-	mciSendString(command, NULL, 0, NULL);
-	mciSendString("play music repeat", NULL, 0, NULL);
+	snprintf(command, sizeof(command), "%s", address);
+	printf("%s", command);
+	PlaySound(command, NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);
+	while (1) {	
+		Sleep(10000);
+	}
 }
-
-// 콘솔의 배경과 글자색을 변경하는 함수 - 불변의 색을 정하고 싶다면 전역변수를 이용하여 고정할 것..
-void setConsoleTheme(int textColor, int bgColor) {
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, textColor | (bgColor << 4));
-}
+*/

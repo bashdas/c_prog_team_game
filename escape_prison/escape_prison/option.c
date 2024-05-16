@@ -30,9 +30,9 @@ int selectOption(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	resetMapInner();
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 14);
-	printf("  배경음악 설정  w(UP)");   
+	printf("  배경음악 설정");   
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 15);
-	printf("  테마 설정      a(LEFT)");  
+	printf("  테마 설정");  
 	gotoxy1(MAP_X * 2, MAP_Y + 17);
 	printf("■      **** spacebar to select ****     ");
 
@@ -74,10 +74,10 @@ int setMusic(void) {
 	keyInput = selectMusic();
 	switch (keyInput) {
 	case 1:
-		//playMusic("첫번쨰 음악 /주소/주소/주소");//전체 브금 요소 끄고 첫 번째 브금 실행
+		//playMusic("첫번째 음악 /주소/주소/주소");//전체 브금 요소 끄고 첫 번째 브금 실행
 		break;
 	case 2:
-		//playMusic("두번쨰 음악 /주소/주소/주소");//전체 브금 요소 끄고 두 번째 브금 실행
+		//playMusic("두번째 음악 /주소/주소/주소");//전체 브금 요소 끄고 두 번째 브금 실행
 		break;
 		// 브금 종류 추가 시 case 추가 후 select Music에 3번 음악 목록 추가
 	}
@@ -89,9 +89,9 @@ int selectMusic(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	resetMapInner();
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 14);
-	printf("◇ 1번음악  w(UP)");   
+	printf("◇ 1번음악");   
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 15);
-	printf("  2번음악      a(LEFT)");    
+	printf("  2번음악");    
 
 
 	gotoxy1(MAP_X * 2, MAP_Y + 17);
@@ -135,10 +135,10 @@ int setTheme(void) {
 	keyInput = selectTheme();
 	switch (keyInput) {
 	case 1:
-		setConsoleTheme(12, 34);// 첫 번째 테마(글자색, 배경색)
+		setConsoleTheme(1, 0);// 첫 번째 테마(글자색, 배경색)
 		break;
 	case 2:
-		setConsoleTheme(56, 78);// 두 번째 테마 (글자색, 배경색)
+		setConsoleTheme(0, 7);// 두 번째 테마 (글자색, 배경색)
 		break;
 		// 테마 종류 추가 시 case 추가 후 selectTheme에 3번 음악 목록 추가
 	}
@@ -150,9 +150,9 @@ int selectTheme(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	resetMapInner();
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 14);
-	printf("◇  1번테마  w(UP)");   
+	printf("◇  1번테마");   
 	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 15);
-	printf("   2번테마     a(LEFT)");    
+	printf("   2번테마");    
 	gotoxy1(MAP_X * 2, MAP_Y + 17);
 	printf("■      **** spacebar to select ****     ");
 

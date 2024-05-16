@@ -170,35 +170,35 @@ int menuDraw1(void)
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	// 색 바꾸면 기본 색에 추가로 더하는 방식으로
 	menuDraw1Content(2, 7, 7, 7, 7, 7);
-	gotoxy1((MAP_X + 2) * 2, y);
-	printf("◇\b");
+	gotoxy1((MAP_X + 1) * 2, y);
+	printf("\b");
 	while (1)
 	{
 		int n = keyControl1();
 		switch (n) {
 		case UP: {
 			if (y > MAP_Y + 14) {
-				gotoxy1((MAP_X + 2) * 2, y);
+				gotoxy1((MAP_X + 1) * 2, y);
 				printf(" ");
 				y--;
 				if (y == MAP_Y + 14) menuDraw1Content(2, 7, 7, 7, 7, 7);
 				else if (y == MAP_Y + 15) menuDraw1Content(7, 2, 7, 7, 7, 7);
 				else if (y == MAP_Y + 16) menuDraw1Content(7, 7, 2, 7, 7, 7);
-				gotoxy1((MAP_X + 2) * 2, y);
-				printf("◇\b");
+				gotoxy1((MAP_X + 1) * 2, y);
+				printf("\b");
 			}
 			break;
 		}
 		case DOWN: {
 			if (y < MAP_Y + 17) {
-				gotoxy1((MAP_X + 2) * 2, y);
+				gotoxy1((MAP_X + 1) * 2, y);
 				printf(" ");
 				y++;
 				if (y == MAP_Y + 15) menuDraw1Content(7, 2, 7, 7, 7, 7);
 				else if (y == MAP_Y + 16) menuDraw1Content(7, 7, 2, 7, 7, 7);
 				else if (y == MAP_Y + 17) menuDraw1Content(7, 7, 7, 2, 7, 7);
-				gotoxy1((MAP_X + 2) * 2, y);
-				printf("◇\b");
+				gotoxy1((MAP_X + 1) * 2, y);
+				printf("\b");
 			}
 			break;
 		}
@@ -213,21 +213,30 @@ int menuDraw1(void)
 }
 void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6) {
 	resetMapInner();
+	Setcolor(7);
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 4, "♣                                   ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 5, "♣           !WELCOME TO!            ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 6, "♣                                   ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 7, "♣ Get out of the underground prison ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 8, "♣                                   ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2 , MAP_Y + 12, "▼  Select from the menu  ▼");
 	Setcolor(c1);
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 14);
-	printf("  게임시작        START");   // 선택하면 난이도 선택 화면으로 이동
+	gotoxy1(MAP_X + (MAP_WIDTH+36) / 2, MAP_Y + 14);
+	printf("  게임시작       START");   // 선택하면 난이도 선택 화면으로 이동
 	Setcolor(c2);
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 15);
-	printf("  게임방법        RULE");     // 난이도 별 실행 및 조작법 출력
+	gotoxy1(MAP_X + (MAP_WIDTH+36) / 2, MAP_Y + 15);
+	printf("  게임방법       RULE");     // 난이도 별 실행 및 조작법 출력
 	Setcolor(c3);
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 16);
-	printf("  환경설정        OPTION");
+	gotoxy1(MAP_X + (MAP_WIDTH+36) / 2, MAP_Y + 16);
+	printf("  환경설정       OPTION");
 	Setcolor(c4);
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 17);
-	printf("  종료            EXIT");
+	gotoxy1(MAP_X + (MAP_WIDTH+36) / 2, MAP_Y + 17);
+	printf("  종료           EXIT");
 	Setcolor(c5);
-	gotoxy1(MAP_X * 2, MAP_Y + 20);
-	printf("■      **** spacebar to select ****     ");
+	gotoxy1(MAP_X * 2+25, MAP_Y + 20);
+	printf("**** spacebar to select ****     ");
 	Setcolor(c6);
 }
 

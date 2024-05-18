@@ -29,6 +29,7 @@ int selectOption(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	selectOptionContent(2, 7);
 	gotoxy1((MAP_X+1) * 2, y);
+	printf("\b");
 	while (1)
 	{
 		int n = keyControl1();
@@ -67,23 +68,23 @@ int selectOption(void) {
 int selectOptionContent(int c1, int c2) {
 	resetMapInner();
 	Setcolor(7);
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 4, "♣                                   ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 5, "♣           !Option Menu!           ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 6, "♣                                   ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 7, "♣  You can change the game option   ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 8, "♣                                   ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 4, "♣                                    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 5, "♣           !Option Menu!            ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 6, "♣                                    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 7, "♣  You can change the game option    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 8, "♣                                    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
 	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
 	Setcolor(c1);
 	gotoxy1(MAP_X + MAP_WIDTH + 4, MAP_Y + 14);
 	printf("배경 음악 설정");
 	Setcolor(c2);
-	gotoxy1(MAP_X + MAP_WIDTH + 6, MAP_Y + 15);
+	gotoxy1(MAP_X + MAP_WIDTH + 6, MAP_Y + 16);
 	printf("테마 설정");
 	Setcolor(7);
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 18);
-	printf("**** spacebar to select ****     ");
+	printf("**** spacebar to select ****");
 }
 
 // 음악 설정 기능
@@ -113,18 +114,9 @@ int setMusic(void) {
 // 사용자 입력 노래 반환
 int selectMusic(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
-	resetMapInner();
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 14);
-	printf("◇ 1번음악 ");
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 15);
-	printf("  2번음악  ");
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 16);
-	printf("  3번음악  ");
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 17);
-	printf("  4번음악  ");
-
-	gotoxy1(MAP_X * 2, MAP_Y + 18);
-	printf("■      **** spacebar to select ****     ");
+	selectMusicContent(2,7,7,7);
+	gotoxy1((MAP_X + 1) * 2, y);
+	printf("\b");
 
 	while (1)
 	{
@@ -132,19 +124,27 @@ int selectMusic(void) {
 		switch (n) {
 		case UP: {
 			if (y > MAP_Y + 14) {
-				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, y);
+				gotoxy1((MAP_X + 1) * 2, y);
 				printf(" ");
-				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, --y);
-				printf("◇\b");
+				--y;
+				if (y == MAP_Y + 14) selectMusicContent(2, 7, 7, 7);
+				else if (y == MAP_Y + 15) selectMusicContent(7, 2, 7, 7);
+				else if (y == MAP_Y + 16) selectMusicContent(7, 7, 2, 7);
+				gotoxy1((MAP_X + 1) * 2, y);
+				printf("\b");
 			}
 			break;
 		}
 		case DOWN: {
 			if (y < MAP_Y + 17) {
-				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, y);
+				gotoxy1((MAP_X + 1) * 2, y);
 				printf(" ");
-				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, ++y);
-				printf("◇\b");
+				y++;
+				if (y == MAP_Y + 15) selectMusicContent(7, 2, 7, 7);
+				else if (y == MAP_Y + 16) selectMusicContent(7, 7, 2, 7);
+				else if (y == MAP_Y + 17) selectMusicContent(7, 7, 7, 2);
+				gotoxy1((MAP_X + 1) * 2, y);
+				printf("\b");
 			}
 			break;
 		}
@@ -157,9 +157,36 @@ int selectMusic(void) {
 	}
 }
 
+void selectMusicContent(int c1, int c2, int c3, int c4) {
+	resetMapInner();
+	Setcolor(7);
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 4, "♣                                    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 5, "♣            !Music Menu!            ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 6, "♣                                    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 7, "♣   You can change the game music    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 8, "♣                                    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
+	Setcolor(c1);
+	gotoxy1(MAP_X + MAP_WIDTH+8, MAP_Y + 14);
+	printf("1번음악");
+	Setcolor(c2);
+	gotoxy1(MAP_X + MAP_WIDTH+8, MAP_Y + 15);
+	printf("2번음악");
+	Setcolor(c3);
+	gotoxy1(MAP_X + MAP_WIDTH+8, MAP_Y + 16);
+	printf("3번음악");
+	Setcolor(c4);
+	gotoxy1(MAP_X + MAP_WIDTH+8, MAP_Y + 17);
+	printf("4번음악");
+	Setcolor(7);
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
+	printf("**** spacebar to select ****");
+}
+
 // 테마 설정 기능
 int setTheme() {
-
 	resetMapInner();
 	int keyInput;
 	keyInput = selectTheme();
@@ -183,17 +210,9 @@ int setTheme() {
 // 사용자 입력 테마 반환
 int selectTheme(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
-	resetMapInner();
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 14);
-	printf("◇  사파이어 ");
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 15);
-	printf("   자수정 ");
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 16);
-	printf("   토파즈 ");
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 17);
-	printf("   다이아몬드");
-	gotoxy1(MAP_X * 2, MAP_Y + 18);
-	printf("■      **** spacebar to select ****     ");
+	selectThemeContent(1, 7, 7, 7);
+	gotoxy1((MAP_X + 1) * 2, y);
+	printf("\b");
 
 	while (1)
 	{
@@ -201,19 +220,27 @@ int selectTheme(void) {
 		switch (n) {
 		case UP: {
 			if (y > MAP_Y + 14) {
-				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, y);
+				gotoxy1((MAP_X + 1) * 2, y);
 				printf(" ");
-				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, --y);
-				printf("◇\b");
+				--y;
+				if (y == MAP_Y + 14) selectThemeContent(1, 7, 7, 7);
+				else if (y == MAP_Y + 15) selectThemeContent(7, 5, 7, 7);
+				else if (y == MAP_Y + 16) selectThemeContent(7, 7, 6, 7);
+				gotoxy1((MAP_X + 1) * 2, y);
+				printf("\b");
 			}
 			break;
 		}
 		case DOWN: {
 			if (y < MAP_Y + 17) {
-				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, y);
+				gotoxy1((MAP_X + 1) * 2, y);
 				printf(" ");
-				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, ++y);
-				printf("◇\b");
+				y++;
+				if (y == MAP_Y + 15) selectThemeContent(7, 5, 7, 7);
+				else if (y == MAP_Y + 16) selectThemeContent(7, 7, 6, 7);
+				else if (y == MAP_Y + 17) selectThemeContent(7, 7, 7, 15);
+				gotoxy1((MAP_X + 1) * 2, y);
+				printf("\b");
 			}
 			break;
 		}
@@ -224,6 +251,46 @@ int selectTheme(void) {
 		}
 		}
 	}
+}
+
+void selectThemeContent(int c1, int c2, int c3, int c4) {
+	resetMapInner();
+	Setcolor(7);
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 4, "♣                                    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 5, "♣            !Theme Menu!            ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 6, "♣                                    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 7, "♣   You can change the game Theme    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 8, "♣                                    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
+	Setcolor(c1);
+	gotoxy1(MAP_X + MAP_WIDTH + 2, MAP_Y + 14);
+	printf("사파이어");
+	Setcolor(1);
+	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 14);
+	printf("■");
+	Setcolor(c2);
+	gotoxy1(MAP_X + MAP_WIDTH + 2, MAP_Y + 15);
+	printf("자수정 ");
+	Setcolor(5);
+	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 15);
+	printf("■");
+	Setcolor(c3);
+	gotoxy1(MAP_X + MAP_WIDTH + 2, MAP_Y + 16);
+	printf("토파즈 ");
+	Setcolor(6);
+	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 16);
+	printf("■");
+	Setcolor(c4);
+	gotoxy1(MAP_X + MAP_WIDTH + 2, MAP_Y + 17);
+	printf("다이아몬드");
+	Setcolor(15);
+	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 17);
+	printf("■");
+	Setcolor(7);
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
+	printf("**** spacebar to select ****");
 }
 
 /*

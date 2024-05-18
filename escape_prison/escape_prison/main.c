@@ -67,13 +67,13 @@ void title(void) {
 
 	reset();    //맵 테두리를 그림 
 	Setcolor(12);
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3,  "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4,  "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5,  "▒▒▒     ▒▒      ▒▒     ▒      ▒       ▒    ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6,  "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7,  "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8,  "▒▒▒     ▒▒      ▒▒▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9,  "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒  ▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5, "▒▒▒     ▒▒      ▒▒     ▒      ▒       ▒    ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6, "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7, "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8, "▒▒▒     ▒▒      ▒▒▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒  ▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 10, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 11, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 12, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒ ▒▒     ▒      ▒       ▒ ▒▒    ▒▒▒");
@@ -214,28 +214,28 @@ int menuDraw1(void)
 void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6) {
 	resetMapInner();
 	Setcolor(7);
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 4, "♣                                   ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 5, "♣           !WELCOME TO!            ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 6, "♣                                   ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 7, "♣ Get out of the underground prison ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 8, "♣                                   ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2 , MAP_Y + 12, "▼  Select from the menu  ▼");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 4, "♣                                    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 5, "♣            !WELCOME TO!            ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 6, "♣                                    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 7, "♣ Get out of the underground prison  ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 8, "♣                                    ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
 	Setcolor(c1);
-	gotoxy1(MAP_X + (MAP_WIDTH+36) / 2, MAP_Y + 14);
+	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 14);
 	printf("  게임시작       START");   // 선택하면 난이도 선택 화면으로 이동
 	Setcolor(c2);
-	gotoxy1(MAP_X + (MAP_WIDTH+36) / 2, MAP_Y + 15);
+	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 15);
 	printf("  게임방법       RULE");     // 난이도 별 실행 및 조작법 출력
 	Setcolor(c3);
-	gotoxy1(MAP_X + (MAP_WIDTH+36) / 2, MAP_Y + 16);
+	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 16);
 	printf("  환경설정       OPTION");
 	Setcolor(c4);
-	gotoxy1(MAP_X + (MAP_WIDTH+36) / 2, MAP_Y + 17);
+	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 17);
 	printf("  종료           EXIT");
 	Setcolor(c5);
-	gotoxy1(MAP_X * 2+25, MAP_Y + 20);
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
 	printf("**** spacebar to select ****     ");
 	Setcolor(c6);
 }
@@ -271,24 +271,28 @@ int keyControl1(void) {
 	}
 }
 
-void slowPrint(const char* s, int x, int y) {
+void slowPrint(const char story[][MAX_COLS], int x, int y) {
 	char ch = 0;
-	gotoxy1(x, y);
-	for (int i = 0; s[i] != '\0'; i++) {
-		putchar(s[i]);
-		fflush(stdout);
-		Sleep(50);
-		if (_kbhit()) {
-			ch = _getch();
-			if (ch == '\r' || ch == ' ') break;
+	int x1 = x, y1 = y;
+	int shouldExit = 0;
+	for (int i = 0; i < MAX_ROWS && !shouldExit; i++) {
+		gotoxy1(x1, y1);
+		for (int j = 0; j < MAX_COLS && story[i][j] != '\0'; j++) {
+			putchar(story[i][j]);
+			fflush(stdout);
+			Sleep(10);
+			if (_kbhit()) {
+				ch = _getch();
+				if (ch == '\r' || ch == ' ') {
+					shouldExit = 1;
+					break;
+				}
+			}
 		}
+		y1 = y1 + 2;
+		if (y1 > MAP_Y + 18) break;
 	}
-	if (ch = SUBMIT) {
-		gotoxy1(x, y);
-		for (int i = 0; s[i] != '\0'; i++) {
-			putchar(s[i]);
-		}
-	}
+	Sleep(500);
 }
 
 void gameExit(void) {

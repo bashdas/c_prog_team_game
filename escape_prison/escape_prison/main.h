@@ -100,7 +100,9 @@ static int* ptheme = &theme;
 // 색 바꿀 변수 추후에
 int setTheme(void);
 int setMusic(void);
+void selectMusicContent(int c1, int c2, int c3, int c4);
 int selectTheme(void);
+void selectThemeContent(int c1, int c2, int c3, int c4);
 int selectOption(void);
 int selectOptionContent(int c1, int c2);
 void initOption(void);

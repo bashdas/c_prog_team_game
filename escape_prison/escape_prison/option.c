@@ -27,33 +27,31 @@ void initOption() {
 // 사용자 입력 메뉴 반환
 int selectOption(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
-	resetMapInner();
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 14);
-	printf("  배경음악 설정 ");
-	gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, MAP_Y + 15);
-	printf("  테마 설정  ");
-	gotoxy1(MAP_X * 2, MAP_Y + 17);
-	printf("■      **** spacebar to select ****     ");
-
+	selectOptionContent(2, 7);
+	gotoxy1((MAP_X+1) * 2, y);
 	while (1)
 	{
 		int n = keyControl1();
 		switch (n) {
 		case UP: {
 			if (y > MAP_Y + 14) {
-				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, y);
+				gotoxy1((MAP_X + 1) * 2, y);
 				printf(" ");
-				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, --y);
-				printf("◇\b");
+				y--;
+				if (y == MAP_Y + 14) selectOptionContent(2, 7);
+				gotoxy1((MAP_X + 1) * 2, y);
+				printf("\b");
 			}
 			break;
 		}
 		case DOWN: {
 			if (y < MAP_Y + 15) {
-				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, y);
+				gotoxy1((MAP_X + 1) * 2, y);
 				printf(" ");
-				gotoxy1(MAP_X + (MAP_WIDTH - 9) / 2, ++y);
-				printf("◇\b");
+				y++;
+				if (y == MAP_Y + 15) selectOptionContent(7, 2);
+				gotoxy1((MAP_X + 1) * 2, y);
+				printf("\b");
 			}
 			break;
 		}
@@ -64,6 +62,28 @@ int selectOption(void) {
 		}
 		}
 	}
+}
+
+int selectOptionContent(int c1, int c2) {
+	resetMapInner();
+	Setcolor(7);
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 4, "♣                                   ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 5, "♣           !Option Menu!           ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 6, "♣                                   ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 7, "♣  You can change the game option   ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 8, "♣                                   ♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
+	Setcolor(c1);
+	gotoxy1(MAP_X + MAP_WIDTH + 4, MAP_Y + 14);
+	printf("배경 음악 설정");
+	Setcolor(c2);
+	gotoxy1(MAP_X + MAP_WIDTH + 6, MAP_Y + 15);
+	printf("테마 설정");
+	Setcolor(7);
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + 18);
+	printf("**** spacebar to select ****     ");
 }
 
 // 음악 설정 기능
@@ -207,13 +227,13 @@ int selectTheme(void) {
 }
 
 /*
-// 음악 파일에 접근하여 재생하는 함수 
+// 음악 파일에 접근하여 재생하는 함수
 void playMusic(const char* address) { // 음악 파일의 주소를 인수로 받는다.
 	char command[256];
 	snprintf(command, sizeof(command), "%s", address);
 	printf("%s", command);
 	PlaySound(command, NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);
-	while (1) {	
+	while (1) {
 		Sleep(10000);
 	}
 }

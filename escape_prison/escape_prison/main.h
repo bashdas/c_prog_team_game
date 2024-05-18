@@ -102,4 +102,5 @@ int setTheme(void);
 int setMusic(void);
 int selectTheme(void);
 int selectOption(void);
+int selectOptionContent(int c1, int c2);
 void initOption(void);

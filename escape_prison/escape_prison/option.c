@@ -68,10 +68,11 @@ int selectOption(void) {
 int selectOptionContent(int c1, int c2) {
 	reset();
 	titleBoxDraw();
-	Setcolor(7);
+	Setcolor(15);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 6, MAP_Y + 5, "!Option Menu!");
+	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 2, MAP_Y + 7, "You can change the game option");
-	Setcolor(12);
+	Setcolor(8);
 	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
 	Setcolor(c1);
 	gotoxy1(MAP_X + MAP_WIDTH + 4, MAP_Y + 14);
@@ -79,7 +80,7 @@ int selectOptionContent(int c1, int c2) {
 	Setcolor(c2);
 	gotoxy1(MAP_X + MAP_WIDTH + 6, MAP_Y + 16);
 	printf("테마 설정");
-	Setcolor(12);
+	Setcolor(8);
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 18);
 	printf("**** spacebar to select ****");
 	Setcolor(7);
@@ -158,10 +159,11 @@ int selectMusic(void) {
 void selectMusicContent(int c1, int c2, int c3, int c4) {
 	resetMapInner();
 	titleBoxDraw();
-	Setcolor(7);
+	Setcolor(15);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 6, MAP_Y + 5, " !Music Menu!");
+	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 2, MAP_Y + 7, "You can change the game music");
-	Setcolor(12);
+	Setcolor(8);
 	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
 	Setcolor(c1);
 	gotoxy1(MAP_X + MAP_WIDTH+8, MAP_Y + 14);
@@ -175,14 +177,14 @@ void selectMusicContent(int c1, int c2, int c3, int c4) {
 	Setcolor(c4);
 	gotoxy1(MAP_X + MAP_WIDTH+8, MAP_Y + 17);
 	printf("4번음악");
-	Setcolor(12);
+	Setcolor(8);
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
 	printf("**** spacebar to select ****");
 	Setcolor(7);
 }
 
 // 테마 설정 기능
-int setTheme() {
+int setTheme(void) {
 	resetMapInner();
 	int keyInput;
 	keyInput = selectTheme();
@@ -257,10 +259,11 @@ int selectTheme(void) {
 void selectThemeContent(int c1, int c2, int c3, int c4, int c5) {
 	resetMapInner();
 	titleBoxDraw();
-	Setcolor(7);
+	Setcolor(15);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 6, MAP_Y + 5, " !Theme Menu!");
+	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 2, MAP_Y + 7, "You can change the game Theme");
-	Setcolor(12);
+	Setcolor(8);
 	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
 	Setcolor(c1);
 	gotoxy1(MAP_X + MAP_WIDTH + 2, MAP_Y + 14);
@@ -292,7 +295,7 @@ void selectThemeContent(int c1, int c2, int c3, int c4, int c5) {
 	Setcolor(7);
 	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 18);
 	printf("■");
-	Setcolor(12);
+	Setcolor(8);
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
 	printf("**** spacebar to select ****");
 	Setcolor(7);

@@ -23,6 +23,7 @@ int gameDraw(void) {
 			else stageCode = BACK;
 		}
 	} while ((gameCode != BACK));
+	return gameCode; // 게임 클리어 또는 실패 시 HOME 반환해야함
 }
 
 void titleStory(void) {

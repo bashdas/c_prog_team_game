@@ -1,11 +1,9 @@
 #include "main.h"
-
-#define _CRT_SECURE_NO_WARNINGS
 #define range 2
 #define range_ 3
 #define NUM_ITEMS 5
 
-// Ä¿¼­ À§Ä¡ Á¤º¸¸¦ °¡Á®¿À´Â ÇÔ¼ö
+// ì»¤ì„œ ìœ„ì¹˜ ì •ë³´ë¥¼ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
 void getCursorPos(int* x, int* y) {
     CONSOLE_SCREEN_BUFFER_INFO cbsi;
     if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cbsi)) {
@@ -14,23 +12,23 @@ void getCursorPos(int* x, int* y) {
     }
 }
 
-// ¸ÊÀ» Ãâ·ÂÇÏ´Â ÇÔ¼ö
+// ë§µì„ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 void printMap(char map[MAP_HEIGHT][MAP_WIDTH], int cursorX, int cursorY) {
-    system("cls"); // È­¸éÀ» Áö¿ì±â
+    system("cls"); // í™”ë©´ì„ ì§€ìš°ê¸°
     gotoxy1(MAP_X, MAP_Y);
     for (int i = 0; i < MAP_HEIGHT; i++) {
         for (int j = 0; j < MAP_WIDTH; j++) {
-            // Ä¿¼­ À§Ä¡¿¡ '¡Ú' Ãâ·Â
+            // ì»¤ì„œ ìœ„ì¹˜ì— 'â˜…' ì¶œë ¥
             if (i == cursorX && j == cursorY) {
-                printf("¡Ú ");
+                printf("â˜… ");
             }
-            // ½Ã¾ß ¹üÀ§ ³»ÀÎÁö È®ÀÎ
+            // ì‹œì•¼ ë²”ìœ„ ë‚´ì¸ì§€ í™•ì¸
             else if (i >= cursorX - range && i <= cursorX + range && j >= cursorY - range && j <= cursorY + range) {
                 printf("%c ", map[i][j]);
             }
             else if ((i == cursorX - range_ || i == cursorX + range_) && (j >= cursorY - range_ && j <= cursorY + range_) ||
                 (j == cursorY - range_ || j == cursorY + range_) && (i >= cursorX - range_ && i <= cursorX + range_)) {
-                printf("£ª");
+                printf("ï¼Š");
             }
             else {
                 printf("  ");
@@ -40,11 +38,11 @@ void printMap(char map[MAP_HEIGHT][MAP_WIDTH], int cursorX, int cursorY) {
     }
 }
 
-// ·£´ı¾ÆÀÌÅÛ ¹èÄ¡
+// ëœë¤ì•„ì´í…œ ë°°ì¹˜
 void initializeMap(char map[MAP_HEIGHT][MAP_WIDTH]) {
     for (int i = 0; i < MAP_HEIGHT; i++) {
         for (int j = 0; j < MAP_WIDTH; j++) {
-            map[i][j] = ' '; // ºó °ø°£À¸·Î ÃÊ±âÈ­
+            map[i][j] = ' '; // ë¹ˆ ê³µê°„ìœ¼ë¡œ ì´ˆê¸°í™”
         }
     }
 

@@ -157,14 +157,9 @@ void resetMapBottom(void) {
 
 // titlebox 함수
 void titleBoxDraw(void) {
-	Setcolor(9);
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 4, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 5, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 6, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 7, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 8, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	Setcolor(4);
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※");
 }
 
 void gotoxy1(int x, int y)
@@ -225,10 +220,11 @@ int menuDraw1(void)
 void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6) {
 	resetMapInner();
 	titleBoxDraw();
-	Setcolor(7);
+	Setcolor(15);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 6, MAP_Y + 5, " !WELCOME TO!");
+	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 1, MAP_Y + 7, "Get out of the underground prison");
-	Setcolor(12);
+	Setcolor(8);
 	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
 	Setcolor(c1);
 	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 14);
@@ -244,7 +240,7 @@ void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6) {
 	printf("  종료           EXIT");
 	Setcolor(c5);
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
-	Setcolor(12);
+	Setcolor(8);
 	printf("**** spacebar to select ****");
 	Setcolor(c6);
 }

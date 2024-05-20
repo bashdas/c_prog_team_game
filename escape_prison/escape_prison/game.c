@@ -36,6 +36,10 @@ void titleStory(void) {
 		"story.......................7\0"
 	};
 	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
+	Setcolor(8);
+	printf("**** spacebar to skip ****");
+	Setcolor(7);
 	slowPrint(titlestr, MAP_X * 2 + 4, MAP_Y + 4);
 }
 
@@ -45,7 +49,7 @@ int modeSelect(void) {
 	modeSelectMapDraw(4, 2, 7, 7);
 	gotoxy1(x, y);
 	printf("☞\b");
-	Sleep(500);
+	Sleep(300);
 	while (1) {
 		int n = keyControl1();
 		switch (n) {
@@ -129,6 +133,10 @@ void easyStory(void) {
 	resetMapMain();
 	resetMapBottom();
 	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
+	Setcolor(8);
+	printf("**** spacebar to skip ****");
+	Setcolor(7);
 	slowPrint(easystr, MAP_X * 2 + 4, MAP_Y + 4);
 }
 
@@ -145,6 +153,10 @@ void normalStory(void) {
 	resetMapMain();
 	resetMapBottom();
 	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
+	Setcolor(8);
+	printf("**** spacebar to skip ****");
+	Setcolor(7);
 	slowPrint(normalstr, MAP_X * 2 + 4, MAP_Y + 4);
 }
 
@@ -161,6 +173,10 @@ void hardStory(void) {
 	resetMapMain();
 	resetMapBottom();
 	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
+	Setcolor(8);
+	printf("**** spacebar to skip ****");
+	Setcolor(7);
 	slowPrint(hardstr, MAP_X * 2 + 4, MAP_Y + 4);
 }
 // BACK, -1, HOME 반환

@@ -27,13 +27,13 @@ int gameDraw(void) {
 
 void titleStory(void) {
 	char titlestr[MAX_ROWS][MAX_COLS] = {
-		"stroy.......................1\0",
-		"stroy.......................2\0",
-		"stroy.......................3\0",
-		"stroy.......................4\0",
-		"stroy.......................5\0",
-		"stroy.......................6\0",
-		"stroy.......................7\0"
+		"story.......................1\0",
+		"story.......................2\0",
+		"story.......................3\0",
+		"story.......................4\0",
+		"story.......................5\0",
+		"story.......................6\0",
+		"story.......................7\0"
 	};
 	gameMapDraw();
 	slowPrint(titlestr, MAP_X * 2 + 4, MAP_Y + 4);
@@ -41,8 +41,8 @@ void titleStory(void) {
 
 // x 위치에 따라 색반전
 int modeSelect(void) {
-	int x = MAP_X + (MAP_WIDTH / 2) - 1, y = 24; // 초기 위치
-	modeSelectMapDraw(353, 2, 7, 7);
+	int x = MAP_X + (MAP_WIDTH / 2) - 2, y = 24; // 초기 위치
+	modeSelectMapDraw(4, 2, 7, 7);
 	gotoxy1(x, y);
 	printf("☞\b");
 	Sleep(500);
@@ -50,23 +50,23 @@ int modeSelect(void) {
 		int n = keyControl1();
 		switch (n) {
 		case LEFT:
-			if (x > MAP_X + (MAP_WIDTH / 2) - 1) {
+			if (x > MAP_X + (MAP_WIDTH / 2) - 2) {
 				gotoxy1(x, y);
 				printf(" ");
 				x -= 24;
-				if (x == MAP_X + (MAP_WIDTH / 2) - 1) modeSelectMapDraw(353, 2, 7, 7);
-				else if (x == MAP_X + (MAP_WIDTH / 2) + 23) modeSelectMapDraw(353, 7, 2, 7);
+				if (x == MAP_X + (MAP_WIDTH / 2) - 2) modeSelectMapDraw(4, 2, 7, 7);
+				else if (x == MAP_X + (MAP_WIDTH / 2) + 22) modeSelectMapDraw(4, 7, 2, 7);
 				gotoxy1(x, y);
 				printf("☞\b");
 			}
 			break;
 		case RIGHT:
-			if (x < MAP_X + (MAP_WIDTH / 2) + 47) {
+			if (x < MAP_X + (MAP_WIDTH / 2) + 46) {
 				gotoxy1(x, y);
 				printf(" ");
 				x += 24;
-				if (x == MAP_X + (MAP_WIDTH / 2) + 23) modeSelectMapDraw(353, 7, 2, 7);
-				else if (x == MAP_X + (MAP_WIDTH / 2) + 47) modeSelectMapDraw(353, 7, 7, 2);
+				if (x == MAP_X + (MAP_WIDTH / 2) + 22) modeSelectMapDraw(4, 7, 2, 7);
+				else if (x == MAP_X + (MAP_WIDTH / 2) + 46) modeSelectMapDraw(4, 7, 7, 2);
 				gotoxy1(x, y);
 				printf("☞\b");
 			}
@@ -74,13 +74,13 @@ int modeSelect(void) {
 		case BACK:
 			return BACK;
 		case SUBMIT:
-			if (x == MAP_X + (MAP_WIDTH / 2) - 1) {
+			if (x == MAP_X + (MAP_WIDTH / 2) - 2) {
 				x = EASY;
 			}
-			else if (x == MAP_X + (MAP_WIDTH / 2) + 23) {
+			else if (x == MAP_X + (MAP_WIDTH / 2) + 22) {
 				x = NORMAL;
 			}
-			else if (x == MAP_X + (MAP_WIDTH / 2) + 47) {
+			else if (x == MAP_X + (MAP_WIDTH / 2) + 46) {
 				x = HARD;
 			}
 			return x;
@@ -110,9 +110,9 @@ void modeSelectMapDraw(int c1, int c2, int c3, int c4) {
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 13, "|   HARD   |");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 14, "└----------┘");
 	Setcolor(7);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 22, "  1. EASY");
-	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 22, "  2. NORMAL");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 22, "  3. HARD");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 22, "1. (●'v'●)");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 22, "2. (○｀ 3′○)");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 22, "3. ┗|｀O′|┛");
 }
 
 
@@ -240,7 +240,7 @@ int playerMove(void) {
 void gameMapDraw(void) {
 	int i;
 	resetMapInner();
-	Setcolor(7);
+	Setcolor(theme);
 	for (i = 1; i < MAP_WIDTH - 1; i++) {
 		gotoxy(MAP_X + i, MAP_Y + 2, "■");
 	}

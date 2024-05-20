@@ -1,6 +1,6 @@
 #include "main.h"
 
-void playMusic(const char* address);
+// void playMusic(const char* address);
 
 
 // 환경설정 실행 함수
@@ -66,15 +66,12 @@ int selectOption(void) {
 }
 
 int selectOptionContent(int c1, int c2) {
-	resetMapInner();
+	reset();
+	titleBoxDraw();
 	Setcolor(7);
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 4, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 5, "♣           !Option Menu!            ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 6, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 7, "♣  You can change the game option    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 8, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 6, MAP_Y + 5, "!Option Menu!");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 2, MAP_Y + 7, "You can change the game option");
+	Setcolor(12);
 	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
 	Setcolor(c1);
 	gotoxy1(MAP_X + MAP_WIDTH + 4, MAP_Y + 14);
@@ -82,9 +79,10 @@ int selectOptionContent(int c1, int c2) {
 	Setcolor(c2);
 	gotoxy1(MAP_X + MAP_WIDTH + 6, MAP_Y + 16);
 	printf("테마 설정");
-	Setcolor(7);
+	Setcolor(12);
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 18);
 	printf("**** spacebar to select ****");
+	Setcolor(7);
 }
 
 // 음악 설정 기능
@@ -159,14 +157,11 @@ int selectMusic(void) {
 
 void selectMusicContent(int c1, int c2, int c3, int c4) {
 	resetMapInner();
+	titleBoxDraw();
 	Setcolor(7);
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 4, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 5, "♣            !Music Menu!            ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 6, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 7, "♣   You can change the game music    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 8, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 6, MAP_Y + 5, " !Music Menu!");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 2, MAP_Y + 7, "You can change the game music");
+	Setcolor(12);
 	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
 	Setcolor(c1);
 	gotoxy1(MAP_X + MAP_WIDTH+8, MAP_Y + 14);
@@ -180,9 +175,10 @@ void selectMusicContent(int c1, int c2, int c3, int c4) {
 	Setcolor(c4);
 	gotoxy1(MAP_X + MAP_WIDTH+8, MAP_Y + 17);
 	printf("4번음악");
-	Setcolor(7);
+	Setcolor(12);
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
 	printf("**** spacebar to select ****");
+	Setcolor(7);
 }
 
 // 테마 설정 기능
@@ -192,16 +188,16 @@ int setTheme() {
 	keyInput = selectTheme();
 	switch (keyInput) {
 	case 1:
-		*ptheme = 1;//파란색
+		theme = 1;//파란색
 		break;
 	case 2:
-		*ptheme = 5;//자주색
+		theme = 5;//자주색
 		break;
 	case 3:
-		*ptheme = 6;//노란색
+		theme = 6;//노란색
 		break;
 	case 4:
-		*ptheme = 15;//밝은 흰색
+		theme = 15;//밝은 흰색
 		break;
 	}
 	return BACK;
@@ -255,14 +251,11 @@ int selectTheme(void) {
 
 void selectThemeContent(int c1, int c2, int c3, int c4) {
 	resetMapInner();
+	titleBoxDraw();
 	Setcolor(7);
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 4, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 5, "♣            !Theme Menu!            ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 6, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 7, "♣   You can change the game Theme    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 8, "♣                                    ♣");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣♣");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 6, MAP_Y + 5, " !Theme Menu!");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 1, MAP_Y + 7, "You can change the game Theme");
+	Setcolor(12);
 	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
 	Setcolor(c1);
 	gotoxy1(MAP_X + MAP_WIDTH + 2, MAP_Y + 14);
@@ -288,9 +281,10 @@ void selectThemeContent(int c1, int c2, int c3, int c4) {
 	Setcolor(15);
 	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 17);
 	printf("■");
-	Setcolor(7);
+	Setcolor(12);
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
 	printf("**** spacebar to select ****");
+	Setcolor(7);
 }
 
 /*

@@ -45,6 +45,7 @@ void resetMapTitle(void);		// 목숨창만 지움
 void resetMapMain(void);		// 게임창만 지움
 void resetMapBottom(void);		// 상호작용창만 지움
 void drawMap(void);				// 게임판 테두리를 그림 
+void titleBoxDraw(void);		// titlebox를 그림
 void gotoxy1(int x, int y);
 int menuDraw1(void);			// BACK, y- 15(1~4) 반환
 void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6);
@@ -106,7 +107,7 @@ int setTheme(void);
 int setMusic(void);
 void selectMusicContent(int c1, int c2, int c3, int c4);
 int selectTheme(void);
-void selectThemeContent(int c1, int c2, int c3, int c4);
+void selectThemeContent(int c1, int c2, int c3, int c4, int c5);
 int selectOption(void);
 int selectOptionContent(int c1, int c2);
 void initOption(void);

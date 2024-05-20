@@ -199,6 +199,9 @@ int setTheme() {
 	case 4:
 		theme = 15;//밝은 흰색
 		break;
+	case 5:
+		theme = 7;//기본 흰색
+		break;
 	}
 	return BACK;
 }
@@ -206,7 +209,7 @@ int setTheme() {
 // 사용자 입력 테마 반환
 int selectTheme(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
-	selectThemeContent(1, 7, 7, 7);
+	selectThemeContent(1, 7, 7, 7, 7);
 	gotoxy1((MAP_X + 1) * 2, y);
 	printf("\b");
 
@@ -219,22 +222,24 @@ int selectTheme(void) {
 				gotoxy1((MAP_X + 1) * 2, y);
 				printf(" ");
 				--y;
-				if (y == MAP_Y + 14) selectThemeContent(1, 7, 7, 7);
-				else if (y == MAP_Y + 15) selectThemeContent(7, 5, 7, 7);
-				else if (y == MAP_Y + 16) selectThemeContent(7, 7, 6, 7);
+				if (y == MAP_Y + 14) selectThemeContent(1, 7, 7, 7, 7);
+				else if (y == MAP_Y + 15) selectThemeContent(7, 5, 7, 7, 7);
+				else if (y == MAP_Y + 16) selectThemeContent(7, 7, 6, 7, 7);
+				else if (y == MAP_Y + 17) selectThemeContent(7, 7, 7, 15, 7);
 				gotoxy1((MAP_X + 1) * 2, y);
 				printf("\b");
 			}
 			break;
 		}
 		case DOWN: {
-			if (y < MAP_Y + 17) {
+			if (y < MAP_Y + 18) {
 				gotoxy1((MAP_X + 1) * 2, y);
 				printf(" ");
 				y++;
-				if (y == MAP_Y + 15) selectThemeContent(7, 5, 7, 7);
-				else if (y == MAP_Y + 16) selectThemeContent(7, 7, 6, 7);
-				else if (y == MAP_Y + 17) selectThemeContent(7, 7, 7, 15);
+				if (y == MAP_Y + 15) selectThemeContent(7, 5, 7, 7, 7);
+				else if (y == MAP_Y + 16) selectThemeContent(7, 7, 6, 7, 7);
+				else if (y == MAP_Y + 17) selectThemeContent(7, 7, 7, 15, 7);
+				else if (y == MAP_Y + 18) selectThemeContent(7, 7, 7, 7, 8);
 				gotoxy1((MAP_X + 1) * 2, y);
 				printf("\b");
 			}
@@ -249,7 +254,7 @@ int selectTheme(void) {
 	}
 }
 
-void selectThemeContent(int c1, int c2, int c3, int c4) {
+void selectThemeContent(int c1, int c2, int c3, int c4, int c5) {
 	resetMapInner();
 	titleBoxDraw();
 	Setcolor(7);
@@ -280,6 +285,12 @@ void selectThemeContent(int c1, int c2, int c3, int c4) {
 	printf("다이아몬드");
 	Setcolor(15);
 	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 17);
+	printf("■");
+	Setcolor(c5);
+	gotoxy1(MAP_X + MAP_WIDTH + 2, MAP_Y + 18);
+	printf("기본배경");
+	Setcolor(7);
+	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 18);
 	printf("■");
 	Setcolor(12);
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);

@@ -15,7 +15,7 @@
 #define RIGHT1 77
 #define UP1 72
 #define DOWN1 80
-#define PAUSE1 112
+#define PAUSE 112
 #define BACK 113
 #define ESC 27
 
@@ -76,8 +76,8 @@ void gameMapDraw(void);
 void gameRulesDraw(void);
 
 /*theme*/
-static int theme = 7;
-static int* ptheme = &theme;
+extern int theme;
+// static int* ptheme = &theme;
 
 
 /*
@@ -110,3 +110,8 @@ void selectThemeContent(int c1, int c2, int c3, int c4);
 int selectOption(void);
 int selectOptionContent(int c1, int c2);
 void initOption(void);
+
+/* play&item.c */
+
+/* pause.c */
+void pause(void);

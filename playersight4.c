@@ -1,14 +1,15 @@
 #include "main.h"
+
 #define range 2
 #define range_ 3
 #define NUM_ITEMS 5
 
 // 커서 위치 정보를 가져오는 함수
 void getCursorPos(int* x, int* y) {
-    CONSOLE_SCREEN_BUFFER_INFO cbsi;
-    if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cbsi)) {
-        *x = cbsi.dwCursorPosition.X;
-        *y = cbsi.dwCursorPosition.Y;
+    CONSOLE_SCREEN_BUFFER_INFO cur;
+    if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cur)) {
+        *x = cur.dwCursorPosition.X;
+        *y = cur.dwCursorPosition.Y;
     }
 }
 

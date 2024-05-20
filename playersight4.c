@@ -16,7 +16,6 @@ void getCursorPos(int* x, int* y) {
 // 맵을 출력하는 함수
 void printMap(char map[MAP_HEIGHT][MAP_WIDTH], int cursorX, int cursorY) {
     system("cls"); // 화면을 지우기
-    gotoxy1(MAP_X, MAP_Y);
     for (int i = 0; i < MAP_HEIGHT; i++) {
         for (int j = 0; j < MAP_WIDTH; j++) {
             // 커서 위치에 '★' 출력

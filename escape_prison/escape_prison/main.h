@@ -92,6 +92,9 @@ void strider1(void);     // 경비병 2 출력. 시작 위치 정함.
 void move_strider1(void);  // 경비병 2 이동 함수. 
 
 
+void item0(void);      // 아이템(게임속도 증가 +)
+void item0_crush();    // 플레이어, strider등등과 충돌 판단. 플레이어와 충돌하면 speed값 조정. 
+                                                           나머지 경우는 재출력
 
 
 /* gamerule */

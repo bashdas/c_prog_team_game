@@ -85,6 +85,10 @@ void game_over(void);    // 각 스테이지 종료 함수.
 
 /* item, 경비병 생성 함수 */
 
+void strider(void);     // 경비병 출력. 시작 위치 정함
+void move_strider(void); //  경비병 이동 함수. 
+
+
 
 
 /* gamerule */

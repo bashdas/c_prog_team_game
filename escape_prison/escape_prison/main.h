@@ -71,10 +71,16 @@ void gameMapDraw(void);
 
 /* player */
 
-void HP_print(int HP);
+void HP_print(int HP);   // 전역변수 HP의 값에 따라 HP를 다르게 출력함. HP=0이면 game_over()
 int move(int dir);       // 플레이어의 활동 범위 정의
                          // 플레이어의 방향키에 따라 플레이어를 출력함
-                         // player_crush(), item0_crush(),  time0a_crush(), item1_crush(), item_crush()로 충돌 판단 
+                         // player_crush(), item0_crush(),  time0a_crush(), item1_crush(), item_crush()로 충돌 판단
+
+
+void reset_stage(void);  // HP, 방향, 속도, 길이, 초(second) 초기화
+void game_over(void);    // 각 스테이지 종료 함수. 각 스테이지 마다 초기값들을 설정한다.
+
+/* item, 경비병 생성 함수 */
 
 
 
@@ -98,7 +104,7 @@ extern int theme;
 5	: 자주색
 6	: 노란색
 7	: 흰색
-8	: 회색
+8	: 회색  
 9	: 밝은 파란색
 10	: 밝은 초록색
 11	: 밝은 청록색

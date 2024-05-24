@@ -99,12 +99,13 @@ void item0(void);      // 아이템(게임속도 증가 +)
 void item0_crush();    // 플레이어, strider등등과 충돌 판단. 플레이어와 충돌하면 speed값 조정. 
                                                            나머지 경우는 재출력
 void item0a(void);     // 아이템a(게임속도 증가 +)
-void item0a_crush();   // 플레이어와 충돌 시 speed 값 조정. 나머지 경우에는 재출력.
+void item0a_crush();   // 플레이어와 충돌 시 speed 값 증가. 나머지 경우에는 재출력.
                        // strider, strider1과 충돌, 재출력
 
 *************************************************************
 
- void item1(void);    // 아이템(게임속도 감소-) 
+void item1(void);    // 아이템(게임속도 감소-)
+void item1_crush(void); // 플레이어와 충돌시 speed 값 감소. 나머지 모든 경우에서는 재출력
 
 
 

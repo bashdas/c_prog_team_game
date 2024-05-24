@@ -307,7 +307,7 @@ void player_crush() {
 };
 
 /**************************************************************/
-// 아이템(길이 증가)
+// 아이템(길이 증가)  뭔가 이상하다다.....?
 
 
 void item(void) {
@@ -370,6 +370,65 @@ void item_crush() {
         item();
     }
 };
+
+/**************************************************************/
+// HP 전역 변수를 출력하는 함수
+
+void HP_print(int HP) {
+
+
+
+    {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+        gotoxy(MAP_X, MAP_Y + MAP_HEIGHT, " HP:"); //HP표시
+
+    }
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+
+    switch (HP)
+    {
+    case 0:
+        game_over();
+        break;
+    case 1:
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "                  "); //HP표시
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ♥"); //HP표시
+        break;
+
+    case 2:
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "              "); //HP표시
+
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ♥ ♥"); //HP표시
+        break;
+    case 3:
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "                   "); //HP표시
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ♥ ♥ ♥"); //HP표시
+        break;
+    case 4:
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "              "); //HP표시
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ♥ ♥ ♥ ♥"); //HP표시
+        break;
+    case 5:
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "               "); //HP표시
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ♥ ♥ ♥ ♥ ♥"); //HP표시
+        break;
+    case 6:
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "                  "); //HP표시
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ♥ ♥ ♥ ♥ ♥ ♥"); //HP표시
+        break;
+    default:
+        break;
+    }
+
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+    gotoxy(MAP_X + 10, MAP_Y + MAP_HEIGHT, " SPEED:"); //점수표시
+    gotoxy(MAP_X + 15, MAP_Y + MAP_HEIGHT, "             ");
+    gotoxy(MAP_X + 14, MAP_Y + MAP_HEIGHT, "");
+    printf("%d", 201-speed);
+};
+
+
+
 
 
 

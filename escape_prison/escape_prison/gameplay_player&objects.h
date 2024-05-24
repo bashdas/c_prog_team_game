@@ -32,19 +32,20 @@ int* pHP = &HP;
 int x[100], y[100]; 
 
 // strider의 좌표
-int x1[100], y1[100];   
-int x2[100], y2[100];  
+int x1[100], y1[100];   // strider 의 좌표를 저장
+int x2[100], y2[100];   // strider2 의 좌표를 저장
 
 
-// item0 게임속도 증가 +
-// item0a 게임속도 증가 +
+
+
 
 
 
 
 int item_x, item_y;
-int item0_x, item0_y; // speed +
-int item0a_x, item0a_y; 
 
-int item1_x, item1_y; // speed -
-int item1a_x, item1a_y;
+int item0_x, item0_y;   // item0 게임속도 증가 + 
+int item0a_x, item0a_y; // item0a 게임속도 증가 +
+
+int item1_x, item1_y; // item1. 게임속도 감소 -
+int item1a_x, item1a_y; // item1a. 게임속도 감소 -

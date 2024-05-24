@@ -282,6 +282,10 @@ void slowPrint(const char story[][MAX_COLS], int x, int y) {
 	int shouldExit = 0;
 	Setcolor(7);
 	for (int i = 0; i < MAX_ROWS && !shouldExit; i++) {
+		if (i == MAX_ROWS/2) {
+			x1 += 35;
+			y1 = y;
+		}
 		gotoxy1(x1, y1);
 		for (int j = 0; j < MAX_COLS && story[i][j] != '\0'; j++) {
 			putchar(story[i][j]);
@@ -296,7 +300,7 @@ void slowPrint(const char story[][MAX_COLS], int x, int y) {
 			}
 		}
 		y1 = y1 + 2;
-		if (y1 > MAP_Y + 18) break;
+		if (y1 > MAP_Y + 20) break;
 	}
 	Sleep(500);
 }

@@ -35,13 +35,7 @@ int x[100], y[100];
 int x1[100], y1[100];   // strider 의 좌표를 저장
 int x2[100], y2[100];   // strider2 의 좌표를 저장
 
-
-
-
-
-
-
-
+// 아이템 요소들의 좌표 
 int item_x, item_y;     // 속도 증가 함수 
 
 int item0_x, item0_y;   // item0 게임속도 증가 + 

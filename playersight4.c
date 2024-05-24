@@ -13,6 +13,13 @@ void getCursorPos(int* x, int* y) {
     }
 }
 
+void drawCharStar(int x, int y) {
+    gotoxy1(x+6, y+3);
+    Setcolor(3);
+    printf("★\b");
+    Setcolor(7);
+}
+
 void drawChar(int x, int y) {
     gotoxy1(x, y);
     printf("* * * * * * *");
@@ -21,13 +28,14 @@ void drawChar(int x, int y) {
     gotoxy1(x, y + 2);
     printf("*           *");
     gotoxy1(x, y + 3);
-    printf("*     ★     *");
+    printf("*           *");
     gotoxy1(x, y + 4);
     printf("*           *");
     gotoxy1(x, y + 5);
     printf("*           *");
     gotoxy1(x, y + 6);
     printf("* * * * * * *");
+    drawCharStar(x, y);
 }
 
 void removeChar(int x, int y) {
@@ -73,6 +81,7 @@ int movechar(void) {
                 removeChar(x, y);
                 drawChar(--x, y);
             }
+
             break;
         }
         case RIGHT: {

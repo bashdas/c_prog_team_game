@@ -5,7 +5,7 @@ void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6);
 int x[100], y[100]; //x,y 좌표값을 저장 총 100개 
 int key; //입력받은 키 저장 
 int speed; //게임 속도 
-int theme=7;
+int theme = 7;
 
 int main(void) {
 	int menuCode = 0;
@@ -65,16 +65,16 @@ void gotoxy(int x, int y, const char* s) {
 */
 void title(void) {
 	while (_kbhit()) _getch(); //버퍼에 있는 키값을 버림 
-
+	
 	reset();    //맵 테두리를 그림 
 	Setcolor(12);
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3,  "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4,  "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5,  "▒▒▒     ▒▒      ▒▒     ▒      ▒       ▒    ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6,  "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7,  "▒▒▒     ▒▒      ▒▒▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8,  "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9,  "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5, "▒▒▒     ▒▒      ▒▒     ▒      ▒       ▒    ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6, "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7, "▒▒▒     ▒▒      ▒▒▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 10, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒     ▒      ▒       ▒ ▒▒    ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 11, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 12, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
@@ -132,27 +132,29 @@ void reset(void) {
 // 화면 내부만 지우기
 // 이중 중첩으로 하면 안지워 지는 거 있음
 void resetMapInner(void) {
-	Setcolor(theme);
 	for (int i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) {
-		gotoxy(MAP_X, i, "■                                                                           ■");
+		gotoxy1(MAP_X * 2 + 1, i);
+		printf("                                                                           ");
 	}
 }
 // 목숨창만 지우기
 void resetMapTitle(void) {
-	Setcolor(theme);
-	gotoxy(MAP_X, MAP_Y + 1, "■                                                                           ■");
+	gotoxy1(MAP_X * 2 + 1, MAP_Y + 1);
+	printf("                                                                           ");
 }
 // 게임창만 지우기 3 ~ MAP_Y + MAP_HEIGHT - 7
 void resetMapMain(void) {
-	Setcolor(theme);
-	for (int i = MAP_Y + 3; i < MAP_Y + MAP_HEIGHT - 6; i++)
-		gotoxy(MAP_X, i, "■                                                                           ■");
+	for (int i = MAP_Y + 3; i < MAP_Y + MAP_HEIGHT - 6; i++) {
+		gotoxy1(MAP_X * 2 + 1, i);
+		printf("                                                                           ");
+	}
 }
 // 상호작용창만 지우기
 void resetMapBottom(void) {
-	Setcolor(theme);
-	for (int i = MAP_Y + MAP_HEIGHT - 5; i < MAP_Y + MAP_HEIGHT - 1; i++)
-		gotoxy(MAP_X, i, "■                                                                           ■");
+	for (int i = MAP_Y + MAP_HEIGHT - 5; i < MAP_Y + MAP_HEIGHT - 1; i++) {
+		gotoxy1(MAP_X * 2 + 1, i);
+		printf("                                                                           ");
+	}
 }
 
 // titlebox 함수
@@ -276,14 +278,14 @@ int keyControl1(void) {
 	}
 }
 
-void slowPrint(const char story[][MAX_COLS], int x, int y) {
+void slowPrint(const char story[][MAX_COLS], int x, int y, int rowcount) {
 	char ch = 0;
 	int x1 = x, y1 = y;
 	int shouldExit = 0;
 	Setcolor(7);
-	for (int i = 0; i < MAX_ROWS && !shouldExit; i++) {
-		if (i == MAX_ROWS/2) {
-			x1 += 35;
+	for (int i = 0; i < rowcount && !shouldExit; i++) {
+		if (y1 == MAP_Y + 18) {
+			x1 += 30;
 			y1 = y;
 		}
 		gotoxy1(x1, y1);
@@ -295,14 +297,15 @@ void slowPrint(const char story[][MAX_COLS], int x, int y) {
 				ch = _getch();
 				if (ch == '\r' || ch == ' ') {
 					shouldExit = 1;
-					break;
+					Sleep(200);
+					return;
 				}
 			}
 		}
 		y1 = y1 + 2;
-		if (y1 > MAP_Y + 20) break;
+		if (y1 > MAP_Y + 18) break;
 	}
-	Sleep(500);
+	Sleep(200);
 }
 
 void gameExit(void) {

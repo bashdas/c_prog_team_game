@@ -69,6 +69,14 @@ int hardMode(void);				// BACK, -1, HOME 반환
 int playerMove(void);			// BACK, -1, HOME 반환
 void gameMapDraw(void);
 
+/* player */
+
+void HP_print(int HP);
+int move(int dir);       // 플레이어의 활동 범위 정의
+                         // 플레이어의 방향키에 따라 플레이어를 출력함
+                         // player_crush(), item0_crush(),  time0a_crush(), item1_crush(), item_crush()로 충돌 판단 
+
+
 
 /* gamerule */
 #define EASY 0

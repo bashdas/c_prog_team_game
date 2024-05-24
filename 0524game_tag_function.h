@@ -7,6 +7,8 @@ void game_over(void);
 void HP_print(int HP);
 void reset_stage(void);
 
+int move(int dir);
+
 
 
 

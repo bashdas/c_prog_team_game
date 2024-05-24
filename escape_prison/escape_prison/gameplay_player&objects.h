@@ -42,7 +42,7 @@ int x2[100], y2[100];   // strider2 의 좌표를 저장
 
 
 
-int item_x, item_y;
+int item_x, item_y;     // 속도 증가 함수 
 
 int item0_x, item0_y;   // item0 게임속도 증가 + 
 int item0a_x, item0a_y; // item0a 게임속도 증가 +

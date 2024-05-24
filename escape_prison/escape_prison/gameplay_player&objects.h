@@ -349,7 +349,7 @@ void item_crush() {
     if (item_x == x[0] && item_y == y[0])
     {
         item();
-        length+=4;
+        length1=length1+4;
     }
     // strider와 충돌
     if (item_x == x1[0] && item_y == y1[0])

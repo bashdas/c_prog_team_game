@@ -33,7 +33,7 @@
 #define SUBMIT 4 // 선택(키)
 
 // stoty cols, rows
-#define MAX_ROWS 7
+#define MAX_ROWS 16
 #define MAX_COLS 50
 
 void Setcolor(WORD color);

@@ -466,6 +466,41 @@ int move(int dir) {
 
 
 
+void reset_stage(void) {
+    int i;
+    system("cls"); //화면을 지움 
+    drawMap(); //맵 테두리를 그림 
+    while (_kbhit()) _getch(); //버퍼에 있는 키값을 버림 
+    
+    HP = 3;
+    dir = RIGHT; // 방향 초기화  
+    speed = 200; // 속도 초기화 
+    length = 2; // 길이 초기화 
+    score = 0; //점수 초기화 
+    x[0] = 5;
+    y[0] = 5;
+
+    // 빨간색 플레이어
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+
+    gotoxy(MAP_X + x[0], MAP_Y + y[0], "■"); // 머리 그림 
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+
+
+    /* item생성 함수의 위치 */
+    strider();
+    strider1();
+    item0();
+    item0a();
+    item1();
+    item();
+   
+   
+    Sleep(200);
+}
+
+
+
 
 
 

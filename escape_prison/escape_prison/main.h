@@ -115,4 +115,4 @@ void initOption(void);
 /* play&item.c */
 
 /* pause.c */
-void pause(void);
+void pause(void);   // p키를 눌렀을 경우 게임을 일시 정지한다. 

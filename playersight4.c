@@ -47,8 +47,8 @@ void removeChar(int x, int y) {
     printf("             ");
 }
 
-void movechar() {
-    int x = MAP_X * 2 + 1, y = MAP_Y + 3;
+int movechar(void) {
+    int x = MAP_X * 2 + 2, y = MAP_Y + 3;
     drawChar(x,y);
     while (1)
     {
@@ -62,21 +62,21 @@ void movechar() {
             break;
         }
         case DOWN: {
-            if (y < MAP_Y + 20) {
+            if (y < MAP_Y + 13) {
                 removeChar(x, y);
                 drawChar(x, ++y);
             }
             break;
         }
         case LEFT: {
-            if (x > MAP_X*2) {
+            if (x > MAP_X*2 + 1) {
                 removeChar(x, y);
                 drawChar(--x, y);
             }
             break;
         }
         case RIGHT: {
-            if (x < MAP_X * 2 + MAP_HEIGHT - 1) {
+            if (x < (MAP_X + MAP_HEIGHT + 5)*2+1) {
                 removeChar(x, y);
                 drawChar(++x, y);
             }
@@ -158,9 +158,9 @@ int main() {
     int cursorY = MAP_WIDTH / 2;
 
     initializeMap(map);
-
+    drawMap();
     while (1) {
-        printMap(map, cursorX, cursorY);
+        //printMap(map, cursorX, cursorY);
 
         char input = _getch();
         if (input == BACK) return BACK;

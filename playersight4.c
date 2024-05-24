@@ -14,80 +14,167 @@ void getCursorPos(int* x, int* y) {
 }
 
 void drawCharStar(int x, int y) {
-    gotoxy1(x+6, y+3);
+    gotoxy1(x + 6, y + 3);
     Setcolor(3);
     printf("★\b");
     Setcolor(7);
 }
 
-void drawChar(int x, int y) {
-    gotoxy1(x, y);
-    printf("* * * * * * *");
-    gotoxy1(x, y+1);
-    printf("*           *");
-    gotoxy1(x, y + 2);
-    printf("*           *");
-    gotoxy1(x, y + 3);
-    printf("*           *");
-    gotoxy1(x, y + 4);
-    printf("*           *");
-    gotoxy1(x, y + 5);
-    printf("*           *");
-    gotoxy1(x, y + 6);
-    printf("* * * * * * *");
-    drawCharStar(x, y);
+void drawChar(int x, int y, int bottom, int right, int upper, int left) {
+    int x1 = x;
+    int y1 = y;
+    char charsight[7][15] = {
+        "* * * * * * *\0",
+        "*           *\0",
+        "*           *\0",
+        "*           *\0",
+        "*           *\0",
+        "*           *\0",
+        "* * * * * * *\0"
+    };
+    for (int i = 0+upper; i < bottom; i++) {
+        gotoxy1(x1, y1);
+        for (int j = 0+left; j < right; j++) {
+            putchar(charsight[i][j]);
+            fflush(stdout);
+        }
+        gotoxy1(x + 5, y + 3);
+        y1 += 1;
+    }
 }
 
-void removeChar(int x, int y) {
-    gotoxy1(x, y);
-    printf("             ");
-    gotoxy1(x, y+1);
-    printf("             ");
-    gotoxy1(x, y+2);
-    printf("             ");
-    gotoxy1(x, y+3);
-    printf("             ");
-    gotoxy1(x, y+4);
-    printf("             ");
-    gotoxy1(x, y+5);
-    printf("             ");
-    gotoxy1(x, y+6);
-    printf("             ");
+void removeChar(int x, int y, int bottom, int right, int upper, int left) {
+    int x1 = x;
+    int y1 = y;
+    char charsight[7][15] = {
+        "             \0",
+        "             \0",
+        "             \0",
+        "             \0",
+        "             \0",
+        "             \0",
+        "             \0",
+    };
+    for (int i = 0 + upper; i < bottom; i++) {
+        gotoxy1(x1, y1);
+        for (int j = 0 + left; j < right; j++) {
+            putchar(charsight[i][j]);
+            fflush(stdout);
+        }
+        gotoxy1(x + 5, y + 3);
+        y1 += 1;
+    }
 }
 
 int movechar(void) {
     int x = MAP_X * 2 + 2, y = MAP_Y + 3;
-    drawChar(x,y);
+    drawChar(x, y, 7, 15, 0, 0);
+    drawCharStar(x, y);
     while (1)
     {
         int n = keyControl1();
         switch (n) {
         case UP: {
-            if (y > MAP_Y + 3) {
-                removeChar(x,y);
-                drawChar(x,--y);
+            if (y == MAP_Y + 3) {
+                removeChar(x, MAP_Y + 3, 7, 15, 0, 0);
+                drawChar(x, MAP_Y + 3, 7, 15, 1, 0);
+                drawCharStar(x, --y);
+            }
+            else if (y == MAP_Y + 2) {
+                removeChar(x, MAP_Y + 3, 7, 15, 1, 0);
+                drawChar(x, MAP_Y + 3, 7, 15, 2, 0);
+                y = MAP_Y + 1;
+                drawCharStar(x, y);
+            }
+            else if (y <= MAP_Y+1) {
+                removeChar(x, MAP_Y + 3, 7, 15, 2, 0);
+                drawChar(x, MAP_Y + 3, 7, 15, 3, 0);
+                y = MAP_Y;
+                drawCharStar(x, y);
+            }
+            else if (y >= (MAP_Y + MAP_HEIGHT) - 10) {
+                removeChar(x, (MAP_Y + MAP_HEIGHT) - 10, 4, 15, 0, 0);
+                drawChar(x, (MAP_Y + MAP_HEIGHT) - 11, 5, 15, 0, 0);
+                y = (MAP_Y + MAP_HEIGHT) - 11;
+                drawCharStar(x, y);
+            }
+            else if (y == (MAP_Y + MAP_HEIGHT) - 11) {
+                removeChar(x, (MAP_Y + MAP_HEIGHT) - 11, 5, 15, 0, 0);
+                drawChar(x, (MAP_Y + MAP_HEIGHT) - 12, 6, 15, 0, 0);
+                y = (MAP_Y + MAP_HEIGHT) - 12;
+                drawCharStar(x, y);
+            }
+            else if (y == (MAP_Y + MAP_HEIGHT) - 12) {
+                removeChar(x, (MAP_Y + MAP_HEIGHT) - 12, 6, 15, 0, 0);
+                drawChar(x, (MAP_Y + MAP_HEIGHT) - 13, 7, 15, 0, 0);
+                y = (MAP_Y + MAP_HEIGHT) - 13;
+                drawCharStar(x, y);
+            }
+            else {
+                removeChar(x, y, 7, 15, 0, 0);
+                drawChar(x, --y, 7, 15, 0, 0);
+                drawCharStar(x, y);
             }
             break;
         }
         case DOWN: {
-            if (y < MAP_Y + 13) {
-                removeChar(x, y);
-                drawChar(x, ++y);
+            if (y == MAP_Y) {
+                removeChar(x, MAP_Y + 3, 7, 15, 3, 0);
+                drawChar(x, MAP_Y + 3, 7, 15, 2, 0);
+                y = MAP_Y+1;
+                drawCharStar(x, y);
+            }
+            else if (y == MAP_Y + 1) {
+                removeChar(x, MAP_Y + 3, 7, 15, 2, 0);
+                drawChar(x, MAP_Y + 3, 7, 15, 1, 0);
+                y = MAP_Y + 2;
+                drawCharStar(x, y);
+            }
+            else if (y == MAP_Y + 2) {
+                removeChar(x, MAP_Y + 3, 7, 15, 1, 0);
+                drawChar(x, MAP_Y + 3, 7, 15, 0, 0);
+                y = MAP_Y + 3;
+                drawCharStar(x, y);
+            }
+            else if (y == (MAP_Y + MAP_HEIGHT) - 13) {
+                removeChar(x, (MAP_Y + MAP_HEIGHT) - 13, 7, 15, 0, 0);
+                drawChar(x, (MAP_Y + MAP_HEIGHT) - 12, 6, 15, 0, 0);
+                y = (MAP_Y + MAP_HEIGHT) - 12;
+                drawCharStar(x, y);
+            }
+            else if (y == (MAP_Y + MAP_HEIGHT) - 12) {
+                removeChar(x, (MAP_Y + MAP_HEIGHT) - 12, 6, 15, 0, 0);
+                drawChar(x, (MAP_Y + MAP_HEIGHT) - 11, 5, 15, 0, 0);
+                y = (MAP_Y + MAP_HEIGHT) - 11;
+                drawCharStar(x, y);
+            }
+            else if (y >= (MAP_Y + MAP_HEIGHT) - 11) {
+                removeChar(x, (MAP_Y + MAP_HEIGHT) - 11, 5, 15, 0, 0);
+                drawChar(x, (MAP_Y + MAP_HEIGHT) - 10, 4, 15, 0, 0);
+                y = (MAP_Y + MAP_HEIGHT) - 10;
+                drawCharStar(x, y);
+            }
+            else {
+                removeChar(x, y, 7, 15, 0, 0);
+                drawChar(x, ++y, 7, 15, 0, 0);
+                drawCharStar(x, y);
             }
             break;
         }
         case LEFT: {
-            if (x > MAP_X*2 + 1) {
-                removeChar(x, y);
-                drawChar(--x, y);
+            if (x > MAP_X * 2 + 1) {
+                removeChar(x, y, 7, 15, 0, 0);
+                drawChar(--x, y, 7, 15, 0, 0);
+                drawCharStar(x, y);
             }
 
             break;
         }
         case RIGHT: {
-            if (x < (MAP_X + MAP_HEIGHT + 5)*2+1) {
-                removeChar(x, y);
-                drawChar(++x, y);
+            if (x < (MAP_X + MAP_HEIGHT + 5) * 2 + 1) {
+                removeChar(x, y, 7, 15, 0, 0);
+                drawChar(++x, y, 7, 15, 0, 0);
+                drawCharStar(x, y);
             }
             break;
         }

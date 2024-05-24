@@ -5,17 +5,8 @@
 #include<stdlib.h>
 #include<time.h>
 
-#define LEFT 75
-#define RIGHT 77
-#define UP 72
-#define DOWN 80
-#define PAUSE 112
-#define ESC 27
+#define MAP_X 3  // ?? main.h와 한번 더 비교해서 확인해보기 ?? 뭔가 예상했던 값과 다르다.
 
-#define MAP_X 3
-#define MAP_Y 2
-#define MAP_WIDTH 39
-#define MAP_HEIGHT 26
 
 
 // 게임 시스템

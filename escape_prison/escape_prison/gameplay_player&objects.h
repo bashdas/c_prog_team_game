@@ -428,6 +428,43 @@ void HP_print(int HP) {
 };
 
 
+// item 과 플레이어가 충돌한 경우의 함수
+
+int move(int dir) {
+    int i;
+
+    if (x[0] == 0 || x[0] == MAP_WIDTH - 1 || y[0] == 0 || y[0] == MAP_HEIGHT - 1) { //벽과 충돌했을 경우 
+        game_over();
+        return 0; //game_over에서 게임을 다시 시작하게 되면 여기서부터 반복되므로 
+        //return을 사용하여 move의 나머지 부분이 실행되지 않도록 합니다. 
+    }
+    player_crush();
+    item0_crush();
+    item0a_crush();
+    item_crush();
+  
+
+    gotoxy(MAP_X + x[length - 1], MAP_Y + y[length - 1], "  "); //몸통 마지막을 지움 
+    for (i = length - 1; i > 0; i--) { //몸통좌표를 한칸씩 옮김 
+        x[i] = x[i - 1];
+        y[i] = y[i - 1];
+    }
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+
+    if (dir == LEFT) x[0]-=1; //방향에 따라 새로운 머리좌표(x[0],y[0])값을 변경 
+    if (dir == RIGHT) x[0]+=1;
+    if (dir == UP) y[0]-=1;
+    if (dir == DOWN) y[0]+=1;
+    gotoxy(MAP_X + x[i], MAP_Y + y[i], "■"); //새로운 머리좌표값에 머리를 그림 
+
+    move_strider();
+    move_strider1();
+    /* 좌표와 충돌 판단 */
+    
+    return 0;
+}
+
+
 
 
 

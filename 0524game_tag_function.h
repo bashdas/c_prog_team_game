@@ -2,121 +2,38 @@
 #include "appendix.h"
 #include "item_tail.h"
 
-
-
 int move(int dir);
-void reset(void);
-void title(void);
 void game_over(void);
 void HP_print(int HP);
+void reset_stage(void);
 
 
 
 
 
-
-void draw_map(void) { //∏  ≈◊µŒ∏Æ ±◊∏Æ¥¬ «‘ºˆ 
-    int i, j;
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-    for (i = 0; i < MAP_WIDTH; i++) {
-        gotoxy(MAP_X + i, MAP_Y, "°·");
-    }
-    for (i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) {
-        gotoxy(MAP_X, i, "°·");
-        gotoxy(MAP_X + MAP_WIDTH - 1, i, "°·");
-    }
-    for (i = 0; i < MAP_WIDTH; i++) {
-        gotoxy(MAP_X + i, MAP_Y + MAP_HEIGHT - 1, "°·");
-    }
-
-}
-
-void pause(void) { // p≈∞∏¶ ¥≠∑∂¿ª ∞ÊøÏ ∞‘¿”¿ª ¿œΩ√ ¡§¡ˆ
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-    while (1) {
-        if (key == PAUSE) {
-            gotoxy(MAP_X + (MAP_WIDTH / 2) - 9, MAP_Y, "< PAUSE : PRESS ANY KEY TO RESUME > ");
-            Sleep(400);
-            gotoxy(MAP_X + (MAP_WIDTH / 2) - 9, MAP_Y, "                                    ");
-            Sleep(400);
-        }
-        else {
-            draw_map();
-            return;
-        }
-        if (_kbhit()) {
-
-            do {
-                key = _getch();
-            } while (key == 224);
-        }
-
-    }
-}
-
-
-void title(void) {
-    int i, j;
-
-    while (_kbhit()) _getch(); //πˆ∆€ø° ¿÷¥¬ ≈∞∞™¿ª πˆ∏≤ 
-
-    draw_map();    //∏  ≈◊µŒ∏Æ∏¶ ±◊∏≤ 
-    for (i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) { // ∏  ≈◊µŒ∏Æ æ»¬ ¿ª ∫Ûƒ≠¿∏∑Œ √§øÚ 
-        for (j = MAP_X + 1; j < MAP_X + MAP_WIDTH - 1; j++) gotoxy(j, i, "  ");
-    }
-
-    gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 5, "+--------------------------+");
-    gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 6, "|   |   |    |    |   |    |");
-    gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 7, "+--------------------------+");
-
-    gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 9, " < PRESS ANY KEY TO START > ");
-
-    gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 11, "   °ﬁ °Á,°Ê,°Ë,°È : Move    ");
-    gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 12, "   °ﬁ Settings              ");
-    gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 13, "   °ﬁ ESC : Quit             ");
-    gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 14, "   °ﬁ P : Pause             ");
-
-    gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 17, "         KU CSE  ");
-
-    while (1) {
-        if (_kbhit()) { //≈∞¿‘∑¬πﬁ¿Ω 
-            key = _getch();
-            if (key == ESC) exit(0); // ESC≈∞∏È ¡æ∑· 
-            else break; //æ∆¥œ∏È ±◊≥… ∞Ëº” ¡¯«‡ 
-        }
-        gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 9, " < PRESS ANY KEY TO START > ");
-        Sleep(400);
-        gotoxy(MAP_X + (MAP_WIDTH / 2) - 7, MAP_Y + 9, "                            ");
-        Sleep(400);
-
-    }
-    reset(); // ∞‘¿”¿ª √ ±‚»≠  
-
-}
-
-void reset(void) {
+void reset_stage(void){
     int i;
-    system("cls"); //»≠∏È¿ª ¡ˆøÚ 
-    draw_map(); //∏  ≈◊µŒ∏Æ∏¶ ±◊∏≤ 
-    gotoxy(MAP_X, MAP_Y, "°·");
-    while (_kbhit()) _getch(); //πˆ∆€ø° ¿÷¥¬ ≈∞∞™¿ª πˆ∏≤ 
+    system("cls"); //ÌôîÎ©¥ÏùÑ ÏßÄÏõÄ 
+    draw_map(); //Îßµ ÌÖåÎëêÎ¶¨Î•º Í∑∏Î¶º 
+    gotoxy(MAP_X, MAP_Y, "‚ñ†");
+    while (_kbhit()) _getch(); //Î≤ÑÌçºÏóê ÏûàÎäî ÌÇ§Í∞íÏùÑ Î≤ÑÎ¶º 
     
     HP = 3;
-    dir = RIGHT; // πÊ«‚ √ ±‚»≠  
-    speed = 200; // º”µµ √ ±‚»≠ 
-    length = 2; // ±Ê¿Ã √ ±‚»≠ 
-    score = 0; //¡°ºˆ √ ±‚»≠ 
+    dir = RIGHT; // Î∞©Ìñ• Ï¥àÍ∏∞Ìôî  
+    speed = 200; // ÏÜçÎèÑ Ï¥àÍ∏∞Ìôî 
+    length = 2; // Í∏∏Ïù¥ Ï¥àÍ∏∞Ìôî 
+    score = 0; //Ï†êÏàò Ï¥àÍ∏∞Ìôî 
     x[0] = 5;
     y[0] = 5;
 
-    // ª°∞£ªˆ «√∑π¿ÃæÓ
+    // Îπ®Í∞ÑÏÉâ ÌîåÎ†àÏù¥Ïñ¥
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 
-    gotoxy(MAP_X + x[0], MAP_Y + y[0], "°·"); // ∏”∏Æ ±◊∏≤ 
+    gotoxy(MAP_X + x[0], MAP_Y + y[0], "‚ñ†"); // Î®∏Î¶¨ Í∑∏Î¶º 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 
 
-    /* itemª˝º∫ «‘ºˆ¿« ¿ßƒ° */
+    /* itemÏÉùÏÑ± Ìï®ÏàòÏùò ÏúÑÏπò */
     strider();
     strider1();
     item0();
@@ -129,15 +46,15 @@ void reset(void) {
 }
 
 
-// item ∞˙ «√∑π¿ÃæÓ∞° √Êµπ«— ∞ÊøÏ¿« «‘ºˆ
+// item Í≥º ÌîåÎ†àÏù¥Ïñ¥Í∞Ä Ï∂©ÎèåÌïú Í≤ΩÏö∞Ïùò Ìï®Ïàò
 
 int move(int dir) {
     int i;
 
-    if (x[0] == MAP_X*2+1 || x[0] == MAP_X+MAP_WIDTH-1 || y[0] == MAP_Y+3 || y[0] == MAP_Y+MAP_HEIGHT-6) { //∫Æ∞˙ √Êµπ«ﬂ¿ª ∞ÊøÏ 
+    if (x[0] == MAP_X*2+1 || x[0] == MAP_X+MAP_WIDTH-1 || y[0] == MAP_Y+3 || y[0] == MAP_Y+MAP_HEIGHT-6) { //Î≤ΩÍ≥º Ï∂©ÎèåÌñàÏùÑ Í≤ΩÏö∞ 
         game_over();
-        return 0; //game_overø°º≠ ∞‘¿”¿ª ¥ŸΩ√ Ω√¿€«œ∞‘ µ«∏È ø©±‚º≠∫Œ≈Õ π›∫πµ«π«∑Œ 
-        //return¿ª ªÁøÎ«œø© move¿« ≥™∏”¡ˆ ∫Œ∫–¿Ã Ω««‡µ«¡ˆ æ µµ∑œ «’¥œ¥Ÿ. 
+        return 0; //game_overÏóêÏÑú Í≤åÏûÑÏùÑ Îã§Ïãú ÏãúÏûëÌïòÍ≤å ÎêòÎ©¥ Ïó¨Í∏∞ÏÑúÎ∂ÄÌÑ∞ Î∞òÎ≥µÎêòÎØÄÎ°ú 
+        //returnÏùÑ ÏÇ¨Ïö©ÌïòÏó¨ moveÏùò ÎÇòÎ®∏ÏßÄ Î∂ÄÎ∂ÑÏù¥ Ïã§ÌñâÎêòÏßÄ ÏïäÎèÑÎ°ù Ìï©ÎãàÎã§. 
     }
     player_crush();
     item0_crush();
@@ -145,27 +62,27 @@ int move(int dir) {
     item_crush();
     item1_crush();
 
-    gotoxy(MAP_X + x[length - 1], MAP_Y + y[length - 1], "  "); //∏ˆ≈Î ∏∂¡ˆ∏∑¿ª ¡ˆøÚ 
-    for (i = length - 1; i > 0; i--) { //∏ˆ≈Î¡¬«•∏¶ «—ƒ≠æø ø≈±Ë 
+    gotoxy(MAP_X + x[length - 1], MAP_Y + y[length - 1], "  "); //Î™∏ÌÜµ ÎßàÏßÄÎßâÏùÑ ÏßÄÏõÄ 
+    for (i = length - 1; i > 0; i--) { //Î™∏ÌÜµÏ¢åÌëúÎ•º ÌïúÏπ∏Ïî© ÏòÆÍπÄ 
         x[i] = x[i - 1];
         y[i] = y[i - 1];
     }
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
 
-    if (dir == LEFT) x[0]-=1; //πÊ«‚ø° µ˚∂Û ªı∑ŒøÓ ∏”∏Æ¡¬«•(x[0],y[0])∞™¿ª ∫Ø∞Ê 
+    if (dir == LEFT) x[0]-=1; //Î∞©Ìñ•Ïóê Îî∞Îùº ÏÉàÎ°úÏö¥ Î®∏Î¶¨Ï¢åÌëú(x[0],y[0])Í∞íÏùÑ Î≥ÄÍ≤Ω 
     if (dir == RIGHT) x[0]+=1;
     if (dir == UP) y[0]-=1;
     if (dir == DOWN) y[0]+=1;
-    gotoxy(MAP_X + x[i], MAP_Y + y[i], "°·"); //ªı∑ŒøÓ ∏”∏Æ¡¬«•∞™ø° ∏”∏Æ∏¶ ±◊∏≤ 
+    gotoxy(MAP_X + x[i], MAP_Y + y[i], "‚ñ†"); //ÏÉàÎ°úÏö¥ Î®∏Î¶¨Ï¢åÌëúÍ∞íÏóê Î®∏Î¶¨Î•º Í∑∏Î¶º 
 
     move_strider();
     move_strider1();
-    /* ¡¬«•øÕ √Êµπ ∆«¥‹ */
+    /* Ï¢åÌëúÏôÄ Ï∂©Îèå ÌåêÎã® */
     
     return 0;
 }
 
-void game_over(void) { //∞‘¿”¡æ∑· «‘ºˆ 
+void game_over(void) { //Í≤åÏûÑÏ¢ÖÎ£å Ìï®Ïàò 
     system("cls");
 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
@@ -181,7 +98,7 @@ void game_over(void) { //∞‘¿”¡æ∑· «‘ºˆ
     if (score > best_score) {
         best_score = score;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-        gotoxy(MAP_X + (MAP_WIDTH / 2) - 4, MAP_Y + 10, "°Ÿ BEST SCORE °Ÿ");
+        gotoxy(MAP_X + (MAP_WIDTH / 2) - 4, MAP_Y + 10, "‚òÜ BEST SCORE ‚òÜ");
     }
     Sleep(500);
     while (_kbhit()) _getch();
@@ -195,7 +112,7 @@ void HP_print(int HP) {
 
     {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-        gotoxy(MAP_X, MAP_Y + MAP_HEIGHT, " HP:"); //HP«•Ω√
+        gotoxy(MAP_X, MAP_Y + MAP_HEIGHT, " HP:"); //HPÌëúÏãú
 
     }
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
@@ -206,37 +123,37 @@ void HP_print(int HP) {
         game_over();
         break;
     case 1:
-        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "                  "); //HP«•Ω√
-        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ¢æ"); //HP«•Ω√
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "                  "); //HPÌëúÏãú
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ‚ô•"); //HPÌëúÏãú
         break;
 
     case 2:
-        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "              "); //HP«•Ω√
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "              "); //HPÌëúÏãú
 
-        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ¢æ ¢æ"); //HP«•Ω√
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ‚ô• ‚ô•"); //HPÌëúÏãú
         break;
     case 3:
-        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "                   "); //HP«•Ω√
-        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ¢æ ¢æ ¢æ"); //HP«•Ω√
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "                   "); //HPÌëúÏãú
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ‚ô• ‚ô• ‚ô•"); //HPÌëúÏãú
         break;
     case 4:
-        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "              "); //HP«•Ω√
-        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ¢æ ¢æ ¢æ ¢æ"); //HP«•Ω√
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "              "); //HPÌëúÏãú
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ‚ô• ‚ô• ‚ô• ‚ô•"); //HPÌëúÏãú
         break;
     case 5:
-        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "               "); //HP«•Ω√
-        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ¢æ ¢æ ¢æ ¢æ ¢æ"); //HP«•Ω√
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "               "); //HPÌëúÏãú
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ‚ô• ‚ô• ‚ô• ‚ô• ‚ô•"); //HPÌëúÏãú
         break;
     case 6:
-        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "                  "); //HP«•Ω√
-        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ¢æ ¢æ ¢æ ¢æ ¢æ ¢æ"); //HP«•Ω√
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, "                  "); //HPÌëúÏãú
+        gotoxy(MAP_X + 3, MAP_Y + MAP_HEIGHT, " ‚ô• ‚ô• ‚ô• ‚ô• ‚ô• ‚ô•"); //HPÌëúÏãú
         break;
     default:
         break;
     }
 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-    gotoxy(MAP_X + 10, MAP_Y + MAP_HEIGHT, " SPEED:"); //¡°ºˆ«•Ω√
+    gotoxy(MAP_X + 10, MAP_Y + MAP_HEIGHT, " SPEED:"); //Ï†êÏàòÌëúÏãú
     gotoxy(MAP_X + 15, MAP_Y + MAP_HEIGHT, "             ");
     gotoxy(MAP_X + 14, MAP_Y + MAP_HEIGHT, "");
     printf("%d", 201-speed);

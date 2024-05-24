@@ -69,16 +69,19 @@ int hardMode(void);				// BACK, -1, HOME 반환
 int playerMove(void);			// BACK, -1, HOME 반환
 void gameMapDraw(void);
 
+
 /* player */
 
-void HP_print(int HP);   // 전역변수 HP의 값에 따라 HP를 다르게 출력함. HP=0이면 game_over()
+void HP_print(int HP);   // 전역변수 HP의 값에 따라 HP를 다르게 출력함. HP=0이면 game_over(). speed도 출력 가능
 int move(int dir);       // 플레이어의 활동 범위 정의
                          // 플레이어의 방향키에 따라 플레이어를 출력함
                          // player_crush(), item0_crush(),  time0a_crush(), item1_crush(), item_crush()로 충돌 판단
 
 
-void reset_stage(void);  // HP, 방향, 속도, 길이, 초(second) 초기화
-void game_over(void);    // 각 스테이지 종료 함수. 각 스테이지 마다 초기값들을 설정한다.
+void reset_stage(void);  // HP, 방향, 속도, 길이, 초(second) 초기화. 플레이어 시작 위치 초기
+
+void game_over(void);    // 각 스테이지 종료 함수. 
+
 
 /* item, 경비병 생성 함수 */
 

@@ -68,15 +68,15 @@ void movechar() {
             }
             break;
         }
-        case LEFT1: {
-            if (//x범위 ) {
+        case LEFT: {
+            if (x > MAP_X*2) {
                 removeChar(x, y);
                 drawChar(--x, y);
             }
             break;
         }
-        case RIGHT1: {
-            if () {
+        case RIGHT: {
+            if (x < MAP_X * 2 + MAP_HEIGHT - 1) {
                 removeChar(x, y);
                 drawChar(++x, y);
             }

@@ -218,8 +218,8 @@ int movechar(void) {
                 if (y == (MAP_Y + MAP_HEIGHT) - 10) bottom = 5;
                 if (y == (MAP_Y + MAP_HEIGHT) - 11) bottom = 6;
                 if (y == (MAP_Y + MAP_HEIGHT) - 12) bottom = 7;
-                removeChar(x, y, bottom, 15, 0, 0);
-                drawChar(--x, y, --bottom, 15, 0, 0);
+                removeChar(x, y, --bottom, 15, 0, 0);
+                drawChar(--x, y, bottom, 15, 0, 0);
                 drawCharStar(x, y);
             }
             else { // 맵 안에서
@@ -268,8 +268,8 @@ int movechar(void) {
                 if (y == (MAP_Y + MAP_HEIGHT) - 10) bottom = 5;
                 if (y == (MAP_Y + MAP_HEIGHT) - 11) bottom = 6;
                 if (y == (MAP_Y + MAP_HEIGHT) - 12) bottom = 7;
-                removeChar(x, y, bottom, 15, 0, 0);
-                drawChar(++x, y, --bottom, 15, 0, 0);
+                removeChar(x, y, --bottom, 15, 0, 0);
+                drawChar(++x, y, bottom, 15, 0, 0);
                 drawCharStar(x, y);
             }
             else { // 맵 안에서
@@ -354,6 +354,7 @@ int main() {
     int cursorX = MAP_HEIGHT / 2;
     int cursorY = MAP_WIDTH / 2;
     drawMap();
+    gameMapDraw();
     while (1) {
         //printMap(map, cursorX, cursorY);
 

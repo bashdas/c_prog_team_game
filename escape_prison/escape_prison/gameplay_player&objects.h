@@ -1,9 +1,5 @@
 #pragma once
-#include<stdio.h>
-#include<windows.h>
-#include<conio.h>
-#include<stdlib.h>
-#include<time.h>
+
 #include "main.h"
 
 #define MAP_X 3  // ?? main.h와 한번 더 비교해서 확인해보기 ?? 뭔가 예상했던 값과 다르다.

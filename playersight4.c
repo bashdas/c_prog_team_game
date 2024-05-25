@@ -162,16 +162,147 @@ int movechar(void) {
             break;
         }
         case LEFT: {
-            if (x > MAP_X * 2 + 1) {
+            if (x == MAP_X * 2 + 1) {
+                removeChar(MAP_X * 2+1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2+1, y, 7, 15, 0, 1);
+                x = MAP_X*2;
+                drawCharStar(x, y);
+            }
+            else if (x == MAP_X * 2) {
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 2);
+                x = MAP_X * 2 - 1;
+                drawCharStar(x, y);
+            }
+            else if (x == MAP_X * 2 - 1) {
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 3);
+                x = MAP_X * 2 - 2;
+                drawCharStar(x, y);
+            }
+            else if (x == MAP_X * 2 - 2) {
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 4);
+                x = MAP_X * 2 - 3;
+                drawCharStar(x, y);
+            }
+            else if (x == MAP_X * 2 - 3) {
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 5);
+                x = MAP_X * 2 - 4;
+                drawCharStar(x, y);
+            }
+            else if (x <= MAP_X * 2 - 4) {
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 6);
+                x = MAP_X * 2 - 5;
+                drawCharStar(x, y);
+            }
+            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 10) {
+                removeChar((MAP_X + MAP_WIDTH) * 2 - 10, y, 7, 8, 0, 0);
+                drawChar((MAP_X + MAP_WIDTH) * 2 - 11, y, 7, 9, 0, 0);
+                x = (MAP_X + MAP_WIDTH) * 2 - 11;
+                drawCharStar(x, y);
+            }
+            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 11) {
+                removeChar((MAP_X + MAP_WIDTH) * 2 - 11, y, 7, 9, 0, 0);
+                drawChar((MAP_X + MAP_WIDTH) * 2 - 12, y, 7, 10, 0, 0);
+                x = (MAP_X + MAP_WIDTH) * 2 - 12;
+                drawCharStar(x, y);
+            }
+            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 12) {
+                removeChar((MAP_X + MAP_WIDTH) * 2 - 12, y, 7, 10, 0, 0);
+                drawChar((MAP_X + MAP_WIDTH) * 2 - 13, y, 7, 11, 0, 0);
+                x = (MAP_X + MAP_WIDTH) * 2 - 13;
+                drawCharStar(x, y);
+            }
+            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 13) {
+                removeChar((MAP_X + MAP_WIDTH) * 2 - 13, y, 7, 11, 0, 0);
+                drawChar((MAP_X + MAP_WIDTH) * 2 - 14, y, 7, 12, 0, 0);
+                x = (MAP_X + MAP_WIDTH) * 2 - 14;
+                drawCharStar(x, y);
+            }
+            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 14) {
+                removeChar((MAP_X + MAP_WIDTH) * 2 - 14, y, 7, 12, 0, 0);
+                drawChar((MAP_X + MAP_WIDTH) * 2 - 15, y, 7, 13, 0, 0);
+                x = (MAP_X + MAP_WIDTH) * 2 - 15;
+                drawCharStar(x, y);
+            }
+            else {
                 removeChar(x, y, 7, 15, 0, 0);
                 drawChar(--x, y, 7, 15, 0, 0);
                 drawCharStar(x, y);
             }
-
             break;
         }
         case RIGHT: {
-            if (x < (MAP_X + MAP_HEIGHT + 5) * 2 + 1) {
+            if (x == (MAP_X + MAP_WIDTH) * 2 - 15) {
+                removeChar((MAP_X + MAP_WIDTH) * 2 - 15, y, 7, 15, 0, 0);
+                drawChar((MAP_X + MAP_WIDTH) * 2 - 14, y, 7, 12, 0, 0);
+                x = (MAP_X + MAP_WIDTH) * 2 - 14;
+                drawCharStar(x, y);
+            }
+            else if (x == (MAP_X + MAP_WIDTH) * 2 - 14) {
+                removeChar((MAP_X + MAP_WIDTH) * 2 - 14, y, 7, 12, 0, 0);
+                drawChar((MAP_X + MAP_WIDTH) * 2 - 13, y, 7, 11, 0, 0);
+                x = (MAP_X + MAP_WIDTH) * 2 - 13;
+                drawCharStar(x, y);
+            }
+            else if (x == (MAP_X + MAP_WIDTH) * 2 - 13) {
+                removeChar((MAP_X + MAP_WIDTH) * 2 - 13, y, 7, 11, 0, 0);
+                drawChar((MAP_X + MAP_WIDTH) * 2 - 12, y, 7, 10, 0, 0);
+                x = (MAP_X + MAP_WIDTH) * 2 - 12;
+                drawCharStar(x, y);
+            }
+            else if (x == (MAP_X + MAP_WIDTH) * 2 - 12) {
+                removeChar((MAP_X + MAP_WIDTH) * 2 - 12, y, 7, 10, 0, 0);
+                drawChar((MAP_X + MAP_WIDTH) * 2 - 11, y, 7, 9, 0, 0);
+                x = (MAP_X + MAP_WIDTH) * 2 - 11;
+                drawCharStar(x, y);
+            }
+            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 11) {
+                removeChar((MAP_X + MAP_WIDTH) * 2 - 11, y, 7, 9, 0, 0);
+                drawChar((MAP_X + MAP_WIDTH) * 2 - 10, y, 7, 8, 0, 0);
+                x = (MAP_X + MAP_WIDTH) * 2 - 10;
+                drawCharStar(x, y);
+            }
+            else if (x == MAP_X * 2 - 5) {
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 5);
+                x = MAP_X * 2 - 4;
+                drawCharStar(x, y);
+            }
+            else if (x == MAP_X * 2 - 4) {
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 4);
+                x = MAP_X * 2 - 3;
+                drawCharStar(x, y);
+            }
+            else if (x == MAP_X * 2 - 3) {
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 3);
+                x = MAP_X * 2 - 2;
+                drawCharStar(x, y);
+            }
+            else if (x == MAP_X * 2 - 2) {
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 2);
+                x = MAP_X * 2 - 1;
+                drawCharStar(x, y);
+            }
+            else if (x == MAP_X * 2 - 1) {
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 1);
+                x = MAP_X * 2;
+                drawCharStar(x, y);
+            }
+            else if (x == MAP_X * 2) {
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                x = MAP_X * 2 + 1;
+                drawCharStar(x, y);
+            }
+            else {
                 removeChar(x, y, 7, 15, 0, 0);
                 drawChar(++x, y, 7, 15, 0, 0);
                 drawCharStar(x, y);
@@ -252,8 +383,6 @@ int main() {
     char map[MAP_HEIGHT][MAP_WIDTH];
     int cursorX = MAP_HEIGHT / 2;
     int cursorY = MAP_WIDTH / 2;
-
-    initializeMap(map);
     drawMap();
     while (1) {
         //printMap(map, cursorX, cursorY);

@@ -32,9 +32,9 @@ void drawChar(int x, int y, int bottom, int right, int upper, int left) {
         "*           *\0",
         "* * * * * * *\0"
     };
-    for (int i = 0+upper; i < bottom; i++) {
+    for (int i = 0 + upper; i < bottom; i++) {
         gotoxy1(x1, y1);
-        for (int j = 0+left; j < right; j++) {
+        for (int j = 0 + left; j < right; j++) {
             putchar(charsight[i][j]);
             fflush(stdout);
         }
@@ -67,7 +67,7 @@ void removeChar(int x, int y, int bottom, int right, int upper, int left) {
 }
 
 int movechar(void) {
-    int x = MAP_X * 2 + 2, y = MAP_Y + 3;
+    int x = MAP_X * 2 + 2, y = MAP_Y + 3, upper,bottom, left, right;
     drawChar(x, y, 7, 15, 0, 0);
     drawCharStar(x, y);
     while (1)
@@ -75,42 +75,52 @@ int movechar(void) {
         int n = keyControl1();
         switch (n) {
         case UP: {
-            if (y == MAP_Y + 3) {
-                removeChar(x, MAP_Y + 3, 7, 15, 0, 0);
-                drawChar(x, MAP_Y + 3, 7, 15, 1, 0);
-                drawCharStar(x, --y);
-            }
-            else if (y == MAP_Y + 2) {
-                removeChar(x, MAP_Y + 3, 7, 15, 1, 0);
-                drawChar(x, MAP_Y + 3, 7, 15, 2, 0);
-                y = MAP_Y + 1;
-                drawCharStar(x, y);
-            }
-            else if (y <= MAP_Y+1) {
+            if (y <= MAP_Y + 1) { // 한계 범위
                 removeChar(x, MAP_Y + 3, 7, 15, 2, 0);
                 drawChar(x, MAP_Y + 3, 7, 15, 3, 0);
                 y = MAP_Y;
                 drawCharStar(x, y);
             }
-            else if (y >= (MAP_Y + MAP_HEIGHT) - 10) {
-                removeChar(x, (MAP_Y + MAP_HEIGHT) - 10, 4, 15, 0, 0);
-                drawChar(x, (MAP_Y + MAP_HEIGHT) - 11, 5, 15, 0, 0);
-                y = (MAP_Y + MAP_HEIGHT) - 11;
+            else if (y <= MAP_Y + 3 && y >= MAP_Y + 1) { // 맵 위 쪽으로 이동
+                if (y == MAP_Y + 3) upper = 0;
+                if (y == MAP_Y + 2) upper = 1;
+                if (y == MAP_Y + 1) upper = 2;
+                removeChar(x, MAP_Y + 3, 7, 15, upper, 0);
+                drawChar(x, MAP_Y + 3, 7, 15, ++upper, 0);
+                drawCharStar(x, --y);
+            }
+            else if (y <= (MAP_Y + MAP_HEIGHT) - 10 && y >= (MAP_Y + MAP_HEIGHT) - 12) { // 맵 아래에서 위로 이동
+                if (y == (MAP_Y + MAP_HEIGHT) - 10) bottom = 4;
+                if (y == (MAP_Y + MAP_HEIGHT) - 11) bottom = 5;
+                if (y == (MAP_Y + MAP_HEIGHT) - 12) bottom = 6;
+                removeChar(x, y, bottom, 15, 0, 0);
+                drawChar(x, --y, ++bottom, 15, 0, 0);
                 drawCharStar(x, y);
             }
-            else if (y == (MAP_Y + MAP_HEIGHT) - 11) {
-                removeChar(x, (MAP_Y + MAP_HEIGHT) - 11, 5, 15, 0, 0);
-                drawChar(x, (MAP_Y + MAP_HEIGHT) - 12, 6, 15, 0, 0);
-                y = (MAP_Y + MAP_HEIGHT) - 12;
+            else if (x >= MAP_X * 2 - 5 && x <= MAP_X * 2) { // 맵 왼 쪽에서 위로 이동
+                if (x == MAP_X * 2 - 5) left = 6;
+                if (x == MAP_X * 2 - 4) left = 5;
+                if (x == MAP_X * 2 - 3) left = 4;
+                if (x == MAP_X * 2 - 2) left = 3;
+                if (x == MAP_X * 2 - 1) left = 2;
+                if (x == MAP_X * 2) left = 1;
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, --y, 7, 15, 0, left);
                 drawCharStar(x, y);
             }
-            else if (y == (MAP_Y + MAP_HEIGHT) - 12) {
-                removeChar(x, (MAP_Y + MAP_HEIGHT) - 12, 6, 15, 0, 0);
-                drawChar(x, (MAP_Y + MAP_HEIGHT) - 13, 7, 15, 0, 0);
-                y = (MAP_Y + MAP_HEIGHT) - 13;
+            else if (x <= (MAP_X + MAP_WIDTH) * 2 - 10 && x >= (MAP_X + MAP_WIDTH) * 2 - 16) { //맵 오른쪽에서 위로 이동
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 10) right = 8;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 11) right = 9;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 12) right = 10;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 13) right = 11;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 14) right = 12;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 15) right = 13;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 16) right = 14;
+                removeChar(x, y, 7, right, 0, 0);
+                drawChar(x, --y, 7, right, 0, 0);
                 drawCharStar(x, y);
             }
-            else {
+            else { // 맵 안에서
                 removeChar(x, y, 7, 15, 0, 0);
                 drawChar(x, --y, 7, 15, 0, 0);
                 drawCharStar(x, y);
@@ -118,43 +128,51 @@ int movechar(void) {
             break;
         }
         case DOWN: {
-            if (y == MAP_Y) {
-                removeChar(x, MAP_Y + 3, 7, 15, 3, 0);
-                drawChar(x, MAP_Y + 3, 7, 15, 2, 0);
-                y = MAP_Y+1;
-                drawCharStar(x, y);
-            }
-            else if (y == MAP_Y + 1) {
-                removeChar(x, MAP_Y + 3, 7, 15, 2, 0);
-                drawChar(x, MAP_Y + 3, 7, 15, 1, 0);
-                y = MAP_Y + 2;
-                drawCharStar(x, y);
-            }
-            else if (y == MAP_Y + 2) {
-                removeChar(x, MAP_Y + 3, 7, 15, 1, 0);
-                drawChar(x, MAP_Y + 3, 7, 15, 0, 0);
-                y = MAP_Y + 3;
-                drawCharStar(x, y);
-            }
-            else if (y == (MAP_Y + MAP_HEIGHT) - 13) {
-                removeChar(x, (MAP_Y + MAP_HEIGHT) - 13, 7, 15, 0, 0);
-                drawChar(x, (MAP_Y + MAP_HEIGHT) - 12, 6, 15, 0, 0);
-                y = (MAP_Y + MAP_HEIGHT) - 12;
-                drawCharStar(x, y);
-            }
-            else if (y == (MAP_Y + MAP_HEIGHT) - 12) {
-                removeChar(x, (MAP_Y + MAP_HEIGHT) - 12, 6, 15, 0, 0);
-                drawChar(x, (MAP_Y + MAP_HEIGHT) - 11, 5, 15, 0, 0);
-                y = (MAP_Y + MAP_HEIGHT) - 11;
-                drawCharStar(x, y);
-            }
-            else if (y >= (MAP_Y + MAP_HEIGHT) - 11) {
+            if (y >= (MAP_Y + MAP_HEIGHT) - 11) { // 한계 범위
                 removeChar(x, (MAP_Y + MAP_HEIGHT) - 11, 5, 15, 0, 0);
                 drawChar(x, (MAP_Y + MAP_HEIGHT) - 10, 4, 15, 0, 0);
                 y = (MAP_Y + MAP_HEIGHT) - 10;
                 drawCharStar(x, y);
             }
-            else {
+            else if (y >= MAP_Y && y <= MAP_Y+2) { // 맵 위에서 아래로 이동
+                if (y == MAP_Y) upper = 3;
+                if (y == MAP_Y+1) upper = 2;
+                if (y == MAP_Y+2) upper = 1;
+                removeChar(x, MAP_Y + 3, 7, 15, upper, 0);
+                drawChar(x, MAP_Y + 3, 7, 15, --upper, 0);
+                drawCharStar(x, ++y);
+            }
+            else if (y == (MAP_Y + MAP_HEIGHT) - 13 || y == (MAP_Y + MAP_HEIGHT) - 12) { // 맵 아래로 이동
+                if (y == (MAP_Y + MAP_HEIGHT) - 13) bottom = 7;
+                if (y == (MAP_Y + MAP_HEIGHT) - 12) bottom = 6;
+                removeChar(x, y, bottom, 15, 0, 0);
+                drawChar(x, ++y, --bottom, 15, 0, 0);
+                drawCharStar(x, y);
+            }
+            else if (x >= MAP_X * 2 - 5 && x <= MAP_X * 2) { // 맵 왼 쪽에서 아래로 이동
+                if (x == MAP_X * 2 - 5) left = 6;
+                if (x == MAP_X * 2 - 4) left = 5;
+                if (x == MAP_X * 2 - 3) left = 4;
+                if (x == MAP_X * 2 - 2) left = 3;
+                if (x == MAP_X * 2 - 1) left = 2;
+                if (x == MAP_X * 2) left = 1;
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, ++y, 7, 15, 0, left);
+                drawCharStar(x, y);
+            }
+            else if (x <= (MAP_X + MAP_WIDTH) * 2 - 10 && x >= (MAP_X + MAP_WIDTH) * 2 - 16) { //맵 오른쪽에서 아래로 이동
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 10) right = 8;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 11) right = 9;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 12) right = 10;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 13) right = 11;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 14) right = 12;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 15) right = 13;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 16) right = 14;
+                removeChar(x, y, 7, right, 0, 0);
+                drawChar(x, ++y, 7, right, 0, 0);
+                drawCharStar(x, y);
+            }
+            else { // 맵 안에서
                 removeChar(x, y, 7, 15, 0, 0);
                 drawChar(x, ++y, 7, 15, 0, 0);
                 drawCharStar(x, y);
@@ -162,73 +180,49 @@ int movechar(void) {
             break;
         }
         case LEFT: {
-            if (x == MAP_X * 2 + 1) {
-                removeChar(MAP_X * 2+1, y, 7, 15, 0, 0);
-                drawChar(MAP_X * 2+1, y, 7, 15, 0, 1);
-                x = MAP_X*2;
-                drawCharStar(x, y);
-            }
-            else if (x == MAP_X * 2) {
-                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
-                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 2);
-                x = MAP_X * 2 - 1;
-                drawCharStar(x, y);
-            }
-            else if (x == MAP_X * 2 - 1) {
-                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
-                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 3);
-                x = MAP_X * 2 - 2;
-                drawCharStar(x, y);
-            }
-            else if (x == MAP_X * 2 - 2) {
-                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
-                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 4);
-                x = MAP_X * 2 - 3;
-                drawCharStar(x, y);
-            }
-            else if (x == MAP_X * 2 - 3) {
-                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
-                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 5);
-                x = MAP_X * 2 - 4;
-                drawCharStar(x, y);
-            }
-            else if (x <= MAP_X * 2 - 4) {
+            if (x <= MAP_X * 2 - 4) { // 한계 범위
                 removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
                 drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 6);
                 x = MAP_X * 2 - 5;
                 drawCharStar(x, y);
             }
-            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 10) {
-                removeChar((MAP_X + MAP_WIDTH) * 2 - 10, y, 7, 8, 0, 0);
-                drawChar((MAP_X + MAP_WIDTH) * 2 - 11, y, 7, 9, 0, 0);
-                x = (MAP_X + MAP_WIDTH) * 2 - 11;
+            else if (x >= MAP_X * 2 - 3 && x <= MAP_X * 2 + 1) { // 맵 왼 쪽으로 이동
+                if (x == MAP_X * 2 - 3) left = 5;
+                if (x == MAP_X * 2 - 2) left = 4;
+                if (x == MAP_X * 2 - 1) left = 3;
+                if (x == MAP_X * 2) left = 2;
+                if (x == MAP_X * 2 + 1) left = 1;
+                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, left);
+                drawCharStar(--x, y);
+            }
+            else if (x <= (MAP_X + MAP_WIDTH) * 2 - 10 && x >= (MAP_X + MAP_WIDTH) * 2 - 14) { // 맵 오른쪽에서 왼쪽으로 이동
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 10) right = 8;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 11) right = 9;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 12) right = 10;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 13) right = 11;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 14) right = 12;
+                removeChar(x, y, 7, right, 0, 0);
+                drawChar(--x, y, 7, ++right, 0, 0);
                 drawCharStar(x, y);
             }
-            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 11) {
-                removeChar((MAP_X + MAP_WIDTH) * 2 - 11, y, 7, 9, 0, 0);
-                drawChar((MAP_X + MAP_WIDTH) * 2 - 12, y, 7, 10, 0, 0);
-                x = (MAP_X + MAP_WIDTH) * 2 - 12;
+            else if (y >= MAP_Y && y <= MAP_Y + 2) { // 맵 위에서 왼쪽으로 이동
+                if (y == MAP_Y) upper = 3;
+                if (y == MAP_Y+1) upper = 2;
+                if (y == MAP_Y+2) upper = 1;
+                removeChar(x, MAP_Y + 3, 7, 15, upper, 0);
+                drawChar(--x, MAP_Y + 3, 7, 15, upper, 0);
                 drawCharStar(x, y);
             }
-            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 12) {
-                removeChar((MAP_X + MAP_WIDTH) * 2 - 12, y, 7, 10, 0, 0);
-                drawChar((MAP_X + MAP_WIDTH) * 2 - 13, y, 7, 11, 0, 0);
-                x = (MAP_X + MAP_WIDTH) * 2 - 13;
+            else if (y <= (MAP_Y + MAP_HEIGHT) - 10 && y >= (MAP_Y + MAP_HEIGHT) - 12) { // 맵 아래에서 왼쪽으로 이동
+                if (y == (MAP_Y + MAP_HEIGHT) - 10) bottom = 5;
+                if (y == (MAP_Y + MAP_HEIGHT) - 11) bottom = 6;
+                if (y == (MAP_Y + MAP_HEIGHT) - 12) bottom = 7;
+                removeChar(x, y, bottom, 15, 0, 0);
+                drawChar(--x, y, --bottom, 15, 0, 0);
                 drawCharStar(x, y);
             }
-            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 13) {
-                removeChar((MAP_X + MAP_WIDTH) * 2 - 13, y, 7, 11, 0, 0);
-                drawChar((MAP_X + MAP_WIDTH) * 2 - 14, y, 7, 12, 0, 0);
-                x = (MAP_X + MAP_WIDTH) * 2 - 14;
-                drawCharStar(x, y);
-            }
-            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 14) {
-                removeChar((MAP_X + MAP_WIDTH) * 2 - 14, y, 7, 12, 0, 0);
-                drawChar((MAP_X + MAP_WIDTH) * 2 - 15, y, 7, 13, 0, 0);
-                x = (MAP_X + MAP_WIDTH) * 2 - 15;
-                drawCharStar(x, y);
-            }
-            else {
+            else { // 맵 안에서
                 removeChar(x, y, 7, 15, 0, 0);
                 drawChar(--x, y, 7, 15, 0, 0);
                 drawCharStar(x, y);
@@ -236,73 +230,49 @@ int movechar(void) {
             break;
         }
         case RIGHT: {
-            if (x == (MAP_X + MAP_WIDTH) * 2 - 15) {
-                removeChar((MAP_X + MAP_WIDTH) * 2 - 15, y, 7, 15, 0, 0);
-                drawChar((MAP_X + MAP_WIDTH) * 2 - 14, y, 7, 12, 0, 0);
-                x = (MAP_X + MAP_WIDTH) * 2 - 14;
-                drawCharStar(x, y);
-            }
-            else if (x == (MAP_X + MAP_WIDTH) * 2 - 14) {
-                removeChar((MAP_X + MAP_WIDTH) * 2 - 14, y, 7, 12, 0, 0);
-                drawChar((MAP_X + MAP_WIDTH) * 2 - 13, y, 7, 11, 0, 0);
-                x = (MAP_X + MAP_WIDTH) * 2 - 13;
-                drawCharStar(x, y);
-            }
-            else if (x == (MAP_X + MAP_WIDTH) * 2 - 13) {
-                removeChar((MAP_X + MAP_WIDTH) * 2 - 13, y, 7, 11, 0, 0);
-                drawChar((MAP_X + MAP_WIDTH) * 2 - 12, y, 7, 10, 0, 0);
-                x = (MAP_X + MAP_WIDTH) * 2 - 12;
-                drawCharStar(x, y);
-            }
-            else if (x == (MAP_X + MAP_WIDTH) * 2 - 12) {
-                removeChar((MAP_X + MAP_WIDTH) * 2 - 12, y, 7, 10, 0, 0);
-                drawChar((MAP_X + MAP_WIDTH) * 2 - 11, y, 7, 9, 0, 0);
-                x = (MAP_X + MAP_WIDTH) * 2 - 11;
-                drawCharStar(x, y);
-            }
-            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 11) {
+            if (x >= (MAP_X + MAP_WIDTH) * 2 - 11) { // 한계 범위
                 removeChar((MAP_X + MAP_WIDTH) * 2 - 11, y, 7, 9, 0, 0);
                 drawChar((MAP_X + MAP_WIDTH) * 2 - 10, y, 7, 8, 0, 0);
                 x = (MAP_X + MAP_WIDTH) * 2 - 10;
                 drawCharStar(x, y);
             }
-            else if (x == MAP_X * 2 - 5) {
-                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
-                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 5);
-                x = MAP_X * 2 - 4;
+            else if (x >= (MAP_X + MAP_WIDTH) * 2 - 15 && x <= (MAP_X + MAP_WIDTH) * 2 - 12) { // 맵 오른쪽으로 이동
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 15) right = 13;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 14) right = 12;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 13) right = 11;
+                if (x == (MAP_X + MAP_WIDTH) * 2 - 12) right = 10;
+                removeChar(x, y, 7, right, 0, 0);
+                drawChar(++x, y, 7, --right, 0, 0);
                 drawCharStar(x, y);
             }
-            else if (x == MAP_X * 2 - 4) {
+            else if (x >= MAP_X * 2 - 5 && x <= MAP_X * 2) { // 맵 왼쪽에서 오른쪽으로 이동
+                if (x == MAP_X * 2 - 5) left = 5;
+                if (x == MAP_X * 2 - 4) left = 4;
+                if (x == MAP_X * 2 - 3) left = 3;
+                if (x == MAP_X * 2 - 2) left = 2;
+                if (x == MAP_X * 2 - 1) left = 1;
+                if (x == MAP_X * 2) left = 0;
                 removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
-                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 4);
-                x = MAP_X * 2 - 3;
+                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, left);
+                drawCharStar(++x, y);
+            }
+            else if (y >= MAP_Y && y <= MAP_Y + 2) { // 맵 위에서 오른쪽으로 이동
+                if (y == MAP_Y) upper = 3;
+                if (y == MAP_Y + 1) upper = 2;
+                if (y == MAP_Y + 2) upper = 1;
+                removeChar(x, MAP_Y + 3, 7, 15, upper, 0);
+                drawChar(++x, MAP_Y + 3, 7, 15, upper, 0);
                 drawCharStar(x, y);
             }
-            else if (x == MAP_X * 2 - 3) {
-                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
-                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 3);
-                x = MAP_X * 2 - 2;
+            else if (y <= (MAP_Y + MAP_HEIGHT) - 10 && y >= (MAP_Y + MAP_HEIGHT) - 12) { // 맵 아래에서 오른쪽으로 이동
+                if (y == (MAP_Y + MAP_HEIGHT) - 10) bottom = 5;
+                if (y == (MAP_Y + MAP_HEIGHT) - 11) bottom = 6;
+                if (y == (MAP_Y + MAP_HEIGHT) - 12) bottom = 7;
+                removeChar(x, y, bottom, 15, 0, 0);
+                drawChar(++x, y, --bottom, 15, 0, 0);
                 drawCharStar(x, y);
             }
-            else if (x == MAP_X * 2 - 2) {
-                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
-                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 2);
-                x = MAP_X * 2 - 1;
-                drawCharStar(x, y);
-            }
-            else if (x == MAP_X * 2 - 1) {
-                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
-                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 1);
-                x = MAP_X * 2;
-                drawCharStar(x, y);
-            }
-            else if (x == MAP_X * 2) {
-                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
-                drawChar(MAP_X * 2 + 1, y, 7, 15, 0, 0);
-                x = MAP_X * 2 + 1;
-                drawCharStar(x, y);
-            }
-            else {
+            else { // 맵 안에서
                 removeChar(x, y, 7, 15, 0, 0);
                 drawChar(++x, y, 7, 15, 0, 0);
                 drawCharStar(x, y);

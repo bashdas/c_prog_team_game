@@ -126,8 +126,8 @@ int movechar(void) {
                 if (x == MAP_X * 2 - 2) left = 3;
                 if (x == MAP_X * 2 - 1) left = 2;
                 if (x == MAP_X * 2) left = 1;
-                removeChar(MAP_X * 2 + 1, y, 7, 15, 0, left);
-                drawChar(MAP_X * 2 + 1, --y, 7, 15, 0, left);
+                removeChar(MAP_X * 2 + 1, y, 7, 14, 0, left);
+                drawChar(MAP_X * 2 + 1, --y, 7, 14, 0, left);
                 drawCharStar(x, y);
             }
             else if (x <= (MAP_X + MAP_WIDTH) * 2 - 10 && x >= (MAP_X + MAP_WIDTH) * 2 - 16) { //맵 오른쪽에서 위로 이동
@@ -394,29 +394,10 @@ void initializeMap(char map[MAP_HEIGHT][MAP_WIDTH]) {
         }
     }
 
-    
-
     for (int i = 0; i < NUM_ITEMS; i++) {
         int x = rand() % MAP_HEIGHT;
         int y = rand() % MAP_WIDTH;
-        map[x][y] = 'l';
-    }
-}
-
-void moveCursor(int* cursorX, int* cursorY, char direction) {
-    switch (direction) {
-    case 'w':
-        if (*cursorX > 0) (*cursorX)--;
-        break;
-    case 's':
-        if (*cursorX < MAP_HEIGHT - 1) (*cursorX)++;
-        break;
-    case 'a':
-        if (*cursorY > 0) (*cursorY)--;
-        break;
-    case 'd':
-        if (*cursorY < MAP_WIDTH - 1) (*cursorY)++;
-        break;
+        map[x][y] = '＠';
     }
 }
 
@@ -425,15 +406,15 @@ int main() {
     char map[MAP_HEIGHT][MAP_WIDTH];
     int cursorX = MAP_HEIGHT / 2;
     int cursorY = MAP_WIDTH / 2;
+    char input;
     drawMap();
     gameMapDraw();
+    //initializeMap(map);
     while (1) {
-        //printMap(map, cursorX, cursorY);
-        //initializeMap();
-        char input = _getch();
-        if (input == BACK) return BACK;
-        //moveCursor(&cursorX, &cursorY, input);
-        movechar();
+        
+        input = movechar();
+        //initializeMap(map);
+        if (input == BACK) return BACK; 
     }
 
     return 0;

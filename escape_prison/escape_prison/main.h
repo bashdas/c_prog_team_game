@@ -6,6 +6,10 @@
 #include <string.h>
 #include <windows.h>
 #include <mmsystem.h>
+//#include <io.h>
+//#include <fcntl.h>
+#include <locale.h>
+#include <wchar.h>
 #pragma comment(lib, "winmm.lib")
 
 /* main */
@@ -50,7 +54,7 @@ void gotoxy1(int x, int y);
 int menuDraw1(void);			// BACK, y- 15(1~4) 반환
 void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6);
 int keyControl1(void);			// keyboard value 반환
-void slowPrint(const char story[][MAX_COLS], int x, int y);
+void slowPrint(const wchar_t story[][MAX_COLS], int x, int y, int rowcount);
 void gameExit(void);			// 게임 끄기전에 보여주는 화면
 
 

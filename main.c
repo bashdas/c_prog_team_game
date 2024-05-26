@@ -175,35 +175,35 @@ int menuDraw1(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	menuDraw1Content();
 	menuDraw2Content(2,7,7,7);
-	gotoxy1((MAP_X + 1) * 2, y);
-	printf("\b");
+	gotoxy1((MAP_X + 13) * 2, y);
+	printf("☞\b\b");
 	while (1)
 	{
 		int n = keyControl1();
 		switch (n) {
 		case UP: {
 			if (y > MAP_Y + 14) {
-				gotoxy1((MAP_X + 1) * 2, y);
+				gotoxy1((MAP_X + 13) * 2, y);
 				printf(" ");
 				y--;
 				if (y == MAP_Y + 14) menuDraw2Content(2, 7, 7, 7);
 				else if (y == MAP_Y + 15) menuDraw2Content(7, 2, 7, 7);
 				else if (y == MAP_Y + 16) menuDraw2Content(7, 7, 2, 7);
-				gotoxy1((MAP_X + 1) * 2, y);
-				printf("\b");
+				gotoxy1((MAP_X + 13) * 2, y);
+				printf("☞\b\b");
 			}
 			break;
 		}
 		case DOWN: {
 			if (y < MAP_Y + 17) {
-				gotoxy1((MAP_X + 1) * 2, y);
+				gotoxy1((MAP_X + 13) * 2, y);
 				printf(" ");
 				y++;
 				if (y == MAP_Y + 15) menuDraw2Content(7, 2, 7, 7);
 				else if (y == MAP_Y + 16) menuDraw2Content(7, 7, 2, 7);
 				else if (y == MAP_Y + 17) menuDraw2Content(7, 7, 7, 2);
-				gotoxy1((MAP_X + 1) * 2, y);
-				printf("\b");
+				gotoxy1((MAP_X + 13) * 2, y);
+				printf("☞\b\b");
 			}
 			break;
 		}
@@ -232,17 +232,53 @@ void menuDraw1Content(void) {
 
 void menuDraw2Content(int c1, int c2, int c3, int c4) {
 	Setcolor(c1);
-	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 14);
-	printf("  게임시작       START");   // 선택하면 난이도 선택 화면으로 이동
+	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 14);
+	printf("   게임시작    START");   // 선택하면 난이도 선택 화면으로 이동
+	if (c1 == 2) {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 14);
+		Setcolor(7);
+		printf("☜");
+	}
+	else {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 14);
+		printf(" ");
+	}
 	Setcolor(c2);
-	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 15);
-	printf("  게임방법       RULE");     // 난이도 별 실행 및 조작법 출력
+	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 15);
+	printf("   게임방법    RULE");     // 난이도 별 실행 및 조작법 출력
+	if (c2 == 2) {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 15);
+		Setcolor(7);
+		printf("☜");
+	}
+	else {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 15);
+		printf(" ");
+	}
 	Setcolor(c3);
-	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 16);
-	printf("  환경설정       OPTION");
+	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 16);
+	printf("   환경설정    OPTION");
+	if (c3 == 2) {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 16);
+		Setcolor(7);
+		printf("☜");
+	}
+	else {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 16);
+		printf(" ");
+	}
 	Setcolor(c4);
-	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 17);
-	printf("  종료           EXIT");
+	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 17);
+	printf("   종료        EXIT");
+	if (c4 == 2) {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 17);
+		Setcolor(7);
+		printf("☜");
+	}
+	else {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 17);
+		printf(" ");
+	}
 	Setcolor(7);
 }
 

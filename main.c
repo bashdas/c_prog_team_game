@@ -25,13 +25,12 @@ int main(void) {
 			}
 		} while (menuCode != BACK || gameCode == HOME);
 	}
-
+	/*
 	while (1) {
 		if (_kbhit()) do { key = _getch(); } while (key == 224); //키 입력받음
 		Sleep(speed);
-
-
 	}
+	*/
 	return 0;
 }
 

@@ -2,8 +2,10 @@
 
 #define MAX_PLAYERS 1 // 플레이어 수
 #define MAX_ITEMS 5 // 아이템 수
+#define MAX_ITEMS_NAME 10 // 아이템 이름 길이(NULL 포함)
 #define PLAYER_X MAP_X * 2 + 7  // 캐릭터의 X 좌표
 #define PLAYER_Y MAP_HEIGHT / 2 + 5   // 캐릭터의 Y 좌표
+
 
 struct player
 {
@@ -17,7 +19,7 @@ struct items
 {
     int x;	// 아이템 x좌표
     int y;  // 아이템 y좌표
-    int count; // 아이템 충돌 카운트
+    char skill[MAX_ITEMS_NAME]; // 아이템 능력
 };
 
 /*
@@ -89,16 +91,41 @@ void removePlayerSight(int x, int y, int bottom, int right, int upper, int left)
         sighty += 1;
     }
 }
+
 void drawItem(int x, int y) {
     gotoxy1(x, y);
     printf("A");
 }
+
 void removeItem(int x, int y) {
     gotoxy1(x, y);
     printf(" ");
     gotoxy1(0, 0);
 }
 
+void initItem(struct player* player_info, struct items* item_array, int playerx, int playery, int i) {
+    item_array[i].x = 0;
+    item_array[i].y = 0;
+    strcpy_s(item_array[i].skill, sizeof(item_array[i].skill), "None");
+    removeItem(item_array[i].x, item_array[i].y);
+    drawPlayer(playerx, playery);
+}
+
+void eatItem(struct player* player_info, struct items* item_array, int playerx, int playery) {
+    for (int i = 0; i < MAX_ITEMS; i++) {
+        if (item_array[i].x <= playerx + player_info->sw && item_array[i].x >= playerx - player_info->sw
+            && item_array[i].y <= playery + player_info->sh && item_array[i].y >= playery - player_info->sh) {
+            drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
+            if (item_array[i].x == playerx && item_array[i].y == playery) {
+                // 충돌 시 배열 0,0,None로 초기화, 아이템 지우고 캐릭터 다시 그리기
+                initItem(player_info, item_array, playerx, playery, i);
+            }
+        }
+        else {
+            removeItem(item_array[i].x, item_array[i].y); // 시야 범위 밖에 나가면 아이템 지우기
+        }
+    }
+}
 
 /*
 플레이어 이동
@@ -435,31 +462,21 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         }
         }
         gotoxy1(0, 0);
-        printf("%d %d ", playerx, playery);
+        printf("PLAYER: %d %d ", playerx, playery);
         gotoxy1(0, 2);
-        printf("x: %d %d ", MAP_X * 2 + 1, (MAP_X + MAP_WIDTH - 1) * 2 - 2);
+        printf("MAP_X: %d ~ %d ", MAP_X * 2 + 1, (MAP_X + MAP_WIDTH - 1) * 2 - 2);
         gotoxy1(0, 4);
-        printf("y: %d %d ", MAP_Y + 3, MAP_HEIGHT / 2 + 8);
+        printf("MAP_Y: %d ~ %d ", MAP_Y + 3, MAP_HEIGHT / 2 + 8);
+        gotoxy1(0, 6);
+        printf("ITEMS COORD");
         for (int i = 0; i < MAX_ITEMS; i++) {
-            gotoxy1(0, 6 + i);
-            printf("Item %d (%d, %d)\n", i + 1, item_array[i].x, item_array[i].y);
+            gotoxy1(0, 7 + i);
+            printf("%d] (%d, %d) %s\n", i + 1, item_array[i].x, item_array[i].y, item_array[i].skill);
         }
-        for (int i = 0; i < MAX_ITEMS; i++) {
-            if (item_array[i].x <= playerx + player_info->sw
-                && item_array[i].x >= playerx - player_info->sw
-                && item_array[i].y <= playery + player_info->sh
-                && item_array[i].y >= playery - player_info->sh) {
-                drawItem(item_array[i].x, item_array[i].y);
-            }
-            else {
-                removeItem(item_array[i].x, item_array[i].y);
-            }
-        }
-
-        // 아이템 좌표하고 플레이어 시야범위 좌표 비교해서 아이템 출력하기
-        // 
+        // 시야 범위에 들어오면 아이템 출력
+        eatItem(player_info, item_array, playerx, playery);
         // 아이템과 플레이어 충돌 시 아이템 획득 처리
-            // 열쇠 획득 시 게임 성공
+        // 열쇠 획득 시 게임 성공
         // 목숨 까지면 게임 오버
         // 제한 시간 끝나면 -1 목숨, 제한 시간 추가 부여
     }
@@ -483,7 +500,7 @@ void Itemcoord(struct items* item, struct player* player) {
 int main(void) {
     char input;
     struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,시야너비, 시야높이;
-    struct items items[MAX_ITEMS] = { {0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0} };
+    struct items items[MAX_ITEMS] = { {0,0,'a'},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'} };
 
     srand((unsigned int)time(NULL));
     for (int i = 0; i < MAX_ITEMS; i++) {
@@ -491,9 +508,6 @@ int main(void) {
     }
     drawMap();
     gameMapDraw();
-    for (int i = 0; i < MAX_ITEMS; i++) {
-        //drawItem(items[i].x, items[i].y);
-    }
     while (1) {
         input = movePlayer(player, items);
         if (input == BACK) return BACK;

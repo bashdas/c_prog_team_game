@@ -61,6 +61,8 @@ void gameExit(void);			// 게임 끄기전에 보여주는 화면
 
 /* game */
 #define HOME 5					// 스테이지 성공 또는 실패 시 메인으로 복귀
+#define CLEAR 7                // 스테이지 성공
+#define FAIL 6                // 스테이지 실패
 int gameDraw(void);				// HOME 반환
 void titleStory(void);
 int modeSelect(void);			// EASY(0), NORMAL(1), HARD(1) 반환
@@ -70,6 +72,8 @@ void modeSelectMapDraw2(int c1, int c2, int c3);
 void easyStory(void);
 void normalStory(void);
 void hardStory(void);
+int clearStory(void);
+int failStory(void);
 int easyMode(void);				// BACK, -1, HOME 반환
 int normalMode(void);			// BACK, -1, HOME 반환
 int hardMode(void);				// BACK, -1, HOME 반환

@@ -195,9 +195,9 @@ void selectMusicContent2(int c1, int c2, int c3, int c4) {
 
 // 테마 설정 기능
 int setTheme(void) {
-	resetMapInner();
 	int keyInput;
 	keyInput = selectTheme();
+	printf("%d", keyInput);
 	switch (keyInput) {
 	case 1:
 		theme = 1;//파란색
@@ -215,6 +215,7 @@ int setTheme(void) {
 		theme = 7;//기본 흰색
 		break;
 	}
+	reset();
 	return BACK;
 }
 

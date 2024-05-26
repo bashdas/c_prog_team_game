@@ -55,9 +55,11 @@ void titleStory(void) {
 // x 위치에 따라 색반전
 int modeSelect(void) {
 	int x = MAP_X + (MAP_WIDTH / 2) - 2, y = 24; // 초기 위치
-	modeSelectMapDraw(4, 2, 7, 7);
+	modeSelectMapDraw();
+	modeSelectMapDraw1(2, 7, 7);
+	modeSelectMapDraw2(11, 7, 7);
 	gotoxy1(x, y);
-	printf("☞\b");
+	printf("☞\b\b");
 	Sleep(300);
 	while (1) {
 		int n = keyControl1();
@@ -67,10 +69,16 @@ int modeSelect(void) {
 				gotoxy1(x, y);
 				printf(" ");
 				x -= 24;
-				if (x == MAP_X + (MAP_WIDTH / 2) - 2) modeSelectMapDraw(4, 2, 7, 7);
-				else if (x == MAP_X + (MAP_WIDTH / 2) + 22) modeSelectMapDraw(4, 7, 2, 7);
+				if (x == MAP_X + (MAP_WIDTH / 2) - 2) {
+					modeSelectMapDraw1(2, 7, 7);
+					modeSelectMapDraw2(11, 7, 7);
+				}
+				else if (x == MAP_X + (MAP_WIDTH / 2) + 22) {
+					modeSelectMapDraw1(7, 2, 7);
+					modeSelectMapDraw2(7, 14, 7);
+				}
 				gotoxy1(x, y);
-				printf("☞\b");
+				printf("☞\b\b");
 			}
 			break;
 		case RIGHT:
@@ -78,10 +86,16 @@ int modeSelect(void) {
 				gotoxy1(x, y);
 				printf(" ");
 				x += 24;
-				if (x == MAP_X + (MAP_WIDTH / 2) + 22) modeSelectMapDraw(4, 7, 2, 7);
-				else if (x == MAP_X + (MAP_WIDTH / 2) + 46) modeSelectMapDraw(4, 7, 7, 2);
+				if (x == MAP_X + (MAP_WIDTH / 2) + 22) {
+					modeSelectMapDraw1(7, 2, 7);
+					modeSelectMapDraw2(7, 14, 7);
+				}
+				else if (x == MAP_X + (MAP_WIDTH / 2) + 46) {
+					modeSelectMapDraw1(7, 7, 2);
+					modeSelectMapDraw2(7, 7, 12);
+				}
 				gotoxy1(x, y);
-				printf("☞\b");
+				printf("☞\b\b");
 			}
 			break;
 		case BACK:
@@ -102,30 +116,40 @@ int modeSelect(void) {
 }
 
 // 타이틀 색, easy 색, normla 색, hard 색을 인자로 받음
-void modeSelectMapDraw(int c1, int c2, int c3, int c4) {
+void modeSelectMapDraw(void) {
 	resetMapTitle();
 	resetMapMain();
 	resetMapBottom();
-	Setcolor(c1);
+	Setcolor(4);
 	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 5, "※※※※※※※※※※※※※※※※※※※※※※※※※※※※");
 	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 6, "         GAME   MODE       ");
 	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 7, "※※※※※※※※※※※※※※※※※※※※※※※※※※※※");
-	Setcolor(c2);
+}
+
+void modeSelectMapDraw1(int c1, int c2, int c3) {
+	Setcolor(c1);
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 12, "┌----------┐");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 13, "|   EASY   |");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 14, "└----------┘");
-	Setcolor(c3);
+	Setcolor(c2);
 	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 12, "┌----------┐");
 	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 13, "|  NORMAL  |");
 	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 14, "└----------┘");
-	Setcolor(c4);
+	Setcolor(c3);
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 12, "┌----------┐");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 13, "|   HARD   |");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 14, "└----------┘");
 	Setcolor(7);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 22, "1. (●'v'●)");
-	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 22, "2. (○｀ 3′○)");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 22, "3. ┗|｀O′|┛");
+}
+
+void modeSelectMapDraw2(int c1, int c2, int c3) {
+	Setcolor(c1);
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 14, MAP_Y + 22, "(●'v'●)");
+	Setcolor(c2);
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2+1, MAP_Y + 22, "(○｀ 3′○)");
+	Setcolor(c3);
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9+1, MAP_Y + 22, "┗|｀O′|┛");
+	Setcolor(7);
 }
 
 

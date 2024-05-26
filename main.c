@@ -1,14 +1,11 @@
 #include "main.h"
-
-void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6);
-
-int x[100], y[100]; //x,y 좌표값을 저장 총 100개 
+//int x[100], y[100]; //x,y 좌표값을 저장 총 100개 
 int key; //입력받은 키 저장 
 int speed; //게임 속도 
 int theme=7;
 
 int main(void) {
-	setlocale(LC_ALL, "korean"); // 한국어 코드 페이지로 설정
+	setlocale(LC_ALL, "korean"); // 한국어 코드 페이지
 	int menuCode = 0;
 	int gameCode = 0;
 	srand((unsigned int)time(NULL));
@@ -166,8 +163,7 @@ void titleBoxDraw(void) {
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※");
 }
 
-void gotoxy1(int x, int y)
-{
+void gotoxy1(int x, int y) {
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos;
 	pos.X = x;
@@ -175,10 +171,10 @@ void gotoxy1(int x, int y)
 	SetConsoleCursorPosition(consoleHandle, pos);
 }
 
-int menuDraw1(void)
-{
+int menuDraw1(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
-	menuDraw1Content(2, 7, 7, 7, 7, 7);
+	menuDraw1Content();
+	menuDraw2Content(2,7,7,7);
 	gotoxy1((MAP_X + 1) * 2, y);
 	printf("\b");
 	while (1)
@@ -190,9 +186,9 @@ int menuDraw1(void)
 				gotoxy1((MAP_X + 1) * 2, y);
 				printf(" ");
 				y--;
-				if (y == MAP_Y + 14) menuDraw1Content(2, 7, 7, 7, 7, 7);
-				else if (y == MAP_Y + 15) menuDraw1Content(7, 2, 7, 7, 7, 7);
-				else if (y == MAP_Y + 16) menuDraw1Content(7, 7, 2, 7, 7, 7);
+				if (y == MAP_Y + 14) menuDraw2Content(2, 7, 7, 7);
+				else if (y == MAP_Y + 15) menuDraw2Content(7, 2, 7, 7);
+				else if (y == MAP_Y + 16) menuDraw2Content(7, 7, 2, 7);
 				gotoxy1((MAP_X + 1) * 2, y);
 				printf("\b");
 			}
@@ -203,9 +199,9 @@ int menuDraw1(void)
 				gotoxy1((MAP_X + 1) * 2, y);
 				printf(" ");
 				y++;
-				if (y == MAP_Y + 15) menuDraw1Content(7, 2, 7, 7, 7, 7);
-				else if (y == MAP_Y + 16) menuDraw1Content(7, 7, 2, 7, 7, 7);
-				else if (y == MAP_Y + 17) menuDraw1Content(7, 7, 7, 2, 7, 7);
+				if (y == MAP_Y + 15) menuDraw2Content(7, 2, 7, 7);
+				else if (y == MAP_Y + 16) menuDraw2Content(7, 7, 2, 7);
+				else if (y == MAP_Y + 17) menuDraw2Content(7, 7, 7, 2);
 				gotoxy1((MAP_X + 1) * 2, y);
 				printf("\b");
 			}
@@ -220,7 +216,7 @@ int menuDraw1(void)
 	}
 
 }
-void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6) {
+void menuDraw1Content(void) {
 	resetMapInner();
 	titleBoxDraw();
 	Setcolor(15);
@@ -229,6 +225,12 @@ void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6) {
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 1, MAP_Y + 7, "Get out of the underground prison");
 	Setcolor(8);
 	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
+	printf("**** spacebar to select ****");
+	Setcolor(7);
+}
+
+void menuDraw2Content(int c1, int c2, int c3, int c4) {
 	Setcolor(c1);
 	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 14);
 	printf("  게임시작       START");   // 선택하면 난이도 선택 화면으로 이동
@@ -241,11 +243,7 @@ void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6) {
 	Setcolor(c4);
 	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 17);
 	printf("  종료           EXIT");
-	Setcolor(c5);
-	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
-	Setcolor(8);
-	printf("**** spacebar to select ****");
-	Setcolor(c6);
+	Setcolor(7);
 }
 
 int keyControl1(void) {

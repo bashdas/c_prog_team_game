@@ -1,26 +1,6 @@
 #include "main.h"
 
-#define MAX_PLAYERS 1 // 플레이어 수
-#define MAX_ITEMS 5 // 아이템 수
-#define MAX_ITEMS_NAME 10 // 아이템 이름 길이(NULL 포함)
-#define PLAYER_X MAP_X * 2 + 7  // 캐릭터의 X 좌표
-#define PLAYER_Y MAP_HEIGHT / 2 + 5   // 캐릭터의 Y 좌표
 
-
-struct player
-{
-    int x;	// 캐릭터 x좌표
-    int y;  // 캐릭터 y좌표
-    int sw;	// 캐릭터 시야너비
-    int sh;	// 캐릭터 시야높이
-};
-
-struct items
-{
-    int x;	// 아이템 x좌표
-    int y;  // 아이템 y좌표
-    char skill[MAX_ITEMS_NAME]; // 아이템 능력
-};
 
 /*
 캐릭터 중심 그리기
@@ -149,7 +129,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         case UP: {
             if (playery <= MAP_Y + 3) playery = MAP_Y + 3;
             else if (playery <= MAP_Y + 6 && playery >= MAP_Y + 4) { //맵 위로 이동
-                curx = playerx, cury = MAP_Y+6, left = 0, right = 14;
+                curx = playerx, cury = MAP_Y + 6, left = 0, right = 14;
                 if (playery == MAP_Y + 6) upper = 0;
                 if (playery == MAP_Y + 5) upper = 1;
                 if (playery == MAP_Y + 4) upper = 2;
@@ -173,8 +153,8 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(curx, cury, bottom, right, ++upper, left);
                 drawPlayer(playerx, --playery);
             }
-            else if (playery <= MAP_HEIGHT/2+8 && playery > MAP_HEIGHT/2+5) { // 맵 아래에서 위로 이동
-                curx = playerx, left = 0, right = 14, upper=0;
+            else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // 맵 아래에서 위로 이동
+                curx = playerx, left = 0, right = 14, upper = 0;
                 if (playery == MAP_HEIGHT / 2 + 8) bottom = 4;
                 if (playery == MAP_HEIGHT / 2 + 7) bottom = 5;
                 if (playery == MAP_HEIGHT / 2 + 6) bottom = 6;
@@ -230,7 +210,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         }
         case DOWN: {
             if (playery >= MAP_HEIGHT / 2 + 8) playery = MAP_HEIGHT / 2 + 8;
-            else if  (playery < MAP_HEIGHT / 2 + 8 && playery >= MAP_HEIGHT / 2 + 5) { // 맵 경계 아래로 이동
+            else if (playery < MAP_HEIGHT / 2 + 8 && playery >= MAP_HEIGHT / 2 + 5) { // 맵 경계 아래로 이동
                 curx = playerx, left = 0, right = 14;
                 if (playery == MAP_HEIGHT / 2 + 5) bottom = 7;
                 if (playery == MAP_HEIGHT / 2 + 6) bottom = 6;
@@ -256,7 +236,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayer(playerx, playery);
             }
             else if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // 맵 위에서 아래로 이동
-                curx = playerx, cury = MAP_Y+6, bottom = 7, left = 0, right = 14;
+                curx = playerx, cury = MAP_Y + 6, bottom = 7, left = 0, right = 14;
                 if (playery == MAP_Y + 3) upper = 3;
                 if (playery == MAP_Y + 4) upper = 2;
                 if (playery == MAP_Y + 5) upper = 1;
@@ -313,7 +293,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         case LEFT: {
             if (playerx <= MAP_X * 2 + 1) playerx = MAP_X * 2 + 1;
             else if (playerx <= MAP_X * 2 + 7 && playerx > MAP_X * 2 + 1) { // 맵 왼쪽으로 이동
-                curx = MAP_X*2 + 7, cury = playery, bottom = 7, right = 14, upper = 0;
+                curx = MAP_X * 2 + 7, cury = playery, bottom = 7, right = 14, upper = 0;
                 if (playerx == MAP_X * 2 + 7) left = 1;
                 if (playerx == MAP_X * 2 + 6) left = 2;
                 if (playerx == MAP_X * 2 + 5) left = 3;
@@ -336,7 +316,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayer(--playerx, playery);
             }
             else if (playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2 && playerx > (MAP_X + MAP_WIDTH - 1) * 2 - 7) { // 맵 오른쪽에서 왼쪽으로 이동
-                cury = playery, upper = 0, bottom = 7, right = 14, left =0;
+                cury = playery, upper = 0, bottom = 7, right = 14, left = 0;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 2) right = 8;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 3) right = 9;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 4) right = 10;
@@ -385,13 +365,13 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         }
         case RIGHT: {
             if (playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 2) playerx = (MAP_X + MAP_WIDTH - 1) * 2 - 2;
-            else if (playerx < (MAP_X + MAP_WIDTH-1) * 2 - 2 && playerx >= (MAP_X + MAP_WIDTH-1) * 2 - 7) { // 맵 오른쪽으로 이동
+            else if (playerx < (MAP_X + MAP_WIDTH - 1) * 2 - 2 && playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 7) { // 맵 오른쪽으로 이동
                 cury = playery, bottom = 7, upper = 0, left = 0;
-                if (playerx == (MAP_X + MAP_WIDTH-1) * 2 - 7) right = 13;
-                if (playerx == (MAP_X + MAP_WIDTH-1) * 2 - 6) right = 12;
-                if (playerx == (MAP_X + MAP_WIDTH-1) * 2 - 5) right = 11;
-                if (playerx == (MAP_X + MAP_WIDTH-1) * 2 - 4) right = 10;
-                if (playerx == (MAP_X + MAP_WIDTH-1) * 2 - 3) right = 9;
+                if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 7) right = 13;
+                if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 6) right = 12;
+                if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 5) right = 11;
+                if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 4) right = 10;
+                if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 3) right = 9;
                 if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // 위쪽에서 오른쪽으로 갈 때 겹치는 부분
                     if (playery == MAP_Y + 3) upper = 3;
                     if (playery == MAP_Y + 4) upper = 2;
@@ -407,8 +387,8 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(++(playerx), cury, bottom, --right, upper, left);
                 drawPlayer(playerx, playery);
             }
-            else if (playerx <= MAP_X * 2 + 6 && playerx >= MAP_X * 2+1) { // 맵 왼쪽에서 오른쪽으로 이동
-                curx = MAP_X*2 + 7, bottom = 7, right = 14, upper = 0, cury = playery, left = 0;
+            else if (playerx <= MAP_X * 2 + 6 && playerx >= MAP_X * 2 + 1) { // 맵 왼쪽에서 오른쪽으로 이동
+                curx = MAP_X * 2 + 7, bottom = 7, right = 14, upper = 0, cury = playery, left = 0;
                 if (playerx == MAP_X * 2 + 6) left = 0;
                 if (playerx == MAP_X * 2 + 5) left = 1;
                 if (playerx == MAP_X * 2 + 4) left = 2;
@@ -497,17 +477,16 @@ void Itemcoord(struct items* item, struct player* player) {
 
 
 
-int main(void) {
+int gameplay(void) {
     char input;
     struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,시야너비, 시야높이;
     struct items items[MAX_ITEMS] = { {0,0,'a'},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'} };
 
-    srand((unsigned int)time(NULL));
+    
     for (int i = 0; i < MAX_ITEMS; i++) {
         Itemcoord(&items[i], player);
     }
-    drawMap();
-    gameMapDraw();
+
     while (1) {
         input = movePlayer(player, items);
         if (input == BACK) return BACK;

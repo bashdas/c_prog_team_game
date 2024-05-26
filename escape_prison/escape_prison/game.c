@@ -42,14 +42,14 @@ void titleStory(void) {
 		"건국이는 그제야 이 모든 것이\0",
 		"함정이었음을 깨닫습니다\0",
 		"건국이가 무사히 탈출할 수 있도록\0",
-		"도와주자!\0"
+		"도와주자!"
 	};
 	gameMapDraw();
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
-	slowPrint(titlestr, MAP_X * 2 + 4, MAP_Y + 4);
+	slowPrint(titlestr, MAP_X * 2 + 4, MAP_Y + 4,15);
 }
 
 // x 위치에 따라 색반전
@@ -144,7 +144,7 @@ void easyStory(void) {
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
-	slowPrint(easystr, MAP_X * 2 + 4, MAP_Y + 4);
+	slowPrint(easystr, MAP_X * 2 + 4, MAP_Y + 4,5);
 }
 
 void normalStory(void) {
@@ -163,7 +163,7 @@ void normalStory(void) {
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
-	slowPrint(normalstr, MAP_X * 2 + 4, MAP_Y + 4);
+	slowPrint(normalstr, MAP_X * 2 + 4, MAP_Y + 4,6);
 }
 
 void hardStory(void) {
@@ -183,8 +183,40 @@ void hardStory(void) {
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
-	slowPrint(hardstr, MAP_X * 2 + 4, MAP_Y + 4);
+	slowPrint(hardstr, MAP_X * 2 + 4, MAP_Y + 4,7);
 }
+
+void clearStory(void) {
+	char clearstr[MAX_ROWS][MAX_COLS] = {
+		"햇빛이 건국이를 환하게 비춘다.\0",
+		"오랜 노력 끝에 탈출에 성공했다!\0"    
+	};
+	resetMapMain();
+	resetMapBottom();
+	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
+	Setcolor(8);
+	printf("**** spacebar to skip ****");
+	Setcolor(7);
+	slowPrint(clearstr, MAP_X * 2 + 4, MAP_Y + 4,2);
+}
+
+void failStory(void) {
+	char failstr[MAX_ROWS][MAX_COLS] = {
+		"건국이의 체력이 다 소모되어\0",
+		"탈출에 실패했다.\0",
+		"쉬었다가 다시 도전해야겠다!\0"
+	};
+	resetMapMain();
+	resetMapBottom();
+	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
+	Setcolor(8);
+	printf("**** spacebar to skip ****");
+	Setcolor(7);
+	slowPrint(failstr, MAP_X * 2 + 4, MAP_Y + 4,3);
+}
+
 // BACK, -1, HOME 반환
 int easyMode(void) {
 	int keyvalue; // BACK, -1
@@ -192,8 +224,9 @@ int easyMode(void) {
 	Setcolor(7);
 	gotoxy(MAP_X + 1, MAP_Y + 1, "EASY");
 	Setcolor(4);
-	gotoxy(MAP_X + MAP_WIDTH - 4, MAP_Y + 1, "♥ ♥ ♥");
+	gotoxy(MAP_X + MAP_WIDTH - 6, MAP_Y + 1, "♥ ♥ ♥ ♥ ♥");
 	Setcolor(7);
+	gameplay();
 	while (1) {
 		keyvalue = playerMove();
 		if (keyvalue == BACK) return BACK; // modeSelct로 복귀
@@ -209,7 +242,7 @@ int normalMode(void) {
 	Setcolor(7);
 	gotoxy(MAP_X + 1, MAP_Y + 1, "NORMAL");
 	Setcolor(4);
-	gotoxy(MAP_X + MAP_WIDTH - 4, MAP_Y + 1, "♥ ♥ ♥");
+	gotoxy(MAP_X + MAP_WIDTH - 5, MAP_Y + 1, "♥ ♥ ♥ ♥");
 	Setcolor(7);
 	while (1) {
 		keyvalue = playerMove();

@@ -161,11 +161,14 @@ extern int theme;
 // 색 바꿀 변수 추후에
 int setTheme(void);
 int setMusic(void);
-void selectMusicContent(int c1, int c2, int c3, int c4);
+void selectMusicContent(void);
+void selectMusicContent2(int c1, int c2, int c3, int c4);
 int selectTheme(void);
-void selectThemeContent(int c1, int c2, int c3, int c4, int c5);
+void selectThemeContent(void);
+void selectThemeContent2(int c1, int c2, int c3, int c4, int c5);
 int selectOption(void);
-int selectOptionContent(int c1, int c2);
+int selectOptionContent(void);
+int selectOptionContent2(int c1, int c2);
 void initOption(void);
 
 /* play&item.c */

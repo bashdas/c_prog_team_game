@@ -5,11 +5,12 @@ void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6);
 int x[100], y[100]; //x,y 좌표값을 저장 총 100개 
 int key; //입력받은 키 저장 
 int speed; //게임 속도 
-int theme = 7;
+int theme=7;
 
 int main(void) {
 	int menuCode = 0;
 	int gameCode = 0;
+	srand((unsigned int)time(NULL));
 	//system("mode con cols=100 lines=30"); //콘솔창 크기 조절
 	while (1) {
 		title();
@@ -65,16 +66,16 @@ void gotoxy(int x, int y, const char* s) {
 */
 void title(void) {
 	while (_kbhit()) _getch(); //버퍼에 있는 키값을 버림 
-	
+
 	reset();    //맵 테두리를 그림 
 	Setcolor(12);
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5, "▒▒▒     ▒▒      ▒▒     ▒      ▒       ▒    ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6, "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7, "▒▒▒     ▒▒      ▒▒▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3,  "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4,  "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5,  "▒▒▒     ▒▒      ▒▒     ▒      ▒       ▒    ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6,  "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7,  "▒▒▒     ▒▒      ▒▒▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8,  "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9,  "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 10, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒     ▒      ▒       ▒ ▒▒    ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 11, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 12, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
@@ -284,15 +285,15 @@ void slowPrint(const char story[][MAX_COLS], int x, int y, int rowcount) {
 	int shouldExit = 0;
 	Setcolor(7);
 	for (int i = 0; i < rowcount && !shouldExit; i++) {
-		if (y1 == MAP_Y + 18) {
-			x1 += 30;
+		if (y1 > MAP_Y + 18) {
+			x1 += 35;
 			y1 = y;
 		}
 		gotoxy1(x1, y1);
 		for (int j = 0; j < MAX_COLS && story[i][j] != '\0'; j++) {
 			putchar(story[i][j]);
 			fflush(stdout);
-			Sleep(10);
+			Sleep(15);
 			if (_kbhit()) {
 				ch = _getch();
 				if (ch == '\r' || ch == ' ') {
@@ -303,9 +304,9 @@ void slowPrint(const char story[][MAX_COLS], int x, int y, int rowcount) {
 			}
 		}
 		y1 = y1 + 2;
-		if (y1 > MAP_Y + 18) break;
+		if (y1 > MAP_Y + 20) break;
 	}
-	Sleep(200);
+	Sleep(500);
 }
 
 void gameExit(void) {

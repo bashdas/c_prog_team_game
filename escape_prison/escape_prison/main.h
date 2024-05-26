@@ -52,7 +52,8 @@ void drawMap(void);				// 게임판 테두리를 그림
 void titleBoxDraw(void);		// titlebox를 그림
 void gotoxy1(int x, int y);
 int menuDraw1(void);			// BACK, y- 15(1~4) 반환
-void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6);
+void menuDraw1Content(void);
+void menuDraw2Content(int c1, int c2, int c3, int c4);
 int keyControl1(void);			// keyboard value 반환
 void slowPrint(const wchar_t story[][MAX_COLS], int x, int y, int rowcount);
 void gameExit(void);			// 게임 끄기전에 보여주는 화면
@@ -63,7 +64,9 @@ void gameExit(void);			// 게임 끄기전에 보여주는 화면
 int gameDraw(void);				// HOME 반환
 void titleStory(void);
 int modeSelect(void);			// EASY(0), NORMAL(1), HARD(1) 반환
-void modeSelectMapDraw(int ctitle, int ceasy, int cnormal, int chard);  // 컬러색 매개변수
+void modeSelectMapDraw(void);
+void modeSelectMapDraw1(int c1, int c2, int c3);  // 컬러색 매개변수
+void modeSelectMapDraw2(int c1, int c2, int c3);
 void easyStory(void);
 void normalStory(void);
 void hardStory(void);
@@ -160,11 +163,14 @@ extern int theme;
 // 색 바꿀 변수 추후에
 int setTheme(void);
 int setMusic(void);
-void selectMusicContent(int c1, int c2, int c3, int c4);
+void selectMusicContent(void);
+void selectMusicContent2(int c1, int c2, int c3, int c4);
 int selectTheme(void);
-void selectThemeContent(int c1, int c2, int c3, int c4, int c5);
+void selectThemeContent(void);
+void selectThemeContent2(int c1, int c2, int c3, int c4, int c5);
 int selectOption(void);
-int selectOptionContent(int c1, int c2);
+int selectOptionContent(void);
+int selectOptionContent2(int c1, int c2);
 void initOption(void);
 
 /* play&item.c */

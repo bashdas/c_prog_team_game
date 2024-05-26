@@ -121,6 +121,7 @@ void drawMap(void) {
 	for (i = 0; i < MAP_WIDTH; i++) {
 		gotoxy(MAP_X + i, MAP_Y + MAP_HEIGHT - 1, "■");
 	}
+	fflush(stdout);
 	resetMapInner();
 }
 
@@ -131,17 +132,20 @@ void reset(void) {
 }
 
 // 화면 내부만 지우기
-// 이중 중첩으로 하면 안지워 지는 거 있음
 void resetMapInner(void) {
 	for (int i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) {
 		gotoxy1(MAP_X * 2 + 1, i);
 		printf("                                                                           ");
 	}
+	fflush(stdout);
 }
 // 목숨창만 지우기
 void resetMapTitle(void) {
+	gotoxy1(0, 0);
+	printf("here");
 	gotoxy1(MAP_X * 2 + 1, MAP_Y + 1);
 	printf("                                                                           ");
+	fflush(stdout);
 }
 // 게임창만 지우기 3 ~ MAP_Y + MAP_HEIGHT - 7
 void resetMapMain(void) {
@@ -149,6 +153,7 @@ void resetMapMain(void) {
 		gotoxy1(MAP_X * 2 + 1, i);
 		printf("                                                                           ");
 	}
+	fflush(stdout);
 }
 // 상호작용창만 지우기
 void resetMapBottom(void) {
@@ -156,6 +161,7 @@ void resetMapBottom(void) {
 		gotoxy1(MAP_X * 2 + 1, i);
 		printf("                                                                           ");
 	}
+	fflush(stdout);
 }
 
 // titlebox 함수
@@ -177,7 +183,6 @@ void gotoxy1(int x, int y)
 int menuDraw1(void)
 {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
-	// 색 바꾸면 기본 색에 추가로 더하는 방식으로
 	menuDraw1Content(2, 7, 7, 7, 7, 7);
 	gotoxy1((MAP_X + 1) * 2, y);
 	printf("\b");
@@ -282,9 +287,8 @@ int keyControl1(void) {
 void slowPrint(const char story[][MAX_COLS], int x, int y, int rowcount) {
 	char ch = 0;
 	int x1 = x, y1 = y;
-	int shouldExit = 0;
 	Setcolor(7);
-	for (int i = 0; i < rowcount && !shouldExit; i++) {
+	for (int i = 0; i < rowcount; i++) {
 		if (y1 > MAP_Y + 18) {
 			x1 += 35;
 			y1 = y;
@@ -292,13 +296,12 @@ void slowPrint(const char story[][MAX_COLS], int x, int y, int rowcount) {
 		gotoxy1(x1, y1);
 		for (int j = 0; j < MAX_COLS && story[i][j] != '\0'; j++) {
 			putchar(story[i][j]);
-			fflush(stdout);
 			Sleep(15);
 			if (_kbhit()) {
 				ch = _getch();
 				if (ch == '\r' || ch == ' ') {
-					shouldExit = 1;
 					Sleep(200);
+					_flushall();
 					return;
 				}
 			}

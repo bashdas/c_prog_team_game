@@ -1,14 +1,11 @@
 #include "main.h"
-
-void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6);
-
-int x[100], y[100]; //x,y 좌표값을 저장 총 100개 
+//int x[100], y[100]; //x,y 좌표값을 저장 총 100개 
 int key; //입력받은 키 저장 
 int speed; //게임 속도 
 int theme=7;
 
 int main(void) {
-	setlocale(LC_ALL, "korean"); // 한국어 코드 페이지로 설정
+	setlocale(LC_ALL, "korean"); // 한국어 코드 페이지
 	int menuCode = 0;
 	int gameCode = 0;
 	srand((unsigned int)time(NULL));
@@ -166,8 +163,7 @@ void titleBoxDraw(void) {
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※");
 }
 
-void gotoxy1(int x, int y)
-{
+void gotoxy1(int x, int y) {
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos;
 	pos.X = x;
@@ -175,39 +171,39 @@ void gotoxy1(int x, int y)
 	SetConsoleCursorPosition(consoleHandle, pos);
 }
 
-int menuDraw1(void)
-{
+int menuDraw1(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
-	menuDraw1Content(2, 7, 7, 7, 7, 7);
-	gotoxy1((MAP_X + 1) * 2, y);
-	printf("\b");
+	menuDraw1Content();
+	menuDraw2Content(2,7,7,7);
+	gotoxy1((MAP_X + 13) * 2, y);
+	printf("☞\b\b");
 	while (1)
 	{
 		int n = keyControl1();
 		switch (n) {
 		case UP: {
 			if (y > MAP_Y + 14) {
-				gotoxy1((MAP_X + 1) * 2, y);
+				gotoxy1((MAP_X + 13) * 2, y);
 				printf(" ");
 				y--;
-				if (y == MAP_Y + 14) menuDraw1Content(2, 7, 7, 7, 7, 7);
-				else if (y == MAP_Y + 15) menuDraw1Content(7, 2, 7, 7, 7, 7);
-				else if (y == MAP_Y + 16) menuDraw1Content(7, 7, 2, 7, 7, 7);
-				gotoxy1((MAP_X + 1) * 2, y);
-				printf("\b");
+				if (y == MAP_Y + 14) menuDraw2Content(2, 7, 7, 7);
+				else if (y == MAP_Y + 15) menuDraw2Content(7, 2, 7, 7);
+				else if (y == MAP_Y + 16) menuDraw2Content(7, 7, 2, 7);
+				gotoxy1((MAP_X + 13) * 2, y);
+				printf("☞\b\b");
 			}
 			break;
 		}
 		case DOWN: {
 			if (y < MAP_Y + 17) {
-				gotoxy1((MAP_X + 1) * 2, y);
+				gotoxy1((MAP_X + 13) * 2, y);
 				printf(" ");
 				y++;
-				if (y == MAP_Y + 15) menuDraw1Content(7, 2, 7, 7, 7, 7);
-				else if (y == MAP_Y + 16) menuDraw1Content(7, 7, 2, 7, 7, 7);
-				else if (y == MAP_Y + 17) menuDraw1Content(7, 7, 7, 2, 7, 7);
-				gotoxy1((MAP_X + 1) * 2, y);
-				printf("\b");
+				if (y == MAP_Y + 15) menuDraw2Content(7, 2, 7, 7);
+				else if (y == MAP_Y + 16) menuDraw2Content(7, 7, 2, 7);
+				else if (y == MAP_Y + 17) menuDraw2Content(7, 7, 7, 2);
+				gotoxy1((MAP_X + 13) * 2, y);
+				printf("☞\b\b");
 			}
 			break;
 		}
@@ -220,7 +216,7 @@ int menuDraw1(void)
 	}
 
 }
-void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6) {
+void menuDraw1Content(void) {
 	resetMapInner();
 	titleBoxDraw();
 	Setcolor(15);
@@ -229,23 +225,61 @@ void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6) {
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 1, MAP_Y + 7, "Get out of the underground prison");
 	Setcolor(8);
 	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
-	Setcolor(c1);
-	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 14);
-	printf("  게임시작       START");   // 선택하면 난이도 선택 화면으로 이동
-	Setcolor(c2);
-	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 15);
-	printf("  게임방법       RULE");     // 난이도 별 실행 및 조작법 출력
-	Setcolor(c3);
-	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 16);
-	printf("  환경설정       OPTION");
-	Setcolor(c4);
-	gotoxy1(MAP_X + (MAP_WIDTH + 36) / 2, MAP_Y + 17);
-	printf("  종료           EXIT");
-	Setcolor(c5);
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
-	Setcolor(8);
 	printf("**** spacebar to select ****");
-	Setcolor(c6);
+	Setcolor(7);
+}
+
+void menuDraw2Content(int c1, int c2, int c3, int c4) {
+	Setcolor(c1);
+	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 14);
+	printf("   게임시작    START");   // 선택하면 난이도 선택 화면으로 이동
+	if (c1 == 2) {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 14);
+		Setcolor(7);
+		printf("☜");
+	}
+	else {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 14);
+		printf(" ");
+	}
+	Setcolor(c2);
+	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 15);
+	printf("   게임방법    RULE");     // 난이도 별 실행 및 조작법 출력
+	if (c2 == 2) {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 15);
+		Setcolor(7);
+		printf("☜");
+	}
+	else {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 15);
+		printf(" ");
+	}
+	Setcolor(c3);
+	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 16);
+	printf("   환경설정    OPTION");
+	if (c3 == 2) {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 16);
+		Setcolor(7);
+		printf("☜");
+	}
+	else {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 16);
+		printf(" ");
+	}
+	Setcolor(c4);
+	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 17);
+	printf("   종료        EXIT");
+	if (c4 == 2) {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 17);
+		Setcolor(7);
+		printf("☜");
+	}
+	else {
+		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 17);
+		printf(" ");
+	}
+	Setcolor(7);
 }
 
 int keyControl1(void) {

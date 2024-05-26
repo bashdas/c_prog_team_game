@@ -21,6 +21,15 @@ int gameDraw(void) {
 				stageCode = hardMode();
 			}
 			else stageCode = BACK;
+			if (stageCode == CLEAR || stageCode == FAIL) break;
+		}
+		if (stageCode == CLEAR) {
+			gameCode = clearStory();
+			break;
+		}
+		if (stageCode == FAIL) {
+			gameCode = failStory();
+			break;
 		}
 	} while ((gameCode != BACK));
 	return gameCode; // 게임 클리어 또는 실패 시 HOME 반환해야함
@@ -210,7 +219,7 @@ void hardStory(void) {
 	slowPrint(hardstr, MAP_X * 2 + 4, MAP_Y + 4,7);
 }
 
-void clearStory(void) {
+int clearStory(void) {
 	wchar_t clearstr[MAX_ROWS][MAX_COLS] = {
 		L"햇빛이 건국이를 환하게 비춘다.",
 		L"오랜 노력 끝에 탈출에 성공했다!"    
@@ -223,9 +232,10 @@ void clearStory(void) {
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
 	slowPrint(clearstr, MAP_X * 2 + 4, MAP_Y + 4,2);
+	return HOME;
 }
 
-void failStory(void) {
+int failStory(void) {
 	wchar_t failstr[MAX_ROWS][MAX_COLS] = {
 		L"건국이의 체력이 다 소모되어",
 		L"탈출에 실패했다.",
@@ -239,9 +249,10 @@ void failStory(void) {
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
 	slowPrint(failstr, MAP_X * 2 + 4, MAP_Y + 4,3);
+	return HOME;
 }
 
-// BACK, -1, HOME 반환
+// BACK, CLEAR, FAIL 반환
 int easyMode(void) {
 	int keyvalue; // BACK, -1
 	gameMapDraw();
@@ -250,16 +261,15 @@ int easyMode(void) {
 	Setcolor(4);
 	gotoxy(MAP_X + MAP_WIDTH - 6, MAP_Y + 1, "♥ ♥ ♥ ♥ ♥");
 	Setcolor(7);
-	gameplay();
-	while (1) {
-		keyvalue = playerMove();
-		if (keyvalue == BACK) return BACK; // modeSelct로 복귀
-	}
+	keyvalue = gameplay();
+	if (keyvalue == BACK) return BACK; // modeSelct로 복귀
+	if (keyvalue == CLEAR) return CLEAR;
+	if (keyvalue == FAIL) return BACK;
 	// 클리어 성공하면 성공 화면 출력 하고 HOME 반환
 	// 클리어 실패하면 다시 시도 하시겠습니까(BACK) OR 종료하시겠습니까 출력
 	return 0;
 }
-// BACK, -1, HOME 반환
+// BACK, CLEAR, FAIL 반환
 int normalMode(void) {
 	int keyvalue;
 	gameMapDraw();
@@ -276,7 +286,7 @@ int normalMode(void) {
 	// 클리어 실패하면 다시 시도 하시겠습니까(BACK) OR 종료하시겠습니까 출력
 	return 0;
 }
-// BACK, -1, HOME 반환
+// BACK, CLEAR, FAIL 반환
 int hardMode(void) {
 	int keyvalue;
 	gameMapDraw();

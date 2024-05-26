@@ -27,22 +27,22 @@ int gameDraw(void) {
 }
 
 void titleStory(void) {
-	char titlestr[MAX_ROWS][MAX_COLS] = {
-		"우리의 건국이는 동굴 속에 보물이\0",
-		"있다는 소식을 듣고 보물을 찾으러\0",
-		"혼자서 동굴 탐험을 시작합니다...\0",
-		"귀한 보물을 찾으러 건국이는 점점\0",
-		"으슥하고 깊은 곳으로 들어갑니다.\0",
-		"그 순간... 쿵!!!!! 철컥!\0",
-		"어디선가 생긴 철문이 내려오더니\0",
-		"건국이는 지하감옥에 갇히고맙니다.\0",
-		"***\'지하감옥\'***\0",
-		"배터리가 떨어진 손정든 사이로\0",
-		"지하감옥이라는 글귀가 보이고\0",
-		"건국이는 그제야 이 모든 것이\0",
-		"함정이었음을 깨닫습니다\0",
-		"건국이가 무사히 탈출할 수 있도록\0",
-		"도와주자!"
+	wchar_t titlestr[MAX_ROWS][MAX_COLS] = {
+		L"우리의 건국이는 동굴 속에 보물이",
+		L"있다는 소식을 듣고 보물을 찾으러",
+		L"혼자서 동굴 탐험을 시작합니다...",
+		L"귀한 보물을 찾으러 건국이는 점점",
+		L"으슥하고 깊은 곳으로 들어갑니다.",
+		L"그 순간... 쿵!!!!! 철컥!",
+		L"어디선가 생긴 철문이 내려오더니",
+		L"건국이는 지하감옥에 갇히고맙니다.",
+		L"***\'지하감옥\'***",
+		L"배터리가 떨어진 손정든 사이로",
+		L"지하감옥이라는 글귀가 보이고",
+		L"건국이는 그제야 이 모든 것이",
+		L"함정이었음을 깨닫습니다",
+		L"건국이가 무사히 탈출할 수 있도록",
+		L"도와주자!"
 	};
 	gameMapDraw();
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
@@ -130,12 +130,12 @@ void modeSelectMapDraw(int c1, int c2, int c3, int c4) {
 
 
 void easyStory(void) {
-	char easystr[MAX_ROWS][MAX_COLS] = {
-		"건국이가 들고온 손정든의 배터리가\0",
-		"얼마 남지 않았다...!\0",
-		"손전등이 꺼지기 전에 경비병들을\0",
-		"피해 열쇠 2개를 찾아 탈출하자!\0",
-		"목숨은 5개이다!\0"
+	wchar_t easystr[MAX_ROWS][MAX_COLS] = {
+		L"건국이가 들고온 손정든의 배터리가",
+		L"얼마 남지 않았다...!",
+		L"손전등이 꺼지기 전에 경비병들을",
+		L"피해 열쇠 2개를 찾아 탈출하자!",
+		L"목숨은 5개이다!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -148,13 +148,13 @@ void easyStory(void) {
 }
 
 void normalStory(void) {
-	char normalstr[MAX_ROWS][MAX_COLS] = {
-		"얼마나 지났을까.....\0",
-		"손정등이 많이 어두워지고 배에서는\0",
-		"꼬르륵.. 소리가 계속 들려온다.\0",
-		"목숨도 4개밖에 남지 않았다.\0",
-		"어서 경비병들을 피해 탈출하자!\0",
-		"열쇠를 2개를 찾아 탈출하자!!\0"
+	wchar_t normalstr[MAX_ROWS][MAX_COLS] = {
+		L"얼마나 지났을까.....",
+		L"손정등이 많이 어두워지고 배에서는",
+		L"꼬르륵.. 소리가 계속 들려온다.",
+		L"목숨도 4개밖에 남지 않았다.",
+		L"어서 경비병들을 피해 탈출하자!",
+		L"열쇠를 2개를 찾아 탈출하자!!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -167,14 +167,14 @@ void normalStory(void) {
 }
 
 void hardStory(void) {
-	char hardstr[MAX_ROWS][MAX_COLS] = {
-		"감옥에 갇힌지 오래.....\0",
-		"바깥세상이 너무나 그립다.\0",
-		"이제 손전등은 거의 꺼져간다.\0",
-		"체력이 바닥나 목숨이 3개밖에 없다.\0",
-		"시야가 넓어진 경비병들을 피해\0",
-		"아이템을 잘 활용하여\0",
-		"열쇠 2개를 모으자!\0"
+	wchar_t hardstr[MAX_ROWS][MAX_COLS] = {
+		L"감옥에 갇힌지 오래.....",
+		L"바깥세상이 너무나 그립다.",
+		L"이제 손전등은 거의 꺼져간다.",
+		L"체력이 바닥나 목숨이 3개밖에 없다.",
+		L"시야가 넓어진 경비병들을 피해",
+		L"아이템을 잘 활용하여",
+		L"열쇠 2개를 모으자!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -187,9 +187,9 @@ void hardStory(void) {
 }
 
 void clearStory(void) {
-	char clearstr[MAX_ROWS][MAX_COLS] = {
-		"햇빛이 건국이를 환하게 비춘다.\0",
-		"오랜 노력 끝에 탈출에 성공했다!\0"    
+	wchar_t clearstr[MAX_ROWS][MAX_COLS] = {
+		L"햇빛이 건국이를 환하게 비춘다.",
+		L"오랜 노력 끝에 탈출에 성공했다!"    
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -202,10 +202,10 @@ void clearStory(void) {
 }
 
 void failStory(void) {
-	char failstr[MAX_ROWS][MAX_COLS] = {
-		"건국이의 체력이 다 소모되어\0",
-		"탈출에 실패했다.\0",
-		"쉬었다가 다시 도전해야겠다!\0"
+	wchar_t failstr[MAX_ROWS][MAX_COLS] = {
+		L"건국이의 체력이 다 소모되어",
+		L"탈출에 실패했다.",
+		L"쉬었다가 다시 도전해야겠다!"
 	};
 	resetMapMain();
 	resetMapBottom();

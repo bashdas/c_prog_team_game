@@ -1,4 +1,4 @@
-﻿#include "main.h"
+#include "main.h"
 
 void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6);
 
@@ -8,6 +8,7 @@ int speed; //게임 속도
 int theme=7;
 
 int main(void) {
+	setlocale(LC_ALL, "korean"); // 한국어 코드 페이지로 설정
 	int menuCode = 0;
 	int gameCode = 0;
 	srand((unsigned int)time(NULL));
@@ -137,13 +138,11 @@ void resetMapInner(void) {
 		gotoxy1(MAP_X * 2 + 1, i);
 		printf("                                                                           ");
 	}
-	fflush(stdout);
 }
 // 목숨창만 지우기
 void resetMapTitle(void) {
 	gotoxy1(MAP_X * 2 + 1, MAP_Y + 1);
 	printf("                                                                           ");
-	fflush(stdout);
 }
 // 게임창만 지우기 3 ~ MAP_Y + MAP_HEIGHT - 7
 void resetMapMain(void) {
@@ -151,7 +150,6 @@ void resetMapMain(void) {
 		gotoxy1(MAP_X * 2 + 1, i);
 		printf("                                                                           ");
 	}
-	fflush(stdout);
 }
 // 상호작용창만 지우기
 void resetMapBottom(void) {
@@ -159,7 +157,6 @@ void resetMapBottom(void) {
 		gotoxy1(MAP_X * 2 + 1, i);
 		printf("                                                                           ");
 	}
-	fflush(stdout);
 }
 
 // titlebox 함수
@@ -282,9 +279,12 @@ int keyControl1(void) {
 	}
 }
 
-void slowPrint(const char story[][MAX_COLS], int x, int y, int rowcount) {
+void slowPrint(const wchar_t story[][MAX_COLS], int x, int y, int rowcount) {
+	char ch = 0;
 	int x1 = x, y1 = y;
 	Setcolor(7);
+	// 콘솔 출력 모드를 유니코드 모드로 설정
+	//_setmode(_fileno(stdout), _O_U16TEXT);
 	for (int i = 0; i < rowcount; i++) {
 		if (y1 > MAP_Y + 18) {
 			x1 += 35;
@@ -292,13 +292,13 @@ void slowPrint(const char story[][MAX_COLS], int x, int y, int rowcount) {
 		}
 		gotoxy1(x1, y1);
 		for (int j = 0; j < MAX_COLS && story[i][j] != '\0'; j++) {
-			putchar(story[i][j]);
+			wprintf(L"%lc", story[i][j]);
 			Sleep(15);
 			if (_kbhit()) {
-					gotoxy1(0, 0);
-					printf(" ");
-					Sleep(200);
+				ch = _getch();
+				if (ch == '\r' || ch == ' ') {
 					return;
+				}
 			}
 		}
 		y1 = y1 + 2;

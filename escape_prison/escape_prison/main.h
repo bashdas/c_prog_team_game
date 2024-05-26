@@ -50,7 +50,7 @@ void gotoxy1(int x, int y);
 int menuDraw1(void);			// BACK, y- 15(1~4) 반환
 void menuDraw1Content(int c1, int c2, int c3, int c4, int c5, int c6);
 int keyControl1(void);			// keyboard value 반환
-void slowPrint(const char story[][MAX_COLS], int x, int y, int rowcount);
+void slowPrint(const char story[][MAX_COLS], int x, int y);
 void gameExit(void);			// 게임 끄기전에 보여주는 화면
 
 
@@ -69,6 +69,57 @@ int hardMode(void);				// BACK, -1, HOME 반환
 int playerMove(void);			// BACK, -1, HOME 반환
 void gameMapDraw(void);
 
+
+/* player */
+
+//*******************************************************************************************
+void player_crush(void); // strider과 strider1 충돌 감지. HP 조정
+void HP_print(int HP);   // 전역변수 HP의 값에 따라 HP를 다르게 출력함. HP=0이면 game_over(). speed도 출력 가능
+int move(int dir);       // 플레이어의 활동 범위 정의
+// 플레이어의 방향키에 따라 플레이어를 출력함
+// player_crush(), item0_crush(),  time0a_crush(), item1_crush(), item_crush()로 충돌 판단
+
+
+//*******************************************************************************************
+
+void reset_stage(void);  // HP, 방향, 속도, 길이, 초(second) 초기화. 플레이어 시작 위치 초기
+
+void game_over(void);    // 각 스테이지 종료 함수. ?????
+
+//*******************************************************************************************
+
+/* item, 경비병 생성 함수 */
+
+//*******************************************************************************************
+
+void strider(void);       // 경비병1 출력. 시작 위치 정함
+void move_strider(void);  //  경비병1 이동 함수. 
+
+void strider1(void);     // 경비병 2 출력. 시작 위치 정함. 
+void move_strider1(void);  // 경비병 2 이동 함수. 
+
+//*******************************************************************************************
+
+void item0(void);      // 아이템(게임속도 증가 +)
+void item0_crush();    // 플레이어, strider등등과 충돌 판단. 플레이어와 충돌하면 speed값 조정. 
+//나머지 경우는 재출력
+void item0a(void);     // 아이템a(게임속도 증가 +)
+void item0a_crush();   // 플레이어와 충돌 시 speed 값 증가. 나머지 경우에는 재출력.
+// strider, strider1과 충돌, 재출력
+
+//*******************************************************************************************
+
+void item1(void);    // 아이템(게임속도 감소-)
+void item1_crush(void); // 플레이어와 충돌시 speed 값 감소. 나머지 모든 경우에서는 재출력
+
+//*******************************************************************************************
+
+// 겹치는 문제를 해결. 
+
+void item(void);         // 아이템(strider꼬리 길이 증가)
+void item_crush(void);   // 플레이어와 충돌 시 length +4. 나머지 경우에서는 재출력. 
+
+//*******************************************************************************************
 
 /* gamerule */
 #define EASY 0
@@ -115,7 +166,7 @@ void initOption(void);
 /* play&item.c */
 
 /* pause.c */
-void pause(void);
+void pause(void);   // p키를 눌렀을 경우 게임을 일시 정지한다. 
 
 /* playersight4 */
 #define MAX_PLAYERS 1 // 플레이어 수

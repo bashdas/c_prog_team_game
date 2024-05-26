@@ -89,6 +89,16 @@ void removePlayerSight(int x, int y, int bottom, int right, int upper, int left)
         sighty += 1;
     }
 }
+void drawItem(int x, int y) {
+    gotoxy1(x, y);
+    printf("A");
+}
+void removeItem(int x, int y) {
+    gotoxy1(x, y);
+    printf(" ");
+    gotoxy1(0, 0);
+}
+
 
 /*
 플레이어 이동
@@ -434,7 +444,20 @@ int movePlayer(struct player* player_info, struct items* item_array) {
             gotoxy1(0, 6 + i);
             printf("Item %d (%d, %d)\n", i + 1, item_array[i].x, item_array[i].y);
         }
+        for (int i = 0; i < MAX_ITEMS; i++) {
+            if (item_array[i].x <= playerx + player_info->sw
+                && item_array[i].x >= playerx - player_info->sw
+                && item_array[i].y <= playery + player_info->sh
+                && item_array[i].y >= playery - player_info->sh) {
+                drawItem(item_array[i].x, item_array[i].y);
+            }
+            else {
+                removeItem(item_array[i].x, item_array[i].y);
+            }
+        }
+
         // 아이템 좌표하고 플레이어 시야범위 좌표 비교해서 아이템 출력하기
+        // 
         // 아이템과 플레이어 충돌 시 아이템 획득 처리
             // 열쇠 획득 시 게임 성공
         // 목숨 까지면 게임 오버
@@ -454,10 +477,7 @@ void Itemcoord(struct items* item, struct player* player) {
     item->y = y;
 }
 
-void drawItem(int x, int y) {
-    gotoxy1(x, y);
-    printf("A");
-}
+
 
 
 int main(void) {
@@ -472,7 +492,7 @@ int main(void) {
     drawMap();
     gameMapDraw();
     for (int i = 0; i < MAX_ITEMS; i++) {
-        drawItem(items[i].x, items[i].y);
+        //drawItem(items[i].x, items[i].y);
     }
     while (1) {
         input = movePlayer(player, items);

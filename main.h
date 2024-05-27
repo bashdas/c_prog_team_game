@@ -72,10 +72,14 @@ void modeSelectMapDraw2(int c1, int c2, int c3);
 void easyStory(void);
 void normalStory(void);
 void hardStory(void);
+void clearEasy(void);
+void clearNormal(void);
 int clearStory(void);
+void clearStorybg(void);
 int failStory(void);
-int easyMode(void);				// BACK, CLEAR, FAIL 반환
-int normalMode(void);			// BACK, CLEAR, FAIL 반환
+void failStorybg(void);
+int easyMode(void);				// BACK, NORMAL, FAIL 반환
+int normalMode(void);			// BACK, HARD, FAIL 반환
 int hardMode(void);				// BACK, CLEAR, FAIL 반환
 void gameMapDraw(void);
 

@@ -21,8 +21,8 @@ int gameDraw(void) {
 				stageCode = hardMode();
 			}
 			else stageCode = BACK;
-			if (stageCode == NORMAL) { gameCode = NORMAL; }
-			if (stageCode == HARD) { gameCode = HARD; }
+			if (gameCode == EASY && stageCode == NORMAL) { clearEasy();  gameCode = NORMAL; }
+			if (gameCode == NORMAL && stageCode == HARD) { clearNormal();  gameCode = HARD; }
 			if (stageCode == CLEAR || stageCode == FAIL) break;
 		}
 		if (stageCode == FAIL) {
@@ -219,6 +219,40 @@ void hardStory(void) {
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
 	slowPrint(hardstr, MAP_X * 2 + 4, MAP_Y + 4,7);
+}
+
+void clearEasy(void) {
+	resetMapMain();
+	Setcolor(2);
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 5, "■■■■■■■■  ■         ■■■■■■■■  ■■■■■■■■  ■■■■■■■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 6, "■         ■         ■         ■      ■  ■      ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 7, "■         ■         ■■■■■■■■  ■■■■■■■■  ■■■■■■■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 8, "■         ■         ■         ■      ■  ■     ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 9, "■■■■■■■■  ■■■■■■■■  ■■■■■■■■  ■      ■  ■     ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 12, "■■■■■■■■  ■■■■■■■■  ■■■■■■■■  ■■    ■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 13, "■         ■      ■  ■           ■  ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 14, "■■■■■■■■  ■■■■■■■■  ■■■■■■■■     ■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 15, "■         ■      ■         ■     ■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 16, "■■■■■■■■  ■      ■  ■■■■■■■■    ■■■■");
+	Setcolor(7);
+	Sleep(2000);
+}
+
+void clearNormal(void) {
+	resetMapMain();
+	Setcolor(2);
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 5, "■■■■■■■■  ■         ■■■■■■■■  ■■■■■■■■  ■■■■■■■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 6, "■         ■         ■         ■      ■  ■      ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 7, "■         ■         ■■■■■■■■  ■■■■■■■■  ■■■■■■■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 8, "■         ■         ■         ■      ■  ■     ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 9, "■■■■■■■■  ■■■■■■■■  ■■■■■■■■  ■      ■  ■     ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 12, "■■■■■  ■  ■■■■■■■■  ■■■■■■■■  ■■■■■■■■■  ■■■■■■■■  ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 13, "■   ■  ■  ■      ■  ■      ■  ■   ■   ■  ■      ■  ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 14, "■   ■  ■  ■      ■  ■■■■■■■■  ■   ■   ■  ■■■■■■■■  ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 15, "■   ■  ■  ■      ■  ■     ■   ■   ■   ■  ■      ■  ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 16, "■   ■■■■  ■■■■■■■■  ■     ■   ■   ■   ■  ■      ■  ■■■■■■■■");
+	Setcolor(7);
+	Sleep(2000);
 }
 
 int clearStory(void) {

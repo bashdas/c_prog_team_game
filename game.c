@@ -21,14 +21,16 @@ int gameDraw(void) {
 				stageCode = hardMode();
 			}
 			else stageCode = BACK;
+			if (stageCode == NORMAL) { gameCode = NORMAL; }
+			if (stageCode == HARD) { gameCode = HARD; }
 			if (stageCode == CLEAR || stageCode == FAIL) break;
-		}
-		if (stageCode == CLEAR) {
-			gameCode = clearStory();
-			break;
 		}
 		if (stageCode == FAIL) {
 			gameCode = failStory();
+			break;
+		}
+		if (stageCode == CLEAR) {
+			gameCode = clearStory();
 			break;
 		}
 	} while ((gameCode != BACK));
@@ -274,7 +276,7 @@ void failStorybg(void) {
 	Setcolor(7);
 }
 
-// BACK, CLEAR, FAIL 반환
+// BACK, NORMAL, FAIL 반환
 int easyMode(void) {
 	int keyvalue; // BACK, -1
 	gameMapDraw();
@@ -285,22 +287,22 @@ int easyMode(void) {
 	Setcolor(7);
 	keyvalue = gameplay();
 	if (keyvalue == BACK) return BACK; // modeSelct로 복귀
-	if (keyvalue == CLEAR) return CLEAR;
+	if (keyvalue == CLEAR) return NORMAL;
 	if (keyvalue == FAIL) return BACK;
 	return 0;
 }
-// BACK, CLEAR, FAIL 반환
+// BACK, HARD, FAIL 반환
 int normalMode(void) {
 	int keyvalue;
 	gameMapDraw();
 	Setcolor(7);
 	gotoxy(MAP_X + 1, MAP_Y + 1, "NORMAL");
 	Setcolor(4);
-	gotoxy(MAP_X + MAP_WIDTH - 5, MAP_Y + 1, "♥ ♥ ♥ ♥");
+	gotoxy(MAP_X + MAP_WIDTH - 5, MAP_Y + 1, "♥ ♥ ♥ ♥"); // 목숨 그리는거 다시 목숨 개수에 따라서 함수로 만들어야함
 	Setcolor(7);
 	keyvalue = gameplay();
 	if (keyvalue == BACK) return BACK; // modeSelct로 복귀
-	if (keyvalue == CLEAR) return CLEAR;
+	if (keyvalue == CLEAR) return HARD;
 	if (keyvalue == FAIL) return BACK;
 	return 0;
 }

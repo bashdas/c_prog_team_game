@@ -326,7 +326,7 @@ void slowPrint(const wchar_t story[][MAX_COLS], int x, int y, int rowcount) {
 		gotoxy1(x1, y1);
 		for (int j = 0; j < MAX_COLS && story[i][j] != '\0'; j++) {
 			wprintf(L"%lc", story[i][j]);
-			Sleep(15);
+			Sleep(20);
 			if (_kbhit()) {
 				ch = _getch();
 				if (ch == '\r' || ch == ' ') {
@@ -337,7 +337,7 @@ void slowPrint(const wchar_t story[][MAX_COLS], int x, int y, int rowcount) {
 		y1 = y1 + 2;
 		if (y1 > MAP_Y + 20) break;
 	}
-	Sleep(500);
+	Sleep(1000);
 }
 
 void gameExit(void) {

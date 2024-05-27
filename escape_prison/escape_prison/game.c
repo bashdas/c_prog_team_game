@@ -56,6 +56,8 @@ void titleStory(void) {
 		L"도와주자!"
 	};
 	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 2, MAP_Y+1);
+	printf("TITLE STORY");
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
@@ -175,6 +177,8 @@ void easyStory(void) {
 	resetMapMain();
 	resetMapBottom();
 	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 2, MAP_Y + 1);
+	printf("EASY STORY");
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
@@ -194,6 +198,8 @@ void normalStory(void) {
 	resetMapMain();
 	resetMapBottom();
 	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 2, MAP_Y + 1);
+	printf("NORMAL STORY");
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
@@ -214,6 +220,8 @@ void hardStory(void) {
 	resetMapMain();
 	resetMapBottom();
 	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 2, MAP_Y + 1);
+	printf("HARD STORY");
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
@@ -223,6 +231,7 @@ void hardStory(void) {
 
 void clearEasy(void) {
 	resetMapMain();
+	resetMapTitle();
 	Setcolor(2);
 	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 5, "■■■■■■■■  ■         ■■■■■■■■  ■■■■■■■■  ■■■■■■■■");
 	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 6, "■         ■         ■         ■      ■  ■      ■");
@@ -240,6 +249,7 @@ void clearEasy(void) {
 
 void clearNormal(void) {
 	resetMapMain();
+	resetMapTitle();
 	Setcolor(2);
 	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 5, "■■■■■■■■  ■         ■■■■■■■■  ■■■■■■■■  ■■■■■■■■");
 	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 6, "■         ■         ■         ■      ■  ■      ■");
@@ -262,6 +272,7 @@ int clearStory(void) {
 	};
 	resetMapMain();
 	resetMapBottom();
+	resetMapTitle();
 	gameMapDraw();
 	clearStorybg();
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
@@ -290,6 +301,7 @@ int failStory(void) {
 	};
 	resetMapMain();
 	resetMapBottom();
+	resetMapTitle();
 	gameMapDraw();
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
 	Setcolor(8);

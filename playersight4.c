@@ -107,6 +107,11 @@ void eatItem(struct player* player_info, struct items* item_array, int playerx, 
     }
 }
 
+int isClear(struct items* item_array) {
+    if (item_array[0].x == 0 && item_array[0].y == 0 && item_array[1].x == 0 && item_array[1].y == 0) return CLEAR;
+}
+
+
 /*
 플레이어 이동
 - 플레이어 좌표 저장할 포인터 변수
@@ -443,6 +448,10 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         
         }*/
         }
+        // 시야 범위에 들어오면 아이템 출력
+        // 아이템과 플레이어 충돌 시 아이템 획득 처리
+        eatItem(player_info, item_array, playerx, playery);
+
         /* 참고 하려고 적음 나중에 삭제 해야함 */
         gotoxy1(0, 0);
         printf("PLAYER: %d %d ", playerx, playery);
@@ -456,14 +465,14 @@ int movePlayer(struct player* player_info, struct items* item_array) {
             gotoxy1(0, 7 + i);
             printf("%d] (%d, %d) %s\n", i + 1, item_array[i].x, item_array[i].y, item_array[i].skill);
         }
-        // 시야 범위에 들어오면 아이템 출력
-        eatItem(player_info, item_array, playerx, playery);
-        // 아이템과 플레이어 충돌 시 아이템 획득 처리
-        // 열쇠 획득 시 게임 성공
-        // 목숨 까지면 게임 오버
-        // 제한 시간 끝나면 -1 목숨, 제한 시간 추가 부여
+        
         // 클리어 -> 클리어 반환 return CLEAR;
+        // 열쇠 획득 시 게임 성공
+        if (isClear(item_array) == CLEAR) return CLEAR;
+        
         // 실패 -> 실패 반환 returb FAIL;
+        // 제한 시간 끝나면 -1 목숨, 제한 시간 추가 부여
+        
     }
 }
 
@@ -485,7 +494,7 @@ void Itemcoord(struct items* item, struct player* player) {
 int gameplay(void) {
     char input;
     struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,시야너비, 시야높이;
-    struct items items[MAX_ITEMS] = { {0,0,'a'},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'} };
+    struct items items[MAX_ITEMS] = { {0,0,"key"},{0,0,"key"},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'}};
 
     
     for (int i = 0; i < MAX_ITEMS; i++) {
@@ -495,7 +504,7 @@ int gameplay(void) {
     while (1) {
         input = movePlayer(player, items);
         if (input == BACK) return BACK;
-        //  if (input == CLEAR) return CLEAR;
+        if (input == CLEAR) return CLEAR;
         //  if (input == FAIL) return FAIL;
         // if (input == SUBMIT) return BACK;
     }

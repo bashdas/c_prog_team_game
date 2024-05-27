@@ -13,6 +13,9 @@ int main(void) {
 	while (1) {
 		title();
 		do {
+			gameCode = 0;
+			gotoxy1(0, 20);
+			printf("%d   ", gameCode);
 			menuCode = menuDraw1(); // y - 15 = 1 ~ 4
 			if (menuCode == 1) {
 				gameCode = gameDraw();

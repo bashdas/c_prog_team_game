@@ -2,7 +2,7 @@
 //int x[100], y[100]; //x,y 좌표값을 저장 총 100개 
 int key; //입력받은 키 저장 
 int speed; //게임 속도 
-int theme=7;
+int theme = 7;
 
 int main(void) {
 	setlocale(LC_ALL, "korean"); // 한국어 코드 페이지
@@ -66,13 +66,13 @@ void title(void) {
 
 	reset();    //맵 테두리를 그림 
 	Setcolor(12);
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3,  "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4,  "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5,  "▒▒▒     ▒▒      ▒▒     ▒      ▒       ▒    ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6,  "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7,  "▒▒▒     ▒▒      ▒▒▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8,  "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9,  "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5, "▒▒▒     ▒▒      ▒▒     ▒      ▒       ▒    ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6, "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7, "▒▒▒     ▒▒      ▒▒▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 10, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒     ▒      ▒       ▒ ▒▒    ▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 11, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
 	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 12, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
@@ -173,7 +173,7 @@ void gotoxy1(int x, int y) {
 int menuDraw1(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	menuDraw1Content();
-	menuDraw2Content(2,7,7,7);
+	menuDraw2Content(2, 7, 7, 7);
 	gotoxy1((MAP_X + 13) * 2, y);
 	printf("☞\b\b");
 	while (1)
@@ -287,19 +287,19 @@ int keyControl1(void) {
 	switch (a) {
 	case 'W':
 	case 'w':
-	//case UP1:
+		//case UP1:
 		return UP;
 	case 'S':
 	case 's':
-	//case DOWN1:
+		//case DOWN1:
 		return DOWN;
 	case 'A':
 	case 'a':
-	//case LEFT1:
+		//case LEFT1:
 		return LEFT;
 	case 'D':
 	case 'd':
-	//case RIGHT1:
+		//case RIGHT1:
 		return RIGHT;
 	case 'Q':
 	case 'q':

@@ -1,359 +1,369 @@
 #include "main.h"
-//int x[100], y[100]; //x,y 좌표값을 저장 총 100개 
-int key; //입력받은 키 저장 
-int speed; //게임 속도 
-int theme = 7;
 
-int main(void) {
-	setlocale(LC_ALL, "korean"); // 한국어 코드 페이지
-	int menuCode = 0;
-	int gameCode = 0;
-	srand((unsigned int)time(NULL));
-	//system("mode con cols=100 lines=30"); //콘솔창 크기 조절
-	while (1) {
-		title();
-		do {
-			menuCode = menuDraw1(); // y - 15 = 1 ~ 4
-			if (menuCode == 1) {
-				gameCode = gameDraw();
+// 게임 화면 출력
+int gameDraw(void) {
+	int gameCode = 0, stageCode;
+	titleStory();
+	do {
+		gameCode = modeSelect();
+		stageCode = 0;
+		while (stageCode != BACK) {
+			if (gameCode == EASY) {
+				easyStory();
+				stageCode = easyMode();
 			}
-			else if (menuCode == 2) gameRulesDraw();
-			else if (menuCode == 3) initOption();
-			else if (menuCode == 4) {
-				system("cls");
-				gameExit();
+			else if (gameCode == NORMAL) {
+				normalStory();
+				stageCode = normalMode();
 			}
-		} while (menuCode != BACK || gameCode == HOME);
-	}
-	/*
-	while (1) {
-		if (_kbhit()) do { key = _getch(); } while (key == 224); //키 입력받음
-		Sleep(speed);
-	}
-	*/
-	return 0;
-}
-
-/*
-	Setcolor 함수
-	매개변수: color -> 텍스트 색 결정
-	SetConsoleTextAttribute 함수 호출 -> 텍스트 속성 설정(콘솔 창 텍스트 색, 배경 색...)
-	GetStdHandle(STD_OUTPUT_HANDLE) 함수 호출 -> 콘솔 창 제어
-*/
-void Setcolor(WORD color) {
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
-}
-
-/*
-	gotoxy 함수
-	COORD 구조체 사용 -> 출력할 위치 설정(좌표)
-	2 * x 인 이유는 문자 단위 계산 처리하기 위해서
-	SetConsoleCursorPosition 함수 호출 콘솔 창의 커서 위치 설정
-*/
-void gotoxy(int x, int y, const char* s) {
-	COORD pos = { 2 * x,y };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-	printf("%s", s);
-}
-
-/*
-	title 함수: 시작 화면 표시
-	_kbhit() 함수: 키보드 버퍼에 있는 입력 값을 버림
-
-*/
-void title(void) {
-	while (_kbhit()) _getch(); //버퍼에 있는 키값을 버림 
-
-	reset();    //맵 테두리를 그림 
-	Setcolor(12);
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5, "▒▒▒     ▒▒      ▒▒     ▒      ▒       ▒    ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6, "▒▒▒ ▒▒▒ ▒▒ ▒▒▒▒ ▒▒▒▒ ▒▒▒ ▒▒▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7, "▒▒▒     ▒▒      ▒▒▒▒ ▒▒▒▒  ▒▒▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒▒▒▒ ▒ ▒▒▒▒▒ ▒ ▒▒ ▒▒ ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 10, "▒▒▒ ▒▒▒▒▒▒ ▒▒▒ ▒▒▒     ▒      ▒       ▒ ▒▒    ▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 11, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 12, "▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒");
-	Setcolor(2);
-	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 18, " < PRESS ANY KEY TO START > ");
-	Setcolor(7);
-	gotoxy(MAP_X + (MAP_WIDTH - 5) / 2, MAP_HEIGHT - 3, "ESC : Quit");
-
-	while (1) {
-		if (_kbhit()) { //키입력받음 
-			key = _getch();
-			if (key == ESC) {
-				system("cls");
-				gameExit(); // ESC키면 종료 
+			else if (gameCode == HARD) {
+				hardStory();
+				stageCode = hardMode();
 			}
-			else break; //아니면 그냥 계속 진행 
+			else stageCode = BACK;
+			if (gameCode == EASY && stageCode == NORMAL) { clearEasy();  gameCode = NORMAL; }
+			if (gameCode == NORMAL && stageCode == HARD) { clearNormal();  gameCode = HARD; }
+			if (stageCode == CLEAR || stageCode == FAIL) break;
 		}
-		Setcolor(2);
-		gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 18, " < PRESS ANY KEY TO START > ");
-		gotoxy1(MAP_X * 2 + (MAP_WIDTH + 14) / 2 - 2, MAP_Y + 18);
-		Sleep(300);
-		Setcolor(7);
-		gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 18, "                            ");
-		gotoxy1(MAP_X * 2 + (MAP_WIDTH + 14) / 2 - 2, MAP_Y + 18);
-		Sleep(600);
-
-	}
-	resetMapInner();
+		if (stageCode == FAIL) {
+			gameCode = failStory();
+			break;
+		}
+		if (stageCode == CLEAR) {
+			gameCode = clearStory();
+			break;
+		}
+	} while ((gameCode != BACK));
+	return gameCode; // 게임 클리어 또는 실패 시 HOME 반환해야함
 }
 
-//맵 테두리 그리는 함수 
-
-void drawMap(void) {
-	int i;
-	Setcolor(theme);
-	for (i = 0; i < MAP_WIDTH; i++) {
-		gotoxy(MAP_X + i, MAP_Y, "■");
-	}
-	for (i = MAP_Y + 1; i < MAP_HEIGHT + 1; i++) {
-		gotoxy(MAP_X, i, "■");
-		gotoxy(MAP_X + MAP_WIDTH - 1, i, "■");
-	}
-	for (i = 0; i < MAP_WIDTH; i++) {
-		gotoxy(MAP_X + i, MAP_Y + MAP_HEIGHT - 1, "■");
-	}
-	fflush(stdout);
-	resetMapInner();
+void titleStory(void) {
+	wchar_t titlestr[MAX_ROWS][MAX_COLS] = {
+		L"우리의 건국이는 동굴 속에 보물이",
+		L"있다는 소식을 듣고 보물을 찾으러",
+		L"혼자서 동굴 탐험을 시작합니다...",
+		L"귀한 보물을 찾으러 건국이는 점점",
+		L"으슥하고 깊은 곳으로 들어갑니다.",
+		L"그 순간... 쿵!!!!! 철컥!",
+		L"어디선가 생긴 철문이 내려오더니",
+		L"건국이는 지하감옥에 갇히고맙니다.",
+		L"***\'지하감옥\'***",
+		L"배터리가 떨어진 손정든 사이로",
+		L"지하감옥이라는 글귀가 보이고",
+		L"건국이는 그제야 이 모든 것이",
+		L"함정이었음을 깨닫습니다",
+		L"건국이가 무사히 탈출할 수 있도록",
+		L"도와주자!"
+	};
+	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
+	Setcolor(8);
+	printf("**** spacebar to skip ****");
+	Setcolor(7);
+	slowPrint(titlestr, MAP_X * 2 + 4, MAP_Y + 4,15);
 }
 
-//화면 지우기 함수
-void reset(void) {
-	system("cls"); //화면을 지움 
-	drawMap(); //맵 테두리를 그림
-}
-
-// 화면 내부만 지우기
-void resetMapInner(void) {
-	for (int i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) {
-		gotoxy1(MAP_X * 2 + 1, i);
-		printf("                                                                           ");
-	}
-}
-// 목숨창만 지우기
-void resetMapTitle(void) {
-	gotoxy1(MAP_X * 2 + 1, MAP_Y + 1);
-	printf("                                                                           ");
-}
-// 게임창만 지우기 3 ~ MAP_Y + MAP_HEIGHT - 7
-void resetMapMain(void) {
-	for (int i = MAP_Y + 3; i < MAP_Y + MAP_HEIGHT - 6; i++) {
-		gotoxy1(MAP_X * 2 + 1, i);
-		printf("                                                                           ");
-	}
-}
-// 상호작용창만 지우기
-void resetMapBottom(void) {
-	for (int i = MAP_Y + MAP_HEIGHT - 5; i < MAP_Y + MAP_HEIGHT - 1; i++) {
-		gotoxy1(MAP_X * 2 + 1, i);
-		printf("                                                                           ");
-	}
-}
-
-// titlebox 함수
-void titleBoxDraw(void) {
-	Setcolor(4);
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※");
-}
-
-void gotoxy1(int x, int y) {
-	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-	COORD pos;
-	pos.X = x;
-	pos.Y = y;
-	SetConsoleCursorPosition(consoleHandle, pos);
-}
-
-int menuDraw1(void) {
-	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
-	menuDraw1Content();
-	menuDraw2Content(2, 7, 7, 7);
-	gotoxy1((MAP_X + 13) * 2, y);
+// x 위치에 따라 색반전
+int modeSelect(void) {
+	int x = MAP_X + (MAP_WIDTH / 2) - 2, y = 24; // 초기 위치
+	modeSelectMapDraw();
+	modeSelectMapDraw1(2, 7, 7);
+	modeSelectMapDraw2(11, 7, 7);
+	gotoxy1(x, y);
 	printf("☞\b\b");
-	while (1)
-	{
+	Sleep(300);
+	while (1) {
 		int n = keyControl1();
 		switch (n) {
-		case UP: {
-			if (y > MAP_Y + 14) {
-				gotoxy1((MAP_X + 13) * 2, y);
+		case LEFT:
+			if (x > MAP_X + (MAP_WIDTH / 2) - 2) {
+				gotoxy1(x, y);
 				printf(" ");
-				y--;
-				if (y == MAP_Y + 14) menuDraw2Content(2, 7, 7, 7);
-				else if (y == MAP_Y + 15) menuDraw2Content(7, 2, 7, 7);
-				else if (y == MAP_Y + 16) menuDraw2Content(7, 7, 2, 7);
-				gotoxy1((MAP_X + 13) * 2, y);
+				x -= 24;
+				if (x == MAP_X + (MAP_WIDTH / 2) - 2) {
+					modeSelectMapDraw1(2, 7, 7);
+					modeSelectMapDraw2(11, 7, 7);
+				}
+				else if (x == MAP_X + (MAP_WIDTH / 2) + 22) {
+					modeSelectMapDraw1(7, 2, 7);
+					modeSelectMapDraw2(7, 14, 7);
+				}
+				gotoxy1(x, y);
 				printf("☞\b\b");
 			}
 			break;
-		}
-		case DOWN: {
-			if (y < MAP_Y + 17) {
-				gotoxy1((MAP_X + 13) * 2, y);
+		case RIGHT:
+			if (x < MAP_X + (MAP_WIDTH / 2) + 46) {
+				gotoxy1(x, y);
 				printf(" ");
-				y++;
-				if (y == MAP_Y + 15) menuDraw2Content(7, 2, 7, 7);
-				else if (y == MAP_Y + 16) menuDraw2Content(7, 7, 2, 7);
-				else if (y == MAP_Y + 17) menuDraw2Content(7, 7, 7, 2);
-				gotoxy1((MAP_X + 13) * 2, y);
+				x += 24;
+				if (x == MAP_X + (MAP_WIDTH / 2) + 22) {
+					modeSelectMapDraw1(7, 2, 7);
+					modeSelectMapDraw2(7, 14, 7);
+				}
+				else if (x == MAP_X + (MAP_WIDTH / 2) + 46) {
+					modeSelectMapDraw1(7, 7, 2);
+					modeSelectMapDraw2(7, 7, 12);
+				}
+				gotoxy1(x, y);
 				printf("☞\b\b");
 			}
 			break;
-		}
 		case BACK:
 			return BACK;
-		case SUBMIT: {
-			return y - 15;
-		}
-		}
-	}
-
-}
-void menuDraw1Content(void) {
-	resetMapInner();
-	titleBoxDraw();
-	Setcolor(15);
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 6, MAP_Y + 5, " !WELCOME TO!");
-	Setcolor(7);
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 1, MAP_Y + 7, "Get out of the underground prison");
-	Setcolor(8);
-	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "▼  Select from the menu  ▼");
-	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
-	printf("**** spacebar to select ****");
-	Setcolor(7);
-}
-
-void menuDraw2Content(int c1, int c2, int c3, int c4) {
-	Setcolor(c1);
-	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 14);
-	printf("   게임시작    START");   // 선택하면 난이도 선택 화면으로 이동
-	if (c1 == 2) {
-		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 14);
-		Setcolor(7);
-		printf("☜");
-	}
-	else {
-		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 14);
-		printf(" ");
-	}
-	Setcolor(c2);
-	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 15);
-	printf("   게임방법    RULE");     // 난이도 별 실행 및 조작법 출력
-	if (c2 == 2) {
-		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 15);
-		Setcolor(7);
-		printf("☜");
-	}
-	else {
-		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 15);
-		printf(" ");
-	}
-	Setcolor(c3);
-	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 16);
-	printf("   환경설정    OPTION");
-	if (c3 == 2) {
-		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 16);
-		Setcolor(7);
-		printf("☜");
-	}
-	else {
-		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 16);
-		printf(" ");
-	}
-	Setcolor(c4);
-	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 17);
-	printf("   종료        EXIT");
-	if (c4 == 2) {
-		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 17);
-		Setcolor(7);
-		printf("☜");
-	}
-	else {
-		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 17);
-		printf(" ");
-	}
-	Setcolor(7);
-}
-
-int keyControl1(void) {
-	char a = _getch();
-
-	switch (a) {
-	case 'W':
-	case 'w':
-		//case UP1:
-		return UP;
-	case 'S':
-	case 's':
-		//case DOWN1:
-		return DOWN;
-	case 'A':
-	case 'a':
-		//case LEFT1:
-		return LEFT;
-	case 'D':
-	case 'd':
-		//case RIGHT1:
-		return RIGHT;
-	case 'Q':
-	case 'q':
-		return BACK;
-	case '\r':
-	case ' ':
-		return SUBMIT;
-	default:
-		return -1; // 다른 키를 눌렀을 경우 처리
-	}
-}
-
-void slowPrint(const wchar_t story[][MAX_COLS], int x, int y, int rowcount) {
-	char ch = 0;
-	int x1 = x, y1 = y;
-	Setcolor(7);
-	// 콘솔 출력 모드를 유니코드 모드로 설정
-	//_setmode(_fileno(stdout), _O_U16TEXT);
-	for (int i = 0; i < rowcount; i++) {
-		if (y1 > MAP_Y + 18) {
-			x1 += 35;
-			y1 = y;
-		}
-		gotoxy1(x1, y1);
-		for (int j = 0; j < MAX_COLS && story[i][j] != '\0'; j++) {
-			wprintf(L"%lc", story[i][j]);
-			Sleep(20);
-			if (_kbhit()) {
-				ch = _getch();
-				if (ch == '\r' || ch == ' ') {
-					return;
-				}
+		case SUBMIT:
+			if (x == MAP_X + (MAP_WIDTH / 2) - 2) {
+				x = EASY;
 			}
+			else if (x == MAP_X + (MAP_WIDTH / 2) + 22) {
+				x = NORMAL;
+			}
+			else if (x == MAP_X + (MAP_WIDTH / 2) + 46) {
+				x = HARD;
+			}
+			return x;
 		}
-		y1 = y1 + 2;
-		if (y1 > MAP_Y + 20) break;
 	}
-	Sleep(1000);
 }
 
-void gameExit(void) {
+// 타이틀 색, easy 색, normla 색, hard 색을 인자로 받음
+void modeSelectMapDraw(void) {
+	resetMapTitle();
+	resetMapMain();
+	resetMapBottom();
+	Setcolor(4);
+	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 5, "※※※※※※※※※※※※※※※※※※※※※※※※※※※※");
+	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 6, "         GAME   MODE       ");
+	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 7, "※※※※※※※※※※※※※※※※※※※※※※※※※※※※");
+}
+
+void modeSelectMapDraw1(int c1, int c2, int c3) {
+	Setcolor(c1);
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 12, "┌----------┐");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 13, "|   EASY   |");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 14, "└----------┘");
+	Setcolor(c2);
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 12, "┌----------┐");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 13, "|  NORMAL  |");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 14, "└----------┘");
+	Setcolor(c3);
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 12, "┌----------┐");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 13, "|   HARD   |");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 14, "└----------┘");
+	Setcolor(7);
+}
+
+void modeSelectMapDraw2(int c1, int c2, int c3) {
+	Setcolor(c1);
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 14, MAP_Y + 22, "(●'v'●)");
+	Setcolor(c2);
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2+1, MAP_Y + 22, "(○｀ 3′○)");
+	Setcolor(c3);
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9+1, MAP_Y + 22, "┗|｀O′|┛");
+	Setcolor(7);
+}
+
+
+void easyStory(void) {
+	wchar_t easystr[MAX_ROWS][MAX_COLS] = {
+		L"건국이가 들고온 손정든의 배터리가",
+		L"얼마 남지 않았다...!",
+		L"손전등이 꺼지기 전에 경비병들을",
+		L"피해 열쇠 2개를 찾아 탈출하자!",
+		L"목숨은 5개이다!"
+	};
+	resetMapMain();
+	resetMapBottom();
+	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
+	Setcolor(8);
+	printf("**** spacebar to skip ****");
+	Setcolor(7);
+	slowPrint(easystr, MAP_X * 2 + 4, MAP_Y + 4,5);
+}
+
+void normalStory(void) {
+	wchar_t normalstr[MAX_ROWS][MAX_COLS] = {
+		L"얼마나 지났을까.....",
+		L"손정등이 많이 어두워지고 배에서는",
+		L"꼬르륵.. 소리가 계속 들려온다.",
+		L"목숨도 4개밖에 남지 않았다.",
+		L"어서 경비병들을 피해 탈출하자!",
+		L"열쇠를 2개를 찾아 탈출하자!!"
+	};
+	resetMapMain();
+	resetMapBottom();
+	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
+	Setcolor(8);
+	printf("**** spacebar to skip ****");
+	Setcolor(7);
+	slowPrint(normalstr, MAP_X * 2 + 4, MAP_Y + 4,6);
+}
+
+void hardStory(void) {
+	wchar_t hardstr[MAX_ROWS][MAX_COLS] = {
+		L"감옥에 갇힌지 오래.....",
+		L"바깥세상이 너무나 그립다.",
+		L"이제 손전등은 거의 꺼져간다.",
+		L"체력이 바닥나 목숨이 3개밖에 없다.",
+		L"시야가 넓어진 경비병들을 피해",
+		L"아이템을 잘 활용하여",
+		L"열쇠 2개를 모으자!"
+	};
+	resetMapMain();
+	resetMapBottom();
+	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
+	Setcolor(8);
+	printf("**** spacebar to skip ****");
+	Setcolor(7);
+	slowPrint(hardstr, MAP_X * 2 + 4, MAP_Y + 4,7);
+}
+
+void clearEasy(void) {
+	resetMapMain();
+	Setcolor(2);
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 5, "■■■■■■■■  ■         ■■■■■■■■  ■■■■■■■■  ■■■■■■■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 6, "■         ■         ■         ■      ■  ■      ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 7, "■         ■         ■■■■■■■■  ■■■■■■■■  ■■■■■■■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 8, "■         ■         ■         ■      ■  ■     ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 9, "■■■■■■■■  ■■■■■■■■  ■■■■■■■■  ■      ■  ■     ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 12, "■■■■■■■■  ■■■■■■■■  ■■■■■■■■  ■■    ■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 13, "■         ■      ■  ■           ■  ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 14, "■■■■■■■■  ■■■■■■■■  ■■■■■■■■     ■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 15, "■         ■      ■         ■     ■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 16, "■■■■■■■■  ■      ■  ■■■■■■■■    ■■■■");
+	Setcolor(7);
+	Sleep(2000);
+}
+
+void clearNormal(void) {
+	resetMapMain();
+	Setcolor(2);
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 5, "■■■■■■■■  ■         ■■■■■■■■  ■■■■■■■■  ■■■■■■■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 6, "■         ■         ■         ■      ■  ■      ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 7, "■         ■         ■■■■■■■■  ■■■■■■■■  ■■■■■■■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 8, "■         ■         ■         ■      ■  ■     ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 9, "■■■■■■■■  ■■■■■■■■  ■■■■■■■■  ■      ■  ■     ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 12, "■■■■■  ■  ■■■■■■■■  ■■■■■■■■  ■■■■■■■■■  ■■■■■■■■  ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 13, "■   ■  ■  ■      ■  ■      ■  ■   ■   ■  ■      ■  ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 14, "■   ■  ■  ■      ■  ■■■■■■■■  ■   ■   ■  ■■■■■■■■  ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 15, "■   ■  ■  ■      ■  ■     ■   ■   ■   ■  ■      ■  ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 16, "■   ■■■■  ■■■■■■■■  ■     ■   ■   ■   ■  ■      ■  ■■■■■■■■");
+	Setcolor(7);
+	Sleep(2000);
+}
+
+int clearStory(void) {
+	wchar_t clearstr[MAX_ROWS][MAX_COLS] = {
+		L"햇빛이 건국이를 환하게 비춘다.",
+		L"오랜 노력 끝에 탈출에 성공했다!"    
+	};
+	resetMapMain();
+	resetMapBottom();
+	gameMapDraw();
+	clearStorybg();
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
+	Setcolor(8);
+	printf("**** spacebar to skip ****");
+	Setcolor(7);
+	slowPrint(clearstr, MAP_X * 2 + MAP_WIDTH/2, MAP_Y + 13,2);
+	return HOME;
+}
+void clearStorybg(void) {
 	Setcolor(2);
 	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 5, "■■■■■■■■  ■■■■■■■■  ■■■■■■■■  ■■■■■■ ");
 	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 6, "■         ■      ■  ■      ■  ■     ■■");
 	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 7, "■    ■■■  ■      ■  ■      ■  ■      ■");
 	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 8, "■      ■  ■      ■  ■      ■  ■     ■■");
 	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 9, "■■■■■■■■  ■■■■■■■■  ■■■■■■■■  ■■■■■■ ");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 13, "■■■■■■■     ■■    ■■    ■■■■■■■■");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 14, "■      ■      ■  ■      ■■      ");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 15, "■■■■■■■        ■■       ■■■■■■■■");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 16, "■      ■       ■■       ■■      ");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 17, "■■■■■■■       ■■■■      ■■■■■■■■  ■  ■  ■");
 	Setcolor(7);
-	Sleep(1000);
-	system("cls");
-	exit(0);
+}
+
+
+int failStory(void) {
+	wchar_t failstr[MAX_ROWS][MAX_COLS] = {
+		L"건국이의 체력이 다 소모되어",
+		L"탈출에 실패했다.",
+		L"쉬었다가 다시 도전해야겠다!"
+	};
+	resetMapMain();
+	resetMapBottom();
+	gameMapDraw();
+	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
+	Setcolor(8);
+	printf("**** spacebar to skip ****");
+	Setcolor(7);
+	failStorybg();
+	slowPrint(failstr, MAP_X * 2 + MAP_WIDTH / 2, MAP_Y + 13,3);
+	return HOME;
+}
+
+void failStorybg(void) {
+	Setcolor(4);
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 5, "■■■■■■■■  ■■■■■■■■  ■■■■■  ■ ");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 6, "■         ■      ■    ■    ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 7, "■■■■■■■■  ■■■■■■■■    ■    ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 8, "■         ■      ■    ■    ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 9, "■         ■      ■  ■■■■■  ■■■■■■ ■ ■ ■");
+	Setcolor(7);
+}
+
+// BACK, NORMAL, FAIL 반환
+int easyMode(void) {
+	int keyvalue; // BACK, -1
+	gameMapDraw();
+	Setcolor(7);
+	gotoxy(MAP_X + 1, MAP_Y + 1, "EASY");
+	Setcolor(4);
+	gotoxy(MAP_X + MAP_WIDTH - 6, MAP_Y + 1, "♥ ♥ ♥ ♥ ♥");
+	Setcolor(7);
+	keyvalue = gameplay();
+	if (keyvalue == BACK) return BACK; // modeSelct로 복귀
+	if (keyvalue == CLEAR) return NORMAL;
+	if (keyvalue == FAIL) return BACK;
+	return 0;
+}
+// BACK, HARD, FAIL 반환
+int normalMode(void) {
+	int keyvalue;
+	gameMapDraw();
+	Setcolor(7);
+	gotoxy(MAP_X + 1, MAP_Y + 1, "NORMAL");
+	Setcolor(4);
+	gotoxy(MAP_X + MAP_WIDTH - 5, MAP_Y + 1, "♥ ♥ ♥ ♥"); // 목숨 그리는거 다시 목숨 개수에 따라서 함수로 만들어야함
+	Setcolor(7);
+	keyvalue = gameplay();
+	if (keyvalue == BACK) return BACK; // modeSelct로 복귀
+	if (keyvalue == CLEAR) return HARD;
+	if (keyvalue == FAIL) return BACK;
+	return 0;
+}
+// BACK, CLEAR, FAIL 반환
+int hardMode(void) {
+	int keyvalue;
+	gameMapDraw();
+	Setcolor(7);
+	gotoxy(MAP_X + 1, MAP_Y + 1, "HARD");
+	Setcolor(4);
+	gotoxy(MAP_X + MAP_WIDTH - 4, MAP_Y + 1, "♥ ♥ ♥");
+	Setcolor(7);
+	keyvalue = gameplay();
+	if (keyvalue == BACK) return BACK; // modeSelct로 복귀
+	if (keyvalue == CLEAR) return CLEAR;
+	if (keyvalue == FAIL) return BACK;
+	return 0;
+}
+
+void gameMapDraw(void) {
+	int i;
+	resetMapInner();
+	Setcolor(theme);
+	for (i = 1; i < MAP_WIDTH - 1; i++) {
+		gotoxy(MAP_X + i, MAP_Y + 2, "■");
+	}
+	for (i = 1; i < MAP_WIDTH - 1; i++) {
+		gotoxy(MAP_X + i, MAP_Y + MAP_HEIGHT - 6, "■");
+	}
 }

@@ -227,13 +227,24 @@ int clearStory(void) {
 	resetMapMain();
 	resetMapBottom();
 	gameMapDraw();
+	clearStorybg();
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
-	slowPrint(clearstr, MAP_X * 2 + 4, MAP_Y + 4,2);
+	slowPrint(clearstr, MAP_X * 2 + MAP_WIDTH/2, MAP_Y + 13,2);
 	return HOME;
 }
+void clearStorybg(void) {
+	Setcolor(2);
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 5, "■■■■■■■■  ■■■■■■■■  ■■■■■■■■  ■■■■■■ ");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 6, "■         ■      ■  ■      ■  ■     ■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 7, "■    ■■■  ■      ■  ■      ■  ■      ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 8, "■      ■  ■      ■  ■      ■  ■     ■■");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 9, "■■■■■■■■  ■■■■■■■■  ■■■■■■■■  ■■■■■■ ");
+	Setcolor(7);
+}
+
 
 int failStory(void) {
 	wchar_t failstr[MAX_ROWS][MAX_COLS] = {
@@ -248,8 +259,19 @@ int failStory(void) {
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
-	slowPrint(failstr, MAP_X * 2 + 4, MAP_Y + 4,3);
+	failStorybg();
+	slowPrint(failstr, MAP_X * 2 + MAP_WIDTH / 2, MAP_Y + 13,3);
 	return HOME;
+}
+
+void failStorybg(void) {
+	Setcolor(4);
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 5, "■■■■■■■■  ■■■■■■■■  ■■■■■  ■ ");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 6, "■         ■      ■    ■    ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 7, "■■■■■■■■  ■■■■■■■■    ■    ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 8, "■         ■      ■    ■    ■");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 9, "■         ■      ■  ■■■■■  ■■■■■■ ■ ■ ■");
+	Setcolor(7);
 }
 
 // BACK, CLEAR, FAIL 반환
@@ -265,8 +287,6 @@ int easyMode(void) {
 	if (keyvalue == BACK) return BACK; // modeSelct로 복귀
 	if (keyvalue == CLEAR) return CLEAR;
 	if (keyvalue == FAIL) return BACK;
-	// 클리어 성공하면 성공 화면 출력 하고 HOME 반환
-	// 클리어 실패하면 다시 시도 하시겠습니까(BACK) OR 종료하시겠습니까 출력
 	return 0;
 }
 // BACK, CLEAR, FAIL 반환
@@ -278,12 +298,10 @@ int normalMode(void) {
 	Setcolor(4);
 	gotoxy(MAP_X + MAP_WIDTH - 5, MAP_Y + 1, "♥ ♥ ♥ ♥");
 	Setcolor(7);
-	while (1) {
-		keyvalue = playerMove();
-		if (keyvalue == BACK) return BACK; // modeSelct로 복귀
-	}
-	// 클리어 성공하면 성공 화면 출력 하고 HOME 반환
-	// 클리어 실패하면 다시 시도 하시겠습니까(BACK) OR 종료하시겠습니까 출력
+	keyvalue = gameplay();
+	if (keyvalue == BACK) return BACK; // modeSelct로 복귀
+	if (keyvalue == CLEAR) return CLEAR;
+	if (keyvalue == FAIL) return BACK;
 	return 0;
 }
 // BACK, CLEAR, FAIL 반환
@@ -295,34 +313,10 @@ int hardMode(void) {
 	Setcolor(4);
 	gotoxy(MAP_X + MAP_WIDTH - 4, MAP_Y + 1, "♥ ♥ ♥");
 	Setcolor(7);
-	while (1) {
-		keyvalue = playerMove();
-		if (keyvalue == BACK) return BACK; // modeSelct로 복귀
-	}
-	// 클리어 성공하면 성공 화면 출력 하고 HOME 반환
-	// 클리어 실패하면 다시 시도 하시겠습니까(BACK) OR 종료하시겠습니까 출력
-	return 0;
-}
-// BACK, -1 반환
-int playerMove(void) {
-	int n = keyControl1();
-	switch (n)
-	{
-	case UP:		// 캐릭터 이동
-		break;
-	case DOWN:
-		break;
-	case LEFT:
-		break;
-	case RIGHT:
-		break;
-	case BACK:		// 뒤로가기
-		return BACK;
-	case SUBMIT:	// 상호작용
-		break;
-	default:
-		return -1;
-	}
+	keyvalue = gameplay();
+	if (keyvalue == BACK) return BACK; // modeSelct로 복귀
+	if (keyvalue == CLEAR) return CLEAR;
+	if (keyvalue == FAIL) return BACK;
 	return 0;
 }
 

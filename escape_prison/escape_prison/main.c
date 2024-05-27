@@ -287,19 +287,19 @@ int keyControl1(void) {
 	switch (a) {
 	case 'W':
 	case 'w':
-	case UP1:
+	//case UP1:
 		return UP;
 	case 'S':
 	case 's':
-	case DOWN1:
+	//case DOWN1:
 		return DOWN;
 	case 'A':
 	case 'a':
-	case LEFT1:
+	//case LEFT1:
 		return LEFT;
 	case 'D':
 	case 'd':
-	case RIGHT1:
+	//case RIGHT1:
 		return RIGHT;
 	case 'Q':
 	case 'q':

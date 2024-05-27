@@ -437,10 +437,13 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         }
         case BACK:
             return BACK;
+        /*
         case SUBMIT: {
-            return playery - 4; // 1 ~ 16
+            return SUBMIT; // 처리 해야함 
+        
+        }*/
         }
-        }
+        /* 참고 하려고 적음 나중에 삭제 해야함 */
         gotoxy1(0, 0);
         printf("PLAYER: %d %d ", playerx, playery);
         gotoxy1(0, 2);
@@ -459,6 +462,8 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         // 열쇠 획득 시 게임 성공
         // 목숨 까지면 게임 오버
         // 제한 시간 끝나면 -1 목숨, 제한 시간 추가 부여
+        // 클리어 -> 클리어 반환 return CLEAR;
+        // 실패 -> 실패 반환 returb FAIL;
     }
 }
 
@@ -490,6 +495,9 @@ int gameplay(void) {
     while (1) {
         input = movePlayer(player, items);
         if (input == BACK) return BACK;
+        //  if (input == CLEAR) return CLEAR;
+        //  if (input == FAIL) return FAIL;
+        // if (input == SUBMIT) return BACK;
     }
     return 0;
 }

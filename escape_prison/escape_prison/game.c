@@ -168,7 +168,7 @@ void modeSelectMapDraw2(int c1, int c2, int c3) {
 
 void easyStory(void) {
 	wchar_t easystr[MAX_ROWS][MAX_COLS] = {
-		L"건국이가 들고온 손정든의 배터리가",
+		L"건국이가 들고온 손전등등의 배터리가",
 		L"얼마 남지 않았다...!",
 		L"손전등이 꺼지기 전에 경비병들을",
 		L"피해 열쇠 2개를 찾아 탈출하자!",
@@ -189,7 +189,7 @@ void easyStory(void) {
 void normalStory(void) {
 	wchar_t normalstr[MAX_ROWS][MAX_COLS] = {
 		L"얼마나 지났을까.....",
-		L"손정등이 많이 어두워지고 배에서는",
+		L"손전등등이 많이 어두워지고 배에서는",
 		L"꼬르륵.. 소리가 계속 들려온다.",
 		L"목숨도 4개밖에 남지 않았다.",
 		L"어서 경비병들을 피해 탈출하자!",

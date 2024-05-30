@@ -1,6 +1,8 @@
 
 // 독립
 
+
+
 #include <stdio.h>
 #include <time.h>
 #include <windows.h>  // 
@@ -47,3 +49,50 @@ int main() {
 
     return 0;
 }
+
+// gameplay함수에 넣을때 쓴 방식.
+
+/* int gameplay(void) {
+    char input;
+    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,시야너비, 시야높이;
+    struct items items[MAX_ITEMS] = { {0,0,"key"},{0,0,"key"},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'} };
+
+    clock_t start_time, current_time;
+    double elapsed_time;
+
+    start_time = clock();
+
+    for (int i = 0; i < MAX_ITEMS; i++) {
+        Itemcoord(&items[i], player);
+    }
+   
+    while (1) {
+        current_time = clock();
+
+        elapsed_time = ((double)(current_time - start_time)) / CLOCKS_PER_SEC;
+
+
+
+        HP_print(HP);  // HP_print(HP)함수는 정수 HP를 전달받아서 HP수 만큼의 하트를 화면의 상단에 출력합니다.
+
+        Sleep(5);
+
+        gotoxy(10, 10, " ");
+
+        printf("\ 30- %.2f 초", elapsed_time);
+
+        fflush(stdout);
+
+       
+        if (elapsed_time >= 20.0) {
+            break;
+        }
+
+        input = movePlayer(player, items);
+        if (input == BACK) return BACK;
+        if (input == CLEAR) return CLEAR;
+        //  if (input == FAIL) return FAIL;
+        // if (input == SUBMIT) return BACK;
+    }
+    return 0;
+} */

@@ -57,7 +57,7 @@ int main() {
     struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,시야너비, 시야높이;
     struct items items[MAX_ITEMS] = { {0,0,"key"},{0,0,"key"},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'} };
 
-    clock_t start_time, current_time;
+    clock_t start_time, current_time;       // 반복문 들어가기 전 초기값 잡기
     double elapsed_time;
 
     start_time = clock();

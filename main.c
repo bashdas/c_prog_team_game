@@ -30,10 +30,9 @@ int main(void) {
 	}
 	/*
 	while (1) {
-		if (_kbhit()) do { key = _getch(); } while (key == 224); //키 입력받음
-		Sleep(speed);
-	}
-	*/
+	if (_kbhit()) do { key = _getch(); } while (key == 224); //키 입력받음
+	Sleep(speed);
+	}*/
 	return 0;
 }
 
@@ -290,19 +289,19 @@ int keyControl1(void) {
 	switch (a) {
 	case 'W':
 	case 'w':
-		//case UP1:
+	case UP1:
 		return UP;
 	case 'S':
 	case 's':
-		//case DOWN1:
+	case DOWN1:
 		return DOWN;
 	case 'A':
 	case 'a':
-		//case LEFT1:
+	case LEFT1:
 		return LEFT;
 	case 'D':
 	case 'd':
-		//case RIGHT1:
+	case RIGHT1:
 		return RIGHT;
 	case 'Q':
 	case 'q':

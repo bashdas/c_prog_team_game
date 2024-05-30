@@ -56,13 +56,13 @@ void titleStory(void) {
 		L"도와주자!"
 	};
 	gameMapDraw();
-	gotoxy1(MAP_X * 2 + 2, MAP_Y+1);
+	gotoxy1(MAP_X * 2 + 2, MAP_Y + 1);
 	printf("TITLE STORY");
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + MAP_HEIGHT - 3);
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
-	slowPrint(titlestr, MAP_X * 2 + 4, MAP_Y + 4,15);
+	slowPrint(titlestr, MAP_X * 2 + 4, MAP_Y + 4, 15);
 }
 
 // x 위치에 따라 색반전
@@ -159,16 +159,16 @@ void modeSelectMapDraw2(int c1, int c2, int c3) {
 	Setcolor(c1);
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 14, MAP_Y + 22, "(●'v'●)");
 	Setcolor(c2);
-	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2+1, MAP_Y + 22, "(○｀ 3′○)");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2 + 1, MAP_Y + 22, "(○｀ 3′○)");
 	Setcolor(c3);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9+1, MAP_Y + 22, "┗|｀O′|┛");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9 + 1, MAP_Y + 22, "┗|｀O′|┛");
 	Setcolor(7);
 }
 
 
 void easyStory(void) {
 	wchar_t easystr[MAX_ROWS][MAX_COLS] = {
-		L"건국이가 들고온 손정든의 배터리가",
+		L"건국이가 들고온 손전등의 배터리가",
 		L"얼마 남지 않았다...!",
 		L"손전등이 꺼지기 전에 경비병들을",
 		L"피해 열쇠 2개를 찾아 탈출하자!",
@@ -183,7 +183,7 @@ void easyStory(void) {
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
-	slowPrint(easystr, MAP_X * 2 + 4, MAP_Y + 4,5);
+	slowPrint(easystr, MAP_X * 2 + 4, MAP_Y + 4, 5);
 }
 
 void normalStory(void) {
@@ -204,7 +204,7 @@ void normalStory(void) {
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
-	slowPrint(normalstr, MAP_X * 2 + 4, MAP_Y + 4,6);
+	slowPrint(normalstr, MAP_X * 2 + 4, MAP_Y + 4, 6);
 }
 
 void hardStory(void) {
@@ -226,7 +226,7 @@ void hardStory(void) {
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
-	slowPrint(hardstr, MAP_X * 2 + 4, MAP_Y + 4,7);
+	slowPrint(hardstr, MAP_X * 2 + 4, MAP_Y + 4, 7);
 }
 
 void clearEasy(void) {
@@ -268,7 +268,7 @@ void clearNormal(void) {
 int clearStory(void) {
 	wchar_t clearstr[MAX_ROWS][MAX_COLS] = {
 		L"햇빛이 건국이를 환하게 비춘다.",
-		L"오랜 노력 끝에 탈출에 성공했다!"    
+		L"오랜 노력 끝에 탈출에 성공했다!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -279,7 +279,7 @@ int clearStory(void) {
 	Setcolor(8);
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
-	slowPrint(clearstr, MAP_X * 2 + MAP_WIDTH/2, MAP_Y + 13,2);
+	slowPrint(clearstr, MAP_X * 2 + MAP_WIDTH / 2, MAP_Y + 13, 2);
 	return HOME;
 }
 void clearStorybg(void) {
@@ -308,7 +308,7 @@ int failStory(void) {
 	printf("**** spacebar to skip ****");
 	Setcolor(7);
 	failStorybg();
-	slowPrint(failstr, MAP_X * 2 + MAP_WIDTH / 2, MAP_Y + 13,3);
+	slowPrint(failstr, MAP_X * 2 + MAP_WIDTH / 2, MAP_Y + 13, 3);
 	return HOME;
 }
 

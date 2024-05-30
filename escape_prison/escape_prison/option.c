@@ -1,9 +1,9 @@
 #include "main.h"
 
-// void playMusic(const char* address);
+// void playMusic(const char* address); 
 
 
-// 환경설정 실행 함수
+// 환경설정 실행 함수.
 void initOption() {
 	int optionCode = 0, subjectCode = -1;
 	do {

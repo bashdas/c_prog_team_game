@@ -2,7 +2,7 @@
 
 #include "main.h"
 
-#define MAP_X 3  // ?? main.h와 한번 더 비교해서 확인해보기 ?? 뭔가 예상했던 값과 다르다.
+
 
 
 // 게임 시스템

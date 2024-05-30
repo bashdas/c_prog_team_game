@@ -370,10 +370,13 @@ void item_crush() {
 /**************************************************************/
 // HP 전역 변수를 출력하는 함수
 
+void HP_minus(int HP){
+
+}
+
 void HP_print(int HP) {
-
-
-
+            Sleep(1000);
+            HP=HP-1;
     {
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
         gotoxy(MAP_X, MAP_Y + MAP_HEIGHT, " HP:"); //HP표시

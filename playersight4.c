@@ -83,7 +83,7 @@ void removeItem(int x, int y) {
     gotoxy1(0, 0);
 }
 
-void initItem(struct items* item_array, int playerx, int playery, int i) {
+void initItem(struct player* player_info, struct items* item_array, int playerx, int playery, int i) {
     item_array[i].x = 0;
     item_array[i].y = 0;
     strcpy_s(item_array[i].skill, sizeof(item_array[i].skill), "None");
@@ -91,23 +91,14 @@ void initItem(struct items* item_array, int playerx, int playery, int i) {
     drawPlayer(playerx, playery);
 }
 
-void eatItem(struct player player_info, struct items* item_array, int playerx, int playery) {
-    int sw, sh, mode = NORMAL;
-    if (mode == NORMAL) {
-        sw = player_info.sw;
-        sh = player_info.sh;
-    }
-    else if(mode == HARD){
-        sw = player_info.swh;
-        sh = player_info.shh;
-    }
+void eatItem(struct player* player_info, struct items* item_array, int playerx, int playery) {
     for (int i = 0; i < MAX_ITEMS; i++) {
-        if (item_array[i].x <= playerx + player_info.sw && item_array[i].x >= playerx - player_info.sw
-            && item_array[i].y <= playery + player_info.sh && item_array[i].y >= playery - player_info.sh) {
+        if (item_array[i].x <= playerx + player_info->sw && item_array[i].x >= playerx - player_info->sw
+            && item_array[i].y <= playery + player_info->sh && item_array[i].y >= playery - player_info->sh) {
             drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
             if (item_array[i].x == playerx && item_array[i].y == playery) {
                 // 충돌 시 배열 0,0,None로 초기화, 아이템 지우고 캐릭터 다시 그리기
-                initItem(item_array, playerx, playery, i);
+                initItem(player_info, item_array, playerx, playery, i);
             }
         }
         else {
@@ -451,15 +442,15 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         }
         case BACK:
             return BACK;
-            /*
-            case SUBMIT: {
-                return SUBMIT; // 처리 해야함
-
-            }*/
+        /*
+        case SUBMIT: {
+            return SUBMIT; // 처리 해야함 
+        
+        }*/
         }
         // 시야 범위에 들어오면 아이템 출력
         // 아이템과 플레이어 충돌 시 아이템 획득 처리
-        eatItem(*player_info, item_array, playerx, playery);
+        eatItem(player_info, item_array, playerx, playery);
 
         /* 참고 하려고 적음 나중에 삭제 해야함 */
         gotoxy1(0, 0);
@@ -474,14 +465,14 @@ int movePlayer(struct player* player_info, struct items* item_array) {
             gotoxy1(0, 7 + i);
             printf("%d] (%d, %d) %s\n", i + 1, item_array[i].x, item_array[i].y, item_array[i].skill);
         }
-
+        
         // 클리어 -> 클리어 반환 return CLEAR;
         // 열쇠 획득 시 게임 성공
         if (isClear(item_array) == CLEAR) return CLEAR;
-
+        
         // 실패 -> 실패 반환 returb FAIL;
         // 제한 시간 끝나면 -1 목숨, 제한 시간 추가 부여
-
+        
     }
 }
 
@@ -501,16 +492,18 @@ void Itemcoord(struct items* item, struct player* player) {
 
 
 int gameplay(void) {
-    char input;
+    char input, time;
     struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,시야너비, 시야높이;
-    struct items items[MAX_ITEMS] = { {0,0,"key"},{0,0,"key"},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'} };
+    struct items items[MAX_ITEMS] = { {0,0,"key"},{0,0,"key"},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'}};
 
-
+    
     for (int i = 0; i < MAX_ITEMS; i++) {
         Itemcoord(&items[i], player);
     }
 
     while (1) {
+        time = timer();
+        if (time == FAIL) return FAIL;
         input = movePlayer(player, items);
         if (input == BACK) return BACK;
         if (input == CLEAR) return CLEAR;

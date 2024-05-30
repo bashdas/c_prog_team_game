@@ -178,7 +178,7 @@ void moveCursor(int* cursorX, int* cursorY, char direction) {
     }
 }
 
-int main() {
+int gameplay() {
 
     char map[MAP_HEIGHT][MAP_WIDTH];
     int cursorX = MAP_HEIGHT / 2;

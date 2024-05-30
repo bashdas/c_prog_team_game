@@ -197,8 +197,10 @@ struct player
 {
     int x;	// 캐릭터 x좌표
     int y;  // 캐릭터 y좌표
-    int sw;	// 캐릭터 시야너비
-    int sh;	// 캐릭터 시야높이
+    int sw;	// 캐릭터 시야너비 노말
+    int sh;	// 캐릭터 시야높이 노말
+    //int swh; // 캐릭터 시야너비 하드
+    //int shh; // 캐릭터 시야높으 하드
 };
 
 struct items
@@ -214,8 +216,8 @@ void drawPlayerSight(int x, int y, int bottom, int right, int upper, int left);
 void removePlayerSight(int x, int y, int bottom, int right, int upper, int left);
 void drawItem(int x, int y);
 void removeItem(int x, int y);
-void initItem(struct player* player_info, struct items* item_array, int playerx, int playery, int i);
-void eatItem(struct player* player_info, struct items* item_array, int playerx, int playery);
+void initItem(struct items* item_array, int playerx, int playery, int i);
+void eatItem(struct player player_info, struct items* item_array, int playerx, int playery);
 int movePlayer(struct player* player_info, struct items* item_array);
 void Itemcoord(struct items* item, struct player* player);
 int gameplay(void);

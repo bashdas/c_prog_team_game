@@ -13,6 +13,10 @@
 #pragma comment(lib, "winmm.lib")
 
 /* main */
+#define GAME_START 100
+#define GAME_RULE 200
+#define INIT_OPTION 300
+#define GAME_EXIT 400
 
 // 키 값 정의  //
 #define LEFT1 75

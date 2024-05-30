@@ -199,8 +199,8 @@ struct player
     int y;  // 캐릭터 y좌표
     int sw;	// 캐릭터 시야너비 노말
     int sh;	// 캐릭터 시야높이 노말
-    //int swh; // 캐릭터 시야너비 하드
-    //int shh; // 캐릭터 시야높으 하드
+    int swh; // 캐릭터 시야너비 하드
+    int shh; // 캐릭터 시야높으 하드
 };
 
 struct items

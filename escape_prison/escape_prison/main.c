@@ -174,7 +174,7 @@ void gotoxy1(int x, int y) {
 }
 
 int menuDraw1(void) {
-	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
+	int x = (MAP_X + 2) * 2, y = MAP_Y + 14, menu=0;
 	menuDraw1Content();
 	menuDraw2Content(2, 7, 7, 7);
 	gotoxy1((MAP_X + 13) * 2, y);

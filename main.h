@@ -227,3 +227,6 @@ int movePlayer(struct player* player_info, struct items* item_array);
 void Itemcoord(struct items* item, struct player* player);
 int gameplay(void);
 int isClear(struct items* item_array);
+
+
+int timer(void);

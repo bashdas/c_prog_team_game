@@ -29,7 +29,7 @@ int selectOption(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	selectOptionContent();
 	selectOptionContent2(2, 7);
-	gotoxy1((MAP_X+14) * 2, y);
+	gotoxy1((MAP_X + 14) * 2, y);
 	printf("☞\b\b");
 	while (1)
 	{
@@ -138,7 +138,7 @@ int setMusic(void) {
 int selectMusic(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	selectMusicContent();
-	selectMusicContent2(2,7,7,7);
+	selectMusicContent2(2, 7, 7, 7);
 	gotoxy1((MAP_X + 16) * 2, y);
 	printf("☞\b\b");
 

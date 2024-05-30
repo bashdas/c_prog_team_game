@@ -17,12 +17,12 @@ int main(void) {
 			gotoxy1(0, 20);
 			printf("%d   ", gameCode);
 			menuCode = menuDraw1(); // y - 15 = 1 ~ 4
-			if (menuCode == 1) {
+			if (menuCode == GAME_START) {
 				gameCode = gameDraw();
 			}
-			else if (menuCode == 2) gameRulesDraw();
-			else if (menuCode == 3) initOption();
-			else if (menuCode == 4) {
+			else if (menuCode == GAME_RULE) gameRulesDraw();
+			else if (menuCode == INIT_OPTION) initOption();
+			else if (menuCode == GAME_EXIT) {
 				system("cls");
 				gameExit();
 			}
@@ -212,7 +212,11 @@ int menuDraw1(void) {
 		case BACK:
 			return BACK;
 		case SUBMIT: {
-			return y - 15;
+			if (y == MAP_Y + 14) menu = GAME_START;
+			else if (y == MAP_Y + 15) menu = GAME_RULE;
+			else if (y == MAP_Y + 16) menu = INIT_OPTION;
+			else menu = GAME_EXIT;
+			return menu;
 		}
 		}
 	}

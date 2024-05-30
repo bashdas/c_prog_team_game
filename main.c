@@ -14,8 +14,6 @@ int main(void) {
 		title();
 		do {
 			gameCode = 0;
-			gotoxy1(0, 20);
-			printf("%d   ", gameCode);
 			menuCode = menuDraw1(); // y - 15 = 1 ~ 4
 			if (menuCode == 1) {
 				gameCode = gameDraw();
@@ -30,9 +28,10 @@ int main(void) {
 	}
 	/*
 	while (1) {
-	if (_kbhit()) do { key = _getch(); } while (key == 224); //키 입력받음
-	Sleep(speed);
-	}*/
+		if (_kbhit()) do { key = _getch(); } while (key == 224); //키 입력받음
+		Sleep(speed);
+	}
+	*/
 	return 0;
 }
 

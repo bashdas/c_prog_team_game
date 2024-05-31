@@ -228,6 +228,7 @@ struct items
 
 
 void drawPlayer(int x, int y);
+void removePlayer(int x, int y);
 void drawPlayerSight(int x, int y, int bottom, int right, int upper, int left);
 void removePlayerSight(int x, int y, int bottom, int right, int upper, int left);
 void drawItem(int x, int y);

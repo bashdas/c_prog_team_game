@@ -1,15 +1,13 @@
 #include "main.h"
-//int x[100], y[100]; //x,y ¡¬«•∞™¿ª ¿˙¿Â √— 100∞≥ 
-int key; //¿‘∑¬πﬁ¿∫ ≈∞ ¿˙¿Â 
-int speed; //∞‘¿” º”µµ 
+
 int theme = 7;
 
 int main(void) {
-	setlocale(LC_ALL, "korean"); // «—±πæÓ ƒ⁄µÂ ∆‰¿Ã¡ˆ
+	setlocale(LC_ALL, "korean"); // ÌïúÍµ≠Ïñ¥ ÏΩîÎìú ÌéòÏù¥ÏßÄ
 	int menuCode = 0;
 	int gameCode = 0;
 	srand((unsigned int)time(NULL));
-	//system("mode con cols=100 lines=30"); //ƒ‹º÷√¢ ≈©±‚ ¡∂¿˝
+	//system("mode con cols=100 lines=30"); //ÏΩòÏÜîÏ∞Ω ÌÅ¨Í∏∞ Ï°∞Ï†à
 	while (1) {
 		title();
 		do {
@@ -28,7 +26,7 @@ int main(void) {
 	}
 	/*
 	while (1) {
-		if (_kbhit()) do { key = _getch(); } while (key == 224); //≈∞ ¿‘∑¬πﬁ¿Ω
+		if (_kbhit()) do { key = _getch(); } while (key == 224); //ÌÇ§ ÏûÖÎ†•Î∞õÏùå
 		Sleep(speed);
 	}
 	*/
@@ -36,20 +34,20 @@ int main(void) {
 }
 
 /*
-	Setcolor «‘ºˆ
-	∏≈∞≥∫Øºˆ: color -> ≈ÿΩ∫∆Æ ªˆ ∞·¡§
-	SetConsoleTextAttribute «‘ºˆ »£√‚ -> ≈ÿΩ∫∆Æ º”º∫ º≥¡§(ƒ‹º÷ √¢ ≈ÿΩ∫∆Æ ªˆ, πË∞Ê ªˆ...)
-	GetStdHandle(STD_OUTPUT_HANDLE) «‘ºˆ »£√‚ -> ƒ‹º÷ √¢ ¡¶æÓ
+	Setcolor Ìï®Ïàò
+	Îß§Í∞úÎ≥ÄÏàò: color -> ÌÖçÏä§Ìä∏ ÏÉâ Í≤∞Ï†ï
+	SetConsoleTextAttribute Ìï®Ïàò Ìò∏Ï∂ú -> ÌÖçÏä§Ìä∏ ÏÜçÏÑ± ÏÑ§Ï†ï(ÏΩòÏÜî Ï∞Ω ÌÖçÏä§Ìä∏ ÏÉâ, Î∞∞Í≤Ω ÏÉâ...)
+	GetStdHandle(STD_OUTPUT_HANDLE) Ìï®Ïàò Ìò∏Ï∂ú -> ÏΩòÏÜî Ï∞Ω Ï†úÏñ¥
 */
 void Setcolor(WORD color) {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
 /*
-	gotoxy «‘ºˆ
-	COORD ±∏¡∂√º ªÁøÎ -> √‚∑¬«“ ¿ßƒ° º≥¡§(¡¬«•)
-	2 * x ¿Œ ¿Ã¿Ø¥¬ πÆ¿⁄ ¥‹¿ß ∞ËªÍ √≥∏Æ«œ±‚ ¿ß«ÿº≠
-	SetConsoleCursorPosition «‘ºˆ »£√‚ ƒ‹º÷ √¢¿« ƒøº≠ ¿ßƒ° º≥¡§
+	gotoxy Ìï®Ïàò
+	COORD Íµ¨Ï°∞Ï≤¥ ÏÇ¨Ïö© -> Ï∂úÎ†•Ìï† ÏúÑÏπò ÏÑ§Ï†ï(Ï¢åÌëú)
+	2 * x Ïù∏ Ïù¥Ïú†Îäî Î¨∏Ïûê Îã®ÏúÑ Í≥ÑÏÇ∞ Ï≤òÎ¶¨ÌïòÍ∏∞ ÏúÑÌï¥ÏÑú
+	SetConsoleCursorPosition Ìï®Ïàò Ìò∏Ï∂ú ÏΩòÏÜî Ï∞ΩÏùò Ïª§ÏÑú ÏúÑÏπò ÏÑ§Ï†ï
 */
 void gotoxy(int x, int y, const char* s) {
 	COORD pos = { 2 * x,y };
@@ -58,38 +56,38 @@ void gotoxy(int x, int y, const char* s) {
 }
 
 /*
-	title «‘ºˆ: Ω√¿€ »≠∏È «•Ω√
-	_kbhit() «‘ºˆ: ≈∞∫∏µÂ πˆ∆€ø° ¿÷¥¬ ¿‘∑¬ ∞™¿ª πˆ∏≤
+	title Ìï®Ïàò: ÏãúÏûë ÌôîÎ©¥ ÌëúÏãú
+	_kbhit() Ìï®Ïàò: ÌÇ§Î≥¥Îìú Î≤ÑÌçºÏóê ÏûàÎäî ÏûÖÎ†• Í∞íÏùÑ Î≤ÑÎ¶º
 
 */
 void title(void) {
-	while (_kbhit()) _getch(); //πˆ∆€ø° ¿÷¥¬ ≈∞∞™¿ª πˆ∏≤ 
+	while (_kbhit()) _getch(); //Î≤ÑÌçºÏóê ÏûàÎäî ÌÇ§Í∞íÏùÑ Î≤ÑÎ¶º 
 
-	reset();    //∏  ≈◊µŒ∏Æ∏¶ ±◊∏≤ 
+	reset();    //Îßµ ÌÖåÎëêÎ¶¨Î•º Í∑∏Î¶º 
 	Setcolor(12);
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3, "¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4, "¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5, "¢∆¢∆¢∆     ¢∆¢∆      ¢∆¢∆     ¢∆      ¢∆       ¢∆    ¢∆¢∆ ¢∆¢∆¢∆");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6, "¢∆¢∆¢∆ ¢∆¢∆¢∆ ¢∆¢∆ ¢∆¢∆¢∆¢∆ ¢∆¢∆¢∆¢∆ ¢∆¢∆¢∆ ¢∆¢∆¢∆¢∆¢∆¢∆ ¢∆¢∆¢∆¢∆¢∆ ¢∆ ¢∆¢∆ ¢∆¢∆ ¢∆¢∆¢∆");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7, "¢∆¢∆¢∆     ¢∆¢∆      ¢∆¢∆¢∆¢∆ ¢∆¢∆¢∆¢∆  ¢∆¢∆¢∆¢∆ ¢∆¢∆¢∆¢∆¢∆ ¢∆ ¢∆¢∆ ¢∆¢∆ ¢∆¢∆¢∆");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8, "¢∆¢∆¢∆ ¢∆¢∆¢∆¢∆¢∆¢∆ ¢∆¢∆¢∆ ¢∆¢∆¢∆¢∆¢∆ ¢∆¢∆¢∆¢∆¢∆¢∆  ¢∆¢∆ ¢∆¢∆¢∆¢∆¢∆ ¢∆ ¢∆¢∆ ¢∆¢∆ ¢∆¢∆¢∆");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9, "¢∆¢∆¢∆ ¢∆¢∆¢∆¢∆¢∆¢∆ ¢∆¢∆¢∆ ¢∆¢∆¢∆¢∆¢∆ ¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆ ¢∆ ¢∆¢∆¢∆¢∆¢∆ ¢∆ ¢∆¢∆ ¢∆¢∆ ¢∆¢∆¢∆");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 10, "¢∆¢∆¢∆ ¢∆¢∆¢∆¢∆¢∆¢∆ ¢∆¢∆¢∆ ¢∆¢∆¢∆     ¢∆      ¢∆       ¢∆ ¢∆¢∆    ¢∆¢∆¢∆");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 11, "¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆");
-	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 12, "¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆¢∆");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 3, "‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 4, "‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 5, "‚ñí‚ñí‚ñí     ‚ñí‚ñí      ‚ñí‚ñí     ‚ñí      ‚ñí       ‚ñí    ‚ñí‚ñí ‚ñí‚ñí‚ñí");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 6, "‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí ‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí‚ñí ‚ñí ‚ñí‚ñí ‚ñí‚ñí ‚ñí‚ñí‚ñí");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 7, "‚ñí‚ñí‚ñí     ‚ñí‚ñí      ‚ñí‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí  ‚ñí‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí‚ñí ‚ñí ‚ñí‚ñí ‚ñí‚ñí ‚ñí‚ñí‚ñí");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 8, "‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí  ‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí‚ñí ‚ñí ‚ñí‚ñí ‚ñí‚ñí ‚ñí‚ñí‚ñí");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 9, "‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí ‚ñí ‚ñí‚ñí‚ñí‚ñí‚ñí ‚ñí ‚ñí‚ñí ‚ñí‚ñí ‚ñí‚ñí‚ñí");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 10, "‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí ‚ñí‚ñí‚ñí     ‚ñí      ‚ñí       ‚ñí ‚ñí‚ñí    ‚ñí‚ñí‚ñí");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 11, "‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí");
+	gotoxy(MAP_X + (MAP_WIDTH - 24) / 2, MAP_Y + 12, "‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí‚ñí");
 	Setcolor(2);
 	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 18, " < PRESS ANY KEY TO START > ");
 	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH - 5) / 2, MAP_HEIGHT - 3, "ESC : Quit");
 
 	while (1) {
-		if (_kbhit()) { //≈∞¿‘∑¬πﬁ¿Ω 
+		if (_kbhit()) { //ÌÇ§ÏûÖÎ†•Î∞õÏùå 
 			key = _getch();
 			if (key == ESC) {
 				system("cls");
-				gameExit(); // ESC≈∞∏È ¡æ∑· 
+				gameExit(); // ESCÌÇ§Î©¥ Ï¢ÖÎ£å 
 			}
-			else break; //æ∆¥œ∏È ±◊≥… ∞Ëº” ¡¯«‡ 
+			else break; //ÏïÑÎãàÎ©¥ Í∑∏ÎÉ• Í≥ÑÏÜç ÏßÑÌñâ 
 		}
 		Setcolor(2);
 		gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 18, " < PRESS ANY KEY TO START > ");
@@ -104,51 +102,51 @@ void title(void) {
 	resetMapInner();
 }
 
-//∏  ≈◊µŒ∏Æ ±◊∏Æ¥¬ «‘ºˆ 
+//Îßµ ÌÖåÎëêÎ¶¨ Í∑∏Î¶¨Îäî Ìï®Ïàò 
 
 void drawMap(void) {
 	int i;
 	Setcolor(theme);
 	for (i = 0; i < MAP_WIDTH; i++) {
-		gotoxy(MAP_X + i, MAP_Y, "°·");
+		gotoxy(MAP_X + i, MAP_Y, "‚ñ†");
 	}
 	for (i = MAP_Y + 1; i < MAP_HEIGHT + 1; i++) {
-		gotoxy(MAP_X, i, "°·");
-		gotoxy(MAP_X + MAP_WIDTH - 1, i, "°·");
+		gotoxy(MAP_X, i, "‚ñ†");
+		gotoxy(MAP_X + MAP_WIDTH - 1, i, "‚ñ†");
 	}
 	for (i = 0; i < MAP_WIDTH; i++) {
-		gotoxy(MAP_X + i, MAP_Y + MAP_HEIGHT - 1, "°·");
+		gotoxy(MAP_X + i, MAP_Y + MAP_HEIGHT - 1, "‚ñ†");
 	}
 	fflush(stdout);
 	resetMapInner();
 }
 
-//»≠∏È ¡ˆøÏ±‚ «‘ºˆ
+//ÌôîÎ©¥ ÏßÄÏö∞Í∏∞ Ìï®Ïàò
 void reset(void) {
-	system("cls"); //»≠∏È¿ª ¡ˆøÚ 
-	drawMap(); //∏  ≈◊µŒ∏Æ∏¶ ±◊∏≤
+	system("cls"); //ÌôîÎ©¥ÏùÑ ÏßÄÏõÄ 
+	drawMap(); //Îßµ ÌÖåÎëêÎ¶¨Î•º Í∑∏Î¶º
 }
 
-// »≠∏È ≥ª∫Œ∏∏ ¡ˆøÏ±‚
+// ÌôîÎ©¥ ÎÇ¥Î∂ÄÎßå ÏßÄÏö∞Í∏∞
 void resetMapInner(void) {
 	for (int i = MAP_Y + 1; i < MAP_Y + MAP_HEIGHT - 1; i++) {
 		gotoxy1(MAP_X * 2 + 1, i);
 		printf("                                                                           ");
 	}
 }
-// ∏Òº˚√¢∏∏ ¡ˆøÏ±‚
+// Î™©Ïà®Ï∞ΩÎßå ÏßÄÏö∞Í∏∞
 void resetMapTitle(void) {
 	gotoxy1(MAP_X * 2 + 1, MAP_Y + 1);
 	printf("                                                                           ");
 }
-// ∞‘¿”√¢∏∏ ¡ˆøÏ±‚ 3 ~ MAP_Y + MAP_HEIGHT - 7
+// Í≤åÏûÑÏ∞ΩÎßå ÏßÄÏö∞Í∏∞ 3 ~ MAP_Y + MAP_HEIGHT - 7
 void resetMapMain(void) {
 	for (int i = MAP_Y + 3; i < MAP_Y + MAP_HEIGHT - 6; i++) {
 		gotoxy1(MAP_X * 2 + 1, i);
 		printf("                                                                           ");
 	}
 }
-// ªÛ»£¿€øÎ√¢∏∏ ¡ˆøÏ±‚
+// ÏÉÅÌò∏ÏûëÏö©Ï∞ΩÎßå ÏßÄÏö∞Í∏∞
 void resetMapBottom(void) {
 	for (int i = MAP_Y + MAP_HEIGHT - 5; i < MAP_Y + MAP_HEIGHT - 1; i++) {
 		gotoxy1(MAP_X * 2 + 1, i);
@@ -156,11 +154,11 @@ void resetMapBottom(void) {
 	}
 }
 
-// titlebox «‘ºˆ
+// titlebox Ìï®Ïàò
 void titleBoxDraw(void) {
 	Setcolor(4);
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ");
-	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 3, "‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª");
+	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2, MAP_Y + 9, "‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª");
 }
 
 void gotoxy1(int x, int y) {
@@ -176,7 +174,7 @@ int menuDraw1(void) {
 	menuDraw1Content();
 	menuDraw2Content(2, 7, 7, 7);
 	gotoxy1((MAP_X + 13) * 2, y);
-	printf("¢—\b\b");
+	printf("‚òû\b\b");
 	while (1)
 	{
 		int n = keyControl1();
@@ -190,7 +188,7 @@ int menuDraw1(void) {
 				else if (y == MAP_Y + 15) menuDraw2Content(7, 2, 7, 7);
 				else if (y == MAP_Y + 16) menuDraw2Content(7, 7, 2, 7);
 				gotoxy1((MAP_X + 13) * 2, y);
-				printf("¢—\b\b");
+				printf("‚òû\b\b");
 			}
 			break;
 		}
@@ -203,7 +201,7 @@ int menuDraw1(void) {
 				else if (y == MAP_Y + 16) menuDraw2Content(7, 7, 2, 7);
 				else if (y == MAP_Y + 17) menuDraw2Content(7, 7, 7, 2);
 				gotoxy1((MAP_X + 13) * 2, y);
-				printf("¢—\b\b");
+				printf("‚òû\b\b");
 			}
 			break;
 		}
@@ -224,7 +222,7 @@ void menuDraw1Content(void) {
 	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 1, MAP_Y + 7, "Get out of the underground prison");
 	Setcolor(8);
-	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "°Â  Select from the menu  °Â");
+	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "‚ñº  Select from the menu  ‚ñº");
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
 	printf("**** spacebar to select ****");
 	Setcolor(7);
@@ -233,11 +231,11 @@ void menuDraw1Content(void) {
 void menuDraw2Content(int c1, int c2, int c3, int c4) {
 	Setcolor(c1);
 	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 14);
-	printf("   ∞‘¿”Ω√¿€    START");   // º±≈√«œ∏È ≥≠¿Ãµµ º±≈√ »≠∏È¿∏∑Œ ¿Ãµø
+	printf("   Í≤åÏûÑÏãúÏûë    START");   // ÏÑ†ÌÉùÌïòÎ©¥ ÎÇúÏù¥ÎèÑ ÏÑ†ÌÉù ÌôîÎ©¥ÏúºÎ°ú Ïù¥Îèô
 	if (c1 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 14);
 		Setcolor(7);
-		printf("¢–");
+		printf("‚òú");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 14);
@@ -245,11 +243,11 @@ void menuDraw2Content(int c1, int c2, int c3, int c4) {
 	}
 	Setcolor(c2);
 	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 15);
-	printf("   ∞‘¿”πÊπ˝    RULE");     // ≥≠¿Ãµµ ∫∞ Ω««‡ π◊ ¡∂¿€π˝ √‚∑¬
+	printf("   Í≤åÏûÑÎ∞©Î≤ï    RULE");     // ÎÇúÏù¥ÎèÑ Î≥Ñ Ïã§Ìñâ Î∞è Ï°∞ÏûëÎ≤ï Ï∂úÎ†•
 	if (c2 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 15);
 		Setcolor(7);
-		printf("¢–");
+		printf("‚òú");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 15);
@@ -257,11 +255,11 @@ void menuDraw2Content(int c1, int c2, int c3, int c4) {
 	}
 	Setcolor(c3);
 	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 16);
-	printf("   »Ø∞Êº≥¡§    OPTION");
+	printf("   ÌôòÍ≤ΩÏÑ§Ï†ï    OPTION");
 	if (c3 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 16);
 		Setcolor(7);
-		printf("¢–");
+		printf("‚òú");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 16);
@@ -269,11 +267,11 @@ void menuDraw2Content(int c1, int c2, int c3, int c4) {
 	}
 	Setcolor(c4);
 	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 17);
-	printf("   ¡æ∑·        EXIT");
+	printf("   Ï¢ÖÎ£å        EXIT");
 	if (c4 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 17);
 		Setcolor(7);
-		printf("¢–");
+		printf("‚òú");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 17);
@@ -309,7 +307,7 @@ int keyControl1(void) {
 	case ' ':
 		return SUBMIT;
 	default:
-		return -1; // ¥Ÿ∏• ≈∞∏¶ ¥≠∑∂¿ª ∞ÊøÏ √≥∏Æ
+		return -1; // Îã§Î•∏ ÌÇ§Î•º ÎàåÎ†ÄÏùÑ Í≤ΩÏö∞ Ï≤òÎ¶¨
 	}
 }
 
@@ -317,7 +315,7 @@ void slowPrint(const wchar_t story[][MAX_COLS], int x, int y, int rowcount) {
 	char ch = 0;
 	int x1 = x, y1 = y;
 	Setcolor(7);
-	// ƒ‹º÷ √‚∑¬ ∏µÂ∏¶ ¿Ø¥œƒ⁄µÂ ∏µÂ∑Œ º≥¡§
+	// ÏΩòÏÜî Ï∂úÎ†• Î™®ÎìúÎ•º Ïú†ÎãàÏΩîÎìú Î™®ÎìúÎ°ú ÏÑ§Ï†ï
 	//_setmode(_fileno(stdout), _O_U16TEXT);
 	for (int i = 0; i < rowcount; i++) {
 		if (y1 > MAP_Y + 18) {
@@ -343,16 +341,16 @@ void slowPrint(const wchar_t story[][MAX_COLS], int x, int y, int rowcount) {
 
 void gameExit(void) {
 	Setcolor(2);
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 5, "°·°·°·°·°·°·°·°·  °·°·°·°·°·°·°·°·  °·°·°·°·°·°·°·°·  °·°·°·°·°·°· ");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 6, "°·         °·      °·  °·      °·  °·     °·°·");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 7, "°·    °·°·°·  °·      °·  °·      °·  °·      °·");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 8, "°·      °·  °·      °·  °·      °·  °·     °·°·");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 9, "°·°·°·°·°·°·°·°·  °·°·°·°·°·°·°·°·  °·°·°·°·°·°·°·°·  °·°·°·°·°·°· ");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 13, "°·°·°·°·°·°·°·     °·°·    °·°·    °·°·°·°·°·°·°·°·");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 14, "°·      °·      °·  °·      °·°·      ");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 15, "°·°·°·°·°·°·°·        °·°·       °·°·°·°·°·°·°·°·");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 16, "°·      °·       °·°·       °·°·      ");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 17, "°·°·°·°·°·°·°·       °·°·°·°·      °·°·°·°·°·°·°·°·  °·  °·  °·");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 5, "‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†  ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†  ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†  ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ† ");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 6, "‚ñ†         ‚ñ†      ‚ñ†  ‚ñ†      ‚ñ†  ‚ñ†     ‚ñ†‚ñ†");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 7, "‚ñ†    ‚ñ†‚ñ†‚ñ†  ‚ñ†      ‚ñ†  ‚ñ†      ‚ñ†  ‚ñ†      ‚ñ†");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 8, "‚ñ†      ‚ñ†  ‚ñ†      ‚ñ†  ‚ñ†      ‚ñ†  ‚ñ†     ‚ñ†‚ñ†");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 9, "‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†  ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†  ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†  ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ† ");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 13, "‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†     ‚ñ†‚ñ†    ‚ñ†‚ñ†    ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 14, "‚ñ†      ‚ñ†      ‚ñ†  ‚ñ†      ‚ñ†‚ñ†      ");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 15, "‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†        ‚ñ†‚ñ†       ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 16, "‚ñ†      ‚ñ†       ‚ñ†‚ñ†       ‚ñ†‚ñ†      ");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 17, "‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†       ‚ñ†‚ñ†‚ñ†‚ñ†      ‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†‚ñ†  ‚ñ†  ‚ñ†  ‚ñ†");
 	Setcolor(7);
 	Sleep(1000);
 	system("cls");

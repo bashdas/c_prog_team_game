@@ -2,7 +2,7 @@
 
 
 
-// ░╘└╙ ╚н╕щ ├т╖┬
+// ъ▓МьЮД эЩФый┤ ь╢Ьыае
 int gameDraw(void) {
 	int gameCode = 0, stageCode;
 	titleStory();
@@ -36,26 +36,26 @@ int gameDraw(void) {
 			break;
 		}
 	} while ((gameCode != BACK));
-	return gameCode; // ░╘└╙ ┼м╕о╛ю ╢╟┤┬ ╜╟╞╨ ╜├ HOME ╣▌╚п╟╪╛▀╟╘
+	return gameCode; // ъ▓МьЮД эБ┤ыжмьЦ┤ ыШРыКФ ьЛдэМи ьЛЬ HOME ы░ШэЩШэХ┤ьХ╝эХи
 }
 
 void titleStory(void) {
 	wchar_t titlestr[MAX_ROWS][MAX_COLS] = {
-		L"┐ь╕о└╟ ░╟▒╣└╠┤┬ ╡┐▒╝ ╝╙┐б ║╕╣░└╠",
-		L"└╓┤┘┤┬ ╝╥╜─└╗ ╡ш░э ║╕╣░└╗ ├г└╕╖п",
-		L"╚е└┌╝н ╡┐▒╝ ┼╜╟ш└╗ ╜├└█╟╒┤╧┤┘...",
-		L"▒═╟╤ ║╕╣░└╗ ├г└╕╖п ░╟▒╣└╠┤┬ ┴б┴б",
-		L"└╕╜╗╟╧░э ▒э└║ ░ў└╕╖╬ ╡щ╛ю░й┤╧┤┘.",
-		L"▒╫ ╝°░г... ─Ї!!!!! ├╢─└!",
-		L"╛ю╡Ё╝▒░б ╗¤▒ф ├╢╣о└╠ │╗╖┴┐└┤ї┤╧",
-		L"░╟▒╣└╠┤┬ ┴Ў╟╧░и┐┴┐б ░д╚ў░э╕┐┤╧┤┘.",
-		L"***\'┴Ў╟╧░и┐┴\'***",
-		L"╣ш┼═╕о░б ╢│╛ю┴° ╝╒┴д╡ч ╗ч└╠╖╬",
-		L"┴Ў╟╧░и┐┴└╠╢є┤┬ ▒█▒═░б ║╕└╠░э",
-		L"░╟▒╣└╠┤┬ ▒╫┴ж╛▀ └╠ ╕Ё╡ч ░═└╠",
-		L"╟╘┴д└╠╛·└╜└╗ ▒·┤▌╜└┤╧┤┘",
-		L"░╟▒╣└╠░б ╣л╗ч╚ў ┼╗├т╟╥ ╝Ў └╓╡╡╖╧",
-		L"╡╡┐═┴╓└┌!"
+		L"ьЪ░ыжмьЭШ ъ▒┤ъ╡ньЭ┤ыКФ ыПЩъ╡┤ ьЖНьЧР ы│┤ым╝ьЭ┤",
+		L"ьЮИыЛдыКФ ьЖМьЛЭьЭД ыУгъ│а ы│┤ым╝ьЭД ь░╛ьЬ╝ыЯм",
+		L"эШ╝ьЮРьДЬ ыПЩъ╡┤ эГРэЧШьЭД ьЛЬьЮСэХйыЛИыЛд...",
+		L"ъ╖АэХЬ ы│┤ым╝ьЭД ь░╛ьЬ╝ыЯм ъ▒┤ъ╡ньЭ┤ыКФ ьаРьаР",
+		L"ьЬ╝ьКеэХШъ│а ъ╣КьЭА ъ││ьЬ╝ыбЬ ыУдьЦ┤ъ░СыЛИыЛд.",
+		L"ъ╖╕ ьИЬъ░Д... ь┐╡!!!!! ь▓аь╗е!",
+		L"ьЦ┤ыФФьДаъ░А ьГЭъ╕┤ ь▓аым╕ьЭ┤ ыВ┤ыадьШдыНФыЛИ",
+		L"ъ▒┤ъ╡ньЭ┤ыКФ ьзАэХШъ░РьШеьЧР ъ░ЗэЮИъ│аызЩыЛИыЛд.",
+		L"***\'ьзАэХШъ░РьШе\'***",
+		L"ы░░эД░ыжмъ░А ыЦиьЦ┤ьзД ьЖРьаХыУа ьВмьЭ┤ыбЬ",
+		L"ьзАэХШъ░РьШеьЭ┤ыЭ╝ыКФ ъ╕Аъ╖Аъ░А ы│┤ьЭ┤ъ│а",
+		L"ъ▒┤ъ╡ньЭ┤ыКФ ъ╖╕ьаЬьХ╝ ьЭ┤ ыкиыУа ъ▓ГьЭ┤",
+		L"эХиьаХьЭ┤ьЧИьЭМьЭД ъ╣иыЛльК╡ыЛИыЛд",
+		L"ъ▒┤ъ╡ньЭ┤ъ░А ым┤ьВмэЮИ эГИь╢ЬэХа ьИШ ьЮИыПДыбЭ",
+		L"ыПДьЩАьг╝ьЮР!"
 	};
 	gameMapDraw();
 	gotoxy1(MAP_X * 2 + 2, MAP_Y + 1);
@@ -67,14 +67,14 @@ void titleStory(void) {
 	slowPrint(titlestr, MAP_X * 2 + 4, MAP_Y + 4, 15);
 }
 
-// x └з─б┐б ╡√╢є ╗Ў╣▌└№
+// x ьЬДь╣ШьЧР ыФ░ыЭ╝ ьГЙы░ШьаД
 int modeSelect(void) {
-	int x = MAP_X + (MAP_WIDTH / 2) - 2, y = 24; // ├╩▒т └з─б
+	int x = MAP_X + (MAP_WIDTH / 2) - 2, y = 24; // ь┤Иъ╕░ ьЬДь╣Ш
 	modeSelectMapDraw();
 	modeSelectMapDraw1(2, 7, 7);
 	modeSelectMapDraw2(11, 7, 7);
 	gotoxy1(x, y);
-	printf("в╤\b\b");
+	printf("тШЮ\b\b");
 	Sleep(300);
 	while (1) {
 		int n = keyControl1();
@@ -93,7 +93,7 @@ int modeSelect(void) {
 					modeSelectMapDraw2(7, 14, 7);
 				}
 				gotoxy1(x, y);
-				printf("в╤\b\b");
+				printf("тШЮ\b\b");
 			}
 			break;
 		case RIGHT:
@@ -110,7 +110,7 @@ int modeSelect(void) {
 					modeSelectMapDraw2(7, 7, 12);
 				}
 				gotoxy1(x, y);
-				printf("в╤\b\b");
+				printf("тШЮ\b\b");
 			}
 			break;
 		case BACK:
@@ -130,51 +130,51 @@ int modeSelect(void) {
 	}
 }
 
-// ┼╕└╠╞▓ ╗Ў, easy ╗Ў, normla ╗Ў, hard ╗Ў└╗ └╬└┌╖╬ ╣▐└╜
+// эГАьЭ┤эЛА ьГЙ, easy ьГЙ, normla ьГЙ, hard ьГЙьЭД ьЭ╕ьЮРыбЬ ы░ЫьЭМ
 void modeSelectMapDraw(void) {
 	resetMapTitle();
 	resetMapMain();
 	resetMapBottom();
 	Setcolor(4);
-	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 5, "б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪");
+	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 5, "тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗");
 	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 6, "         GAME   MODE       ");
-	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 7, "б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪б╪");
+	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 7, "тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗тА╗");
 }
 
 void modeSelectMapDraw1(int c1, int c2, int c3) {
 	Setcolor(c1);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 12, "жг----------жд");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 12, "тФМ----------тФР");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 13, "|   EASY   |");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 14, "жж----------же");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 14, "тФФ----------тФШ");
 	Setcolor(c2);
-	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 12, "жг----------жд");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 12, "тФМ----------тФР");
 	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 13, "|  NORMAL  |");
-	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 14, "жж----------же");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 14, "тФФ----------тФШ");
 	Setcolor(c3);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 12, "жг----------жд");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 12, "тФМ----------тФР");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 13, "|   HARD   |");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 14, "жж----------же");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 14, "тФФ----------тФШ");
 	Setcolor(7);
 }
 
 void modeSelectMapDraw2(int c1, int c2, int c3) {
 	Setcolor(c1);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 14, MAP_Y + 22, "(б▄'v'б▄)");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 14, MAP_Y + 22, "(тЧП'v'тЧП)");
 	Setcolor(c2);
-	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2 + 1, MAP_Y + 22, "(б█гр 3б╟б█)");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2 + 1, MAP_Y + 22, "(тЧЛя╜А 3тА▓тЧЛ)");
 	Setcolor(c3);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9 + 1, MAP_Y + 22, "ж▒|грOб╟|ж░");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9 + 1, MAP_Y + 22, "тФЧ|я╜АOтА▓|тФЫ");
 	Setcolor(7);
 }
 
 
 void easyStory(void) {
 	wchar_t easystr[MAX_ROWS][MAX_COLS] = {
-		L"░╟▒╣└╠░б ╡щ░э┐┬ ╝╒└№╡ю└╟ ╣ш┼═╕о░б",
-		L"╛є╕╢ │▓┴Ў ╛╩╛╥┤┘...!",
-		L"╝╒└№╡ю└╠ ▓и┴Ў▒т └№┐б ░ц║ё║┤╡щ└╗",
-		L"╟╟╟╪ ┐н╝ш 2░│╕ж ├г╛╞ ┼╗├т╟╧└┌!",
-		L"╕ё╝√└║ 5░│└╠┤┘!"
+		L"ъ▒┤ъ╡ньЭ┤ъ░А ыУдъ│аьШи ьЖРьаДыУ▒ьЭШ ы░░эД░ыжмъ░А",
+		L"ьЦ╝ызИ ыВиьзА ьХКьХШыЛд...!",
+		L"ьЖРьаДыУ▒ьЭ┤ ъ║╝ьзАъ╕░ ьаДьЧР ъ▓╜ы╣Ды│СыУдьЭД",
+		L"эФ╝эХ┤ ьЧ┤ьЗа 2ъ░Ьые╝ ь░╛ьХД эГИь╢ЬэХШьЮР!",
+		L"ыкйьИиьЭА 5ъ░ЬьЭ┤ыЛд!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -190,12 +190,12 @@ void easyStory(void) {
 
 void normalStory(void) {
 	wchar_t normalstr[MAX_ROWS][MAX_COLS] = {
-		L"╛є╕╢│к ┴Ў│╡└╗▒ю.....",
-		L"╝╒┴д╡ю└╠ ╕╣└╠ ╛ю╡╬┐Ў┴Ў░э ╣ш┐б╝н┤┬",
-		L"▓┐╕г╕д.. ╝╥╕о░б ░ш╝╙ ╡щ╖┴┐┬┤┘.",
-		L"╕ё╝√╡╡ 4░│╣█┐б │▓┴Ў ╛╩╛╥┤┘.",
-		L"╛ю╝н ░ц║ё║┤╡щ└╗ ╟╟╟╪ ┼╗├т╟╧└┌!",
-		L"┐н╝ш╕ж 2░│╕ж ├г╛╞ ┼╗├т╟╧└┌!!"
+		L"ьЦ╝ызИыВШ ьзАыВмьЭДъ╣М.....",
+		L"ьЖРьаХыУ▒ьЭ┤ ызОьЭ┤ ьЦ┤ыСРьЫМьзАъ│а ы░░ьЧРьДЬыКФ",
+		L"ъ╝мые┤ые╡.. ьЖМыжмъ░А ъ│ДьЖН ыУдыадьШиыЛд.",
+		L"ыкйьИиыПД 4ъ░Ьы░ЦьЧР ыВиьзА ьХКьХШыЛд.",
+		L"ьЦ┤ьДЬ ъ▓╜ы╣Ды│СыУдьЭД эФ╝эХ┤ эГИь╢ЬэХШьЮР!",
+		L"ьЧ┤ьЗаые╝ 2ъ░Ьые╝ ь░╛ьХД эГИь╢ЬэХШьЮР!!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -211,13 +211,13 @@ void normalStory(void) {
 
 void hardStory(void) {
 	wchar_t hardstr[MAX_ROWS][MAX_COLS] = {
-		L"░и┐┴┐б ░д╚∙┴Ў ┐└╖б.....",
-		L"╣┘▒∙╝╝╗є└╠ │╩╣л│к ▒╫╕│┤┘.",
-		L"└╠┴ж ╝╒└№╡ю└║ ░┼└╟ ▓и┴о░г┤┘.",
-		L"├╝╖┬└╠ ╣┘┤┌│к ╕ё╝√└╠ 3░│╣█┐б ╛°┤┘.",
-		L"╜├╛▀░б │╨╛ю┴° ░ц║ё║┤╡щ└╗ ╟╟╟╪",
-		L"╛╞└╠┼█└╗ └▀ ╚░┐ы╟╧┐й",
-		L"┐н╝ш 2░│╕ж ╕Ё└╕└┌!"
+		L"ъ░РьШеьЧР ъ░ЗэЮМьзА ьШдыЮШ.....",
+		L"ы░Фъ╣еьД╕ьГБьЭ┤ ыДИым┤ыВШ ъ╖╕ыж╜ыЛд.",
+		L"ьЭ┤ьаЬ ьЖРьаДыУ▒ьЭА ъ▒░ьЭШ ъ║╝ьа╕ъ░ДыЛд.",
+		L"ь▓┤ыаеьЭ┤ ы░ФыЛеыВШ ыкйьИиьЭ┤ 3ъ░Ьы░ЦьЧР ьЧЖыЛд.",
+		L"ьЛЬьХ╝ъ░А ыДУьЦ┤ьзД ъ▓╜ы╣Ды│СыУдьЭД эФ╝эХ┤",
+		L"ьХДьЭ┤эЕЬьЭД ьЮШ эЩЬьЪйэХШьЧм",
+		L"ьЧ┤ьЗа 2ъ░Ьые╝ ыкиьЬ╝ьЮР!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -235,16 +235,16 @@ void clearEasy(void) {
 	resetMapMain();
 	resetMapTitle();
 	Setcolor(2);
-	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 5, "бсбсбсбсбсбсбсбс  бс         бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс");
-	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 6, "бс         бс         бс         бс      бс  бс      бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 7, "бс         бс         бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс");
-	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 8, "бс         бс         бс         бс      бс  бс     бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 9, "бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бс      бс  бс     бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 12, "бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбс    бсбс");
-	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 13, "бс         бс      бс  бс           бс  бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 14, "бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс     бсбс");
-	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 15, "бс         бс      бс         бс     бсбс");
-	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 16, "бсбсбсбсбсбсбсбс  бс      бс  бсбсбсбсбсбсбсбс    бсбсбсбс");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 5, "тЦатЦатЦатЦатЦатЦатЦатЦа  тЦа         тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 6, "тЦа         тЦа         тЦа         тЦа      тЦа  тЦа      тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 7, "тЦа         тЦа         тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 8, "тЦа         тЦа         тЦа         тЦа      тЦа  тЦа     тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 9, "тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦа      тЦа  тЦа     тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 12, "тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦа    тЦатЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 13, "тЦа         тЦа      тЦа  тЦа           тЦа  тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 14, "тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа     тЦатЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 15, "тЦа         тЦа      тЦа         тЦа     тЦатЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 22) / 2, MAP_Y + 16, "тЦатЦатЦатЦатЦатЦатЦатЦа  тЦа      тЦа  тЦатЦатЦатЦатЦатЦатЦатЦа    тЦатЦатЦатЦа");
 	Setcolor(7);
 	Sleep(2000);
 }
@@ -253,24 +253,24 @@ void clearNormal(void) {
 	resetMapMain();
 	resetMapTitle();
 	Setcolor(2);
-	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 5, "бсбсбсбсбсбсбсбс  бс         бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс");
-	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 6, "бс         бс         бс         бс      бс  бс      бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 7, "бс         бс         бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс");
-	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 8, "бс         бс         бс         бс      бс  бс     бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 9, "бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бс      бс  бс     бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 12, "бсбсбсбсбс  бс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 13, "бс   бс  бс  бс      бс  бс      бс  бс   бс   бс  бс      бс  бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 14, "бс   бс  бс  бс      бс  бсбсбсбсбсбсбсбс  бс   бс   бс  бсбсбсбсбсбсбсбс  бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 15, "бс   бс  бс  бс      бс  бс     бс   бс   бс   бс  бс      бс  бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 16, "бс   бсбсбсбс  бсбсбсбсбсбсбсбс  бс     бс   бс   бс   бс  бс      бс  бсбсбсбсбсбсбсбс");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 5, "тЦатЦатЦатЦатЦатЦатЦатЦа  тЦа         тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 6, "тЦа         тЦа         тЦа         тЦа      тЦа  тЦа      тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 7, "тЦа         тЦа         тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 8, "тЦа         тЦа         тЦа         тЦа      тЦа  тЦа     тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 9, "тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦа      тЦа  тЦа     тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 12, "тЦатЦатЦатЦатЦа  тЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 13, "тЦа   тЦа  тЦа  тЦа      тЦа  тЦа      тЦа  тЦа   тЦа   тЦа  тЦа      тЦа  тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 14, "тЦа   тЦа  тЦа  тЦа      тЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦа   тЦа   тЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 15, "тЦа   тЦа  тЦа  тЦа      тЦа  тЦа     тЦа   тЦа   тЦа   тЦа  тЦа      тЦа  тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 28) / 2, MAP_Y + 16, "тЦа   тЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦа     тЦа   тЦа   тЦа   тЦа  тЦа      тЦа  тЦатЦатЦатЦатЦатЦатЦатЦа");
 	Setcolor(7);
 	Sleep(2000);
 }
 
 int clearStory(void) {
 	wchar_t clearstr[MAX_ROWS][MAX_COLS] = {
-		L"╟▐║√└╠ ░╟▒╣└╠╕ж ╚п╟╧░╘ ║ё├с┤┘.",
-		L"┐└╖г │ы╖┬ │б┐б ┼╗├т┐б ╝║░°╟▀┤┘!"
+		L"эЦЗы╣ЫьЭ┤ ъ▒┤ъ╡ньЭ┤ые╝ эЩШэХШъ▓М ы╣Дь╢ШыЛд.",
+		L"ьШдыЮЬ ыЕ╕ыае ыБЭьЧР эГИь╢ЬьЧР ьД▒ъ│╡эЦИыЛд!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -286,20 +286,20 @@ int clearStory(void) {
 }
 void clearStorybg(void) {
 	Setcolor(2);
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 5, "бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбс ");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 6, "бс         бс      бс  бс      бс  бс     бсбс");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 7, "бс    бсбсбс  бс      бс  бс      бс  бс      бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 8, "бс      бс  бс      бс  бс      бс  бс     бсбс");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 9, "бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбсбс ");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 5, "тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦа ");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 6, "тЦа         тЦа      тЦа  тЦа      тЦа  тЦа     тЦатЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 7, "тЦа    тЦатЦатЦа  тЦа      тЦа  тЦа      тЦа  тЦа      тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 8, "тЦа      тЦа  тЦа      тЦа  тЦа      тЦа  тЦа     тЦатЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 9, "тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦа ");
 	Setcolor(7);
 }
 
 
 int failStory(void) {
 	wchar_t failstr[MAX_ROWS][MAX_COLS] = {
-		L"░╟▒╣└╠└╟ ├╝╖┬└╠ ┤┘ ╝╥╕Ё╡╟╛ю",
-		L"┼╗├т┐б ╜╟╞╨╟▀┤┘.",
-		L"╜м╛·┤┘░б ┤┘╜├ ╡╡└№╟╪╛▀░┌┤┘!"
+		L"ъ▒┤ъ╡ньЭ┤ьЭШ ь▓┤ыаеьЭ┤ ыЛд ьЖМыкиыРШьЦ┤",
+		L"эГИь╢ЬьЧР ьЛдэМиэЦИыЛд.",
+		L"ьЙмьЧИыЛдъ░А ыЛдьЛЬ ыПДьаДэХ┤ьХ╝ъ▓аыЛд!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -316,17 +316,17 @@ int failStory(void) {
 
 void failStorybg(void) {
 	Setcolor(4);
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 5, "бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс  бсбсбсбсбс  бс ");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 6, "бс         бс      бс    бс    бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 7, "бсбсбсбсбсбсбсбс  бсбсбсбсбсбсбсбс    бс    бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 8, "бс         бс      бс    бс    бс");
-	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 9, "бс         бс      бс  бсбсбсбсбс  бсбсбсбсбсбс бс бс бс");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 5, "тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦа  тЦа ");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 6, "тЦа         тЦа      тЦа    тЦа    тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 7, "тЦатЦатЦатЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦатЦатЦа    тЦа    тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 8, "тЦа         тЦа      тЦа    тЦа    тЦа");
+	gotoxy(MAP_X + (MAP_WIDTH - 18) / 2, MAP_Y + 9, "тЦа         тЦа      тЦа  тЦатЦатЦатЦатЦа  тЦатЦатЦатЦатЦатЦа тЦа тЦа тЦа");
 	Setcolor(7);
 }
 
 /************************************************************/
 
-// ├╝╖┬ [└№┐к║п╝Ў]
+// ь▓┤ыае [ьаДьЧны│АьИШ]
 
 
 
@@ -336,7 +336,7 @@ void failStorybg(void) {
 
 
 
-// BACK, NORMAL, FAIL ╣▌╚п // ╟╧╞о 4░│ ╛Є░э Clear
+// BACK, NORMAL, FAIL ы░ШэЩШ // эХШэК╕ 4ъ░Ь ьЦ╗ъ│а Clear
 int easyMode(void) {
 	int keyvalue; // BACK, -1
 	gameMapDraw();
@@ -344,10 +344,10 @@ int easyMode(void) {
 	gotoxy(MAP_X + 1, MAP_Y + 1, "EASY");
 	HP = 0;
 	timek = 0;
-	keyvalue = gameplay(); // gameplay╕ж ╜╟╟р. HP_print.
+	keyvalue = gameplayEasy(); // gameplayые╝ ьЛдэЦЙ. HP_print.
 
 	
-	if (keyvalue == BACK) return BACK; // modeSelct╖╬ ║╣▒═
+	if (keyvalue == BACK) return BACK; // modeSelctыбЬ ы│╡ъ╖А
 	if (keyvalue == CLEAR) return NORMAL;
 	if (keyvalue == FAIL) return BACK;
 	
@@ -358,7 +358,7 @@ int easyMode(void) {
 
 
 
-// BACK, HARD, FAIL ╣▌╚п
+// BACK, HARD, FAIL ы░ШэЩШ
 int normalMode(void) {
 	int keyvalue;
 	gameMapDraw();
@@ -368,13 +368,13 @@ int normalMode(void) {
 
 	keyvalue = gameplay();
 	
-	if (keyvalue == BACK) return BACK; // modeSelct╖╬ ║╣▒═
+	if (keyvalue == BACK) return BACK; // modeSelctыбЬ ы│╡ъ╖А
 	if (keyvalue == CLEAR) return HARD;
 	if (keyvalue == FAIL) return BACK;
 	return 0;
 }
 
-// BACK, CLEAR, FAIL ╣▌╚п
+// BACK, CLEAR, FAIL ы░ШэЩШ
 int hardMode(void) {
 	int keyvalue;
 	gameMapDraw();
@@ -384,7 +384,7 @@ int hardMode(void) {
 
 
 	keyvalue = gameplay();
-	if (keyvalue == BACK) return BACK; // modeSelct╖╬ ║╣▒═
+	if (keyvalue == BACK) return BACK; // modeSelctыбЬ ы│╡ъ╖А
 	if (keyvalue == CLEAR) return CLEAR;
 	if (keyvalue == FAIL) return BACK;
 	return 0;
@@ -395,10 +395,10 @@ void gameMapDraw(void) {
 	resetMapInner();
 	Setcolor(theme);
 	for (i = 1; i < MAP_WIDTH - 1; i++) {
-		gotoxy(MAP_X + i, MAP_Y + 2, "бс");
+		gotoxy(MAP_X + i, MAP_Y + 2, "тЦа");
 	}
 	for (i = 1; i < MAP_WIDTH - 1; i++) {
-		gotoxy(MAP_X + i, MAP_Y + MAP_HEIGHT - 6, "бс");
+		gotoxy(MAP_X + i, MAP_Y + MAP_HEIGHT - 6, "тЦа");
 	}
 }
 
@@ -409,7 +409,7 @@ void HP_print(int HP){
 	{
 		Setcolor(7);
 		
-		gotoxy(MAP_X + MAP_WIDTH - 11, MAP_Y + 1, " SCORE:"); //HP╟е╜├
+		gotoxy(MAP_X + MAP_WIDTH - 11, MAP_Y + 1, " SCORE:"); //HPэСЬьЛЬ
 
 	}
 	Setcolor(4);
@@ -421,30 +421,30 @@ void HP_print(int HP){
 		Setcolor(7);
 		break;
 	case 1:
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "      "); //HP╟е╜├
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " в╛"); //HP╟е╜├
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "      "); //HPэСЬьЛЬ
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " тЩе"); //HPэСЬьЛЬ
 		Setcolor(7);
 		break;
 
 	case 2:
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "        "); //HP╟е╜├
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "        "); //HPэСЬьЛЬ
 
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1 , " в╛ в╛"); //HP╟е╜├
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1 , " тЩе тЩе"); //HPэСЬьЛЬ
 		Setcolor(7);
 		break;
 	case 3:
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "           "); //HP╟е╜├
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " в╛ в╛ в╛"); //HP╟е╜├
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "           "); //HPэСЬьЛЬ
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " тЩе тЩе тЩе"); //HPэСЬьЛЬ
 		Setcolor(7);
 		break;
 	case 4:
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "           "); //HP╟е╜├
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " в╛ в╛ в╛ в╛"); //HP╟е╜├
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "           "); //HPэСЬьЛЬ
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " тЩе тЩе тЩе тЩе"); //HPэСЬьЛЬ
 		Setcolor(7);
 		break;
 	case 5:
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "           "); //HP╟е╜├
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " в╛ в╛ в╛ в╛ в╛"); //HP╟е╜├
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "           "); //HPэСЬьЛЬ
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " тЩе тЩе тЩе тЩе тЩе"); //HPэСЬьЛЬ
 		Setcolor(7); 
 		break;
 	

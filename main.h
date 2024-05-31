@@ -15,7 +15,7 @@
 
 /* main */
 
-// Å° °ª Á¤ÀÇ  //
+// í‚¤ ê°’ ì •ì˜  //
 #define LEFT1 75
 #define RIGHT1 77
 #define UP1 72
@@ -24,7 +24,7 @@
 #define BACK 113
 #define ESC 27
 
-// MAP °ª
+// MAP ê°’
 #define MAP_X 11 // 3 2
 #define MAP_Y 2
 #define MAP_WIDTH 39  // 30 20
@@ -35,7 +35,7 @@
 #define DOWN 1
 #define LEFT 2
 #define RIGHT 3
-#define SUBMIT 4 // ¼±ÅÃ(Å°)
+#define SUBMIT 4 // ì„ íƒ(í‚¤)
 
 // stoty cols, rows
 #define MAX_ROWS 16
@@ -53,32 +53,32 @@ void timer(void);
 
 void Setcolor(WORD color);
 void gotoxy(int x, int y, const char* s);
-void title(void);				// °ÔÀÓ ½ÃÀÛÈ­¸é 
-void reset(void);				// °ÔÀÓÀ» ÃÊ±âÈ­
-void resetMapInner(void);		// ¸Ê Å×µÎ¸® ³»ºÎ¸¸ Áö¿ò
-void resetMapTitle(void);		// ¸ñ¼ûÃ¢¸¸ Áö¿ò
-void resetMapMain(void);		// °ÔÀÓÃ¢¸¸ Áö¿ò
-void resetMapBottom(void);		// »óÈ£ÀÛ¿ëÃ¢¸¸ Áö¿ò
-void drawMap(void);				// °ÔÀÓÆÇ Å×µÎ¸®¸¦ ±×¸² 
-void titleBoxDraw(void);		// titlebox¸¦ ±×¸²
+void title(void);				// ê²Œì„ ì‹œì‘í™”ë©´ 
+void reset(void);				// ê²Œì„ì„ ì´ˆê¸°í™”
+void resetMapInner(void);		// ë§µ í…Œë‘ë¦¬ ë‚´ë¶€ë§Œ ì§€ì›€
+void resetMapTitle(void);		// ëª©ìˆ¨ì°½ë§Œ ì§€ì›€
+void resetMapMain(void);		// ê²Œì„ì°½ë§Œ ì§€ì›€
+void resetMapBottom(void);		// ìƒí˜¸ì‘ìš©ì°½ë§Œ ì§€ì›€
+void drawMap(void);				// ê²Œì„íŒ í…Œë‘ë¦¬ë¥¼ ê·¸ë¦¼ 
+void titleBoxDraw(void);		// titleboxë¥¼ ê·¸ë¦¼
 void gotoxy1(int x, int y);
-int menuDraw1(void);			// BACK, y- 15(1~4) ¹İÈ¯
+int menuDraw1(void);			// BACK, y- 15(1~4) ë°˜í™˜
 void menuDraw1Content(void);
 void menuDraw2Content(int c1, int c2, int c3, int c4);
-int keyControl1(void);			// keyboard value ¹İÈ¯
+int keyControl1(void);			// keyboard value ë°˜í™˜
 void slowPrint(const wchar_t story[][MAX_COLS], int x, int y, int rowcount);
-void gameExit(void);			// °ÔÀÓ ²ô±âÀü¿¡ º¸¿©ÁÖ´Â È­¸é
+void gameExit(void);			// ê²Œì„ ë„ê¸°ì „ì— ë³´ì—¬ì£¼ëŠ” í™”ë©´
 
 
 /* game */
-#define HOME 5					// ½ºÅ×ÀÌÁö ¼º°ø ¶Ç´Â ½ÇÆĞ ½Ã ¸ŞÀÎÀ¸·Î º¹±Í
-#define CLEAR 7                // ½ºÅ×ÀÌÁö ¼º°ø
-#define FAIL 6                // ½ºÅ×ÀÌÁö ½ÇÆĞ
-int gameDraw(void);				// HOME ¹İÈ¯
+#define HOME 5					// ìŠ¤í…Œì´ì§€ ì„±ê³µ ë˜ëŠ” ì‹¤íŒ¨ ì‹œ ë©”ì¸ìœ¼ë¡œ ë³µê·€
+#define CLEAR 7                // ìŠ¤í…Œì´ì§€ ì„±ê³µ
+#define FAIL 6                // ìŠ¤í…Œì´ì§€ ì‹¤íŒ¨
+int gameDraw(void);				// HOME ë°˜í™˜
 void titleStory(void);
-int modeSelect(void);			// EASY(0), NORMAL(1), HARD(1) ¹İÈ¯
+int modeSelect(void);			// EASY(0), NORMAL(1), HARD(1) ë°˜í™˜
 void modeSelectMapDraw(void);
-void modeSelectMapDraw1(int c1, int c2, int c3);  // ÄÃ·¯»ö ¸Å°³º¯¼ö
+void modeSelectMapDraw1(int c1, int c2, int c3);  // ì»¬ëŸ¬ìƒ‰ ë§¤ê°œë³€ìˆ˜
 void modeSelectMapDraw2(int c1, int c2, int c3);
 void easyStory(void);
 void normalStory(void);
@@ -89,64 +89,64 @@ int clearStory(void);
 void clearStorybg(void);
 int failStory(void);
 void failStorybg(void);
-int easyMode(void);				// BACK, NORMAL, FAIL ¹İÈ¯
-int normalMode(void);			// BACK, HARD, FAIL ¹İÈ¯
-int hardMode(void);				// BACK, CLEAR, FAIL ¹İÈ¯
+int easyMode(void);				// BACK, NORMAL, FAIL ë°˜í™˜
+int normalMode(void);			// BACK, HARD, FAIL ë°˜í™˜
+int hardMode(void);				// BACK, CLEAR, FAIL ë°˜í™˜
 void gameMapDraw(void);
 
 
 /* player */
 
 //*******************************************************************************************
-void player_crush(void); // strider°ú strider1 Ãæµ¹ °¨Áö. HP Á¶Á¤
+void player_crush(void); // striderê³¼ strider1 ì¶©ëŒ ê°ì§€. HP ì¡°ì •
 
 void HP_print(int HP);
 int HP;
 
-   // Àü¿ªº¯¼ö HPÀÇ °ª¿¡ µû¶ó HP¸¦ ´Ù¸£°Ô Ãâ·ÂÇÔ. HP=0ÀÌ¸é game_over(). speedµµ Ãâ·Â °¡´É
-int move(int dir);       // ÇÃ·¹ÀÌ¾îÀÇ È°µ¿ ¹üÀ§ Á¤ÀÇ
-// ÇÃ·¹ÀÌ¾îÀÇ ¹æÇâÅ°¿¡ µû¶ó ÇÃ·¹ÀÌ¾î¸¦ Ãâ·ÂÇÔ
-// player_crush(), item0_crush(),  time0a_crush(), item1_crush(), item_crush()·Î Ãæµ¹ ÆÇ´Ü
+   // ì „ì—­ë³€ìˆ˜ HPì˜ ê°’ì— ë”°ë¼ HPë¥¼ ë‹¤ë¥´ê²Œ ì¶œë ¥í•¨. HP=0ì´ë©´ game_over(). speedë„ ì¶œë ¥ ê°€ëŠ¥
+int move(int dir);       // í”Œë ˆì´ì–´ì˜ í™œë™ ë²”ìœ„ ì •ì˜
+// í”Œë ˆì´ì–´ì˜ ë°©í–¥í‚¤ì— ë”°ë¼ í”Œë ˆì´ì–´ë¥¼ ì¶œë ¥í•¨
+// player_crush(), item0_crush(),  time0a_crush(), item1_crush(), item_crush()ë¡œ ì¶©ëŒ íŒë‹¨
 
 
 //*******************************************************************************************
 
-void reset_stage(void);  // HP, ¹æÇâ, ¼Óµµ, ±æÀÌ, ÃÊ(second) ÃÊ±âÈ­. ÇÃ·¹ÀÌ¾î ½ÃÀÛ À§Ä¡ ÃÊ±â
+void reset_stage(void);  // HP, ë°©í–¥, ì†ë„, ê¸¸ì´, ì´ˆ(second) ì´ˆê¸°í™”. í”Œë ˆì´ì–´ ì‹œì‘ ìœ„ì¹˜ ì´ˆê¸°
 
-   // °¢ ½ºÅ×ÀÌÁö Á¾·á ÇÔ¼ö. ?????
-
-//*******************************************************************************************
-
-/* item, °æºñº´ »ı¼º ÇÔ¼ö */
+   // ê° ìŠ¤í…Œì´ì§€ ì¢…ë£Œ í•¨ìˆ˜. ?????
 
 //*******************************************************************************************
 
-void strider(void);       // °æºñº´1 Ãâ·Â. ½ÃÀÛ À§Ä¡ Á¤ÇÔ
-void move_strider(void);  //  °æºñº´1 ÀÌµ¿ ÇÔ¼ö. 
-
-void strider1(void);     // °æºñº´ 2 Ãâ·Â. ½ÃÀÛ À§Ä¡ Á¤ÇÔ. 
-void move_strider1(void);  // °æºñº´ 2 ÀÌµ¿ ÇÔ¼ö. 
+/* item, ê²½ë¹„ë³‘ ìƒì„± í•¨ìˆ˜ */
 
 //*******************************************************************************************
 
-void item0(void);      // ¾ÆÀÌÅÛ(°ÔÀÓ¼Óµµ Áõ°¡ +)
-void item0_crush();    // ÇÃ·¹ÀÌ¾î, striderµîµî°ú Ãæµ¹ ÆÇ´Ü. ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹ÇÏ¸é speed°ª Á¶Á¤. 
-//³ª¸ÓÁö °æ¿ì´Â ÀçÃâ·Â
-void item0a(void);     // ¾ÆÀÌÅÛa(°ÔÀÓ¼Óµµ Áõ°¡ +)
-void item0a_crush();   // ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹ ½Ã speed °ª Áõ°¡. ³ª¸ÓÁö °æ¿ì¿¡´Â ÀçÃâ·Â.
-// strider, strider1°ú Ãæµ¹, ÀçÃâ·Â
+void strider(void);       // ê²½ë¹„ë³‘1 ì¶œë ¥. ì‹œì‘ ìœ„ì¹˜ ì •í•¨
+void move_strider(void);  //  ê²½ë¹„ë³‘1 ì´ë™ í•¨ìˆ˜. 
+
+void strider1(void);     // ê²½ë¹„ë³‘ 2 ì¶œë ¥. ì‹œì‘ ìœ„ì¹˜ ì •í•¨. 
+void move_strider1(void);  // ê²½ë¹„ë³‘ 2 ì´ë™ í•¨ìˆ˜. 
 
 //*******************************************************************************************
 
-void item1(void);    // ¾ÆÀÌÅÛ(°ÔÀÓ¼Óµµ °¨¼Ò-)
-void item1_crush(void); // ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹½Ã speed °ª °¨¼Ò. ³ª¸ÓÁö ¸ğµç °æ¿ì¿¡¼­´Â ÀçÃâ·Â
+void item0(void);      // ì•„ì´í…œ(ê²Œì„ì†ë„ ì¦ê°€ +)
+void item0_crush();    // í”Œë ˆì´ì–´, striderë“±ë“±ê³¼ ì¶©ëŒ íŒë‹¨. í”Œë ˆì´ì–´ì™€ ì¶©ëŒí•˜ë©´ speedê°’ ì¡°ì •. 
+//ë‚˜ë¨¸ì§€ ê²½ìš°ëŠ” ì¬ì¶œë ¥
+void item0a(void);     // ì•„ì´í…œa(ê²Œì„ì†ë„ ì¦ê°€ +)
+void item0a_crush();   // í”Œë ˆì´ì–´ì™€ ì¶©ëŒ ì‹œ speed ê°’ ì¦ê°€. ë‚˜ë¨¸ì§€ ê²½ìš°ì—ëŠ” ì¬ì¶œë ¥.
+// strider, strider1ê³¼ ì¶©ëŒ, ì¬ì¶œë ¥
 
 //*******************************************************************************************
 
-/* °ãÄ¡´Â ¹®Á¦¸¦ ÇØ°á.¾ÆÀÌÅÛ ÀçÃâ·Â*/
+void item1(void);    // ì•„ì´í…œ(ê²Œì„ì†ë„ ê°ì†Œ-)
+void item1_crush(void); // í”Œë ˆì´ì–´ì™€ ì¶©ëŒì‹œ speed ê°’ ê°ì†Œ. ë‚˜ë¨¸ì§€ ëª¨ë“  ê²½ìš°ì—ì„œëŠ” ì¬ì¶œë ¥
 
-void item(void);         // ¾ÆÀÌÅÛ(strider²¿¸® ±æÀÌ Áõ°¡)
-void item_crush(void);   // ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹ ½Ã length +4. ³ª¸ÓÁö °æ¿ì¿¡¼­´Â ÀçÃâ·Â. 
+//*******************************************************************************************
+
+/* ê²¹ì¹˜ëŠ” ë¬¸ì œë¥¼ í•´ê²°.ì•„ì´í…œ ì¬ì¶œë ¥*/
+
+void item(void);         // ì•„ì´í…œ(striderê¼¬ë¦¬ ê¸¸ì´ ì¦ê°€)
+void item_crush(void);   // í”Œë ˆì´ì–´ì™€ ì¶©ëŒ ì‹œ length +4. ë‚˜ë¨¸ì§€ ê²½ìš°ì—ì„œëŠ” ì¬ì¶œë ¥. 
 
 //*******************************************************************************************
 
@@ -162,27 +162,27 @@ extern int theme;
 
 
 /*
-0	: °ËÀº»ö
-1	: ÆÄ¶õ»ö
-2	: ÃÊ·Ï»ö
-3	: Ã»·Ï»ö
-4	: »¡°£»ö
-5	: ÀÚÁÖ»ö
-6	: ³ë¶õ»ö
-7	: Èò»ö
-8	: È¸»ö
-9	: ¹àÀº ÆÄ¶õ»ö
-10	: ¹àÀº ÃÊ·Ï»ö
-11	: ¹àÀº Ã»·Ï»ö
-12	: ¹àÀº »¡°£»ö
-13	: ¹àÀº ÀÚÁÖ»ö
-14	: ¹àÀº ³ë¶õ»ö
-15	: ¹àÀº Èò»ö
+0	: ê²€ì€ìƒ‰
+1	: íŒŒë€ìƒ‰
+2	: ì´ˆë¡ìƒ‰
+3	: ì²­ë¡ìƒ‰
+4	: ë¹¨ê°„ìƒ‰
+5	: ìì£¼ìƒ‰
+6	: ë…¸ë€ìƒ‰
+7	: í°ìƒ‰
+8	: íšŒìƒ‰
+9	: ë°ì€ íŒŒë€ìƒ‰
+10	: ë°ì€ ì´ˆë¡ìƒ‰
+11	: ë°ì€ ì²­ë¡ìƒ‰
+12	: ë°ì€ ë¹¨ê°„ìƒ‰
+13	: ë°ì€ ìì£¼ìƒ‰
+14	: ë°ì€ ë…¸ë€ìƒ‰
+15	: ë°ì€ í°ìƒ‰
 */
 
 
 /* option */
-// »ö ¹Ù²Ü º¯¼ö ÃßÈÄ¿¡
+// ìƒ‰ ë°”ê¿€ ë³€ìˆ˜ ì¶”í›„ì—
 int setTheme(void);
 int setMusic(void);
 void selectMusicContent(void);
@@ -198,32 +198,32 @@ void initOption(void);
 /* play&item.c */
 
 /* pause.c */
-void pause(void);   // pÅ°¸¦ ´­·¶À» °æ¿ì °ÔÀÓÀ» ÀÏ½Ã Á¤ÁöÇÑ´Ù. 
+void pause(void);   // pí‚¤ë¥¼ ëˆŒë €ì„ ê²½ìš° ê²Œì„ì„ ì¼ì‹œ ì •ì§€í•œë‹¤. 
 
 /* playersight4 */
-#define MAX_PLAYERS 1 // ÇÃ·¹ÀÌ¾î ¼ö
-#define MAX_ITEMS 5 // ¾ÆÀÌÅÛ ¼ö
+#define MAX_PLAYERS 1 // í”Œë ˆì´ì–´ ìˆ˜
+#define MAX_ITEMS 5 // ì•„ì´í…œ ìˆ˜
 
-#define MAX_ITEMS_NAME 10 // ¾ÆÀÌÅÛ ÀÌ¸§ ±æÀÌ(NULL Æ÷ÇÔ)
-#define PLAYER_X MAP_X * 2 + 7  // Ä³¸¯ÅÍÀÇ X ÁÂÇ¥
-#define PLAYER_Y MAP_HEIGHT / 2 + 5   // Ä³¸¯ÅÍÀÇ Y ÁÂÇ¥
+#define MAX_ITEMS_NAME 10 // ì•„ì´í…œ ì´ë¦„ ê¸¸ì´(NULL í¬í•¨)
+#define PLAYER_X MAP_X * 2 + 7  // ìºë¦­í„°ì˜ X ì¢Œí‘œ
+#define PLAYER_Y MAP_HEIGHT / 2 + 5   // ìºë¦­í„°ì˜ Y ì¢Œí‘œ
 
 
 struct player
 {
-    int x;	// Ä³¸¯ÅÍ xÁÂÇ¥
-    int y;  // Ä³¸¯ÅÍ yÁÂÇ¥
-    int sw;	// Ä³¸¯ÅÍ ½Ã¾ß³Êºñ ³ë¸»
-    int sh;	// Ä³¸¯ÅÍ ½Ã¾ß³ôÀÌ ³ë¸»
-    int swh; // Ä³¸¯ÅÍ ½Ã¾ß³Êºñ ÇÏµå
-    int shh; // Ä³¸¯ÅÍ ½Ã¾ß³ôÀÌ ÇÏµå
+    int x;	// ìºë¦­í„° xì¢Œí‘œ
+    int y;  // ìºë¦­í„° yì¢Œí‘œ
+    int sw;	// ìºë¦­í„° ì‹œì•¼ë„ˆë¹„ ë…¸ë§
+    int sh;	// ìºë¦­í„° ì‹œì•¼ë†’ì´ ë…¸ë§
+    int swh; // ìºë¦­í„° ì‹œì•¼ë„ˆë¹„ í•˜ë“œ
+    int shh; // ìºë¦­í„° ì‹œì•¼ë†’ì´ í•˜ë“œ
 };
 
 struct items
 {
-    int x;	// ¾ÆÀÌÅÛ xÁÂÇ¥
-    int y;  // ¾ÆÀÌÅÛ yÁÂÇ¥
-    char skill[MAX_ITEMS_NAME]; // ¾ÆÀÌÅÛ ´É·Â
+    int x;	// ì•„ì´í…œ xì¢Œí‘œ
+    int y;  // ì•„ì´í…œ yì¢Œí‘œ
+    char skill[MAX_ITEMS_NAME]; // ì•„ì´í…œ ëŠ¥ë ¥
 };
 
 
@@ -242,3 +242,9 @@ int movePlayer(struct player* player_info, struct items* item_array);
 void Itemcoord(struct items* item, struct player* player);
 int gameplay(void);
 int isClear(struct items* item_array);
+
+//*******************************************************************************************
+//easyëª¨ë“œ ê²Œì„ í•¨ìˆ˜
+int gameplayEasy(void); 
+int playermoveEasy(struct player* player_info, struct items* item_array);
+int itemeatEasy(int playerx, int playery, struct items* item_array);

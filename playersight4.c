@@ -16,6 +16,13 @@ void drawPlayer(int x, int y) {
     Setcolor(7);
 }
 
+void removePlayer(int x, int y) {
+    gotoxy1(x, y);
+    Setcolor(4);
+    printf(" ");
+    Setcolor(7);
+}
+
 /*
 캐릭터 시야 그리기
   - 캐릭터 좌표 위치에서 일정 거리만큼 띄어지게 그리기

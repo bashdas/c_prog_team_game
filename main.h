@@ -181,13 +181,13 @@ void HP_print(int HP);
 
 /* ************ strider.c ************ */
 void stridercoord(struct strider* strider, struct player player);
-void drawLRStrider(int x, int y, int tail, int right, int left);
-void removeLRStrider(int x, int y, int tail, int right, int left);
-void moveLRStrider(struct strider* strider_info, int** pptail);
-void drawUDStrider(int x, int y, int tail, int upper, int bottom);
-void removeUDStrider(int x, int y, int tail, int upper, int bottom);
-void moveUDStrider(struct strider* strider_info, int** pptail);
-void CDStrider(int px, int py, struct strider* strider_info, int tail);
+void drawLRStrider(int x, int y, int right, int left);
+void removeLRStrider(int x, int y, int right, int left);
+void moveLRStrider(struct strider* strider_info);
+void drawUDStrider(int x, int y, int upper, int bottom);
+void removeUDStrider(int x, int y, int upper, int bottom);
+void moveUDStrider(struct strider* strider_info);
+void CDStrider(int px, int py, struct strider* strider_info);
 
 
 /* ************ player.c ************ */

@@ -70,17 +70,6 @@ void judge_easy_item(int i)
 {
     switch (i)
     {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
-        printf("(-. - ) 꽝! 열쇠 위치가 바뀌네요");
-        Sleep(500);
-        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
-        printf("                                  ");
-        break;
     case 5:
     case 6:
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
@@ -88,7 +77,13 @@ void judge_easy_item(int i)
         Sleep(500);
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
         printf("                  ");
+        break;
     default:
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("(-. - ) 꽝! 열쇠 위치가 바뀌네요");
+        Sleep(500);
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("                                  ");
         break;
 
     };

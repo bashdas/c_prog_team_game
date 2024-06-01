@@ -513,9 +513,12 @@ int playermoveEasy(struct player* player_info, struct items* item_array)
             break;
         }
 
-
+        for (int i = 0; i < MAX_ITEMS; i++) {
+            gotoxy1(0, 7 + i);
+            printf("%d] (%d, %d) %s\n", i + 1, item_array[i].x, item_array[i].y, item_array[i].skill);
+        };
         itemeatEasy(playerx, playery, item_array);
-        timek = timek + 1;
+        timek = timek + 0.25;
 
         if (isClear(item_array) == CLEAR_V) return CLEAR_V;
 

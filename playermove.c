@@ -355,7 +355,7 @@ int movePlayer(struct player* player_info, struct items* item_array, struct stri
         CDStrider(playerx, playery, strider_info, *ptail);
 
 
-        timek = timek + 0.25;
+        timek = timek +1;
 
         /* 참고 하려고 적음 나중에 삭제 해야함
         gotoxy1(0, 0);
@@ -442,7 +442,7 @@ int playermoveNormal(struct player* player_info, struct items* item_array, struc
         CDStrider(playerx, playery, strider_info, *ptail);
         itemeatEasy(playerx, playery, item_array);
         eatItemStrider(strider_info, item_array, *ptail);
-        timek = timek + 0.25;
+        timek = timek + 1;
         gotoxy1(0, 0);
         printf("PLAYER: %d %d ", playerx, playery);
         gotoxy1(0, 2);

@@ -32,8 +32,6 @@ void initItem(struct items* item_array, int playerx, int playery, int i) {
     item_array[i].y = 0;
     strcpy_s(item_array[i].skill, sizeof(item_array[i].skill), "None");
 
-    judge_item(i);
-
     removeItem(item_array[i].x, item_array[i].y);
     drawPlayer(playerx, playery);
 }
@@ -101,6 +99,7 @@ void eatItem(struct player player_info, struct items* item_array, int playerx, i
 
             if (item_array[i].x == playerx && item_array[i].y == playery) {
                 // 충돌 시 배열 0,0,None로 초기화, 아이템 지우고 캐릭터 다시 그리기
+                judge_item(i);
                 initItem(item_array, playerx, playery, i);
 
             }

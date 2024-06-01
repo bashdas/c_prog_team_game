@@ -3,7 +3,7 @@
 void drawItem(int x, int y) {
     gotoxy1(x, y);
     Setcolor(9);
-    printf("¡Ú");
+    printf("â˜…");
     Setcolor(15);
 }
 
@@ -26,7 +26,7 @@ void Itemcoord(struct items* item, struct player player) {
     item->y = y;
 }
 
-// ¾ÆÀÌÅÛÀÌ Ãæµ¹µÇ¾úÀ» ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+// ì•„ì´í…œì´ ì¶©ëŒë˜ì—ˆì„ ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
 void initItem(struct items* item_array, int playerx, int playery, int i) {
     item_array[i].x = 0;
     item_array[i].y = 0;
@@ -38,28 +38,49 @@ void initItem(struct items* item_array, int playerx, int playery, int i) {
     drawPlayer(playerx, playery);
 }
 
-// Àü´Ş¹ŞÀº i°ª¿¡ µû¶ó¼­ ´Ù¸¥ °á°ú¸¦ Ãâ·ÂÇÏ´Â ÇÔ¼ö
+// ì „ë‹¬ë°›ì€ iê°’ì— ë”°ë¼ì„œ ë‹¤ë¥¸ ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 
 void judge_item(int i)
 {
     switch (i)
     {
     case 0:
-        timek += 12; // ¹èÅÍ¸® °¨¼Ò
+        timek += 12; // ë°°í„°ë¦¬ ê°ì†Œ
         break;
     case 1:
-        HP += 1;  // HP°¡ Áõ°¡ÇÑ´Ù.
+        HP += 1;  // HPê°€ ì¦ê°€í•œë‹¤.
         break;
 
 
     case 2:
     case 3:
-        timek -= 20; // ¹èÅÍ¸® Áõ°¡ 
+        timek -= 20; // ë°°í„°ë¦¬ ì¦ê°€ 
         break;
 
     case 4:
-        break; // length Áõ°¡ (hard¸ğµå¿¡¼­¸¸,,,,)
+        break; // length ì¦ê°€ (hardëª¨ë“œì—ì„œë§Œ,,,,)
 
+    default:
+        break;
+
+    };
+}
+
+void judge_easy_item(int i)
+{
+    switch (i)
+    {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("(-. - ) ê½ì´ë„¤ìš”~");
+        Sleep(500);
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("                 ");
+        break;
     default:
         break;
 
@@ -74,17 +95,17 @@ void eatItem(struct player player_info, struct items* item_array, int playerx, i
         if (item_array[i].x <= playerx + player_info.sw && item_array[i].x >= playerx - player_info.sw
             && item_array[i].y <= playery + player_info.sh && item_array[i].y >= playery - player_info.sh)
         {
-            drawItem(item_array[i].x, item_array[i].y); // ½Ã¾ß ¹üÀ§¿¡ µé¾î¿À¸é ¾ÆÀÌÅÛ Ãâ·Â
+            drawItem(item_array[i].x, item_array[i].y); // ì‹œì•¼ ë²”ìœ„ì— ë“¤ì–´ì˜¤ë©´ ì•„ì´í…œ ì¶œë ¥
 
             if (item_array[i].x == playerx && item_array[i].y == playery) {
-                // Ãæµ¹ ½Ã ¹è¿­ 0,0,None·Î ÃÊ±âÈ­, ¾ÆÀÌÅÛ Áö¿ì°í Ä³¸¯ÅÍ ´Ù½Ã ±×¸®±â
+                // ì¶©ëŒ ì‹œ ë°°ì—´ 0,0,Noneë¡œ ì´ˆê¸°í™”, ì•„ì´í…œ ì§€ìš°ê³  ìºë¦­í„° ë‹¤ì‹œ ê·¸ë¦¬ê¸°
                 initItem(item_array, playerx, playery, i);
 
             }
         }
 
         else {
-            removeItem(item_array[i].x, item_array[i].y); // ½Ã¾ß ¹üÀ§ ¹Û¿¡ ³ª°¡¸é ¾ÆÀÌÅÛ Áö¿ì±â
+            removeItem(item_array[i].x, item_array[i].y); // ì‹œì•¼ ë²”ìœ„ ë°–ì— ë‚˜ê°€ë©´ ì•„ì´í…œ ì§€ìš°ê¸°
 
         }
     }
@@ -104,7 +125,7 @@ void eatItemStrider(struct strider* strider_info, struct items* item_array, int 
             {
                 item_array[i].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
                 item_array[i].y = rand() % (MAP_HEIGHT - 9) + 5;
-                drawItem(item_array[i].x, item_array[i].y); // ½Ã¾ß ¹üÀ§¿¡ µé¾î¿À¸é ¾ÆÀÌÅÛ Ãâ·Â
+                drawItem(item_array[i].x, item_array[i].y); // ì‹œì•¼ ë²”ìœ„ì— ë“¤ì–´ì˜¤ë©´ ì•„ì´í…œ ì¶œë ¥
             }
         }
     }
@@ -121,7 +142,7 @@ void eatItemStrider(struct strider* strider_info, struct items* item_array, int 
             {
                 item_array[i].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
                 item_array[i].y = rand() % (MAP_HEIGHT - 9) + 5;
-                drawItem(item_array[i].x, item_array[i].y); // ½Ã¾ß ¹üÀ§¿¡ µé¾î¿À¸é ¾ÆÀÌÅÛ Ãâ·Â
+                drawItem(item_array[i].x, item_array[i].y); // ì‹œì•¼ ë²”ìœ„ì— ë“¤ì–´ì˜¤ë©´ ì•„ì´í…œ ì¶œë ¥
             }
         }
     }
@@ -134,7 +155,9 @@ void itemeatEasy(int playerx, int playery, struct items* item_array)
 
         if (item_array[i].x == playerx && item_array[i].y == playery)
         {
+            judge_easy_item(i);
             initItem(item_array, playerx, playery, i);
         }
     }
 }
+

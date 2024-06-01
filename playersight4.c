@@ -163,6 +163,43 @@ void eatItem(struct player player_info, struct items* item_array, int playerx, i
     }
 }
 
+void eatItemStrider(struct strider* strider_info, struct items* item_array, int tail) {
+    if (tail == 1){
+        for (int i = 0; i < MAX_ITEMS; i++) {
+
+            if ((strider_info[0].sx <= item_array[i].x &&
+                strider_info[0].sx+12 >= item_array[i].x &&
+                strider_info[0].sy == item_array[i].y)||
+                (strider_info[1].sx == item_array[i].x &&
+                strider_info[1].sy <= item_array[i].y &&
+                strider_info[1].sy + 6 >= item_array[i].y)
+                )
+            {   
+                item_array[i].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
+                item_array[i].y = rand() % (MAP_HEIGHT - 9) + 5;
+                drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
+            }
+        }
+    }
+    else {
+        for (int i = 0; i < MAX_ITEMS; i++) {
+
+            if ((strider_info[0].sx <= item_array[i].x &&
+                strider_info[0].sx + 6 >= item_array[i].x &&
+                strider_info[0].sy == item_array[i].y) ||
+                (strider_info[1].sx == item_array[i].x &&
+                    strider_info[1].sy <= item_array[i].y &&
+                    strider_info[1].sy + 3 >= item_array[i].y)
+                )
+            {
+                item_array[i].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
+                item_array[i].y = rand() % (MAP_HEIGHT - 9) + 5;
+                drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
+            }
+        }
+    }
+}
+
 void itemeatEasy(int playerx, int playery, struct items* item_array)
 {
     for (int i = 0; i < MAX_ITEMS; i++) {
@@ -529,7 +566,7 @@ int movePlayer(struct player* player_info, struct items* item_array, struct stri
 
         // 아이템과 플레이어 충돌 시 아이템 획득 처리
         eatItem(*player_info, item_array, playerx, playery);
-
+        eatItemStrider(strider_info, item_array, *ptail);
         // 키 입력 시 경비병도 이동
         moveLRStrider(strider_info, ptail);
         moveUDStrider(strider_info, ptail);
@@ -808,6 +845,7 @@ int playermoveNormal(struct player* player_info, struct items* item_array, struc
         moveUDStrider(strider_info, ptail);
         CDStrider(playerx, playery, strider_info, *ptail);
         itemeatEasy(playerx, playery, item_array);
+        eatItemStrider(strider_info, item_array, *ptail);
         timek = timek + 0.25;
 
         if (isClear(item_array) == CLEAR) return CLEAR;

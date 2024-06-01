@@ -12,9 +12,9 @@
 extern int theme;
 int HP;
 float timek;
-/* ***********************±âÈ£ »ó¼ö*********************** */
+/* ***********************ê¸°í˜¸ ìƒìˆ˜*********************** */
 
-// Å° °ª Á¤ÀÇ  //
+// í‚¤ ê°’ ì •ì˜  //
 #define LEFT1 75
 #define RIGHT1 77
 #define UP1 72
@@ -23,7 +23,7 @@ float timek;
 #define BACK 113
 #define ESC 27
 
-// MAP °ª
+// MAP ê°’
 #define MAP_X 11 // 3 2
 #define MAP_Y 2
 #define MAP_WIDTH 39  // 30 20
@@ -34,13 +34,13 @@ float timek;
 #define DOWN 1
 #define LEFT 2
 #define RIGHT 3
-#define SUBMIT 4 // ¼±ÅÃ(Å°)
+#define SUBMIT 4 // ì„ íƒ(í‚¤)
 
 // stoty cols, rows
 #define MAX_ROWS 16
 #define MAX_COLS 50
 
-// °ÔÀÓ ¸Ş´º
+// ê²Œì„ ë©”ë‰´
 #define GAMESTART 100
 #define GAMERULE 200
 #define OPTION 300
@@ -55,7 +55,7 @@ float timek;
 #define THEME0 329
 #define GAMEEXIT 400
 
-// °ÔÀÓ
+// ê²Œì„
 #define HOME 500
 #define CLEAR_V 700
 #define FAIL_V 600
@@ -66,30 +66,30 @@ float timek;
 #define HARD 2
 
 
-#define MAX_PLAYERS 1 // ÇÃ·¹ÀÌ¾î ¼ö
-#define MAX_ITEMS 7 // ¾ÆÀÌÅÛ ¼ö
+#define MAX_PLAYERS 1 // í”Œë ˆì´ì–´ ìˆ˜
+#define MAX_ITEMS 7 // ì•„ì´í…œ ìˆ˜
 
-#define MAX_ITEMS_NAME 10 // ¾ÆÀÌÅÛ ÀÌ¸§ ±æÀÌ(NULL Æ÷ÇÔ)
-#define PLAYER_X MAP_X * 2 + 7  // Ä³¸¯ÅÍÀÇ X ÁÂÇ¥
-#define PLAYER_Y MAP_HEIGHT / 2 + 5   // Ä³¸¯ÅÍÀÇ Y ÁÂÇ¥
+#define MAX_ITEMS_NAME 10 // ì•„ì´í…œ ì´ë¦„ ê¸¸ì´(NULL í¬í•¨)
+#define PLAYER_X MAP_X * 2 + 7  // ìºë¦­í„°ì˜ X ì¢Œí‘œ
+#define PLAYER_Y MAP_HEIGHT / 2 + 5   // ìºë¦­í„°ì˜ Y ì¢Œí‘œ
 
 #define MAX_STRIDER 2
 
 struct player
 {
-    int x;	// Ä³¸¯ÅÍ xÁÂÇ¥
-    int y;  // Ä³¸¯ÅÍ yÁÂÇ¥
-    int sw;	// Ä³¸¯ÅÍ ½Ã¾ß³Êºñ ³ë¸»
-    int sh;	// Ä³¸¯ÅÍ ½Ã¾ß³ôÀÌ ³ë¸»
-    int swh; // Ä³¸¯ÅÍ ½Ã¾ß³Êºñ ÇÏµå
-    int shh; // Ä³¸¯ÅÍ ½Ã¾ß³ôÀÌ ÇÏµå
+    int x;	// ìºë¦­í„° xì¢Œí‘œ
+    int y;  // ìºë¦­í„° yì¢Œí‘œ
+    int sw;	// ìºë¦­í„° ì‹œì•¼ë„ˆë¹„ ë…¸ë§
+    int sh;	// ìºë¦­í„° ì‹œì•¼ë†’ì´ ë…¸ë§
+    int swh; // ìºë¦­í„° ì‹œì•¼ë„ˆë¹„ í•˜ë“œ
+    int shh; // ìºë¦­í„° ì‹œì•¼ë†’ì´ í•˜ë“œ
 };
 
 struct items
 {
-    int x;	// ¾ÆÀÌÅÛ xÁÂÇ¥
-    int y;  // ¾ÆÀÌÅÛ yÁÂÇ¥
-    char skill[MAX_ITEMS_NAME]; // ¾ÆÀÌÅÛ ´É·Â
+    int x;	// ì•„ì´í…œ xì¢Œí‘œ
+    int y;  // ì•„ì´í…œ yì¢Œí‘œ
+    char skill[MAX_ITEMS_NAME]; // ì•„ì´í…œ ëŠ¥ë ¥
 
 };
 
@@ -98,49 +98,49 @@ struct strider {
     int sy;
 };
 
-/* *********************** ÇÔ¼ö ¼±¾ğ *********************** */
+/* *********************** í•¨ìˆ˜ ì„ ì–¸ *********************** */
 /* ************ main.c ************ */
 int main(void);
 
 /* ************ map.c ************ */
-void drawMap(void);                         // ¸Ê Å×µÎ¸®¸¦ ±×¸²
-void gameMapDraw(void);                     // °ÔÀÓ ¸ÊÀ» ±×¸²
-void reset(void);                           // ÄÜ¼Ö È­¸éÀ» Áö¿î ÈÄ ¸Ê Å×µÎ¸®¸¦ ´Ù½Ã ±×¸²
-void resetMapInner(void);                   // °ÔÀÓ ¸Ê ³»ºÎ¸¸ Áö¿ò
-void resetMapTitle(void);                   // °ÔÀÓ ¸Ê »ó´Ü(¸ñ¼û Ã¢)¸¸ Áö¿ò
-void resetMapMain(void);                    // °ÔÀÓÇÃ·¹ÀÌÇÏ´Â ¸Ê¸¸ Áö¿ò
-void resetMapBottom(void);                  // °ÔÀÓ ¸Ê ÇÏ´Ü(»óÈ£ÀÛ¿ë)¸¸ Áö¿ò
-void titleBoxDraw(void);                    // µğÀÚÀÎ ¿ä¼Ò(ÅëÀÏ)
-void gameExit(void);			            // ÇÁ·Î±×·¥ Á¾·á
+void drawMap(void);                         // ë§µ í…Œë‘ë¦¬ë¥¼ ê·¸ë¦¼
+void gameMapDraw(void);                     // ê²Œì„ ë§µì„ ê·¸ë¦¼
+void reset(void);                           // ì½˜ì†” í™”ë©´ì„ ì§€ìš´ í›„ ë§µ í…Œë‘ë¦¬ë¥¼ ë‹¤ì‹œ ê·¸ë¦¼
+void resetMapInner(void);                   // ê²Œì„ ë§µ ë‚´ë¶€ë§Œ ì§€ì›€
+void resetMapTitle(void);                   // ê²Œì„ ë§µ ìƒë‹¨(ëª©ìˆ¨ ì°½)ë§Œ ì§€ì›€
+void resetMapMain(void);                    // ê²Œì„í”Œë ˆì´í•˜ëŠ” ë§µë§Œ ì§€ì›€
+void resetMapBottom(void);                  // ê²Œì„ ë§µ í•˜ë‹¨(ìƒí˜¸ì‘ìš©)ë§Œ ì§€ì›€
+void titleBoxDraw(void);                    // ë””ìì¸ ìš”ì†Œ(í†µì¼)
+void gameExit(void);			            // í”„ë¡œê·¸ë¨ ì¢…ë£Œ
 
 /* ************ system.c ************ */
-void Setcolor(WORD color);                  // »ö ¼ıÀÚ
-void gotoxy(int x, int y, const char* s);   // x,yÁÂÇ¥, Ãâ·Â¹®ÀÚ¿­
-void gotoxy1(int x, int y);                 // x,yÁÂÇ¥
-int keyControl1(void);			            // keyboard value ¹İÈ¯
-void slowPrint(const wchar_t story[][MAX_COLS], int x, int y, int rowcount); // ½ºÅä¸®¹è¿­, x,yÁÂÇ¥, ÃÑ Çà ¼ö
+void Setcolor(WORD color);                  // ìƒ‰ ìˆ«ì
+void gotoxy(int x, int y, const char* s);   // x,yì¢Œí‘œ, ì¶œë ¥ë¬¸ìì—´
+void gotoxy1(int x, int y);                 // x,yì¢Œí‘œ
+int keyControl1(void);			            // keyboard value ë°˜í™˜
+void slowPrint(const wchar_t story[][MAX_COLS], int x, int y, int rowcount); // ìŠ¤í† ë¦¬ë°°ì—´, x,yì¢Œí‘œ, ì´ í–‰ ìˆ˜
 
 
 
 /* ************ title.c ************ */
-void title(void);				            // °ÔÀÓ ½ÃÀÛÈ­¸é 
+void title(void);				            // ê²Œì„ ì‹œì‘í™”ë©´ 
 
 /* ************ menuselect.c ************ */
-int menuDraw1(void);			            // GAMESTART, GAMERULE, OPTION, GAMEEXIT ¹İÈ¯
-void menuDraw1Content(void);                // »ç¿ëÀÚ¿Í »óÈ£ÀÛ¿ë ¾ø´Â ¸Ş´º Ãâ·Â¹°
-void menuDraw2Content(int c1, int c2, int c3, int c4); // »ç¿ëÀÚ¿Í »óÈ£ÀÛ¿ëÀÌ ÀÖ´Â ¸Ş´º Ãâ·Â¹°
+int menuDraw1(void);			            // GAMESTART, GAMERULE, OPTION, GAMEEXIT ë°˜í™˜
+void menuDraw1Content(void);                // ì‚¬ìš©ìì™€ ìƒí˜¸ì‘ìš© ì—†ëŠ” ë©”ë‰´ ì¶œë ¥ë¬¼
+void menuDraw2Content(int c1, int c2, int c3, int c4); // ì‚¬ìš©ìì™€ ìƒí˜¸ì‘ìš©ì´ ìˆëŠ” ë©”ë‰´ ì¶œë ¥ë¬¼
 
 /* ************ option.c ************ */
-void initOption(void);                      // È¯°æ¼³Á¤ ½ÇÇà
-int selectOption(void);                     // »ç¿ëÀÚ Å° ÀÔ·Â »óÈ£ÀÛ¿ë OPTION1, OPTION2 ¹İÈ¯
+void initOption(void);                      // í™˜ê²½ì„¤ì • ì‹¤í–‰
+int selectOption(void);                     // ì‚¬ìš©ì í‚¤ ì…ë ¥ ìƒí˜¸ì‘ìš© OPTION1, OPTION2 ë°˜í™˜
 int selectOptionContent(void);
 int selectOptionContent2(int c1, int c2);
-int setMusic(void);                         // À½¾Ç ¼³Á¤, BACK¹İÈ¯
-int selectMusic(void);                      // MUSIC1,MUSIC2,MUSIC3,MUSIC4 ¹İÈ¯
+int setMusic(void);                         // ìŒì•… ì„¤ì •, BACKë°˜í™˜
+int selectMusic(void);                      // MUSIC1,MUSIC2,MUSIC3,MUSIC4 ë°˜í™˜
 void selectMusicContent(void);
 void selectMusicContent2(int c1, int c2, int c3, int c4);
-int setTheme(void);                         // Å×¸¶ ¼³Á¤, BACK¹İÈ¯
-int selectTheme(void);                      // THEME1, THEME2, THEME3, THEME4, THEME5 ¹İÈ¯
+int setTheme(void);                         // í…Œë§ˆ ì„¤ì •, BACKë°˜í™˜
+int selectTheme(void);                      // THEME1, THEME2, THEME3, THEME4, THEME5 ë°˜í™˜
 void selectThemeContent(void);
 void selectThemeContent2(int c1, int c2, int c3, int c4, int c5);
 
@@ -149,9 +149,9 @@ void gameRulesDraw(void);
 
 
 /* ************ gamemode.c ************ */
-int modeSelect(void);			// EASY(0), NORMAL(1), HARD(1) ¹İÈ¯
+int modeSelect(void);			// EASY(0), NORMAL(1), HARD(1) ë°˜í™˜
 void modeSelectContentDraw(void);
-void modeSelectContentDraw1(int c1, int c2, int c3);  // ÄÃ·¯»ö ¸Å°³º¯¼ö
+void modeSelectContentDraw1(int c1, int c2, int c3);  // ì»¬ëŸ¬ìƒ‰ ë§¤ê°œë³€ìˆ˜
 void modeSelectContentDraw2(int c1, int c2, int c3);
 
 /* ************ story.c ************ */
@@ -159,8 +159,8 @@ void titleStory(void);
 void easyStory(void);
 void normalStory(void);
 void hardStory(void);
-int clearStory(void);                       // HOME ¹İÈ¯
-int failStory(void);                        // HOME ¹İÈ¯
+int clearStory(void);                       // HOME ë°˜í™˜
+int failStory(void);                        // HOME ë°˜í™˜
 
 /* ************ gameresult.c ************ */
 void clearEasy(void);
@@ -170,10 +170,10 @@ void failStorybg(void);
 
 
 /* ************ game.c ************ */
-int gameDraw(void);				// HOME ¹İÈ¯
-int easyMode(void);				// BACK, NORMAL, FAIL ¹İÈ¯
-int normalMode(void);			// BACK, HARD, FAIL ¹İÈ¯
-int hardMode(void);				// BACK, CLEAR, FAIL ¹İÈ¯
+int gameDraw(void);				// HOME ë°˜í™˜
+int easyMode(void);				// BACK, NORMAL, FAIL ë°˜í™˜
+int normalMode(void);			// BACK, HARD, FAIL ë°˜í™˜
+int hardMode(void);				// BACK, CLEAR, FAIL ë°˜í™˜
 void HP_print(int HP);
 
 /* ************ gameplay.c ************ */
@@ -199,23 +199,26 @@ void removePlayerSight(int x, int y, int bottom, int right, int upper, int left)
 /* ************ item.c ************ */
 void drawItem(int x, int y);
 void removeItem(int x, int y);
-void Itemcoord(struct items* item, struct player player);// ¾ÆÀÌÅÛ ¹è¿­ ±¸Á¶Ã¼¿¡ ·£´ı ÁÂÇ¥¸¦ ³Ö´Â ÇÔ¼ö.
-void initItem(struct items* item_array, int playerx, int playery, int i);// ½Ã¾ß ¹üÀ§¿¡ µé¾î¿À¸é ¾ÆÀÌÅÛ Ãâ·Â. Ãæµ¹ ½Ã  initItem È£Ãâ
-void judge_item(int i);// ¾ÆÀÌÅÛ ¹è¿­ ±¸Á¶Ã¼ (i) ¾ÆÀÌÅÛ Á¾·ù ÆÇ´Ü ÇÔ¼ö
+void Itemcoord(struct items* item, struct player player);// ì•„ì´í…œ ë°°ì—´ êµ¬ì¡°ì²´ì— ëœë¤ ì¢Œí‘œë¥¼ ë„£ëŠ” í•¨ìˆ˜.
+void initItem(struct items* item_array, int playerx, int playery, int i);// ì‹œì•¼ ë²”ìœ„ì— ë“¤ì–´ì˜¤ë©´ ì•„ì´í…œ ì¶œë ¥. ì¶©ëŒ ì‹œ  initItem í˜¸ì¶œ
+void judge_item(int i);// ì•„ì´í…œ ë°°ì—´ êµ¬ì¡°ì²´ (i) ì•„ì´í…œ ì¢…ë¥˜ íŒë‹¨ í•¨ìˆ˜
+void judge_easy_item(int i);
 void eatItem(struct player player_info, struct items* item_array, int playerx, int playery);
 void eatItemStrider(struct strider* strider_info, struct items* item_array, int tail);
 void itemeatEasy(int playerx, int playery, struct items* item_array);
+void itemeatNormal(int playerx, int playery, struct items* item_array);
+
 
 /* ************ playermove.c ************ */
-int movePlayer(struct player* player_info, struct items* item_array, struct strider* strider_info, int* ptail);  // hard¸ğµå move
+int movePlayer(struct player* player_info, struct items* item_array, struct strider* strider_info, int* ptail);  // hardëª¨ë“œ move
 int playermoveNormal(struct player* player_info, struct items* item_array, struct strider* strider_info, int* ptail);
-int playermoveEasy(struct player* player_info, struct items* item_array); // easy, normal¸ğµå move
+int playermoveEasy(struct player* player_info, struct items* item_array); // easy, normalëª¨ë“œ move
 
 /* ************ gameplay.c ************ */
 void time_g(float timek);
-int isClear(struct items* item_array);// key=¿­¼è ÀÏ ¶§ CLEAR ¹İÈ¯.
+int isClear(struct items* item_array);// key=ì—´ì‡  ì¼ ë•Œ CLEAR ë°˜í™˜.
 
-// °ÔÀÓÀ» ÁøÇàÇÏ´Â ÇÔ¼ö
+// ê²Œì„ì„ ì§„í–‰í•˜ëŠ” í•¨ìˆ˜
 int gameplay(void);
 int gameplayEasy(void);
 int gameplayNormal(void);

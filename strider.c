@@ -89,6 +89,21 @@ void moveLRStrider(struct strider* strider_info) {
         strider_info[0].sx -= 2;
         drawLRStrider(strider_info[0].sx, stridery, 2, 0);
     }
+    if (strider_info[2].on == 0) {
+        int striderx1 = strider_info[2].sx;
+        int stridery1 = strider_info[2].sy;
+        if (striderx1 <= MAP_X * 2 + 2) {
+            removeLRStrider(striderx1, stridery1, 7, 0);
+            strider_info[2].sy = rand() % (MAP_HEIGHT - 9) + 5;
+            strider_info[2].sx = (MAP_WIDTH * 2 - 8) + MAP_X * 2 - 1;
+            drawLRStrider(strider_info[2].sx, strider_info[2].sy, 7, 0);
+        }
+        else if (striderx1 <= (MAP_WIDTH * 2 - 8) + MAP_X * 2 && striderx1 > MAP_X * 2 + 2) {
+            removeLRStrider(striderx1 + 5, stridery1, 7, 5);
+            strider_info[2].sx -= 2;
+            drawLRStrider(strider_info[2].sx, stridery1, 2, 0);
+        }
+    }
 }
 
 void moveUDStrider(struct strider* strider_info) {

@@ -167,7 +167,6 @@ void itemeatEasy(int playerx, int playery, struct items* item_array)
             judge_easy_item(i);
             for (int j = 0; j < MAX_ITEMS; j++) {
                 if (j != i && (strcmp(item_array[j].skill, "None") != 0)) {
-                    gotoxy(i, j, "d");
                     item_array[j].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
                     item_array[j].y = rand() % (MAP_HEIGHT - 9) + 5;
                     drawItem(item_array[j].x, item_array[j].y);

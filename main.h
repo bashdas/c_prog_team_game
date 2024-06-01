@@ -11,6 +11,7 @@
 
 extern int theme;
 int HP;
+int SC;
 float timek;
 /* ***********************기호 상수*********************** */
 
@@ -204,14 +205,14 @@ void initItem(struct items* item_array, int playerx, int playery, int i);// 시�
 void judge_item(int i);// 아이템 배열 구조체 (i) 아이템 종류 판단 함수
 void judge_easy_item(int i);
 void eatItem(struct player player_info, struct items* item_array, int playerx, int playery);
-void eatItemStrider(struct strider* strider_info, struct items* item_array, int tail);
+void eatItemStrider(struct strider* strider_info, struct items* item_array);
 void itemeatEasy(int playerx, int playery, struct items* item_array);
 void itemeatNormal(int playerx, int playery, struct items* item_array);
 
 
 /* ************ playermove.c ************ */
-int movePlayer(struct player* player_info, struct items* item_array, struct strider* strider_info, int* ptail);  // hard모드 move
-int playermoveNormal(struct player* player_info, struct items* item_array, struct strider* strider_info, int* ptail);
+int movePlayer(struct player* player_info, struct items* item_array, struct strider* strider_info);  // hard모드 move
+int playermoveNormal(struct player* player_info, struct items* item_array, struct strider* strider_info);
 int playermoveEasy(struct player* player_info, struct items* item_array); // easy, normal모드 move
 
 /* ************ gameplay.c ************ */

@@ -79,7 +79,7 @@ void judge_easy_item(int i)
         printf("(-. - ) 꽝이네요~");
         Sleep(500);
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
-        printf("                 ");
+        printf("                  ");
         break;
     default:
         break;
@@ -150,12 +150,22 @@ void eatItemStrider(struct strider* strider_info, struct items* item_array, int 
 
 void itemeatEasy(int playerx, int playery, struct items* item_array)
 {
+    int check;
     for (int i = 0; i < MAX_ITEMS; i++) {
-
-
         if (item_array[i].x == playerx && item_array[i].y == playery)
         {
+            for (int j = 0; j < MAX_ITEMS; j++) {
+                removeItem(item_array[j].x, item_array[j].y);
+            }
             judge_easy_item(i);
+            for (int j = 0; j < MAX_ITEMS; j++) {
+                if (j != i && (strcmp(item_array[j].skill, "None") != 0)) {
+                    gotoxy(i, j, "d");
+                    item_array[j].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
+                    item_array[j].y = rand() % (MAP_HEIGHT - 9) + 5;
+                    drawItem(item_array[j].x, item_array[j].y);
+                }
+            }
             initItem(item_array, playerx, playery, i);
         }
     }

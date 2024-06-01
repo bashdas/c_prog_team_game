@@ -1,9 +1,9 @@
 #include "main.h"
 /*
-	°ÔÀÓ °ü·Ã ¼Ò½ºÆÄÀÏ
+	ê²Œì„ ê´€ë ¨ ì†ŒìŠ¤íŒŒì¼
 */
 
-// °ÔÀÓ ÀÌµ¿
+// ê²Œì„ ì´ë™
 int gameDraw(void) {
 	int gameCode = 0, stageCode;
 	titleStory();
@@ -29,6 +29,7 @@ int gameDraw(void) {
 			if (stageCode == CLEAR_V || stageCode == FAIL_V) break;
 		}
 		if (stageCode == FAIL_V) {
+			gotoxy(0, 2, "d");
 			gameCode = failStory();
 			break;
 		}
@@ -37,11 +38,11 @@ int gameDraw(void) {
 			break;
 		}
 	} while ((gameCode != BACK));
-	return gameCode; // °ÔÀÓ Å¬¸®¾î ¶Ç´Â ½ÇÆĞ ½Ã HOME ¹İÈ¯ÇØ¾ßÇÔ
+	return gameCode; // ê²Œì„ í´ë¦¬ì–´ ë˜ëŠ” ì‹¤íŒ¨ ì‹œ HOME ë°˜í™˜í•´ì•¼í•¨
 }
 
 
-// BACK, NORMAL, FAIL ¹İÈ¯ // ÇÏÆ® 4°³ ¾ò°í Clear
+// BACK, NORMAL, FAIL ë°˜í™˜ // í•˜íŠ¸ 4ê°œ ì–»ê³  Clear
 int easyMode(void) {
 	int keyvalue; // BACK, -1
 	gameMapDraw();
@@ -50,20 +51,17 @@ int easyMode(void) {
 	HP = 0;
 	timek = 0;
 
+	keyvalue = gameplayEasy(); // gameplayë¥¼ ì‹¤í–‰. HP_print.
 
-
-	keyvalue = gameplayEasy(); // gameplay¸¦ ½ÇÇà. HP_print.
-
-
-	if (keyvalue == BACK) return BACK; // modeSelct·Î º¹±Í
+	if (keyvalue == BACK) return BACK; // modeSelctë¡œ ë³µê·€
 	if (keyvalue == CLEAR_V) return NORMAL;
-	if (keyvalue == FAIL_V) return BACK;
+	if (keyvalue == FAIL_V) return FAIL_V;
 
 	return 0;
 }
 
 
-// BACK, HARD, FAIL ¹İÈ¯
+// BACK, HARD, FAIL ë°˜í™˜
 int normalMode(void) {
 	int keyvalue;
 	gameMapDraw();
@@ -74,13 +72,13 @@ int normalMode(void) {
 
 	keyvalue = gameplayNormal();
 
-	if (keyvalue == BACK) return BACK; // modeSelct·Î º¹±Í
+	if (keyvalue == BACK) return BACK; // modeSelctë¡œ ë³µê·€
 	if (keyvalue == CLEAR_V) return HARD;
-	if (keyvalue == FAIL_V) return BACK;
+	if (keyvalue == FAIL_V) return FAIL_V;
 	return 0;
 }
 
-// BACK, CLEAR, FAIL ¹İÈ¯
+// BACK, CLEAR, FAIL ë°˜í™˜
 int hardMode(void) {
 	int keyvalue;
 	gameMapDraw();
@@ -91,9 +89,9 @@ int hardMode(void) {
 
 
 	keyvalue = gameplay();
-	if (keyvalue == BACK) return BACK; // modeSelct·Î º¹±Í
+	if (keyvalue == BACK) return BACK; // modeSelctë¡œ ë³µê·€
 	if (keyvalue == CLEAR_V) return CLEAR_V;
-	if (keyvalue == FAIL_V) return BACK;
+	if (keyvalue == FAIL_V) return FAIL_V;
 	return 0;
 }
 
@@ -104,7 +102,7 @@ void HP_print(int HP) {
 	{
 		Setcolor(7);
 
-		gotoxy(MAP_X + MAP_WIDTH - 11, MAP_Y + 1, " SCORE:"); //HPÇ¥½Ã
+		gotoxy(MAP_X + MAP_WIDTH - 11, MAP_Y + 1, " SCORE:"); //HPí‘œì‹œ
 
 	}
 	Setcolor(4);
@@ -116,30 +114,30 @@ void HP_print(int HP) {
 		Setcolor(7);
 		break;
 	case 1:
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "      "); //HPÇ¥½Ã
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " ¢¾"); //HPÇ¥½Ã
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "      "); //HPí‘œì‹œ
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " â™¥"); //HPí‘œì‹œ
 		Setcolor(7);
 		break;
 
 	case 2:
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "        "); //HPÇ¥½Ã
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "        "); //HPí‘œì‹œ
 
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " ¢¾ ¢¾"); //HPÇ¥½Ã
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " â™¥ â™¥"); //HPí‘œì‹œ
 		Setcolor(7);
 		break;
 	case 3:
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "           "); //HPÇ¥½Ã
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " ¢¾ ¢¾ ¢¾"); //HPÇ¥½Ã
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "           "); //HPí‘œì‹œ
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " â™¥ â™¥ â™¥"); //HPí‘œì‹œ
 		Setcolor(7);
 		break;
 	case 4:
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "           "); //HPÇ¥½Ã
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " ¢¾ ¢¾ ¢¾ ¢¾"); //HPÇ¥½Ã
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "           "); //HPí‘œì‹œ
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " â™¥ â™¥ â™¥ â™¥"); //HPí‘œì‹œ
 		Setcolor(7);
 		break;
 	case 5:
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "           "); //HPÇ¥½Ã
-		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " ¢¾ ¢¾ ¢¾ ¢¾ ¢¾"); //HPÇ¥½Ã
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, "           "); //HPí‘œì‹œ
+		gotoxy(MAP_X + MAP_WIDTH - 8, MAP_Y + 1, " â™¥ â™¥ â™¥ â™¥ â™¥"); //HPí‘œì‹œ
 		Setcolor(7);
 		break;
 

@@ -9,14 +9,14 @@ int isClear(struct items* item_array) {
 void time_g(float time)
 {
     gotoxy1(MAP_X + MAP_WIDTH - 14, MAP_Y + 1);
-    printf("³²Àº ¹èÅÍ¸®: %.1f", (100 - time));
+    printf("ë‚¨ì€ ë°°í„°ë¦¬: %.1f", (100 - time));
     Setcolor(15);
 }
 
-// °ÔÀÓÀÇ ½ºÅ×ÀÌÁö¸¦ ¸Ç Ã³À½ ½ÃÀÛÇÏ´Â ÇÔ¼ö
+// ê²Œì„ì˜ ìŠ¤í…Œì´ì§€ë¥¼ ë§¨ ì²˜ìŒ ì‹œì‘í•˜ëŠ” í•¨ìˆ˜
 int gameplay(void) {
     int input;
-    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,½Ã¾ß³Êºñ, ½Ã¾ß³ôÀÌ;
+    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,ì‹œì•¼ë„ˆë¹„, ì‹œì•¼ë†’ì´;
     struct items items[MAX_ITEMS] = { {0,0,"key"},{0,0,"key"},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'} };
     struct strider strider[MAX_STRIDER] = { {0,0}, {0,0} };
     int HP = 0;
@@ -43,7 +43,7 @@ int gameplay(void) {
 
         if (input == BACK) return BACK;
         if (input == CLEAR_V) return CLEAR_V;
-        //  if (input == FAIL) return FAIL;
+        if (input == FAIL_V) return FAIL_V;
         // if (input == SUBMIT) return BACK;
 
     }
@@ -53,7 +53,7 @@ int gameplay(void) {
 
 int gameplayNormal(void) {
     int input;
-    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,½Ã¾ß³Êºñ, ½Ã¾ß³ôÀÌ;
+    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,ì‹œì•¼ë„ˆë¹„, ì‹œì•¼ë†’ì´;
     struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b"},{0,0,'l'},{0,0,'k'},{0,0,'k'} };
     struct strider strider[MAX_STRIDER] = { {0,0}, {0,0} };
     int tail = 0;
@@ -77,11 +77,9 @@ int gameplayNormal(void) {
 
     while (1) {
         input = playermoveNormal(player, items, strider, &tail);
-        gotoxy1(0, 28);
-        printf("%d", input);
         if (input == BACK) return BACK;
         if (input == CLEAR_V) return CLEAR_V;
-        //  if (input == FAIL) return FAIL;
+        if (input == FAIL_V) return FAIL_V;
         // if (input == SUBMIT) return BACK;
 
     }
@@ -90,7 +88,7 @@ int gameplayNormal(void) {
 
 int gameplayEasy(void) {
     int input;
-    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y} };  // x,y,½Ã¾ß³Êºñ, ½Ã¾ß³ôÀÌ;
+    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y} };  // x,y,ì‹œì•¼ë„ˆë¹„, ì‹œì•¼ë†’ì´;
     struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b"},{0,0,'l'},{0,0,'k'},{0,0,'k'} };
     HP = 0;
 
@@ -104,10 +102,11 @@ int gameplayEasy(void) {
 
 
         input = playermoveEasy(player, items);
-
+        //gotoxy1(0, 3);
+        //printf("%d", input);
         if (input == BACK) return BACK;
         if (input == CLEAR_V) return CLEAR_V;
-        //  if (input == FAIL) return FAIL;
+        if (input == FAIL_V) return FAIL_V;
         // if (input == SUBMIT) return BACK;
 
     }

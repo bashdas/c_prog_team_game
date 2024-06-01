@@ -114,7 +114,7 @@ void timer(void);
 
 
 
-   // 전역변수 HP의 값에 따라 HP를 다르게 출력함. HP=0이면 game_over(). speed도 출력 가능
+// 전역변수 HP의 값에 따라 HP를 다르게 출력함. HP=0이면 game_over(). speed도 출력 가능
 int move(int dir);       // 플레이어의 활동 범위 정의
 // 플레이어의 방향키에 따라 플레이어를 출력함
 // player_crush(), item0_crush(),  time0a_crush(), item1_crush(), item_crush()로 충돌 판단
@@ -124,7 +124,7 @@ int move(int dir);       // 플레이어의 활동 범위 정의
 
 void reset_stage(void);  // HP, 방향, 속도, 길이, 초(second) 초기화. 플레이어 시작 위치 초기
 
-   // 각 스테이지 종료 함수. ?????
+// 각 스테이지 종료 함수. ?????
 
 //*******************************************************************************************
 
@@ -235,7 +235,7 @@ struct items
     int x;	// 아이템 x좌표
     int y;  // 아이템 y좌표
     char skill[MAX_ITEMS_NAME]; // 아이템 능력
- 
+
 };
 
 /*
@@ -265,12 +265,12 @@ void initItem(struct items* item_array, int playerx, int playery, int i);
 void itemeatEasy(int playerx, int playery, struct items* item_array);
 
 
-int movePlayer(struct player* player_info, struct items* item_array);  // hard모드 move
+int movePlayer(struct player* player_info, struct items* item_array, struct strider* strider_info, int* ptail);  // hard모드 move
 int playermoveEasy(struct player* player_info, struct items* item_array); // easy, normal모드 move
 
 
 // 아이템 배열 구조체에 랜덤 좌표를 넣는 함수.
-void Itemcoord(struct items* item, struct player* player);
+void Itemcoord(struct items* item, struct player player);
 
 // 아이템 배열 구조체 (i) 아이템 종류 판단 함수
 void judge_item(int i);
@@ -296,7 +296,7 @@ struct strider {
 void stridercoord(struct strider* strider, struct player player);
 void drawLRStrider(int x, int y, int tail, int right, int left);
 void removeLRStrider(int x, int y, int tail, int right, int left);
-void moveLRStrider(struct strider* strider_info, int **pptail);
+void moveLRStrider(struct strider* strider_info, int** pptail);
 void drawUDStrider(int x, int y, int tail, int upper, int bottom);
 void removeUDStrider(int x, int y, int tail, int upper, int bottom);
 void moveUDStrider(struct strider* strider_info, int** pptail);

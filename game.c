@@ -86,7 +86,6 @@ int hardMode(void) {
 	HP = 0;
 	timek = 0;
 
-
 	keyvalue = gameplay();
 	if (keyvalue == BACK) return BACK; // modeSelct로 복귀
 	if (keyvalue == CLEAR_V) return CLEAR_V;

@@ -5,14 +5,14 @@
 
 
 /*
-Ä³¸¯ÅÍ Áß½É ±×¸®±â
-  - Ä³¸¯ÅÍ ÁÂÇ¥ À§Ä¡¿¡ ±×¸®±â,
-  - Ä³¸¯ÅÍ ÇöÀç À§Ä¡ ÁÂÇ¥
+ìºë¦­í„° ì¤‘ì‹¬ ê·¸ë¦¬ê¸°
+  - ìºë¦­í„° ì¢Œí‘œ ìœ„ì¹˜ì— ê·¸ë¦¬ê¸°,
+  - ìºë¦­í„° í˜„ì¬ ìœ„ì¹˜ ì¢Œí‘œ
 */
 void drawPlayer(int x, int y) {
     gotoxy1(x, y);
     Setcolor(4);
-    printf("¡Ú\b");
+    printf("â˜…\b");
     Setcolor(7);
 }
 
@@ -24,16 +24,16 @@ void removePlayer(int x, int y) {
 }
 
 /*
-Ä³¸¯ÅÍ ½Ã¾ß ±×¸®±â
-  - Ä³¸¯ÅÍ ÁÂÇ¥ À§Ä¡¿¡¼­ ÀÏÁ¤ °Å¸®¸¸Å­ ¶ç¾îÁö°Ô ±×¸®±â
-  - player ÇöÀç À§Ä¡ ÁÂÇ¥
-  - upper ~ bottom ±îÁö
-  - left ~ right ±îÁö
+ìºë¦­í„° ì‹œì•¼ ê·¸ë¦¬ê¸°
+  - ìºë¦­í„° ì¢Œí‘œ ìœ„ì¹˜ì—ì„œ ì¼ì • ê±°ë¦¬ë§Œí¼ ë„ì–´ì§€ê²Œ ê·¸ë¦¬ê¸°
+  - player í˜„ì¬ ìœ„ì¹˜ ì¢Œí‘œ
+  - upper ~ bottom ê¹Œì§€
+  - left ~ right ê¹Œì§€
 */
 void drawPlayerSight(int x, int y, int bottom, int right, int upper, int left) {
     int sightx = x - 6;
     int sighty = y - 3;
-    char charsight[7][14] = { // Áß¾Ó 6,3 -> Ä³¸¯ÅÍ Áß½ÉÀ¸·Î ºÎÅÍ x-6, y-3À§Ä¡ºÎÅÍ ½Ã¾ß ±×¸®±â ½ÃÀÛ
+    char charsight[7][14] = { // ì¤‘ì•™ 6,3 -> ìºë¦­í„° ì¤‘ì‹¬ìœ¼ë¡œ ë¶€í„° x-6, y-3ìœ„ì¹˜ë¶€í„° ì‹œì•¼ ê·¸ë¦¬ê¸° ì‹œì‘
         "* * * * * * *\0",
         "*           *\0",
         "*           *\0",
@@ -42,21 +42,21 @@ void drawPlayerSight(int x, int y, int bottom, int right, int upper, int left) {
         "*           *\0",
         "* * * * * * *\0"
     };
-    // Ä³¸¯ÅÍ ½Ã¾ß ±×¸®±â
+    // ìºë¦­í„° ì‹œì•¼ ê·¸ë¦¬ê¸°
     for (int i = 0 + upper; i < bottom; i++) {
         gotoxy1(sightx, sighty);
         for (int j = 0 + left; j < right; j++) {
             putchar(charsight[i][j]);
             fflush(stdout);
         }
-        gotoxy1(x, y); // ¸¶¿ì½º Ä¿¼­ À§Ä¡ º¯°æ
+        gotoxy1(x, y); // ë§ˆìš°ìŠ¤ ì»¤ì„œ ìœ„ì¹˜ ë³€ê²½
         sighty += 1;
     }
 }
 
 /*
-Ä³¸¯ÅÍ ½Ã¾ß Áö¿ì±â -> Ä³¸¯ÅÍµµ °°ÀÌ Áö¿ò
-  - drawPlayerSight µ¿ÀÛ¿ø¸® °°À½
+ìºë¦­í„° ì‹œì•¼ ì§€ìš°ê¸° -> ìºë¦­í„°ë„ ê°™ì´ ì§€ì›€
+  - drawPlayerSight ë™ì‘ì›ë¦¬ ê°™ìŒ
 */
 void removePlayerSight(int x, int y, int bottom, int right, int upper, int left) {
     int sightx = x - 6;
@@ -76,7 +76,7 @@ void removePlayerSight(int x, int y, int bottom, int right, int upper, int left)
             putchar(charsight[i][j]);
             fflush(stdout);
         }
-        gotoxy1(x, y); // ¸¶¿ì½º Ä¿¼­ À§Ä¡ º¯°æ
+        gotoxy1(x, y); // ë§ˆìš°ìŠ¤ ì»¤ì„œ ìœ„ì¹˜ ë³€ê²½
         sighty += 1;
     }
 }
@@ -84,7 +84,7 @@ void removePlayerSight(int x, int y, int bottom, int right, int upper, int left)
 void drawItem(int x, int y) {
     gotoxy1(x, y);
     Setcolor(9);
-    printf("¡Ú");
+    printf("â˜…");
     Setcolor(15);
 }
 
@@ -99,7 +99,7 @@ void removeItem(int x, int y) {
 
 
 
-// ¾ÆÀÌÅÛÀÌ Ãæµ¹µÇ¾úÀ» ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+// ì•„ì´í…œì´ ì¶©ëŒë˜ì—ˆì„ ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
 void initItem(struct items* item_array, int playerx, int playery, int i) {
     item_array[i].x = 0;
     item_array[i].y = 0;
@@ -111,27 +111,27 @@ void initItem(struct items* item_array, int playerx, int playery, int i) {
     drawPlayer(playerx, playery);
 }
 
-// Àü´Ş¹ŞÀº i°ª¿¡ µû¶ó¼­ ´Ù¸¥ °á°ú¸¦ Ãâ·ÂÇÏ´Â ÇÔ¼ö
+// ì „ë‹¬ë°›ì€ iê°’ì— ë”°ë¼ì„œ ë‹¤ë¥¸ ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 
 void judge_item(int i)
 {
     switch (i)
     {
     case 0:
-        timek += 12; // ¹èÅÍ¸® °¨¼Ò
+        timek += 12; // ë°°í„°ë¦¬ ê°ì†Œ
         break;
     case 1:
-        HP += 1;  // HP°¡ Áõ°¡ÇÑ´Ù.
+        HP += 1;  // HPê°€ ì¦ê°€í•œë‹¤.
         break;
         
 
     case 2:
     case 3: 
-        timek -= 20; // ¹èÅÍ¸® Áõ°¡ 
+        timek -= 20; // ë°°í„°ë¦¬ ì¦ê°€ 
         break;
 
     case 4:
-        break; // length Áõ°¡ (hard¸ğµå¿¡¼­¸¸,,,,)
+        break; // length ì¦ê°€ (hardëª¨ë“œì—ì„œë§Œ,,,,)
        
     default:
         break;
@@ -140,31 +140,24 @@ void judge_item(int i)
 }
 
 void eatItem(struct player player_info, struct items* item_array, int playerx, int playery) {
-    int sw, sh, mode = NORMAL;
-    if (mode == NORMAL) {
-        sw = player_info.sw;
-        sh = player_info.sh;
-    }
-    else if (mode == HARD) {
-        sw = player_info.sw;
-        sh = player_info.sh;
-    }
+    int sw = player_info.sw;
+    int sh = player_info.sh;
     for (int i = 0; i < MAX_ITEMS; i++) {
        
         if (item_array[i].x <= playerx + player_info.sw && item_array[i].x >= playerx - player_info.sw
             && item_array[i].y <= playery + player_info.sh && item_array[i].y >= playery - player_info.sh) 
         {
-            drawItem(item_array[i].x, item_array[i].y); // ½Ã¾ß ¹üÀ§¿¡ µé¾î¿À¸é ¾ÆÀÌÅÛ Ãâ·Â
+            drawItem(item_array[i].x, item_array[i].y); // ì‹œì•¼ ë²”ìœ„ì— ë“¤ì–´ì˜¤ë©´ ì•„ì´í…œ ì¶œë ¥
           
             if (item_array[i].x == playerx && item_array[i].y == playery) {
-                // Ãæµ¹ ½Ã ¹è¿­ 0,0,None·Î ÃÊ±âÈ­, ¾ÆÀÌÅÛ Áö¿ì°í Ä³¸¯ÅÍ ´Ù½Ã ±×¸®±â
+                // ì¶©ëŒ ì‹œ ë°°ì—´ 0,0,Noneë¡œ ì´ˆê¸°í™”, ì•„ì´í…œ ì§€ìš°ê³  ìºë¦­í„° ë‹¤ì‹œ ê·¸ë¦¬ê¸°
                 initItem(item_array, playerx, playery, i);
               
             }
         } 
 
         else {
-            removeItem(item_array[i].x, item_array[i].y); // ½Ã¾ß ¹üÀ§ ¹Û¿¡ ³ª°¡¸é ¾ÆÀÌÅÛ Áö¿ì±â
+            removeItem(item_array[i].x, item_array[i].y); // ì‹œì•¼ ë²”ìœ„ ë°–ì— ë‚˜ê°€ë©´ ì•„ì´í…œ ì§€ìš°ê¸°
 
         }
     }
@@ -189,42 +182,41 @@ int isClear(struct items* item_array) {
 
 
 /*
-ÇÃ·¹ÀÌ¾î ÀÌµ¿
-- ÇÃ·¹ÀÌ¾î ÁÂÇ¥ ÀúÀåÇÒ Æ÷ÀÎÅÍ º¯¼ö
-- ¾ÆÀÌÅÛ ÁÂÇ¥ ÇÊ¿ä -> ÀÌµ¿ÇÏ¸é¼­ ÇÃ·¹ÀÌ¾î ÁÂÇ¥°¡ ¾ÆÀÌÅÛ ÁÂÇ¥ ÀÏÁ¤ ¹üÀ§¿¡ µé¾î¿À¸é ¾ÆÀÌÅÛ Ãâ·Â, Ãæµ¹ ½Ã Áö¿ì±â
+í”Œë ˆì´ì–´ ì´ë™
+- í”Œë ˆì´ì–´ ì¢Œí‘œ ì €ì¥í•  í¬ì¸í„° ë³€ìˆ˜
+- ì•„ì´í…œ ì¢Œí‘œ í•„ìš” -> ì´ë™í•˜ë©´ì„œ í”Œë ˆì´ì–´ ì¢Œí‘œê°€ ì•„ì´í…œ ì¢Œí‘œ ì¼ì • ë²”ìœ„ì— ë“¤ì–´ì˜¤ë©´ ì•„ì´í…œ ì¶œë ¥, ì¶©ëŒ ì‹œ ì§€ìš°ê¸°
 
 */
 
-// ½Ã¾ß°¡ Æ÷ÇÔµÈ ÇÔ¼ö.
-int movePlayer(struct player* player_info, struct items* item_array) {
-    int playerx = player_info[0].x;	// ÇÃ·¹ÀÌ¾î x ÁÂÇ¥
-    int playery = player_info[0].y; // ÇÃ·¹ÀÌ¾î y ÁÂÇ¥
-    int curx = playerx; // ¼³Á¤ ÁÂÇ¥ x
-    int cury = playery; // ¼³Á¤ ÁÂÇ¥  y // MAP_X * 2 + 7, MAP_HEIGHT / 2 + 5
-    int upper = 0, bottom = 7, left = 0, right = 14; // ÇÃ·¹ÀÌ¾î ½Ã¾ß ¹è¿­À» ¾ó¸¸Å­ µ¹¸± Áö
+// ì‹œì•¼ê°€ í¬í•¨ëœ í•¨ìˆ˜.
+int movePlayer(struct player* player_info, struct items* item_array, struct strider* strider_info, int *ptail) {
+    int playerx = player_info[0].x;	// í”Œë ˆì´ì–´ x ì¢Œí‘œ
+    int playery = player_info[0].y; // í”Œë ˆì´ì–´ y ì¢Œí‘œ
+    int curx = playerx; // ì„¤ì • ì¢Œí‘œ x
+    int cury = playery; // ì„¤ì • ì¢Œí‘œ  y // MAP_X * 2 + 7, MAP_HEIGHT / 2 + 5
+    int upper = 0, bottom = 7, left = 0, right = 14; // í”Œë ˆì´ì–´ ì‹œì•¼ ë°°ì—´ì„ ì–¼ë§Œí¼ ëŒë¦´ ì§€
+   
+
     drawPlayerSight(playerx, playery, bottom, right, upper, left);
     drawPlayer(playerx, playery);
+
+    gotoxy1(0, 21);
+    printf("%d", strider_info[0].sx);
 
     while (1)
     {
         time_g(timek);
         HP_print(HP);
-
-
-
         int n = keyControl1();
-        
-        
-        
-        switch (n) 
-        { case UP: {
+        switch (n) {
+        case UP: {
             if (playery <= MAP_Y + 3) playery = MAP_Y + 3;
-            else if (playery <= MAP_Y + 6 && playery >= MAP_Y + 4) { //¸Ê À§·Î ÀÌµ¿
+            else if (playery <= MAP_Y + 6 && playery >= MAP_Y + 4) { //ë§µ ìœ„ë¡œ ì´ë™
                 curx = playerx, cury = MAP_Y + 6, left = 0, right = 14;
                 if (playery == MAP_Y + 6) upper = 0;
                 if (playery == MAP_Y + 5) upper = 1;
                 if (playery == MAP_Y + 4) upper = 2;
-                if (playerx >= MAP_X * 2 + 1 && playerx < MAP_X * 2 + 7) { // ¿ŞÂÊ¿¡¼­ À§·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                if (playerx >= MAP_X * 2 + 1 && playerx < MAP_X * 2 + 7) { // ì™¼ìª½ì—ì„œ ìœ„ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playerx == MAP_X * 2 + 6) left = 1;
                     if (playerx == MAP_X * 2 + 5) left = 2;
                     if (playerx == MAP_X * 2 + 4) left = 3;
@@ -233,7 +225,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                     if (playerx == MAP_X * 2 + 1) left = 6;
                     curx = MAP_X * 2 + 7;
                 }
-                else if (playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 6 && playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2) { // ¿À¸¥ÂÊ¿¡¼­ À§·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                else if (playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 6 && playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2) { // ì˜¤ë¥¸ìª½ì—ì„œ ìœ„ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 6) right = 12;
                     if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 5) right = 11;
                     if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 4) right = 10;
@@ -244,12 +236,12 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(curx, cury, bottom, right, ++upper, left);
                 drawPlayer(playerx, --playery);
             }
-            else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ¸Ê ¾Æ·¡¿¡¼­ À§·Î ÀÌµ¿
+            else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ë§µ ì•„ë˜ì—ì„œ ìœ„ë¡œ ì´ë™
                 curx = playerx, left = 0, right = 14, upper = 0;
                 if (playery == MAP_HEIGHT / 2 + 8) bottom = 4;
                 if (playery == MAP_HEIGHT / 2 + 7) bottom = 5;
                 if (playery == MAP_HEIGHT / 2 + 6) bottom = 6;
-                if (playerx >= MAP_X * 2 + 1 && playerx < MAP_X * 2 + 7) { // ¿ŞÂÊ¿¡¼­ ¾Æ·¡·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                if (playerx >= MAP_X * 2 + 1 && playerx < MAP_X * 2 + 7) { // ì™¼ìª½ì—ì„œ ì•„ë˜ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playerx == MAP_X * 2 + 6) left = 1;
                     if (playerx == MAP_X * 2 + 5) left = 2;
                     if (playerx == MAP_X * 2 + 4) left = 3;
@@ -258,7 +250,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                     if (playerx == MAP_X * 2 + 1) left = 6;
                     curx = MAP_X * 2 + 7;
                 }
-                else if (playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 6 && playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2) { // ¿À¸¥ÂÊ¿¡¼­ ¾Æ·¡·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                else if (playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 6 && playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2) { // ì˜¤ë¥¸ìª½ì—ì„œ ì•„ë˜ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 6) right = 12;
                     if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 5) right = 11;
                     if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 4) right = 10;
@@ -269,7 +261,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(curx, --playery, ++bottom, right, upper, left);
                 drawPlayer(playerx, playery);
             }
-            else if (playerx >= MAP_X * 2 + 1 && playerx < MAP_X * 2 + 7) { // ¸Ê ¿Ş ÂÊ¿¡¼­ À§·Î ÀÌµ¿
+            else if (playerx >= MAP_X * 2 + 1 && playerx < MAP_X * 2 + 7) { // ë§µ ì™¼ ìª½ì—ì„œ ìœ„ë¡œ ì´ë™
                 curx = MAP_X * 2 + 7, bottom = 7, right = 14, upper = 0;
                 if (playerx == MAP_X * 2 + 6) left = 1;
                 if (playerx == MAP_X * 2 + 5) left = 2;
@@ -281,7 +273,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(curx, --playery, bottom, right, upper, left);
                 drawPlayer(playerx, playery);
             }
-            else if (playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 6 && playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2) { //¸Ê ¿À¸¥ÂÊ¿¡¼­ À§·Î ÀÌµ¿
+            else if (playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 6 && playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2) { //ë§µ ì˜¤ë¥¸ìª½ì—ì„œ ìœ„ë¡œ ì´ë™
                 bottom = 7, left = 0, upper = 0;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 6) right = 12;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 5) right = 11;
@@ -292,7 +284,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(playerx, --playery, bottom, right, upper, left);
                 drawPlayer(playerx, playery);
             }
-            else { // ¸Ê ³»ºÎ
+            else { // ë§µ ë‚´ë¶€
                 removePlayerSight(playerx, playery, bottom, right, upper, left);
                 drawPlayerSight(playerx, --playery, bottom, right, upper, left);
                 drawPlayer(playerx, playery);
@@ -301,12 +293,12 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         }
         case DOWN: {
             if (playery >= MAP_HEIGHT / 2 + 8) playery = MAP_HEIGHT / 2 + 8;
-            else if (playery < MAP_HEIGHT / 2 + 8 && playery >= MAP_HEIGHT / 2 + 5) { // ¸Ê °æ°è ¾Æ·¡·Î ÀÌµ¿
+            else if (playery < MAP_HEIGHT / 2 + 8 && playery >= MAP_HEIGHT / 2 + 5) { // ë§µ ê²½ê³„ ì•„ë˜ë¡œ ì´ë™
                 curx = playerx, left = 0, right = 14;
                 if (playery == MAP_HEIGHT / 2 + 5) bottom = 7;
                 if (playery == MAP_HEIGHT / 2 + 6) bottom = 6;
                 if (playery == MAP_HEIGHT / 2 + 7) bottom = 5;
-                if (playerx >= MAP_X * 2 + 1 && playerx < MAP_X * 2 + 7) { // ¿ŞÂÊ¿¡¼­ ¾Æ·¡·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                if (playerx >= MAP_X * 2 + 1 && playerx < MAP_X * 2 + 7) { // ì™¼ìª½ì—ì„œ ì•„ë˜ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playerx == MAP_X * 2 + 6) left = 1;
                     if (playerx == MAP_X * 2 + 5) left = 2;
                     if (playerx == MAP_X * 2 + 4) left = 3;
@@ -315,7 +307,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                     if (playerx == MAP_X * 2 + 1) left = 6;
                     curx = MAP_X * 2 + 7;
                 }
-                else if (playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 6 && playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2) { // ¿À¸¥ÂÊ¿¡¼­ ¾Æ·¡·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                else if (playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 6 && playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2) { // ì˜¤ë¥¸ìª½ì—ì„œ ì•„ë˜ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 6) right = 12;
                     if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 5) right = 11;
                     if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 4) right = 10;
@@ -326,12 +318,12 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(curx, ++playery, --bottom, right, 0, left);
                 drawPlayer(playerx, playery);
             }
-            else if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // ¸Ê À§¿¡¼­ ¾Æ·¡·Î ÀÌµ¿
+            else if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // ë§µ ìœ„ì—ì„œ ì•„ë˜ë¡œ ì´ë™
                 curx = playerx, cury = MAP_Y + 6, bottom = 7, left = 0, right = 14;
                 if (playery == MAP_Y + 3) upper = 3;
                 if (playery == MAP_Y + 4) upper = 2;
                 if (playery == MAP_Y + 5) upper = 1;
-                if (playerx >= MAP_X * 2 + 1 && playerx < MAP_X * 2 + 7) { // ¿ŞÂÊ¿¡¼­ ¾Æ·¡·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                if (playerx >= MAP_X * 2 + 1 && playerx < MAP_X * 2 + 7) { // ì™¼ìª½ì—ì„œ ì•„ë˜ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playerx == MAP_X * 2 + 6) left = 1;
                     if (playerx == MAP_X * 2 + 5) left = 2;
                     if (playerx == MAP_X * 2 + 4) left = 3;
@@ -340,7 +332,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                     if (playerx == MAP_X * 2 + 1) left = 6;
                     curx = MAP_X * 2 + 7;
                 }
-                else if (playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 6 && playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2) { // ¿À¸¥ÂÊ¿¡¼­ ¾Æ·¡·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                else if (playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 6 && playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2) { // ì˜¤ë¥¸ìª½ì—ì„œ ì•„ë˜ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 6) right = 12;
                     if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 5) right = 11;
                     if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 4) right = 10;
@@ -351,7 +343,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(curx, cury, bottom, right, --upper, left);
                 drawPlayer(playerx, ++(playery));
             }
-            else if (playerx >= MAP_X * 2 + 1 && playerx < MAP_X * 2 + 7) { // ¸Ê ¿Ş ÂÊ¿¡¼­ À§·Î ÀÌµ¿
+            else if (playerx >= MAP_X * 2 + 1 && playerx < MAP_X * 2 + 7) { // ë§µ ì™¼ ìª½ì—ì„œ ìœ„ë¡œ ì´ë™
                 curx = MAP_X * 2 + 7, bottom = 7, right = 14, upper = 0;
                 if (playerx == MAP_X * 2 + 6) left = 1;
                 if (playerx == MAP_X * 2 + 5) left = 2;
@@ -363,7 +355,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(curx, ++playery, bottom, right, upper, left);
                 drawPlayer(playerx, playery);
             }
-            else if (playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 6 && playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 2) { //¸Ê ¿À¸¥ÂÊ¿¡¼­ À§·Î ÀÌµ¿
+            else if (playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 6 && playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 2) { //ë§µ ì˜¤ë¥¸ìª½ì—ì„œ ìœ„ë¡œ ì´ë™
                 bottom = 7, left = 0, upper = 0;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 6) right = 8;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 5) right = 9;
@@ -374,7 +366,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(playerx, ++playery, bottom, right, upper, left);
                 drawPlayer(playerx, playery);
             }
-            else { // ¸Ê ³»ºÎ
+            else { // ë§µ ë‚´ë¶€
                 removePlayerSight(playerx, playery, bottom, right, upper, left);
                 drawPlayerSight(playerx, ++playery, bottom, right, upper, left);
                 drawPlayer(playerx, playery);
@@ -383,7 +375,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         }
         case LEFT: {
             if (playerx <= MAP_X * 2 + 1) playerx = MAP_X * 2 + 1;
-            else if (playerx <= MAP_X * 2 + 7 && playerx > MAP_X * 2 + 1) { // ¸Ê ¿ŞÂÊÀ¸·Î ÀÌµ¿
+            else if (playerx <= MAP_X * 2 + 7 && playerx > MAP_X * 2 + 1) { // ë§µ ì™¼ìª½ìœ¼ë¡œ ì´ë™
                 curx = MAP_X * 2 + 7, cury = playery, bottom = 7, right = 14, upper = 0;
                 if (playerx == MAP_X * 2 + 7) left = 1;
                 if (playerx == MAP_X * 2 + 6) left = 2;
@@ -391,13 +383,13 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 if (playerx == MAP_X * 2 + 4) left = 4;
                 if (playerx == MAP_X * 2 + 3) left = 5;
                 if (playerx == MAP_X * 2 + 2) left = 6;
-                if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // À§ÂÊ¿¡¼­ ¿ŞÂÊÀ¸·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // ìœ„ìª½ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playery == MAP_Y + 3) upper = 3;
                     if (playery == MAP_Y + 4) upper = 2;
                     if (playery == MAP_Y + 5) upper = 1;
                     cury = MAP_Y + 6;
                 }
-                else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ¾Æ·¡ÂÊ¿¡¼­ ¿ŞÂÊÀ¸·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ì•„ë˜ìª½ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playery == MAP_HEIGHT / 2 + 8) bottom = 4;
                     if (playery == MAP_HEIGHT / 2 + 7) bottom = 5;
                     if (playery == MAP_HEIGHT / 2 + 6) bottom = 6;
@@ -406,20 +398,20 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(curx, cury, bottom, right, upper, left);
                 drawPlayer(--playerx, playery);
             }
-            else if (playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2 && playerx > (MAP_X + MAP_WIDTH - 1) * 2 - 7) { // ¸Ê ¿À¸¥ÂÊ¿¡¼­ ¿ŞÂÊÀ¸·Î ÀÌµ¿
+            else if (playerx <= (MAP_X + MAP_WIDTH - 1) * 2 - 2 && playerx > (MAP_X + MAP_WIDTH - 1) * 2 - 7) { // ë§µ ì˜¤ë¥¸ìª½ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ì´ë™
                 cury = playery, upper = 0, bottom = 7, right = 14, left = 0;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 2) right = 8;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 3) right = 9;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 4) right = 10;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 5) right = 11;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 6) right = 12;
-                if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // À§ÂÊ¿¡¼­ ¿ŞÂÊÀ¸·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // ìœ„ìª½ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playery == MAP_Y + 3) upper = 3;
                     if (playery == MAP_Y + 4) upper = 2;
                     if (playery == MAP_Y + 5) upper = 1;
                     cury = MAP_Y + 6;
                 }
-                else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ¾Æ·¡ÂÊ¿¡¼­ ¿ŞÂÊÀ¸·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ì•„ë˜ìª½ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playery == MAP_HEIGHT / 2 + 8) bottom = 4;
                     if (playery == MAP_HEIGHT / 2 + 7) bottom = 5;
                     if (playery == MAP_HEIGHT / 2 + 6) bottom = 6;
@@ -429,7 +421,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayer(playerx, playery);
 
             }
-            else if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // ¸Ê À§¿¡¼­ ¿ŞÂÊÀ¸·Î ÀÌµ¿
+            else if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // ë§µ ìœ„ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ì´ë™
                 cury = MAP_Y + 6, bottom = 7, left = 0, right = 14;
                 if (playery == MAP_Y + 3) upper = 3;
                 if (playery == MAP_Y + 4) upper = 2;
@@ -438,7 +430,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(--playerx, cury, bottom, right, upper, left);
                 drawPlayer(playerx, playery);
             }
-            else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ¸Ê ¾Æ·¡¿¡¼­ ¿ŞÂÊÀ¸·Î ÀÌµ¿
+            else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ë§µ ì•„ë˜ì—ì„œ ì™¼ìª½ìœ¼ë¡œ ì´ë™
                 right = 14, upper = 0, left = 0;
                 if (playery == MAP_HEIGHT / 2 + 8) bottom = 4;
                 if (playery == MAP_HEIGHT / 2 + 7) bottom = 5;
@@ -447,7 +439,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(--playerx, playery, bottom, right, upper, left);
                 drawPlayer(playerx, playery);
             }
-            else { // ¸Ê ³»ºÎ
+            else { // ë§µ ë‚´ë¶€
                 removePlayerSight(playerx, playery, bottom, right, upper, left);
                 drawPlayerSight(--playerx, playery, bottom, right, upper, left);
                 drawPlayer(playerx, playery);
@@ -456,20 +448,20 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         }
         case RIGHT: {
             if (playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 2) playerx = (MAP_X + MAP_WIDTH - 1) * 2 - 2;
-            else if (playerx < (MAP_X + MAP_WIDTH - 1) * 2 - 2 && playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 7) { // ¸Ê ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿
+            else if (playerx < (MAP_X + MAP_WIDTH - 1) * 2 - 2 && playerx >= (MAP_X + MAP_WIDTH - 1) * 2 - 7) { // ë§µ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™
                 cury = playery, bottom = 7, upper = 0, left = 0;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 7) right = 13;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 6) right = 12;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 5) right = 11;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 4) right = 10;
                 if (playerx == (MAP_X + MAP_WIDTH - 1) * 2 - 3) right = 9;
-                if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // À§ÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // ìœ„ìª½ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playery == MAP_Y + 3) upper = 3;
                     if (playery == MAP_Y + 4) upper = 2;
                     if (playery == MAP_Y + 5) upper = 1;
                     cury = MAP_Y + 6;
                 }
-                else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ¾Æ·¡ÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ì•„ë˜ìª½ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playery == MAP_HEIGHT / 2 + 8) bottom = 4;
                     if (playery == MAP_HEIGHT / 2 + 7) bottom = 5;
                     if (playery == MAP_HEIGHT / 2 + 6) bottom = 6;
@@ -478,7 +470,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(++(playerx), cury, bottom, --right, upper, left);
                 drawPlayer(playerx, playery);
             }
-            else if (playerx <= MAP_X * 2 + 6 && playerx >= MAP_X * 2 + 1) { // ¸Ê ¿ŞÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿
+            else if (playerx <= MAP_X * 2 + 6 && playerx >= MAP_X * 2 + 1) { // ë§µ ì™¼ìª½ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™
                 curx = MAP_X * 2 + 7, bottom = 7, right = 14, upper = 0, cury = playery, left = 0;
                 if (playerx == MAP_X * 2 + 6) left = 0;
                 if (playerx == MAP_X * 2 + 5) left = 1;
@@ -486,13 +478,13 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 if (playerx == MAP_X * 2 + 3) left = 3;
                 if (playerx == MAP_X * 2 + 2) left = 4;
                 if (playerx == MAP_X * 2 + 1) left = 5;
-                if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // À§ÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // ìœ„ìª½ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playery == MAP_Y + 3) upper = 3;
                     if (playery == MAP_Y + 4) upper = 2;
                     if (playery == MAP_Y + 5) upper = 1;
                     cury = MAP_Y + 6;
                 }
-                else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ¾Æ·¡ÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î °¥ ¶§ °ãÄ¡´Â ºÎºĞ
+                else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ì•„ë˜ìª½ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°ˆ ë•Œ ê²¹ì¹˜ëŠ” ë¶€ë¶„
                     if (playery == MAP_HEIGHT / 2 + 8) bottom = 4;
                     if (playery == MAP_HEIGHT / 2 + 7) bottom = 5;
                     if (playery == MAP_HEIGHT / 2 + 6) bottom = 6;
@@ -501,7 +493,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(curx, cury, bottom, right, upper, left);
                 drawPlayer(++playerx, playery);
             }
-            else if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // ¸Ê À§¿¡¼­ ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿
+            else if (playery <= MAP_Y + 5 && playery >= MAP_Y + 3) { // ë§µ ìœ„ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™
                 cury = MAP_Y + 6, bottom = 7, left = 0, right = 14;
                 if (playery == MAP_Y + 3) upper = 3;
                 if (playery == MAP_Y + 4) upper = 2;
@@ -510,7 +502,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(++playerx, cury, bottom, right, upper, left);
                 drawPlayer(playerx, playery);
             }
-            else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ¸Ê ¾Æ·¡¿¡¼­ ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿
+            else if (playery <= MAP_HEIGHT / 2 + 8 && playery > MAP_HEIGHT / 2 + 5) { // ë§µ ì•„ë˜ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™
                 right = 14, upper = 0, left = 0;
                 if (playery == MAP_HEIGHT / 2 + 8) bottom = 4;
                 if (playery == MAP_HEIGHT / 2 + 7) bottom = 5;
@@ -519,7 +511,7 @@ int movePlayer(struct player* player_info, struct items* item_array) {
                 drawPlayerSight(++playerx, playery, bottom, right, upper, left);
                 drawPlayer(playerx, playery);
             }
-            else { // ¸Ê ³»ºÎ
+            else { // ë§µ ë‚´ë¶€
                 removePlayerSight(playerx, playery, bottom, right, upper, left);
                 drawPlayerSight(++playerx, playery, bottom, right, upper, left);
                 drawPlayer(playerx, playery);
@@ -528,26 +520,25 @@ int movePlayer(struct player* player_info, struct items* item_array) {
         }
         case BACK:
             return BACK;
-        }  /*
+            /*
             case SUBMIT: {
-                return SUBMIT; // Ã³¸® ÇØ¾ßÇÔ
+                return SUBMIT; // ì²˜ë¦¬ í•´ì•¼í•¨
 
             }*/
-        
-        // ½Ã¾ß ¹üÀ§¿¡ µé¾î¿À¸é ¾ÆÀÌÅÛ Ãâ·Â
-         
-        
-        
-        
-        
-        // ¾ÆÀÌÅÛ°ú ÇÃ·¹ÀÌ¾î Ãæµ¹ ½Ã ¾ÆÀÌÅÛ È¹µæ Ã³¸®
-        eatItem(*player_info, item_array, playerx, playery);
-        
-        
-        
-        timek = timek +0.25;
+        }
 
-        /* Âü°í ÇÏ·Á°í ÀûÀ½ ³ªÁß¿¡ »èÁ¦ ÇØ¾ßÇÔ */
+        // ì•„ì´í…œê³¼ í”Œë ˆì´ì–´ ì¶©ëŒ ì‹œ ì•„ì´í…œ íšë“ ì²˜ë¦¬
+        eatItem(*player_info, item_array, playerx, playery);
+
+        // í‚¤ ì…ë ¥ ì‹œ ê²½ë¹„ë³‘ë„ ì´ë™
+        moveLRStrider(strider_info, ptail);
+        moveUDStrider(strider_info, ptail);
+        CDStrider(playerx, playery, strider_info, *ptail);
+
+
+        timek = timek + 0.25;
+
+        /* ì°¸ê³  í•˜ë ¤ê³  ì ìŒ ë‚˜ì¤‘ì— ì‚­ì œ í•´ì•¼í•¨ */
         gotoxy1(0, 0);
         printf("PLAYER: %d %d ", playerx, playery);
         gotoxy1(0, 2);
@@ -561,14 +552,18 @@ int movePlayer(struct player* player_info, struct items* item_array) {
             printf("%d] (%d, %d) %s\n", i + 1, item_array[i].x, item_array[i].y, item_array[i].skill);
         };
 
-        gotoxy1(0, 6);
-        printf("%d", HP);
-        
-        // Å¬¸®¾î -> Å¬¸®¾î ¹İÈ¯ return CLEAR;
-        // ¿­¼è È¹µæ ½Ã °ÔÀÓ ¼º°ø 
+        gotoxy1(0, 5);
+        printf("HP: %d", HP);
+        gotoxy1(0, 15);
+        printf("S1: %d %d\n", strider_info[0].sx, strider_info[0].sy);
+        printf("S2: %d %d", strider_info[1].sx, strider_info[1].sy);
+        /***********************************************************/
+
+        // í´ë¦¬ì–´ -> í´ë¦¬ì–´ ë°˜í™˜ return CLEAR;
+        // ì—´ì‡  íšë“ ì‹œ ê²Œì„ ì„±ê³µ 
         if (isClear(item_array) == CLEAR) return CLEAR;
-        
-        
+
+
         if (100 - timek <= 0)
         {
             Sleep(500);
@@ -576,9 +571,9 @@ int movePlayer(struct player* player_info, struct items* item_array) {
             Sleep(700);
             return BACK;
         }
-        // ½ÇÆĞ -> ½ÇÆĞ ¹İÈ¯ returb FAIL;
+        // ì‹¤íŒ¨ -> ì‹¤íŒ¨ ë°˜í™˜ returb FAIL;
         // 
-        // Á¦ÇÑ ½Ã°£ ³¡³ª¸é -1 ¸ñ¼û, Á¦ÇÑ ½Ã°£ Ãß°¡ ºÎ¿©
+        // ì œí•œ ì‹œê°„ ëë‚˜ë©´ -1 ëª©ìˆ¨, ì œí•œ ì‹œê°„ ì¶”ê°€ ë¶€ì—¬
 
     }
 }
@@ -595,24 +590,37 @@ void Itemcoord(struct items* item, struct player* player) {
     item->y = y;
 }
 
-// °ÔÀÓÀÇ ½ºÅ×ÀÌÁö¸¦ ¸Ç Ã³À½ ½ÃÀÛÇÏ´Â ÇÔ¼ö
+// ê²Œì„ì˜ ìŠ¤í…Œì´ì§€ë¥¼ ë§¨ ì²˜ìŒ ì‹œì‘í•˜ëŠ” í•¨ìˆ˜
 
 int gameplay(void) {
     char input;
-    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,½Ã¾ß³Êºñ, ½Ã¾ß³ôÀÌ;
-    struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b"},{0,0,'l'},{0,0,'k'},{0,0,'k'} };
-    HP = 0;
+    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,ì‹œì•¼ë„ˆë¹„, ì‹œì•¼ë†’ì´;
+    struct items items[MAX_ITEMS] = { {0,0,"key"},{0,0,"key"},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'} };
+    struct strider strider[MAX_STRIDER] = { {0,0}, {0,0} };
+    int HP = 0;
+    int tail = 0;
 
     for (int i = 0; i < MAX_ITEMS; i++) {
-        Itemcoord(&items[i], player);
-        drawItem(items[i].x, items[i].y);
+        Itemcoord(&items[i], player[0]);
     }
+
+    for (int i = 0; i < MAX_STRIDER; i++) {
+        stridercoord(&strider[i], player[0]);
+    }
+    if (strider[1].sy >= 18) {
+        strider[1].sy = rand() % (MAP_HEIGHT - 13) + 5;
+    }
+
+    drawUDStrider(strider[1].sx, strider[1].sy, tail, 0, 4);
+    drawLRStrider(strider[0].sx, strider[0].sy, tail, 7, 0);
+
+
 
     while (1) {
 
 
 
-        input = movePlayer(player, items);
+        input = movePlayer(player, items, strider, &tail);
 
         if (input == BACK) return BACK;
         if (input == CLEAR) return CLEAR;
@@ -620,11 +628,12 @@ int gameplay(void) {
         // if (input == SUBMIT) return BACK;
 
     }
+
     return 0;
 }
 int gameplayNormal(void) {
     char input;
-    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,½Ã¾ß³Êºñ, ½Ã¾ß³ôÀÌ;
+    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,ì‹œì•¼ë„ˆë¹„, ì‹œì•¼ë†’ì´;
     struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b"},{0,0,'l'},{0,0,'k'},{0,0,'k'} };
     HP = 0;
 
@@ -651,7 +660,7 @@ int gameplayNormal(void) {
 
 int gameplayEasy(void) {
     char input;
-    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y} };  // x,y,½Ã¾ß³Êºñ, ½Ã¾ß³ôÀÌ;
+    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y} };  // x,y,ì‹œì•¼ë„ˆë¹„, ì‹œì•¼ë†’ì´;
     struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b"},{0,0,'l'},{0,0,'k'},{0,0,'k'} };
     HP = 0;
     
@@ -677,8 +686,8 @@ int gameplayEasy(void) {
 
 int playermoveEasy(struct player* player_info, struct items* item_array)
 {
-    int playerx = player_info[0].x;	// ÇÃ·¹ÀÌ¾î x ÁÂÇ¥
-    int playery = player_info[0].y; // ÇÃ·¹ÀÌ¾î y ÁÂÇ¥
+    int playerx = player_info[0].x;	// í”Œë ˆì´ì–´ x ì¢Œí‘œ
+    int playery = player_info[0].y; // í”Œë ˆì´ì–´ y ì¢Œí‘œ
     drawPlayer(playerx, playery);
     while (1)
     {
@@ -739,8 +748,8 @@ int playermoveEasy(struct player* player_info, struct items* item_array)
 
 int playermoveNormal(struct player* player_info, struct items* item_array)
 {
-    int playerx = player_info[0].x;	// ÇÃ·¹ÀÌ¾î x ÁÂÇ¥
-    int playery = player_info[0].y; // ÇÃ·¹ÀÌ¾î y ÁÂÇ¥
+    int playerx = player_info[0].x;	// í”Œë ˆì´ì–´ x ì¢Œí‘œ
+    int playery = player_info[0].y; // í”Œë ˆì´ì–´ y ì¢Œí‘œ
     drawPlayer(playerx, playery);
     while (1)
     {
@@ -801,9 +810,259 @@ int playermoveNormal(struct player* player_info, struct items* item_array)
 void time_g(float time)
 {
     gotoxy1(MAP_X + MAP_WIDTH - 14, MAP_Y + 1);
-    printf("³²Àº ¹èÅÍ¸®: %.1f", (100- time));
+    printf("ë‚¨ì€ ë°°í„°ë¦¬: %.1f", (100- time));
     Setcolor(15);
 }
+
+void stridercoord(struct strider* strider, struct player player) {
+    int x, y;
+    do {
+        x = rand() % (MAP_WIDTH * 2 - 9) + 23;
+        y = rand() % (MAP_HEIGHT - 9) + 5;
+    } while (x >= player.x - player.sw && x <= player.x + player.sw &&
+        y >= player.y - player.sh && y <= player.y + player.sh);
+
+    strider->sx = x;
+    strider->sy = y;
+}
+
+void drawLRStrider(int x, int y, int tail, int right, int left) {
+    char strider[2][14] = {
+        "o o o o",
+        "o o o o o o o"
+    };
+    int striderx=x, stridery=y;
+    if (tail == 1) {
+        gotoxy1(striderx, stridery);
+        for (int i = 0 + left; i < right; i++) {
+            putchar(strider[1][i]);
+            fflush(stdout);
+        }
+        gotoxy1(striderx, stridery);
+        striderx += 1;
+    }
+    else {
+        gotoxy1(striderx, stridery);
+        for (int i = 0 + left; i < right; i++) {
+            putchar(strider[0][i]);
+            fflush(stdout);
+        }
+        gotoxy1(striderx, stridery);
+        striderx += 1;
+    }
+}
+
+void drawUDStrider(int x, int y, int tail, int upper, int bottom) {
+    char strider[7][2] = {
+        "o",
+        "o",
+        "o",
+        "o",
+        "o",
+        "o",
+        "o"
+    };
+    int striderx = x, stridery = y;
+    if (tail == 1) bottom += 3;
+    for (int i = 0 + upper; i < bottom; i++) {
+        gotoxy1(striderx, stridery);
+        for (int j = 0; j < 2; j++){
+            putchar(strider[i][j]);
+            fflush(stdout);
+        }
+        stridery += 1;
+    }
+}
+
+void removeLRStrider(int x, int y, int tail, int right, int left) {
+    char charsight[2][14] = {
+        "       ",
+        "             "
+    };
+    int striderx = x, stridery = y;
+    if (tail == 0) {
+        gotoxy1(striderx, stridery);
+        for (int i = 0+ left; i < right; i++) {
+            putchar(charsight[0][i]);
+            fflush(stdout);
+        }
+        gotoxy1(striderx, stridery);
+        striderx += 1;
+    }
+    else {
+        gotoxy1(striderx, stridery);
+        for (int i = 0 + left; i < right; i++) {
+            putchar(charsight[1][i]);
+            fflush(stdout);
+        }
+        gotoxy1(striderx, stridery);
+        striderx += 1;
+    }
+}
+void removeUDStrider(int x, int y, int tail, int upper, int bottom) {
+    char strider[7][2] = {
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " ",
+        " "
+    };
+    int striderx = x, stridery = y;
+    if (tail == 1) bottom += 3;
+    for (int i = 0 + upper; i < bottom; i++) {
+        gotoxy1(striderx, stridery);
+        for (int j = 0; j < 2; j++) {
+            putchar(strider[i][j]);
+            fflush(stdout);
+        }
+        stridery += 1;
+    }
+}
+
+void moveLRStrider(struct strider *strider_info, int **pptail) {
+    int tail = *pptail;
+    int striderx = strider_info[0].sx;
+    int stridery = strider_info[0].sy;
+    if (tail == 1) {
+        if (striderx <= MAP_X * 2 + 2) {
+            removeLRStrider(striderx, stridery, tail, 14, 0);
+            strider_info[0].sy = rand() % (MAP_HEIGHT - 9) + 5;
+            strider_info[0].sx = (MAP_WIDTH * 2 - 8) + MAP_X * 2 - 7;
+            drawLRStrider(strider_info[0].sx, strider_info[0].sy, tail, 14, 0);
+        }
+        else if (striderx <= (MAP_WIDTH * 2 - 8) + MAP_X * 2 && striderx > MAP_X * 2 + 2) {
+            removeLRStrider(striderx + 12, stridery, tail, 14, 12);
+            strider_info[0].sx -= 2;
+            drawLRStrider(strider_info[0].sx, stridery, tail, 2, 0);
+        }
+    }
+    else{
+        if (striderx <= MAP_X * 2 + 2) {
+            removeLRStrider(striderx, stridery, tail, 7, 0);
+            strider_info[0].sy = rand() % (MAP_HEIGHT - 9) + 5;
+            strider_info[0].sx = (MAP_WIDTH * 2 - 8) + MAP_X * 2-1;
+            drawLRStrider(strider_info[0].sx, strider_info[0].sy, tail, 7, 0);
+        }
+        else if (striderx <= (MAP_WIDTH * 2 - 8) + MAP_X * 2 && striderx > MAP_X * 2 + 2){
+            removeLRStrider(striderx+5, stridery, tail, 7, 5);
+            strider_info[0].sx -= 2;
+            drawLRStrider(strider_info[0].sx, stridery, tail, 2, 0);
+        }
+    }
+}
+
+void moveUDStrider(struct strider* strider_info, int** pptail) {
+    int tail = *pptail;
+    int striderx = strider_info[1].sx;
+    int stridery = strider_info[1].sy;
+    if (tail == 1) {
+        if (stridery <= MAP_Y + 3) {
+            removeUDStrider(striderx, stridery, tail, 0, 4);
+            strider_info[1].sx = rand() % (MAP_WIDTH * 2 - 9) + 23;
+            strider_info[1].sy = MAP_Y + MAP_HEIGHT - 13;
+            drawUDStrider(strider_info[1].sx, strider_info[1].sy, tail, 0, 4);
+        }
+        else if (stridery <= MAP_Y + MAP_HEIGHT - 13 && stridery > MAP_Y + 3) {
+            removeUDStrider(striderx, stridery, tail, 0, 4);
+            strider_info[1].sy -= 1;
+            drawUDStrider(striderx, strider_info[1].sy, tail, 0, 4);
+        }
+    }
+    else {
+        tail = 0;
+        if (stridery <= MAP_Y + 3) {
+            removeUDStrider(striderx, stridery, tail, 0, 4);
+            strider_info[1].sx = rand() % (MAP_WIDTH * 2 - 9) + 23;
+            strider_info[1].sy = MAP_Y + MAP_HEIGHT - 10;
+            drawUDStrider(strider_info[1].sx, strider_info[1].sy, tail, 0, 4);
+        }
+        else if (stridery <= MAP_Y + MAP_HEIGHT - 10 && stridery > MAP_Y + 3) {
+            removeUDStrider(striderx, stridery, tail, 0, 4);
+            strider_info[1].sy -= 1;
+            drawUDStrider(striderx, strider_info[1].sy, tail, 0, 4);
+        }
+    }
+}
+
+// ê²½ë¹„ë³‘ê³¼ í”Œë ˆì´ì–´ ì¶©ëŒ ì²˜ë¦¬ í•¨ìˆ˜
+void CDStrider(int px, int py, struct strider *strider_info, int tail) {
+    // tail 1ì¼ ë•Œ
+    int c = 0;
+    if (tail == 1) {
+        if (strider_info[0].sx - 6 <= px &&
+            strider_info[0].sx + 18 >= px &&
+            strider_info[0].sy - 3 <= py &&
+            strider_info[0].sy + 3 >= py) {
+            gotoxy1(5, 27);
+            printf("d");
+            drawLRStrider(strider_info[0].sx, strider_info[0].sy, tail, 14, 0);
+            if (
+                (strider_info[0].sx <= px &&
+                    strider_info[0].sx + 12 >= px &&
+                    strider_info[0].sy == py)
+                ) {
+                HP--;
+            }
+        }
+        else if
+            (strider_info[1].sx - 6 <= px &&
+                strider_info[1].sx + 6 >= px &&
+                strider_info[1].sy <= py + 3 &&
+                strider_info[1].sy + 6 >= py - 3
+                ) {
+            drawUDStrider(strider_info[1].sx, strider_info[1].sy, tail, 7, 0);
+            if (strider_info[1].sx == px &&
+                strider_info[1].sy <= py &&
+                strider_info[1].sy + 7 >= py)
+            {
+                HP--;
+            }
+        }
+    }
+    if (tail == 0) { // tail 0ì¼ ë•Œ
+        if (strider_info[0].sx - 6 <= px &&
+            strider_info[0].sx + 12 >= px &&
+            strider_info[0].sy - 3 <= py &&
+            strider_info[0].sy + 3 >= py) {
+            
+            drawLRStrider(strider_info[0].sx, strider_info[0].sy, tail, 7, 0);
+            if (
+                (strider_info[0].sx <= px &&
+                    strider_info[0].sx + 6 >= px &&
+                    strider_info[0].sy == py)
+                ) {
+                HP--;
+            }
+        }
+        else if
+            (strider_info[1].sx-6 <= px &&
+            strider_info[1].sx + 6 >= px &&
+            strider_info[1].sy <= py + 3 &&
+            strider_info[1].sy + 3 >= py - 3 
+            ) {
+            drawUDStrider(strider_info[1].sx, strider_info[1].sy, tail, 4,0);
+             if(strider_info[1].sx == px &&
+                strider_info[1].sy <= py &&
+                strider_info[1].sy + 4 >= py)
+             {
+                 HP--;
+             }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /// <su
 /// </summary>
@@ -819,26 +1078,26 @@ void timer(void)
     start_time = clock();
     
 
-    // ½Ç½Ã°£ Å¸ÀÌ¸Ó Ãâ·Â
+    // ì‹¤ì‹œê°„ íƒ€ì´ë¨¸ ì¶œë ¥
     while (1) {
         current_time = clock();
         elapsed_time = ((double)(current_time - start_time)) / CLOCKS_PER_SEC;
-        gotoxy(MAP_X + MAP_WIDTH - 11, MAP_Y + 1, "HP: ¢¾ ¢¾ ¢¾ ¢¾"); //HPÇ¥½Ã
-        // °æ°úµÈ ½Ã°£ Ãâ·Â
+        gotoxy(MAP_X + MAP_WIDTH - 11, MAP_Y + 1, "HP: â™¥ â™¥ â™¥ â™¥"); //HPí‘œì‹œ
+        // ê²½ê³¼ëœ ì‹œê°„ ì¶œë ¥
         gotoxy(10, 10, " ");
-        printf("\r°æ°úµÈ ½Ã°£: %.2f ÃÊ", 10 - elapsed_time);
-        fflush(stdout);  // Ãâ·Â ¹öÆÛ¸¦ ºñ¿ö¼­ ½Ç½Ã°£À¸·Î Ãâ·Â
+        printf("\rê²½ê³¼ëœ ì‹œê°„: %.2f ì´ˆ", 10 - elapsed_time);
+        fflush(stdout);  // ì¶œë ¥ ë²„í¼ë¥¼ ë¹„ì›Œì„œ ì‹¤ì‹œê°„ìœ¼ë¡œ ì¶œë ¥
 
-        // 1ÃÊ ´ë±â
+        // 1ì´ˆ ëŒ€ê¸°
         Sleep(50);
 
-        // Á¾·á Á¶°Ç ¿¹½Ã (10ÃÊ ÈÄ Á¾·á)
+        // ì¢…ë£Œ ì¡°ê±´ ì˜ˆì‹œ (10ì´ˆ í›„ ì¢…ë£Œ)
         if (10 - elapsed_time <= -0.001) {
             break;
         }
     }
 
-    printf("\nÅ¸ÀÌ¸Ó Á¾·á!\n");
+    printf("\níƒ€ì´ë¨¸ ì¢…ë£Œ!\n");
 
 }
 */

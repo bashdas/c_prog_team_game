@@ -43,22 +43,47 @@ void judge_item(int i)
     switch (i)
     {
     case 0:
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("배터리가 감소합니다");
+        Sleep(500);
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("                   ");
         timek += 12; // 배터리 감소
         break;
     case 1:
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("HP가 증가합니다");
+        Sleep(500);
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("                   ");
         HP += 1;  // HP가 증가한다.
         break;
 
 
     case 2:
     case 3:
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("배터리가 증가합니다");
+        Sleep(500);
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("                   ");
         timek -= 20; // 배터리 증가 
         break;
 
     case 4:
-        break; // length 증가 (hard모드에서만,,,,)
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("경비병이 증가합니다");
+        Sleep(500);
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("                   ");
+        break;
 
     default:
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("열쇠를 찾았습니다!");
+        Sleep(500);
+        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+        printf("                  ");
         break;
 
     };
@@ -151,7 +176,6 @@ void eatItemStrider(struct strider* strider_info, struct items* item_array, int 
 
 void itemeatEasy(int playerx, int playery, struct items* item_array)
 {
-    int check;
     for (int i = 0; i < MAX_ITEMS; i++) {
         if (item_array[i].x == playerx && item_array[i].y == playery)
         {
@@ -171,3 +195,13 @@ void itemeatEasy(int playerx, int playery, struct items* item_array)
     }
 }
 
+void itemeatNormal(int playerx, int playery, struct items* item_array)
+{
+    for (int i = 0; i < MAX_ITEMS; i++) {
+        if (item_array[i].x == playerx && item_array[i].y == playery)
+        {
+            judge_item(i);
+            initItem(item_array, playerx, playery, i);
+        }
+    }
+}

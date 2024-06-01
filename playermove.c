@@ -440,7 +440,7 @@ int playermoveNormal(struct player* player_info, struct items* item_array, struc
         moveLRStrider(strider_info, ptail);
         moveUDStrider(strider_info, ptail);
         CDStrider(playerx, playery, strider_info, *ptail);
-        itemeatEasy(playerx, playery, item_array);
+        itemeatNormal(playerx, playery, item_array);
         eatItemStrider(strider_info, item_array, *ptail);
         timek = timek + 1;
         gotoxy1(0, 0);
@@ -512,11 +512,6 @@ int playermoveEasy(struct player* player_info, struct items* item_array)
             return BACK;
             break;
         }
-
-        for (int i = 0; i < MAX_ITEMS; i++) {
-            gotoxy1(0, 7 + i);
-            printf("%d] (%d, %d) %s\n", i + 1, item_array[i].x, item_array[i].y, item_array[i].skill);
-        };
         itemeatEasy(playerx, playery, item_array);
         timek = timek + 0.25;
 

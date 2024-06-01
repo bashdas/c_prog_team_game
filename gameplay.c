@@ -1,173 +1,112 @@
 #include "main.h"
 
-void drawItem(int x, int y) {
-    gotoxy1(x, y);
-    Setcolor(9);
-    printf("★");
+
+int isClear(struct items* item_array) {
+    if (strcmp(item_array[5].skill, "None") == 0 && strcmp(item_array[6].skill, "None") == 0)
+        return CLEAR_V;
+}
+
+void time_g(float time)
+{
+    gotoxy1(MAP_X + MAP_WIDTH - 14, MAP_Y + 1);
+    printf("남은 배터리: %.1f", (100 - time));
     Setcolor(15);
 }
 
+// 게임의 스테이지를 맨 처음 시작하는 함수
+int gameplay(void) {
+    int input;
+    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,시야너비, 시야높이;
+    struct items items[MAX_ITEMS] = { {0,0,"key"},{0,0,"key"},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'} };
+    struct strider strider[MAX_STRIDER] = { {0,0}, {0,0} };
+    int HP = 0;
+    int tail = 0;
 
-void removeItem(int x, int y) {
-    gotoxy1(x, y);
-    printf(" ");
-    gotoxy1(0, 0);
-}
-
-void Itemcoord(struct items* item, struct player player) {
-    int x, y;
-    do {
-        x = rand() % (MAP_WIDTH * 2 - 4) + 23;
-        y = rand() % (MAP_HEIGHT - 9) + 5;
-    } while (x >= player.x - player.sw && x <= player.x + player.sw &&
-        y >= player.y - player.sh && y <= player.y + player.sh);
-
-    item->x = x;
-    item->y = y;
-}
-
-// 아이템이 충돌되었을 때 호출되는 함수
-void initItem(struct items* item_array, int playerx, int playery, int i) {
-    item_array[i].x = 0;
-    item_array[i].y = 0;
-    strcpy_s(item_array[i].skill, sizeof(item_array[i].skill), "None");
-
-    judge_item(i);
-
-    removeItem(item_array[i].x, item_array[i].y);
-    drawPlayer(playerx, playery);
-}
-
-// 전달받은 i값에 따라서 다른 결과를 출력하는 함수
-
-void judge_item(int i)
-{
-    switch (i)
-    {
-    case 0:
-        timek += 12; // 배터리 감소
-        break;
-    case 1:
-        HP += 1;  // HP가 증가한다.
-        break;
-
-
-    case 2:
-    case 3:
-        timek -= 20; // 배터리 증가 
-        break;
-
-    case 4:
-        break; // length 증가 (hard모드에서만,,,,)
-
-    default:
-        break;
-
-    };
-}
-
-void judge_easy_item(int i)
-{
-    switch (i)
-    {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
-        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
-        printf("(-. - ) 꽝이네요~");
-        Sleep(500);
-        gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
-        printf("                  ");
-        break;
-    default:
-        break;
-
-    };
-}
-
-void eatItem(struct player player_info, struct items* item_array, int playerx, int playery) {
-    int sw = player_info.sw;
-    int sh = player_info.sh;
     for (int i = 0; i < MAX_ITEMS; i++) {
-
-        if (item_array[i].x <= playerx + player_info.sw && item_array[i].x >= playerx - player_info.sw
-            && item_array[i].y <= playery + player_info.sh && item_array[i].y >= playery - player_info.sh)
-        {
-            drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
-
-            if (item_array[i].x == playerx && item_array[i].y == playery) {
-                // 충돌 시 배열 0,0,None로 초기화, 아이템 지우고 캐릭터 다시 그리기
-                initItem(item_array, playerx, playery, i);
-
-            }
-        }
-
-        else {
-            removeItem(item_array[i].x, item_array[i].y); // 시야 범위 밖에 나가면 아이템 지우기
-
-        }
+        Itemcoord(&items[i], player[0]);
     }
+    for (int i = 0; i < MAX_STRIDER; i++) {
+        stridercoord(&strider[i], player[0]);
+    }
+    if (strider[1].sy >= 18) {
+        strider[1].sy = rand() % (MAP_HEIGHT - 13) + 5;
+    }
+
+    drawUDStrider(strider[1].sx, strider[1].sy, tail, 0, 4);
+    drawLRStrider(strider[0].sx, strider[0].sy, tail, 7, 0);
+
+
+
+    while (1) {
+
+        input = movePlayer(player, items, strider, &tail);
+
+        if (input == BACK) return BACK;
+        if (input == CLEAR_V) return CLEAR_V;
+        if (input == FAIL_V) return FAIL_V;
+        // if (input == SUBMIT) return BACK;
+
+    }
+
+    return 0;
 }
 
-void eatItemStrider(struct strider* strider_info, struct items* item_array, int tail) {
-    if (tail == 1) {
-        for (int i = 0; i < MAX_ITEMS; i++) {
+int gameplayNormal(void) {
+    int input;
+    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,시야너비, 시야높이;
+    struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b"},{0,0,'l'},{0,0,'k'},{0,0,'k'} };
+    struct strider strider[MAX_STRIDER] = { {0,0}, {0,0} };
+    int tail = 0;
+    HP = 0;
 
-            if ((strider_info[0].sx <= item_array[i].x &&
-                strider_info[0].sx + 12 >= item_array[i].x &&
-                strider_info[0].sy == item_array[i].y) ||
-                (strider_info[1].sx == item_array[i].x &&
-                    strider_info[1].sy <= item_array[i].y &&
-                    strider_info[1].sy + 6 >= item_array[i].y)
-                )
-            {
-                item_array[i].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
-                item_array[i].y = rand() % (MAP_HEIGHT - 9) + 5;
-                drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
-            }
-        }
+    for (int i = 0; i < MAX_STRIDER; i++) {
+        stridercoord(&strider[i], player[0]);
     }
-    else {
-        for (int i = 0; i < MAX_ITEMS; i++) {
-
-            if ((strider_info[0].sx <= item_array[i].x &&
-                strider_info[0].sx + 6 >= item_array[i].x &&
-                strider_info[0].sy == item_array[i].y) ||
-                (strider_info[1].sx == item_array[i].x &&
-                    strider_info[1].sy <= item_array[i].y &&
-                    strider_info[1].sy + 3 >= item_array[i].y)
-                )
-            {
-                item_array[i].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
-                item_array[i].y = rand() % (MAP_HEIGHT - 9) + 5;
-                drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
-            }
-        }
+    if (strider[1].sy >= 18) {
+        strider[1].sy = rand() % (MAP_HEIGHT - 13) + 5;
     }
-}
 
-void itemeatEasy(int playerx, int playery, struct items* item_array)
-{
-    int check;
+    drawUDStrider(strider[1].sx, strider[1].sy, tail, 0, 4);
+    drawLRStrider(strider[0].sx, strider[0].sy, tail, 7, 0);
+
+
     for (int i = 0; i < MAX_ITEMS; i++) {
-        if (item_array[i].x == playerx && item_array[i].y == playery)
-        {
-            for (int j = 0; j < MAX_ITEMS; j++) {
-                removeItem(item_array[j].x, item_array[j].y);
-            }
-            judge_easy_item(i);
-            for (int j = 0; j < MAX_ITEMS; j++) {
-                if (j != i && (strcmp(item_array[j].skill, "None") != 0)) {
-                    gotoxy(i, j, "d");
-                    item_array[j].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
-                    item_array[j].y = rand() % (MAP_HEIGHT - 9) + 5;
-                    drawItem(item_array[j].x, item_array[j].y);
-                }
-            }
-            initItem(item_array, playerx, playery, i);
-        }
+        Itemcoord(&items[i], player[0]);
+        drawItem(items[i].x, items[i].y);
     }
+
+    while (1) {
+        input = playermoveNormal(player, items, strider, &tail);
+        if (input == BACK) return BACK;
+        if (input == CLEAR_V) return CLEAR_V;
+        if (input == FAIL_V) return FAIL_V;
+        // if (input == SUBMIT) return BACK;
+
+    }
+    return 0;
 }
 
+int gameplayEasy(void) {
+    int input;
+    struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y} };  // x,y,시야너비, 시야높이;
+    struct items items[MAX_ITEMS] = { {0,0,"\0"},{0,0,"\0"}, {0,0,"\0"},{0,0,"\0"},{0,0,"\0"},{0,0,"key"},{0,0,"key"}};
+    HP = 0;
+
+    for (int i = 0; i < MAX_ITEMS; i++) {
+        Itemcoord(&items[i], player[0]);
+        drawItem(items[i].x, items[i].y);
+    }
+
+    while (1) {
+
+
+
+        input = playermoveEasy(player, items);
+        if (input == BACK) return BACK;
+        if (input == CLEAR_V) return CLEAR_V;
+        if (input == FAIL_V) return FAIL_V;
+        // if (input == SUBMIT) return BACK;
+
+    }
+    return 0;
+}

@@ -38,7 +38,7 @@ void initItem(struct items* item_array, int playerx, int playery, int i) {
 
 // 전달받은 i값에 따라서 다른 결과를 출력하는 함수
 
-void judge_item(int i)
+void judge_item(int i, struct strider* s)
 {
     switch (i)
     {
@@ -76,6 +76,7 @@ void judge_item(int i)
         Sleep(500);
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
         printf("                   ");
+        s[2].on = 0;
         break;
 
     default:
@@ -112,7 +113,7 @@ void judge_easy_item(int i)
     };
 }
 
-void eatItem(struct player player_info, struct items* item_array, int playerx, int playery) {
+void eatItem(struct player player_info, struct items* item_array, struct strider* s, int playerx, int playery) {
     int sw = player_info.sw;
     int sh = player_info.sh;
     for (int i = 0; i < MAX_ITEMS; i++) {
@@ -124,7 +125,7 @@ void eatItem(struct player player_info, struct items* item_array, int playerx, i
 
             if (item_array[i].x == playerx && item_array[i].y == playery) {
                 // 충돌 시 배열 0,0,None로 초기화, 아이템 지우고 캐릭터 다시 그리기
-                judge_item(i);
+                judge_item(i,s);
                 initItem(item_array, playerx, playery, i);
 
             }
@@ -137,39 +138,19 @@ void eatItem(struct player player_info, struct items* item_array, int playerx, i
     }
 }
 
-void eatItemStrider(struct strider* strider_info, struct items* item_array, int tail) {
-    if (tail == 1) {
-        for (int i = 0; i < MAX_ITEMS; i++) {
-
-            if ((strider_info[0].sx <= item_array[i].x &&
-                strider_info[0].sx + 12 >= item_array[i].x &&
-                strider_info[0].sy == item_array[i].y) ||
-                (strider_info[1].sx == item_array[i].x &&
-                    strider_info[1].sy <= item_array[i].y &&
-                    strider_info[1].sy + 6 >= item_array[i].y)
-                )
-            {
-                item_array[i].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
-                item_array[i].y = rand() % (MAP_HEIGHT - 9) + 5;
-                drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
-            }
-        }
-    }
-    else {
-        for (int i = 0; i < MAX_ITEMS; i++) {
-
-            if ((strider_info[0].sx <= item_array[i].x &&
-                strider_info[0].sx + 6 >= item_array[i].x &&
-                strider_info[0].sy == item_array[i].y) ||
-                (strider_info[1].sx == item_array[i].x &&
-                    strider_info[1].sy <= item_array[i].y &&
-                    strider_info[1].sy + 3 >= item_array[i].y)
-                )
-            {
-                item_array[i].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
-                item_array[i].y = rand() % (MAP_HEIGHT - 9) + 5;
-                drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
-            }
+void eatItemStrider(struct strider* strider_info, struct items* item_array) {
+    for (int i = 0; i < MAX_ITEMS; i++) {
+        if ((strider_info[0].sx <= item_array[i].x &&
+            strider_info[0].sx + 6 >= item_array[i].x &&
+            strider_info[0].sy == item_array[i].y) ||
+            (strider_info[1].sx == item_array[i].x &&
+                strider_info[1].sy <= item_array[i].y &&
+                strider_info[1].sy + 3 >= item_array[i].y)
+            )
+        {
+            item_array[i].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
+            item_array[i].y = rand() % (MAP_HEIGHT - 9) + 5;
+            drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
         }
     }
 }
@@ -195,12 +176,12 @@ void itemeatEasy(int playerx, int playery, struct items* item_array)
     }
 }
 
-void itemeatNormal(int playerx, int playery, struct items* item_array)
+void itemeatNormal(int playerx, int playery, struct items* item_array, struct strider* s)
 {
     for (int i = 0; i < MAX_ITEMS; i++) {
         if (item_array[i].x == playerx && item_array[i].y == playery)
         {
-            judge_item(i);
+            judge_item(i, s);
             initItem(item_array, playerx, playery, i);
         }
     }

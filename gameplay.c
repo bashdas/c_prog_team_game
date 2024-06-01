@@ -2,7 +2,7 @@
 
 
 int isClear(struct items* item_array) {
-    if (item_array[5].x == 0 && item_array[5].y == 0 && item_array[6].x == 0 && item_array[6].y == 0)
+    if (strcmp(item_array[5].skill, "None") == 0 && strcmp(item_array[6].skill, "None") == 0)
         return CLEAR_V;
 }
 
@@ -89,7 +89,7 @@ int gameplayNormal(void) {
 int gameplayEasy(void) {
     int input;
     struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y} };  // x,y,시야너비, 시야높이;
-    struct items items[MAX_ITEMS] = { {0,0,"0"},{0,0,"0"}, {0,0,"0"},{0,0,"0"},{0,0,'0'},{0,0,'key'},{0,0,'key'} };
+    struct items items[MAX_ITEMS] = { {0,0,"0"},{0,0,"0"}, {0,0,"0"},{0,0,"0"},{0,0,"0"},{0,0,"key"},{0,0,"key"}};
     HP = 0;
 
     for (int i = 0; i < MAX_ITEMS; i++) {

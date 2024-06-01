@@ -301,3 +301,4 @@ void drawUDStrider(int x, int y, int tail, int upper, int bottom);
 void removeUDStrider(int x, int y, int tail, int upper, int bottom);
 void moveUDStrider(struct strider* strider_info, int** pptail);
 void CDStrider(int px, int py, struct strider* strider_info, int tail);
+void eatItemStrider(struct strider* strider_info, struct items* item_array, int tail);

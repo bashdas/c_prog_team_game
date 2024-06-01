@@ -8,7 +8,7 @@
 */
 
 // 시야가 포함된 함수.
-int movePlayer(struct player* player_info, struct items* item_array, struct strider* strider_info, int* ptail) {
+int movePlayer(struct player* player_info, struct items* item_array, struct strider* strider_info) {
     int playerx = player_info[0].x;	// 플레이어 x 좌표
     int playery = player_info[0].y; // 플레이어 y 좌표
     int curx = playerx; // 설정 좌표 x
@@ -348,11 +348,11 @@ int movePlayer(struct player* player_info, struct items* item_array, struct stri
 
         // 아이템과 플레이어 충돌 시 아이템 획득 처리
         eatItem(*player_info, item_array, playerx, playery);
-        eatItemStrider(strider_info, item_array, *ptail);
+        eatItemStrider(strider_info, item_array);
         // 키 입력 시 경비병도 이동
-        moveLRStrider(strider_info, ptail);
-        moveUDStrider(strider_info, ptail);
-        CDStrider(playerx, playery, strider_info, *ptail);
+        moveLRStrider(strider_info);
+        moveUDStrider(strider_info);
+        CDStrider(playerx, playery, strider_info);
 
 
         timek = timek +1;
@@ -391,7 +391,7 @@ int movePlayer(struct player* player_info, struct items* item_array, struct stri
     }
 }
 
-int playermoveNormal(struct player* player_info, struct items* item_array, struct strider* strider_info, int* ptail)
+int playermoveNormal(struct player* player_info, struct items* item_array, struct strider* strider_info)
 {
     int playerx = player_info[0].x;	// 플레이어 x 좌표
     int playery = player_info[0].y; // 플레이어 y 좌표
@@ -437,11 +437,11 @@ int playermoveNormal(struct player* player_info, struct items* item_array, struc
             return BACK;
             break;
         }
-        moveLRStrider(strider_info, ptail);
-        moveUDStrider(strider_info, ptail);
-        CDStrider(playerx, playery, strider_info, *ptail);
+        moveLRStrider(strider_info);
+        moveUDStrider(strider_info);
+        CDStrider(playerx, playery, strider_info);
         itemeatNormal(playerx, playery, item_array);
-        eatItemStrider(strider_info, item_array, *ptail);
+        eatItemStrider(strider_info, item_array);
         timek = timek + 1;
         gotoxy1(0, 0);
         printf("PLAYER: %d %d ", playerx, playery);

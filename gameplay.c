@@ -89,7 +89,7 @@ int gameplayNormal(void) {
 int gameplayEasy(void) {
     int input;
     struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y} };  // x,y,시야너비, 시야높이;
-    struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b"},{0,0,'l'},{0,0,'k'},{0,0,'k'} };
+    struct items items[MAX_ITEMS] = { {0,0,"0"},{0,0,"0"}, {0,0,"0"},{0,0,"0"},{0,0,'0'},{0,0,'key'},{0,0,'key'} };
     HP = 0;
 
     for (int i = 0; i < MAX_ITEMS; i++) {
@@ -102,8 +102,6 @@ int gameplayEasy(void) {
 
 
         input = playermoveEasy(player, items);
-        //gotoxy1(0, 3);
-        //printf("%d", input);
         if (input == BACK) return BACK;
         if (input == CLEAR_V) return CLEAR_V;
         if (input == FAIL_V) return FAIL_V;

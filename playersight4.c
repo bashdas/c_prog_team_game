@@ -104,7 +104,7 @@ void initItem(struct items* item_array, int playerx, int playery, int i) {
     item_array[i].x = 0;
     item_array[i].y = 0;
     strcpy_s(item_array[i].skill, sizeof(item_array[i].skill), "None");
-   
+
     judge_item(i);
 
     removeItem(item_array[i].x, item_array[i].y);
@@ -123,16 +123,16 @@ void judge_item(int i)
     case 1:
         HP += 1;  // HP가 증가한다.
         break;
-        
+
 
     case 2:
-    case 3: 
+    case 3:
         timek -= 20; // 배터리 증가 
         break;
 
     case 4:
         break; // length 증가 (hard모드에서만,,,,)
-       
+
     default:
         break;
 
@@ -143,18 +143,18 @@ void eatItem(struct player player_info, struct items* item_array, int playerx, i
     int sw = player_info.sw;
     int sh = player_info.sh;
     for (int i = 0; i < MAX_ITEMS; i++) {
-       
+
         if (item_array[i].x <= playerx + player_info.sw && item_array[i].x >= playerx - player_info.sw
-            && item_array[i].y <= playery + player_info.sh && item_array[i].y >= playery - player_info.sh) 
+            && item_array[i].y <= playery + player_info.sh && item_array[i].y >= playery - player_info.sh)
         {
             drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
-          
+
             if (item_array[i].x == playerx && item_array[i].y == playery) {
                 // 충돌 시 배열 0,0,None로 초기화, 아이템 지우고 캐릭터 다시 그리기
                 initItem(item_array, playerx, playery, i);
-              
+
             }
-        } 
+        }
 
         else {
             removeItem(item_array[i].x, item_array[i].y); // 시야 범위 밖에 나가면 아이템 지우기
@@ -176,7 +176,7 @@ void itemeatEasy(int playerx, int playery, struct items* item_array)
 }
 
 int isClear(struct items* item_array) {
-    if (item_array[5].x == 0 && item_array[5].y == 0 && item_array[6].x == 0 && item_array[6].y == 0) 
+    if (item_array[5].x == 0 && item_array[5].y == 0 && item_array[6].x == 0 && item_array[6].y == 0)
         return CLEAR;
 }
 
@@ -189,13 +189,13 @@ int isClear(struct items* item_array) {
 */
 
 // 시야가 포함된 함수.
-int movePlayer(struct player* player_info, struct items* item_array, struct strider* strider_info, int *ptail) {
+int movePlayer(struct player* player_info, struct items* item_array, struct strider* strider_info, int* ptail) {
     int playerx = player_info[0].x;	// 플레이어 x 좌표
     int playery = player_info[0].y; // 플레이어 y 좌표
     int curx = playerx; // 설정 좌표 x
     int cury = playery; // 설정 좌표  y // MAP_X * 2 + 7, MAP_HEIGHT / 2 + 5
     int upper = 0, bottom = 7, left = 0, right = 14; // 플레이어 시야 배열을 얼만큼 돌릴 지
-   
+
 
     drawPlayerSight(playerx, playery, bottom, right, upper, left);
     drawPlayer(playerx, playery);
@@ -578,13 +578,13 @@ int movePlayer(struct player* player_info, struct items* item_array, struct stri
     }
 }
 
-void Itemcoord(struct items* item, struct player* player) {
+void Itemcoord(struct items* item, struct player player) {
     int x, y;
     do {
         x = rand() % (MAP_WIDTH * 2 - 4) + 23;
         y = rand() % (MAP_HEIGHT - 9) + 5;
-    } while (x >= player->x - player->sw && x <= player->x + player->sw &&
-        y >= player->y - player->sh && y <= player->y + player->sh);
+    } while (x >= player.x - player.sw && x <= player.x + player.sw &&
+        y >= player.y - player.sh && y <= player.y + player.sh);
 
     item->x = x;
     item->y = y;
@@ -638,21 +638,21 @@ int gameplayNormal(void) {
     HP = 0;
 
     for (int i = 0; i < MAX_ITEMS; i++) {
-        Itemcoord(&items[i], player);
+        Itemcoord(&items[i], player[0]);
         drawItem(items[i].x, items[i].y);
     }
 
     while (1) {
-        
-     
-    
+
+
+
         input = playermoveEasy(player, items);
-       
+
         if (input == BACK) return BACK;
         if (input == CLEAR) return CLEAR;
         //  if (input == FAIL) return FAIL;
         // if (input == SUBMIT) return BACK;
-        
+
     }
     return 0;
 }
@@ -663,9 +663,9 @@ int gameplayEasy(void) {
     struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y} };  // x,y,시야너비, 시야높이;
     struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b"},{0,0,'l'},{0,0,'k'},{0,0,'k'} };
     HP = 0;
-    
+
     for (int i = 0; i < MAX_ITEMS; i++) {
-        Itemcoord(&items[i], player);
+        Itemcoord(&items[i], player[0]);
         drawItem(items[i].x, items[i].y);
     }
 
@@ -743,7 +743,7 @@ int playermoveEasy(struct player* player_info, struct items* item_array)
             Sleep(700);
             return BACK;
         }
-    }  
+    }
 }
 
 int playermoveNormal(struct player* player_info, struct items* item_array)
@@ -810,7 +810,7 @@ int playermoveNormal(struct player* player_info, struct items* item_array)
 void time_g(float time)
 {
     gotoxy1(MAP_X + MAP_WIDTH - 14, MAP_Y + 1);
-    printf("남은 배터리: %.1f", (100- time));
+    printf("남은 배터리: %.1f", (100 - time));
     Setcolor(15);
 }
 
@@ -831,7 +831,7 @@ void drawLRStrider(int x, int y, int tail, int right, int left) {
         "o o o o",
         "o o o o o o o"
     };
-    int striderx=x, stridery=y;
+    int striderx = x, stridery = y;
     if (tail == 1) {
         gotoxy1(striderx, stridery);
         for (int i = 0 + left; i < right; i++) {
@@ -866,7 +866,7 @@ void drawUDStrider(int x, int y, int tail, int upper, int bottom) {
     if (tail == 1) bottom += 3;
     for (int i = 0 + upper; i < bottom; i++) {
         gotoxy1(striderx, stridery);
-        for (int j = 0; j < 2; j++){
+        for (int j = 0; j < 2; j++) {
             putchar(strider[i][j]);
             fflush(stdout);
         }
@@ -882,7 +882,7 @@ void removeLRStrider(int x, int y, int tail, int right, int left) {
     int striderx = x, stridery = y;
     if (tail == 0) {
         gotoxy1(striderx, stridery);
-        for (int i = 0+ left; i < right; i++) {
+        for (int i = 0 + left; i < right; i++) {
             putchar(charsight[0][i]);
             fflush(stdout);
         }
@@ -921,7 +921,7 @@ void removeUDStrider(int x, int y, int tail, int upper, int bottom) {
     }
 }
 
-void moveLRStrider(struct strider *strider_info, int **pptail) {
+void moveLRStrider(struct strider* strider_info, int** pptail) {
     int tail = *pptail;
     int striderx = strider_info[0].sx;
     int stridery = strider_info[0].sy;
@@ -938,15 +938,15 @@ void moveLRStrider(struct strider *strider_info, int **pptail) {
             drawLRStrider(strider_info[0].sx, stridery, tail, 2, 0);
         }
     }
-    else{
+    else {
         if (striderx <= MAP_X * 2 + 2) {
             removeLRStrider(striderx, stridery, tail, 7, 0);
             strider_info[0].sy = rand() % (MAP_HEIGHT - 9) + 5;
-            strider_info[0].sx = (MAP_WIDTH * 2 - 8) + MAP_X * 2-1;
+            strider_info[0].sx = (MAP_WIDTH * 2 - 8) + MAP_X * 2 - 1;
             drawLRStrider(strider_info[0].sx, strider_info[0].sy, tail, 7, 0);
         }
-        else if (striderx <= (MAP_WIDTH * 2 - 8) + MAP_X * 2 && striderx > MAP_X * 2 + 2){
-            removeLRStrider(striderx+5, stridery, tail, 7, 5);
+        else if (striderx <= (MAP_WIDTH * 2 - 8) + MAP_X * 2 && striderx > MAP_X * 2 + 2) {
+            removeLRStrider(striderx + 5, stridery, tail, 7, 5);
             strider_info[0].sx -= 2;
             drawLRStrider(strider_info[0].sx, stridery, tail, 2, 0);
         }
@@ -987,7 +987,7 @@ void moveUDStrider(struct strider* strider_info, int** pptail) {
 }
 
 // 경비병과 플레이어 충돌 처리 함수
-void CDStrider(int px, int py, struct strider *strider_info, int tail) {
+void CDStrider(int px, int py, struct strider* strider_info, int tail) {
     // tail 1일 때
     int c = 0;
     if (tail == 1) {
@@ -1026,7 +1026,7 @@ void CDStrider(int px, int py, struct strider *strider_info, int tail) {
             strider_info[0].sx + 12 >= px &&
             strider_info[0].sy - 3 <= py &&
             strider_info[0].sy + 3 >= py) {
-            
+
             drawLRStrider(strider_info[0].sx, strider_info[0].sy, tail, 7, 0);
             if (
                 (strider_info[0].sx <= px &&
@@ -1037,18 +1037,18 @@ void CDStrider(int px, int py, struct strider *strider_info, int tail) {
             }
         }
         else if
-            (strider_info[1].sx-6 <= px &&
-            strider_info[1].sx + 6 >= px &&
-            strider_info[1].sy <= py + 3 &&
-            strider_info[1].sy + 3 >= py - 3 
-            ) {
-            drawUDStrider(strider_info[1].sx, strider_info[1].sy, tail, 4,0);
-             if(strider_info[1].sx == px &&
+            (strider_info[1].sx - 6 <= px &&
+                strider_info[1].sx + 6 >= px &&
+                strider_info[1].sy <= py + 3 &&
+                strider_info[1].sy + 3 >= py - 3
+                ) {
+            drawUDStrider(strider_info[1].sx, strider_info[1].sy, tail, 4, 0);
+            if (strider_info[1].sx == px &&
                 strider_info[1].sy <= py &&
                 strider_info[1].sy + 4 >= py)
-             {
-                 HP--;
-             }
+            {
+                HP--;
+            }
         }
     }
 }
@@ -1076,7 +1076,7 @@ void timer(void)
     double elapsed_time;
 
     start_time = clock();
-    
+
 
     // 실시간 타이머 출력
     while (1) {

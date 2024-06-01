@@ -11,7 +11,6 @@
 
 extern int theme;
 int HP;
-int SC;
 float timek;
 /* ***********************기호 상수*********************** */
 
@@ -74,7 +73,7 @@ float timek;
 #define PLAYER_X MAP_X * 2 + 7  // 캐릭터의 X 좌표
 #define PLAYER_Y MAP_HEIGHT / 2 + 5   // 캐릭터의 Y 좌표
 
-#define MAX_STRIDER 2
+#define MAX_STRIDER 3
 
 struct player
 {
@@ -97,6 +96,7 @@ struct items
 struct strider {
     int sx;
     int sy;
+    int on;
 };
 
 /* *********************** 함수 선언 *********************** */
@@ -202,12 +202,12 @@ void drawItem(int x, int y);
 void removeItem(int x, int y);
 void Itemcoord(struct items* item, struct player player);// 아이템 배열 구조체에 랜덤 좌표를 넣는 함수.
 void initItem(struct items* item_array, int playerx, int playery, int i);// 시야 범위에 들어오면 아이템 출력. 충돌 시  initItem 호출
-void judge_item(int i);// 아이템 배열 구조체 (i) 아이템 종류 판단 함수
+void judge_item(int i, struct strider* s);// 아이템 배열 구조체 (i) 아이템 종류 판단 함수
 void judge_easy_item(int i);
-void eatItem(struct player player_info, struct items* item_array, int playerx, int playery);
+void eatItem(struct player player_info, struct items* item_array, struct strider* s, int playerx, int playery);
 void eatItemStrider(struct strider* strider_info, struct items* item_array);
 void itemeatEasy(int playerx, int playery, struct items* item_array);
-void itemeatNormal(int playerx, int playery, struct items* item_array);
+void itemeatNormal(int playerx, int playery, struct items* item_array, struct strider* s);
 
 
 /* ************ playermove.c ************ */

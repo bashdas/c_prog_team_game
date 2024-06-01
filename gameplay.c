@@ -20,7 +20,6 @@ int gameplay(void) {
     struct items items[MAX_ITEMS] = { {0,0,"key"},{0,0,"key"},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'} };
     struct strider strider[MAX_STRIDER] = { {0,0}, {0,0} };
     int HP = 0;
-    int tail = 0;
 
     for (int i = 0; i < MAX_ITEMS; i++) {
         Itemcoord(&items[i], player[0]);
@@ -32,14 +31,14 @@ int gameplay(void) {
         strider[1].sy = rand() % (MAP_HEIGHT - 13) + 5;
     }
 
-    drawUDStrider(strider[1].sx, strider[1].sy, tail, 0, 4);
-    drawLRStrider(strider[0].sx, strider[0].sy, tail, 7, 0);
+    drawUDStrider(strider[1].sx, strider[1].sy, 0, 4);
+    drawLRStrider(strider[0].sx, strider[0].sy, 7, 0);
 
 
 
     while (1) {
 
-        input = movePlayer(player, items, strider, &tail);
+        input = movePlayer(player, items, strider);
 
         if (input == BACK) return BACK;
         if (input == CLEAR_V) return CLEAR_V;
@@ -56,7 +55,6 @@ int gameplayNormal(void) {
     struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,시야너비, 시야높이;
     struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b"},{0,0,'l'},{0,0,'k'},{0,0,'k'} };
     struct strider strider[MAX_STRIDER] = { {0,0}, {0,0} };
-    int tail = 0;
     HP = 0;
 
     for (int i = 0; i < MAX_STRIDER; i++) {
@@ -66,8 +64,8 @@ int gameplayNormal(void) {
         strider[1].sy = rand() % (MAP_HEIGHT - 13) + 5;
     }
 
-    drawUDStrider(strider[1].sx, strider[1].sy, tail, 0, 4);
-    drawLRStrider(strider[0].sx, strider[0].sy, tail, 7, 0);
+    drawUDStrider(strider[1].sx, strider[1].sy, 0, 4);
+    drawLRStrider(strider[0].sx, strider[0].sy, 7, 0);
 
 
     for (int i = 0; i < MAX_ITEMS; i++) {
@@ -76,7 +74,7 @@ int gameplayNormal(void) {
     }
 
     while (1) {
-        input = playermoveNormal(player, items, strider, &tail);
+        input = playermoveNormal(player, items, strider);
         if (input == BACK) return BACK;
         if (input == CLEAR_V) return CLEAR_V;
         if (input == FAIL_V) return FAIL_V;
@@ -98,8 +96,6 @@ int gameplayEasy(void) {
     }
 
     while (1) {
-
-
 
         input = playermoveEasy(player, items);
         if (input == BACK) return BACK;

@@ -538,7 +538,7 @@ int movePlayer(struct player* player_info, struct items* item_array, struct stri
 
         timek = timek + 0.25;
 
-        /* 참고 하려고 적음 나중에 삭제 해야함 */
+        /* 참고 하려고 적음 나중에 삭제 해야함 
         gotoxy1(0, 0);
         printf("PLAYER: %d %d ", playerx, playery);
         gotoxy1(0, 2);
@@ -557,7 +557,7 @@ int movePlayer(struct player* player_info, struct items* item_array, struct stri
         gotoxy1(0, 15);
         printf("S1: %d %d\n", strider_info[0].sx, strider_info[0].sy);
         printf("S2: %d %d", strider_info[1].sx, strider_info[1].sy);
-        /***********************************************************/
+        */
 
         // 클리어 -> 클리어 반환 return CLEAR;
         // 열쇠 획득 시 게임 성공 
@@ -603,7 +603,6 @@ int gameplay(void) {
     for (int i = 0; i < MAX_ITEMS; i++) {
         Itemcoord(&items[i], player[0]);
     }
-
     for (int i = 0; i < MAX_STRIDER; i++) {
         stridercoord(&strider[i], player[0]);
     }
@@ -635,7 +634,20 @@ int gameplayNormal(void) {
     char input;
     struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,시야너비, 시야높이;
     struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b"},{0,0,'l'},{0,0,'k'},{0,0,'k'} };
+    struct strider strider[MAX_STRIDER] = { {0,0}, {0,0} };
+    int tail = 0;
     HP = 0;
+
+    for (int i = 0; i < MAX_STRIDER; i++) {
+        stridercoord(&strider[i], player[0]);
+    }
+    if (strider[1].sy >= 18) {
+        strider[1].sy = rand() % (MAP_HEIGHT - 13) + 5;
+    }
+
+    drawUDStrider(strider[1].sx, strider[1].sy, tail, 0, 4);
+    drawLRStrider(strider[0].sx, strider[0].sy, tail, 7, 0);
+    
 
     for (int i = 0; i < MAX_ITEMS; i++) {
         Itemcoord(&items[i], player[0]);
@@ -646,7 +658,7 @@ int gameplayNormal(void) {
 
 
 
-        input = playermoveEasy(player, items);
+        input = playermoveNormal(player, items, strider, &tail);
 
         if (input == BACK) return BACK;
         if (input == CLEAR) return CLEAR;
@@ -746,10 +758,11 @@ int playermoveEasy(struct player* player_info, struct items* item_array)
     }
 }
 
-int playermoveNormal(struct player* player_info, struct items* item_array)
+int playermoveNormal(struct player* player_info, struct items* item_array, struct strider* strider_info, int *ptail)
 {
     int playerx = player_info[0].x;	// 플레이어 x 좌표
     int playery = player_info[0].y; // 플레이어 y 좌표
+
     drawPlayer(playerx, playery);
     while (1)
     {
@@ -791,6 +804,9 @@ int playermoveNormal(struct player* player_info, struct items* item_array)
             return BACK;
             break;
         }
+        moveLRStrider(strider_info, ptail);
+        moveUDStrider(strider_info, ptail);
+        CDStrider(playerx, playery, strider_info, *ptail);
         itemeatEasy(playerx, playery, item_array);
         timek = timek + 0.25;
 

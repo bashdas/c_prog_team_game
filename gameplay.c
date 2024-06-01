@@ -17,10 +17,9 @@ void time_g(float time)
 int gameplay(void) {
     int input;
     struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,시야너비, 시야높이;
-    struct items items[MAX_ITEMS] = { {0,0,"key"},{0,0,"key"},{0,0,'\0'},{0,0,'\0'},{0,0,'\0'} };
-    struct strider strider[MAX_STRIDER] = { {0,0}, {0,0} };
+    struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b+"},{0,0,"s+"},{0,0,"key"},{0,0,"key"} };
+    struct strider strider[MAX_STRIDER] = { {0,0,0}, {0,0,0}, {0,0,1} };
     int HP = 0;
-
     for (int i = 0; i < MAX_ITEMS; i++) {
         Itemcoord(&items[i], player[0]);
     }
@@ -53,10 +52,9 @@ int gameplay(void) {
 int gameplayNormal(void) {
     int input;
     struct player player[MAX_PLAYERS] = { {PLAYER_X, PLAYER_Y, 6, 3} };  // x,y,시야너비, 시야높이;
-    struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b"},{0,0,'l'},{0,0,'k'},{0,0,'k'} };
-    struct strider strider[MAX_STRIDER] = { {0,0}, {0,0} };
+    struct items items[MAX_ITEMS] = { {0,0,"b-"},{0,0,"hp+"}, {0,0,"b+"},{0,0,"b+"},{0,0,"s+"},{0,0,"key"},{0,0,"key"}};
+    struct strider strider[MAX_STRIDER] = { {0,0,0}, {0,0,0}, {0,0,1} };
     HP = 0;
-
     for (int i = 0; i < MAX_STRIDER; i++) {
         stridercoord(&strider[i], player[0]);
     }

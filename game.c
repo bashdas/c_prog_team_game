@@ -29,7 +29,6 @@ int gameDraw(void) {
 			if (stageCode == CLEAR_V || stageCode == FAIL_V) break;
 		}
 		if (stageCode == FAIL_V) {
-			gotoxy(0, 2, "d");
 			gameCode = failStory();
 			break;
 		}

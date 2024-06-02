@@ -513,7 +513,7 @@ int playermoveEasy(struct player* player_info, struct items* item_array)
             break;
         }
         itemeatEasy(playerx, playery, item_array);
-        timek = timek + 0.25;
+        timek = timek + 0.5;
 
         if (isClear(item_array) == CLEAR_V) return CLEAR_V;
 

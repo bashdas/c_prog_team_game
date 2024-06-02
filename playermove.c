@@ -348,7 +348,7 @@ int movePlayer(struct player* player_info, struct items* item_array, struct stri
 
         // 아이템과 플레이어 충돌 시 아이템 획득 처리
         eatItem(*player_info, item_array, strider_info, playerx, playery);
-        eatItemStrider(strider_info, item_array, 0);
+        eatItemStrider(strider_info, item_array, HARD);
         // 키 입력 시 경비병도 이동
         moveLRStrider(strider_info);
         moveUDStrider(strider_info);
@@ -441,8 +441,8 @@ int playermoveNormal(struct player* player_info, struct items* item_array, struc
         moveUDStrider(strider_info);
         CDStrider(playerx, playery, strider_info);
         itemeatNormal(playerx, playery, item_array, strider_info);
-        eatItemStrider(strider_info, item_array, 1);
-        timek = timek + 1;
+        eatItemStrider(strider_info, item_array, NORMAL);
+        timek = timek + 0.25;
         gotoxy1(0, 0);
         printf("PLAYER: %d %d ", playerx, playery);
         gotoxy1(0, 2);

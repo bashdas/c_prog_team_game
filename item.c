@@ -143,12 +143,15 @@ void eatItemStrider(struct strider* strider_info, struct items* item_array, int 
             strider_info[0].sy == item_array[i].y) ||
             (strider_info[1].sx == item_array[i].x &&
                 strider_info[1].sy <= item_array[i].y &&
-                strider_info[1].sy + 3 >= item_array[i].y)
+                strider_info[1].sy + 3 >= item_array[i].y)||
+            (strider_info[2].sx <= item_array[i].x &&
+                strider_info[2].sx + 6 >= item_array[i].x &&
+                strider_info[2].sy == item_array[i].y)
             )
         {
             item_array[i].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
             item_array[i].y = rand() % (MAP_HEIGHT - 9) + 5;
-            if (mode == 1) drawItem(item_array[i].x, item_array[i].y); // 노멀 모드에서만 그림
+            if (mode == NORMAL) drawItem(item_array[i].x, item_array[i].y); // 노멀 모드에서만 그림
         }
     }
 }

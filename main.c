@@ -1,15 +1,15 @@
 #include "main.h"
-//int x[100], y[100]; //x,y ÁÂÇ¥°ªÀ» ÀúÀå ÃÑ 100°³ 
-//int key; //ÀÔ·Â¹ŞÀº Å° ÀúÀå 
-int speed; //°ÔÀÓ ¼Óµµ 
+//int x[100], y[100]; //x,y ì¢Œí‘œê°’ì„ ì €ì¥ ì´ 100ê°œ 
+//int key; //ì…ë ¥ë°›ì€ í‚¤ ì €ì¥ 
+int speed; //ê²Œì„ ì†ë„ 
 int theme = 7;
 
 int main(void) {
-	setlocale(LC_ALL, "korean"); // ÇÑ±¹¾î ÄÚµå ÆäÀÌÁö
+	setlocale(LC_ALL, "korean"); // í•œêµ­ì–´ ì½”ë“œ í˜ì´ì§€
 	int menuCode = 0;
 	int gameCode = 0;
 	srand((unsigned int)time(NULL));
-	//system("mode con cols=100 lines=30"); //ÄÜ¼ÖÃ¢ Å©±â Á¶Àı
+	//system("mode con cols=100 lines=30"); //ì½˜ì†”ì°½ í¬ê¸° ì¡°ì ˆ
 	while (1) {
 		title();
 		do {

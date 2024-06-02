@@ -2,7 +2,7 @@
 
 // void playMusic(const char* address);
 
-// È¯°æ¼³Á¤ ½ÇÇà ÇÔ¼ö
+// í™˜ê²½ì„¤ì • ì‹¤í–‰ í•¨ìˆ˜
 void initOption() {
 	int optionCode = 0, subjectCode = -1;
 	do {
@@ -23,13 +23,13 @@ void initOption() {
 	} while (optionCode != BACK);
 }
 
-// »ç¿ëÀÚ Å° ÀÔ·Â »óÈ£ÀÛ¿ë OPTION1, OPTION2 ¹İÈ¯
+// ì‚¬ìš©ì í‚¤ ì…ë ¥ ìƒí˜¸ì‘ìš© OPTION1, OPTION2 ë°˜í™˜
 int selectOption(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	selectOptionContent();
 	selectOptionContent2(2, 7);
 	gotoxy1((MAP_X + 14) * 2, y);
-	printf("¢Ñ\b\b");
+	printf("â˜\b\b");
 	while (1)
 	{
 		int n = keyControl1();
@@ -41,7 +41,7 @@ int selectOption(void) {
 				y -= 2;
 				if (y == MAP_Y + 14) selectOptionContent2(2, 7);
 				gotoxy1((MAP_X + 14) * 2, y);
-				printf("¢Ñ\b\b");
+				printf("â˜\b\b");
 			}
 			break;
 		}
@@ -52,7 +52,7 @@ int selectOption(void) {
 				y += 2;
 				if (y == MAP_Y + 16) selectOptionContent2(7, 2);
 				gotoxy1((MAP_X + 14) * 2, y);
-				printf("¢Ñ\b\b");
+				printf("â˜\b\b");
 			}
 			break;
 		}
@@ -75,7 +75,7 @@ int selectOptionContent(void) {
 	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 2, MAP_Y + 7, "You can change the game option");
 	Setcolor(8);
-	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "¡å  Select from the menu  ¡å");
+	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "â–¼  Select from the menu  â–¼");
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 18);
 	printf("**** spacebar to select ****");
 	Setcolor(7);
@@ -84,11 +84,11 @@ int selectOptionContent(void) {
 int selectOptionContent2(int c1, int c2) {
 	Setcolor(c1);
 	gotoxy1(MAP_X + MAP_WIDTH + 4, MAP_Y + 14);
-	printf("¹è°æ À½¾Ç ¼³Á¤");
+	printf("ë°°ê²½ ìŒì•… ì„¤ì •");
 	if (c1 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 82) / 2, MAP_Y + 14);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 82) / 2, MAP_Y + 14);
@@ -96,11 +96,11 @@ int selectOptionContent2(int c1, int c2) {
 	}
 	Setcolor(c2);
 	gotoxy1(MAP_X + MAP_WIDTH + 6, MAP_Y + 16);
-	printf("Å×¸¶ ¼³Á¤");
+	printf("í…Œë§ˆ ì„¤ì •");
 	if (c2 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 82) / 2, MAP_Y + 16);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 82) / 2, MAP_Y + 16);
@@ -111,37 +111,37 @@ int selectOptionContent2(int c1, int c2) {
 
 
 
-// À½¾Ç ¼³Á¤ ±â´É
+// ìŒì•… ì„¤ì • ê¸°ëŠ¥
 int setMusic(void) {
 	resetMapInner();
 	int keyInput;
 	keyInput = selectMusic();
 	switch (keyInput) {
 	case 1:
-		PlaySound(TEXT("c_team_bgm1.wav"), NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);//Ã¹ ¹øÂ° ºê±İ ½ÇÇà
+		PlaySound(TEXT("c_team_bgm1.wav"), NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);//ì²« ë²ˆì§¸ ë¸Œê¸ˆ ì‹¤í–‰
 		break;
 	case 2:
-		PlaySound(TEXT("c_team_bgm2.wav"), NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);//µÎ ¹øÂ° ºê±İ ½ÇÇà
+		PlaySound(TEXT("c_team_bgm2.wav"), NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);//ë‘ ë²ˆì§¸ ë¸Œê¸ˆ ì‹¤í–‰
 		break;
 	case 3:
-		PlaySound(TEXT("c_team_bgm3.wav"), NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);//µÎ ¹øÂ° ºê±İ ½ÇÇà
+		PlaySound(TEXT("c_team_bgm3.wav"), NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);//ë‘ ë²ˆì§¸ ë¸Œê¸ˆ ì‹¤í–‰
 		break;
 	case 4:
-		PlaySound(TEXT("c_team_bgm4.wav"), NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);//µÎ ¹øÂ° ºê±İ ½ÇÇà
+		PlaySound(TEXT("c_team_bgm4.wav"), NULL, SND_ASYNC | SND_LOOP | SND_FILENAME);//ë‘ ë²ˆì§¸ ë¸Œê¸ˆ ì‹¤í–‰
 		break;
 
-		// ºê±İ Á¾·ù Ãß°¡ ½Ã case Ãß°¡ ÈÄ select Music¿¡ 3¹ø À½¾Ç ¸ñ·Ï Ãß°¡
+		// ë¸Œê¸ˆ ì¢…ë¥˜ ì¶”ê°€ ì‹œ case ì¶”ê°€ í›„ select Musicì— 3ë²ˆ ìŒì•… ëª©ë¡ ì¶”ê°€
 	}
 	return BACK;
 }
 
-// »ç¿ëÀÚ ÀÔ·Â ³ë·¡ ¹İÈ¯
+// ì‚¬ìš©ì ì…ë ¥ ë…¸ë˜ ë°˜í™˜
 int selectMusic(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	selectMusicContent();
 	selectMusicContent2(2, 7, 7, 7);
 	gotoxy1((MAP_X + 16) * 2, y);
-	printf("¢Ñ\b\b");
+	printf("â˜\b\b");
 
 	while (1)
 	{
@@ -156,7 +156,7 @@ int selectMusic(void) {
 				else if (y == MAP_Y + 15) selectMusicContent2(7, 2, 7, 7);
 				else if (y == MAP_Y + 16) selectMusicContent2(7, 7, 2, 7);
 				gotoxy1((MAP_X + 16) * 2, y);
-				printf("¢Ñ\b\b");
+				printf("â˜\b\b");
 			}
 			break;
 		}
@@ -169,7 +169,7 @@ int selectMusic(void) {
 				else if (y == MAP_Y + 16) selectMusicContent2(7, 7, 2, 7);
 				else if (y == MAP_Y + 17) selectMusicContent2(7, 7, 7, 2);
 				gotoxy1((MAP_X + 16) * 2, y);
-				printf("¢Ñ\b\b");
+				printf("â˜\b\b");
 			}
 			break;
 		}
@@ -190,7 +190,7 @@ void selectMusicContent(void) {
 	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 2, MAP_Y + 7, "You can change the game music");
 	Setcolor(8);
-	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "¡å  Select from the menu  ¡å");
+	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "â–¼  Select from the menu  â–¼");
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
 	printf("**** spacebar to select ****");
 	Setcolor(7);
@@ -199,11 +199,11 @@ void selectMusicContent(void) {
 void selectMusicContent2(int c1, int c2, int c3, int c4) {
 	Setcolor(c1);
 	gotoxy1(MAP_X + MAP_WIDTH + 8, MAP_Y + 14);
-	printf("1¹øÀ½¾Ç");
+	printf("1ë²ˆìŒì•…");
 	if (c1 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 74) / 2, MAP_Y + 14);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 74) / 2, MAP_Y + 14);
@@ -211,11 +211,11 @@ void selectMusicContent2(int c1, int c2, int c3, int c4) {
 	}
 	Setcolor(c2);
 	gotoxy1(MAP_X + MAP_WIDTH + 8, MAP_Y + 15);
-	printf("2¹øÀ½¾Ç");
+	printf("2ë²ˆìŒì•…");
 	if (c2 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 74) / 2, MAP_Y + 15);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 74) / 2, MAP_Y + 15);
@@ -223,11 +223,11 @@ void selectMusicContent2(int c1, int c2, int c3, int c4) {
 	}
 	Setcolor(c3);
 	gotoxy1(MAP_X + MAP_WIDTH + 8, MAP_Y + 16);
-	printf("3¹øÀ½¾Ç");
+	printf("3ë²ˆìŒì•…");
 	if (c3 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 74) / 2, MAP_Y + 16);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 74) / 2, MAP_Y + 16);
@@ -235,11 +235,11 @@ void selectMusicContent2(int c1, int c2, int c3, int c4) {
 	}
 	Setcolor(c4);
 	gotoxy1(MAP_X + MAP_WIDTH + 8, MAP_Y + 17);
-	printf("4¹øÀ½¾Ç");
+	printf("4ë²ˆìŒì•…");
 	if (c4 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 74) / 2, MAP_Y + 17);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 74) / 2, MAP_Y + 17);
@@ -248,39 +248,39 @@ void selectMusicContent2(int c1, int c2, int c3, int c4) {
 	Setcolor(7);
 }
 
-// Å×¸¶ ¼³Á¤ ±â´É
+// í…Œë§ˆ ì„¤ì • ê¸°ëŠ¥
 int setTheme(void) {
 	int keyInput;
 	keyInput = selectTheme();
 	printf("%d", keyInput);
 	switch (keyInput) {
 	case THEME1:
-		theme = 1;//ÆÄ¶õ»ö
+		theme = 1;//íŒŒë€ìƒ‰
 		break;
 	case THEME2 :
-		theme = 5;//ÀÚÁÖ»ö
+		theme = 5;//ìì£¼ìƒ‰
 		break;
 	case THEME3:
-		theme = 6;//³ë¶õ»ö
+		theme = 6;//ë…¸ë€ìƒ‰
 		break;
 	case THEME4:
-		theme = 15;//¹àÀº Èò»ö
+		theme = 15;//ë°ì€ í°ìƒ‰
 		break;
 	case THEME0:
-		theme = 7;//±âº» Èò»ö
+		theme = 7;//ê¸°ë³¸ í°ìƒ‰
 		break;
 	}
 	reset();
 	return BACK;
 }
 
-// »ç¿ëÀÚ ÀÔ·Â Å×¸¶ ¹İÈ¯
+// ì‚¬ìš©ì ì…ë ¥ í…Œë§ˆ ë°˜í™˜
 int selectTheme(void) {
 	int x = (MAP_X + 2) * 2, y = MAP_Y + 14;
 	selectThemeContent();
 	selectThemeContent2(1, 7, 7, 7, 7);
 	gotoxy1((MAP_X + 13) * 2, y);
-	printf("¢Ñ\b\b");
+	printf("â˜\b\b");
 
 	while (1)
 	{
@@ -296,7 +296,7 @@ int selectTheme(void) {
 				else if (y == MAP_Y + 16) selectThemeContent2(7, 7, 6, 7, 7);
 				else if (y == MAP_Y + 17) selectThemeContent2(7, 7, 7, 15, 7);
 				gotoxy1((MAP_X + 13) * 2, y);
-				printf("¢Ñ\b\b");
+				printf("â˜\b\b");
 			}
 			break;
 		}
@@ -310,7 +310,7 @@ int selectTheme(void) {
 				else if (y == MAP_Y + 17) selectThemeContent2(7, 7, 7, 15, 7);
 				else if (y == MAP_Y + 18) selectThemeContent2(7, 7, 7, 7, 8);
 				gotoxy1((MAP_X + 13) * 2, y);
-				printf("¢Ñ\b\b");
+				printf("â˜\b\b");
 			}
 			break;
 		}
@@ -336,7 +336,7 @@ void selectThemeContent(void) {
 	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 2, MAP_Y + 7, "You can change the game Theme");
 	Setcolor(8);
-	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "¡å  Select from the menu  ¡å");
+	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "â–¼  Select from the menu  â–¼");
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
 	printf("**** spacebar to select ****");
 	Setcolor(7);
@@ -345,14 +345,14 @@ void selectThemeContent(void) {
 void selectThemeContent2(int c1, int c2, int c3, int c4, int c5) {
 	Setcolor(c1);
 	gotoxy1(MAP_X + MAP_WIDTH + 2, MAP_Y + 14);
-	printf("»çÆÄÀÌ¾î");
+	printf("ì‚¬íŒŒì´ì–´");
 	Setcolor(1);
 	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 14);
-	printf("¡á");
+	printf("â– ");
 	if (c1 == 1) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 14);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 14);
@@ -360,14 +360,14 @@ void selectThemeContent2(int c1, int c2, int c3, int c4, int c5) {
 	}
 	Setcolor(c2);
 	gotoxy1(MAP_X + MAP_WIDTH + 2, MAP_Y + 15);
-	printf("ÀÚ¼öÁ¤ ");
+	printf("ììˆ˜ì • ");
 	Setcolor(5);
 	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 15);
-	printf("¡á");
+	printf("â– ");
 	if (c2 == 5) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 15);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 15);
@@ -375,14 +375,14 @@ void selectThemeContent2(int c1, int c2, int c3, int c4, int c5) {
 	}
 	Setcolor(c3);
 	gotoxy1(MAP_X + MAP_WIDTH + 2, MAP_Y + 16);
-	printf("ÅäÆÄÁî ");
+	printf("í† íŒŒì¦ˆ ");
 	Setcolor(6);
 	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 16);
-	printf("¡á");
+	printf("â– ");
 	if (c3 == 6) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 16);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 16);
@@ -390,14 +390,14 @@ void selectThemeContent2(int c1, int c2, int c3, int c4, int c5) {
 	}
 	Setcolor(c4);
 	gotoxy1(MAP_X + MAP_WIDTH + 2, MAP_Y + 17);
-	printf("´ÙÀÌ¾Æ¸óµå");
+	printf("ë‹¤ì´ì•„ëª¬ë“œ");
 	Setcolor(15);
 	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 17);
-	printf("¡á");
+	printf("â– ");
 	if (c4 == 15) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 17);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 17);
@@ -405,14 +405,14 @@ void selectThemeContent2(int c1, int c2, int c3, int c4, int c5) {
 	}
 	Setcolor(c5);
 	gotoxy1(MAP_X + MAP_WIDTH + 2, MAP_Y + 18);
-	printf("±âº»¹è°æ");
+	printf("ê¸°ë³¸ë°°ê²½");
 	Setcolor(7);
 	gotoxy1(MAP_X + MAP_WIDTH + 18, MAP_Y + 18);
-	printf("¡á");
+	printf("â– ");
 	if (c5 == 8) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 18);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 18);
@@ -421,8 +421,8 @@ void selectThemeContent2(int c1, int c2, int c3, int c4, int c5) {
 }
 
 /*
-// À½¾Ç ÆÄÀÏ¿¡ Á¢±ÙÇÏ¿© Àç»ıÇÏ´Â ÇÔ¼ö
-void playMusic(const char* address) { // À½¾Ç ÆÄÀÏÀÇ ÁÖ¼Ò¸¦ ÀÎ¼ö·Î ¹Ş´Â´Ù.
+// ìŒì•… íŒŒì¼ì— ì ‘ê·¼í•˜ì—¬ ì¬ìƒí•˜ëŠ” í•¨ìˆ˜
+void playMusic(const char* address) { // ìŒì•… íŒŒì¼ì˜ ì£¼ì†Œë¥¼ ì¸ìˆ˜ë¡œ ë°›ëŠ”ë‹¤.
 	char command[256];
 	snprintf(command, sizeof(command), "%s", address);
 	printf("%s", command);

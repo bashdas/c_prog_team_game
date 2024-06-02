@@ -1,14 +1,14 @@
 #include "main.h"
 
 /*
-Ä³¸¯ÅÍ Áß½É ±×¸®±â
-  - Ä³¸¯ÅÍ ÁÂÇ¥ À§Ä¡¿¡ ±×¸®±â,
-  - Ä³¸¯ÅÍ ÇöÀç À§Ä¡ ÁÂÇ¥
+ìºë¦­í„° ì¤‘ì‹¬ ê·¸ë¦¬ê¸°
+  - ìºë¦­í„° ì¢Œí‘œ ìœ„ì¹˜ì— ê·¸ë¦¬ê¸°,
+  - ìºë¦­í„° í˜„ì¬ ìœ„ì¹˜ ì¢Œí‘œ
 */
 void drawPlayer(int x, int y) {
     gotoxy1(x, y);
     Setcolor(4);
-    printf("¡Ú\b");
+    printf("â—†\b");
     Setcolor(7);
 }
 
@@ -20,16 +20,16 @@ void removePlayer(int x, int y) {
 }
 
 /*
-Ä³¸¯ÅÍ ½Ã¾ß ±×¸®±â
-  - Ä³¸¯ÅÍ ÁÂÇ¥ À§Ä¡¿¡¼­ ÀÏÁ¤ °Å¸®¸¸Å­ ¶ç¾îÁö°Ô ±×¸®±â
-  - player ÇöÀç À§Ä¡ ÁÂÇ¥
-  - upper ~ bottom ±îÁö
-  - left ~ right ±îÁö
+ìºë¦­í„° ì‹œì•¼ ê·¸ë¦¬ê¸°
+  - ìºë¦­í„° ì¢Œí‘œ ìœ„ì¹˜ì—ì„œ ì¼ì • ê±°ë¦¬ë§Œí¼ ë„ì–´ì§€ê²Œ ê·¸ë¦¬ê¸°
+  - player í˜„ì¬ ìœ„ì¹˜ ì¢Œí‘œ
+  - upper ~ bottom ê¹Œì§€
+  - left ~ right ê¹Œì§€
 */
 void drawPlayerSight(int x, int y, int bottom, int right, int upper, int left) {
     int sightx = x - 6;
     int sighty = y - 3;
-    char charsight[7][14] = { // Áß¾Ó 6,3 -> Ä³¸¯ÅÍ Áß½ÉÀ¸·Î ºÎÅÍ x-6, y-3À§Ä¡ºÎÅÍ ½Ã¾ß ±×¸®±â ½ÃÀÛ
+    char charsight[7][14] = { // ì¤‘ì•™ 6,3 -> ìºë¦­í„° ì¤‘ì‹¬ìœ¼ë¡œ ë¶€í„° x-6, y-3ìœ„ì¹˜ë¶€í„° ì‹œì•¼ ê·¸ë¦¬ê¸° ì‹œì‘
         "* * * * * * *\0",
         "*           *\0",
         "*           *\0",
@@ -38,21 +38,21 @@ void drawPlayerSight(int x, int y, int bottom, int right, int upper, int left) {
         "*           *\0",
         "* * * * * * *\0"
     };
-    // Ä³¸¯ÅÍ ½Ã¾ß ±×¸®±â
+    // ìºë¦­í„° ì‹œì•¼ ê·¸ë¦¬ê¸°
     for (int i = 0 + upper; i < bottom; i++) {
         gotoxy1(sightx, sighty);
         for (int j = 0 + left; j < right; j++) {
             putchar(charsight[i][j]);
             fflush(stdout);
         }
-        gotoxy1(x, y); // ¸¶¿ì½º Ä¿¼­ À§Ä¡ º¯°æ
+        gotoxy1(x, y); // ë§ˆìš°ìŠ¤ ì»¤ì„œ ìœ„ì¹˜ ë³€ê²½
         sighty += 1;
     }
 }
 
 /*
-Ä³¸¯ÅÍ ½Ã¾ß Áö¿ì±â -> Ä³¸¯ÅÍµµ °°ÀÌ Áö¿ò
-  - drawPlayerSight µ¿ÀÛ¿ø¸® °°À½
+ìºë¦­í„° ì‹œì•¼ ì§€ìš°ê¸° -> ìºë¦­í„°ë„ ê°™ì´ ì§€ì›€
+  - drawPlayerSight ë™ì‘ì›ë¦¬ ê°™ìŒ
 */
 void removePlayerSight(int x, int y, int bottom, int right, int upper, int left) {
     int sightx = x - 6;
@@ -72,7 +72,7 @@ void removePlayerSight(int x, int y, int bottom, int right, int upper, int left)
             putchar(charsight[i][j]);
             fflush(stdout);
         }
-        gotoxy1(x, y); // ¸¶¿ì½º Ä¿¼­ À§Ä¡ º¯°æ
+        gotoxy1(x, y); // ë§ˆìš°ìŠ¤ ì»¤ì„œ ìœ„ì¹˜ ë³€ê²½
         sighty += 1;
     }
 }
@@ -93,26 +93,26 @@ void timer(void)
     start_time = clock();
 
 
-    // ½Ç½Ã°£ Å¸ÀÌ¸Ó Ãâ·Â
+    // ì‹¤ì‹œê°„ íƒ€ì´ë¨¸ ì¶œë ¥
     while (1) {
         current_time = clock();
         elapsed_time = ((double)(current_time - start_time)) / CLOCKS_PER_SEC;
-        gotoxy(MAP_X + MAP_WIDTH - 11, MAP_Y + 1, "HP: ¢¾ ¢¾ ¢¾ ¢¾"); //HPÇ¥½Ã
-        // °æ°úµÈ ½Ã°£ Ãâ·Â
+        gotoxy(MAP_X + MAP_WIDTH - 11, MAP_Y + 1, "HP: â™¥ â™¥ â™¥ â™¥"); //HPí‘œì‹œ
+        // ê²½ê³¼ëœ ì‹œê°„ ì¶œë ¥
         gotoxy(10, 10, " ");
-        printf("\r°æ°úµÈ ½Ã°£: %.2f ÃÊ", 10 - elapsed_time);
-        fflush(stdout);  // Ãâ·Â ¹öÆÛ¸¦ ºñ¿ö¼­ ½Ç½Ã°£À¸·Î Ãâ·Â
+        printf("\rê²½ê³¼ëœ ì‹œê°„: %.2f ì´ˆ", 10 - elapsed_time);
+        fflush(stdout);  // ì¶œë ¥ ë²„í¼ë¥¼ ë¹„ì›Œì„œ ì‹¤ì‹œê°„ìœ¼ë¡œ ì¶œë ¥
 
-        // 1ÃÊ ´ë±â
+        // 1ì´ˆ ëŒ€ê¸°
         Sleep(50);
 
-        // Á¾·á Á¶°Ç ¿¹½Ã (10ÃÊ ÈÄ Á¾·á)
+        // ì¢…ë£Œ ì¡°ê±´ ì˜ˆì‹œ (10ì´ˆ í›„ ì¢…ë£Œ)
         if (10 - elapsed_time <= -0.001) {
             break;
         }
     }
 
-    printf("\nÅ¸ÀÌ¸Ó Á¾·á!\n");
+    printf("\níƒ€ì´ë¨¸ ì¢…ë£Œ!\n");
 
 }
 */

@@ -1,16 +1,16 @@
 #include "main.h"
 /*
-	°ÔÀÓ ¸Ş´º ¼±ÅÃ ¼Ò½ºÆÄÀÏ
-		- menuDraw1(): °ÔÀÓ ¸Ş´º Ãâ·Â + »ç¿ëÀÚ »óÈ£ÀÛ¿ë
-			- ¹İÈ¯°ª intÇü
-				- °ÔÀÓ ½ÃÀÛ GAMESTART 100
-				- °ÔÀÓ ¹æ¹ı GAMERULE 200
-				- È¯°æ ¼³Á¤ OPTION 300
-				- °ÔÀÓ Á¾·á GAMEEXIT 400
+	ê²Œì„ ë©”ë‰´ ì„ íƒ ì†ŒìŠ¤íŒŒì¼
+		- menuDraw1(): ê²Œì„ ë©”ë‰´ ì¶œë ¥ + ì‚¬ìš©ì ìƒí˜¸ì‘ìš©
+			- ë°˜í™˜ê°’ intí˜•
+				- ê²Œì„ ì‹œì‘ GAMESTART 100
+				- ê²Œì„ ë°©ë²• GAMERULE 200
+				- í™˜ê²½ ì„¤ì • OPTION 300
+				- ê²Œì„ ì¢…ë£Œ GAMEEXIT 400
 
-		- menuDraw1Content(): »ç¿ëÀÚ »óÈ£ÀÛ¿ë ¾øÀ¸¹Ç·Î Ã³À½¸¸ ±×¸²
+		- menuDraw1Content(): ì‚¬ìš©ì ìƒí˜¸ì‘ìš© ì—†ìœ¼ë¯€ë¡œ ì²˜ìŒë§Œ ê·¸ë¦¼
 
-		- menuDraw2Content(): »ç¿ëÀÚ »óÈ£ÀÛ¿ë ÀÖÀ¸¹Ç·Î ÇØ´ç ºÎºĞ¸¸ µ¤À½
+		- menuDraw2Content(): ì‚¬ìš©ì ìƒí˜¸ì‘ìš© ìˆìœ¼ë¯€ë¡œ í•´ë‹¹ ë¶€ë¶„ë§Œ ë®ìŒ
 */
 
 
@@ -19,7 +19,7 @@ int menuDraw1(void) {
 	menuDraw1Content();
 	menuDraw2Content(2, 7, 7, 7);
 	gotoxy1((MAP_X + 13) * 2, y);
-	printf("¢Ñ\b\b");
+	printf("â˜\b\b");
 	while (1)
 	{
 		int n = keyControl1();
@@ -33,7 +33,7 @@ int menuDraw1(void) {
 				else if (y == MAP_Y + 15) menuDraw2Content(7, 2, 7, 7);
 				else if (y == MAP_Y + 16) menuDraw2Content(7, 7, 2, 7);
 				gotoxy1((MAP_X + 13) * 2, y);
-				printf("¢Ñ\b\b");
+				printf("â˜\b\b");
 			}
 			break;
 		}
@@ -46,7 +46,7 @@ int menuDraw1(void) {
 				else if (y == MAP_Y + 16) menuDraw2Content(7, 7, 2, 7);
 				else if (y == MAP_Y + 17) menuDraw2Content(7, 7, 7, 2);
 				gotoxy1((MAP_X + 13) * 2, y);
-				printf("¢Ñ\b\b");
+				printf("â˜\b\b");
 			}
 			break;
 		}
@@ -71,7 +71,7 @@ void menuDraw1Content(void) {
 	Setcolor(7);
 	gotoxy(MAP_X + (MAP_WIDTH - 19) / 2 + 1, MAP_Y + 7, "Get out of the underground prison");
 	Setcolor(8);
-	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "¡å  Select from the menu  ¡å");
+	gotoxy(MAP_X + (MAP_WIDTH - 13) / 2, MAP_Y + 12, "â–¼  Select from the menu  â–¼");
 	gotoxy1(MAP_X * 2 + 25, MAP_Y + 20);
 	printf("**** spacebar to select ****");
 	Setcolor(7);
@@ -80,11 +80,11 @@ void menuDraw1Content(void) {
 void menuDraw2Content(int c1, int c2, int c3, int c4) {
 	Setcolor(c1);
 	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 14);
-	printf("   °ÔÀÓ½ÃÀÛ    START");
+	printf("   ê²Œì„ì‹œì‘    START");
 	if (c1 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 14);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 14);
@@ -92,11 +92,11 @@ void menuDraw2Content(int c1, int c2, int c3, int c4) {
 	}
 	Setcolor(c2);
 	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 15);
-	printf("   °ÔÀÓ¹æ¹ı    RULE"); 
+	printf("   ê²Œì„ë°©ë²•    RULE"); 
 	if (c2 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 15);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 15);
@@ -104,11 +104,11 @@ void menuDraw2Content(int c1, int c2, int c3, int c4) {
 	}
 	Setcolor(c3);
 	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 16);
-	printf("   È¯°æ¼³Á¤    OPTION");
+	printf("   í™˜ê²½ì„¤ì •    OPTION");
 	if (c3 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 16);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 16);
@@ -116,11 +116,11 @@ void menuDraw2Content(int c1, int c2, int c3, int c4) {
 	}
 	Setcolor(c4);
 	gotoxy1(MAP_X + (MAP_WIDTH + 38) / 2, MAP_Y + 17);
-	printf("   Á¾·á        EXIT");
+	printf("   ì¢…ë£Œ        EXIT");
 	if (c4 == 2) {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 17);
 		Setcolor(7);
-		printf("¢Ğ");
+		printf("â˜œ");
 	}
 	else {
 		gotoxy1(MAP_X + (MAP_WIDTH + 84) / 2, MAP_Y + 17);

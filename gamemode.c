@@ -1,21 +1,21 @@
 #include "main.h"
 /*
-	∞‘¿” ∏µÂ º±≈√ º“Ω∫∆ƒ¿œ
-		- int modeSelect(void): EASY(0), NORMAL(1), HARD(1) π›»Ø
-		- void modeSelectContentDraw(void): ∞‘¿” ∏µÂ º±≈√ √‚∑¬
-		- void modeSelectContentDraw1(int c1, int c2, int c3): √‚∑¬π∞ 1
-		- void modeSelectContentDraw2(int c1, int c2, int c3): √‚∑¬π∞ 2
+	Í≤åÏûÑ Î™®Îìú ÏÑ†ÌÉù ÏÜåÏä§ÌååÏùº
+		- int modeSelect(void): EASY(0), NORMAL(1), HARD(1) Î∞òÌôò
+		- void modeSelectContentDraw(void): Í≤åÏûÑ Î™®Îìú ÏÑ†ÌÉù Ï∂úÎ†•
+		- void modeSelectContentDraw1(int c1, int c2, int c3): Ï∂úÎ†•Î¨º 1
+		- void modeSelectContentDraw2(int c1, int c2, int c3): Ï∂úÎ†•Î¨º 2
 */
 
 
-// x ¿ßƒ°ø° µ˚∂Û ªˆπ›¿¸
+// x ÏúÑÏπòÏóê Îî∞Îùº ÏÉâÎ∞òÏ†Ñ
 int modeSelect(void) {
-	int x = MAP_X + (MAP_WIDTH / 2) - 2, y = 24; // √ ±‚ ¿ßƒ°
+	int x = MAP_X + (MAP_WIDTH / 2) - 2, y = 24; // Ï¥àÍ∏∞ ÏúÑÏπò
 	modeSelectContentDraw();
 	modeSelectContentDraw1(2, 7, 7);
 	modeSelectContentDraw2(11, 7, 7);
 	gotoxy1(x, y);
-	printf("¢—\b\b");
+	printf("‚òû\b\b");
 	Sleep(300);
 	while (1) {
 		int n = keyControl1();
@@ -34,7 +34,7 @@ int modeSelect(void) {
 					modeSelectContentDraw2(7, 14, 7);
 				}
 				gotoxy1(x, y);
-				printf("¢—\b\b");
+				printf("‚òû\b\b");
 			}
 			break;
 		case RIGHT:
@@ -51,7 +51,7 @@ int modeSelect(void) {
 					modeSelectContentDraw2(7, 7, 12);
 				}
 				gotoxy1(x, y);
-				printf("¢—\b\b");
+				printf("‚òû\b\b");
 			}
 			break;
 		case BACK:
@@ -71,39 +71,39 @@ int modeSelect(void) {
 	}
 }
 
-// ≈∏¿Ã∆≤ ªˆ, easy ªˆ, normla ªˆ, hard ªˆ¿ª ¿Œ¿⁄∑Œ πﬁ¿Ω
+// ÌÉÄÏù¥ÌãÄ ÏÉâ, easy ÏÉâ, normla ÏÉâ, hard ÏÉâÏùÑ Ïù∏ÏûêÎ°ú Î∞õÏùå
 void modeSelectContentDraw(void) {
 	resetMapTitle();
 	resetMapMain();
 	resetMapBottom();
 	Setcolor(4);
-	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 5, "°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ");
+	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 5, "‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª");
 	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 6, "         GAME   MODE       ");
-	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 7, "°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ°ÿ");
+	gotoxy(MAP_X + (MAP_WIDTH - 14) / 2, MAP_Y + 7, "‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª‚Äª");
 }
 
 void modeSelectContentDraw1(int c1, int c2, int c3) {
 	Setcolor(c1);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 12, "¶£----------¶§");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 12, "‚îå----------‚îê");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 13, "|   EASY   |");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 14, "¶¶----------¶•");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 15, MAP_Y + 14, "‚îî----------‚îò");
 	Setcolor(c2);
-	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 12, "¶£----------¶§");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 12, "‚îå----------‚îê");
 	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 13, "|  NORMAL  |");
-	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 14, "¶¶----------¶•");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2, MAP_Y + 14, "‚îî----------‚îò");
 	Setcolor(c3);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 12, "¶£----------¶§");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 12, "‚îå----------‚îê");
 	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 13, "|   HARD   |");
-	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 14, "¶¶----------¶•");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9, MAP_Y + 14, "‚îî----------‚îò");
 	Setcolor(7);
 }
 
 void modeSelectContentDraw2(int c1, int c2, int c3) {
 	Setcolor(c1);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) - 14, MAP_Y + 22, "(°‹'v'°‹)");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) - 14, MAP_Y + 22, "(‚óè'v'‚óè)");
 	Setcolor(c2);
-	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2 + 1, MAP_Y + 22, "(°€£‡ 3°«°€)");
+	gotoxy(MAP_X + (MAP_WIDTH - 6) / 2 + 1, MAP_Y + 22, "(‚óãÔΩÄ 3‚Ä≤‚óã)");
 	Setcolor(c3);
-	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9 + 1, MAP_Y + 22, "¶±|£‡O°«|¶∞");
+	gotoxy(MAP_X + (MAP_WIDTH / 2) + 9 + 1, MAP_Y + 22, "‚îó|ÔΩÄO‚Ä≤|‚îõ");
 	Setcolor(7);
 }

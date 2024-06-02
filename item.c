@@ -137,6 +137,8 @@ void eatItem(struct player player_info, struct items* item_array, struct strider
 }
 
 void eatItemStrider(struct strider* strider_info, struct items* item_array, int mode) {
+    int new_x, new_y;
+    int unique;
     for (int i = 0; i < MAX_ITEMS; i++) {
         if ((strider_info[0].sx <= item_array[i].x &&
             strider_info[0].sx + 6 >= item_array[i].x &&
@@ -149,8 +151,22 @@ void eatItemStrider(struct strider* strider_info, struct items* item_array, int 
                 strider_info[2].sy == item_array[i].y)
             )
         {
-            item_array[i].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
-            item_array[i].y = rand() % (MAP_HEIGHT - 9) + 5;
+            do {
+                new_x = rand() % (MAP_WIDTH * 2 - 4) + 23;
+                new_y = rand() % (MAP_HEIGHT - 9) + 5;
+                unique = 1; // 중복되지 않을 때
+
+                // 아이템 배열에서 중복 여부 확인
+                for (int j = 0; j < MAX_ITEMS; j++) {
+                    if (i != j && item_array[j].x == new_x && item_array[j].y == new_y) {
+                        unique = 0; // 중복 있으면 다시 반복문
+                        break;
+                    }
+                }
+            } while (!unique); // 중복이 없을 때까지 반복
+            item_array[i].x = new_x;
+            item_array[i].y = new_y;
+
             if (mode == NORMAL) drawItem(item_array[i].x, item_array[i].y); // 노멀 모드에서만 그림
         }
     }

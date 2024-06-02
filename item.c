@@ -120,17 +120,15 @@ void eatItem(struct player player_info, struct items* item_array, struct strider
 
         if (item_array[i].x <= playerx + player_info.sw && item_array[i].x >= playerx - player_info.sw
             && item_array[i].y <= playery + player_info.sh && item_array[i].y >= playery - player_info.sh)
-        {
+        {   
+            gotoxy(0, 28, "FIND");
             drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
-
             if (item_array[i].x == playerx && item_array[i].y == playery) {
                 // 충돌 시 배열 0,0,None로 초기화, 아이템 지우고 캐릭터 다시 그리기
                 judge_item(i,s);
                 initItem(item_array, playerx, playery, i);
-
             }
         }
-
         else {
             removeItem(item_array[i].x, item_array[i].y); // 시야 범위 밖에 나가면 아이템 지우기
 
@@ -138,7 +136,7 @@ void eatItem(struct player player_info, struct items* item_array, struct strider
     }
 }
 
-void eatItemStrider(struct strider* strider_info, struct items* item_array) {
+void eatItemStrider(struct strider* strider_info, struct items* item_array, int mode) {
     for (int i = 0; i < MAX_ITEMS; i++) {
         if ((strider_info[0].sx <= item_array[i].x &&
             strider_info[0].sx + 6 >= item_array[i].x &&
@@ -150,7 +148,7 @@ void eatItemStrider(struct strider* strider_info, struct items* item_array) {
         {
             item_array[i].x = rand() % (MAP_WIDTH * 2 - 4) + 23;
             item_array[i].y = rand() % (MAP_HEIGHT - 9) + 5;
-            drawItem(item_array[i].x, item_array[i].y); // 시야 범위에 들어오면 아이템 출력
+            if (mode == 1) drawItem(item_array[i].x, item_array[i].y); // 노멀 모드에서만 그림
         }
     }
 }

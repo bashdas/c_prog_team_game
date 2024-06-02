@@ -205,7 +205,7 @@ void initItem(struct items* item_array, int playerx, int playery, int i);// 시�
 void judge_item(int i, struct strider* s);// 아이템 배열 구조체 (i) 아이템 종류 판단 함수
 void judge_easy_item(int i);
 void eatItem(struct player player_info, struct items* item_array, struct strider* s, int playerx, int playery);
-void eatItemStrider(struct strider* strider_info, struct items* item_array);
+void eatItemStrider(struct strider* strider_info, struct items* item_array, int mode);
 void itemeatEasy(int playerx, int playery, struct items* item_array);
 void itemeatNormal(int playerx, int playery, struct items* item_array, struct strider* s);
 

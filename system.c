@@ -1,28 +1,28 @@
 #include "main.h"
 /*
-	½Ã½ºÅÛÀû ¿ä¼Ò¿Í °ü·ÃµÈ ¼Ò½ºÆÄÀÏ
-		- Setcolor() : ÅØ½ºÆ® »ö º¯°æ
-		- gotoxy() : Ä¿¼­ À§Ä¡ ¼³Á¤ ÈÄ Ãâ·Â
-		- gotoxy1() : Ä¿¼­ À§Ä¡¸¸ º¯°æ
-		- keyControl1() : »ç¿ëÀÚ °ÔÀÓ Å° ÀÔ·Â
-		- slowPrint() : ½ºÅä¸® Ãâ·Â¿¡¼­ »ç¿ë ½ºÅµ ±â´É
+	ì‹œìŠ¤í…œì  ìš”ì†Œì™€ ê´€ë ¨ëœ ì†ŒìŠ¤íŒŒì¼
+		- Setcolor() : í…ìŠ¤íŠ¸ ìƒ‰ ë³€ê²½
+		- gotoxy() : ì»¤ì„œ ìœ„ì¹˜ ì„¤ì • í›„ ì¶œë ¥
+		- gotoxy1() : ì»¤ì„œ ìœ„ì¹˜ë§Œ ë³€ê²½
+		- keyControl1() : ì‚¬ìš©ì ê²Œì„ í‚¤ ì…ë ¥
+		- slowPrint() : ìŠ¤í† ë¦¬ ì¶œë ¥ì—ì„œ ì‚¬ìš© ìŠ¤í‚µ ê¸°ëŠ¥
 */
 
 /*
-	Setcolor ÇÔ¼ö
-	¸Å°³º¯¼ö: color -> ÅØ½ºÆ® »ö °áÁ¤
-	SetConsoleTextAttribute ÇÔ¼ö È£Ãâ -> ÅØ½ºÆ® ¼Ó¼º ¼³Á¤(ÄÜ¼Ö Ã¢ ÅØ½ºÆ® »ö, ¹è°æ »ö...)
-	GetStdHandle(STD_OUTPUT_HANDLE) ÇÔ¼ö È£Ãâ -> ÄÜ¼Ö Ã¢ Á¦¾î
+	Setcolor í•¨ìˆ˜
+	ë§¤ê°œë³€ìˆ˜: color -> í…ìŠ¤íŠ¸ ìƒ‰ ê²°ì •
+	SetConsoleTextAttribute í•¨ìˆ˜ í˜¸ì¶œ -> í…ìŠ¤íŠ¸ ì†ì„± ì„¤ì •(ì½˜ì†” ì°½ í…ìŠ¤íŠ¸ ìƒ‰, ë°°ê²½ ìƒ‰...)
+	GetStdHandle(STD_OUTPUT_HANDLE) í•¨ìˆ˜ í˜¸ì¶œ -> ì½˜ì†” ì°½ ì œì–´
 */
 void Setcolor(WORD color) {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
 /*
-	gotoxy ÇÔ¼ö
-	COORD ±¸Á¶Ã¼ »ç¿ë -> Ãâ·ÂÇÒ À§Ä¡ ¼³Á¤(ÁÂÇ¥)
-	2 * x ÀÎ ÀÌÀ¯´Â ¹®ÀÚ ´ÜÀ§ °è»ê Ã³¸®ÇÏ±â À§ÇØ¼­
-	SetConsoleCursorPosition ÇÔ¼ö È£Ãâ ÄÜ¼Ö Ã¢ÀÇ Ä¿¼­ À§Ä¡ ¼³Á¤
+	gotoxy í•¨ìˆ˜
+	COORD êµ¬ì¡°ì²´ ì‚¬ìš© -> ì¶œë ¥í•  ìœ„ì¹˜ ì„¤ì •(ì¢Œí‘œ)
+	2 * x ì¸ ì´ìœ ëŠ” ë¬¸ì ë‹¨ìœ„ ê³„ì‚° ì²˜ë¦¬í•˜ê¸° ìœ„í•´ì„œ
+	SetConsoleCursorPosition í•¨ìˆ˜ í˜¸ì¶œ ì½˜ì†” ì°½ì˜ ì»¤ì„œ ìœ„ì¹˜ ì„¤ì •
 */
 void gotoxy(int x, int y, const char* s) {
 	COORD pos = { 2 * x,y };
@@ -65,7 +65,7 @@ int keyControl1(void) {
 	case ' ':
 		return SUBMIT;
 	default:
-		return -1; // ´Ù¸¥ Å°¸¦ ´­·¶À» °æ¿ì Ã³¸®
+		return -1; // ë‹¤ë¥¸ í‚¤ë¥¼ ëˆŒë €ì„ ê²½ìš° ì²˜ë¦¬
 	}
 }
 
@@ -73,7 +73,7 @@ void slowPrint(const wchar_t story[][MAX_COLS], int x, int y, int rowcount) {
 	char ch = 0;
 	int x1 = x, y1 = y;
 	Setcolor(7);
-	// ÄÜ¼Ö Ãâ·Â ¸ğµå¸¦ À¯´ÏÄÚµå ¸ğµå·Î ¼³Á¤
+	// ì½˜ì†” ì¶œë ¥ ëª¨ë“œë¥¼ ìœ ë‹ˆì½”ë“œ ëª¨ë“œë¡œ ì„¤ì •
 	//_setmode(_fileno(stdout), _O_U16TEXT);
 	for (int i = 0; i < rowcount; i++) {
 		if (y1 > MAP_Y + 18) {

@@ -20,8 +20,8 @@ int movePlayer(struct player* player_info, struct items* item_array, struct stri
     drawPlayerSight(playerx, playery, bottom, right, upper, left);
     drawPlayer(playerx, playery);
 
-    gotoxy1(0, 21);
-    printf("%d", strider_info[0].sx);
+    //gotoxy1(0, 21);
+    //printf("%d", strider_info[0].sx);
 
     while (1)
     {

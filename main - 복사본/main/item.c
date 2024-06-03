@@ -3,7 +3,7 @@
 void drawItem(int x, int y) {
     gotoxy1(x, y);
     Setcolor(9);
-    printf("¢º");
+    printf("â–¶");
     Setcolor(15);
 }
 
@@ -26,7 +26,7 @@ void Itemcoord(struct items* item, struct player player) {
     item->y = y;
 }
 
-// ¾ÆÀÌÅÛÀÌ Ãæµ¹µÇ¾úÀ» ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+// ì•„ì´í…œì´ ì¶©ëŒë˜ì—ˆì„ ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
 void initItem(struct items* item_array, int playerx, int playery, int i) {
     item_array[i].x = 0;
     item_array[i].y = 0;
@@ -36,7 +36,7 @@ void initItem(struct items* item_array, int playerx, int playery, int i) {
     drawPlayer(playerx, playery);
 }
 
-// Àü´Ş¹ŞÀº i°ª¿¡ µû¶ó¼­ ´Ù¸¥ °á°ú¸¦ Ãâ·ÂÇÏ´Â ÇÔ¼ö
+// ì „ë‹¬ë°›ì€ iê°’ì— ë”°ë¼ì„œ ë‹¤ë¥¸ ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 
 void judge_item(int i, struct strider* s)
 {
@@ -44,35 +44,35 @@ void judge_item(int i, struct strider* s)
     {
     case 0:
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
-        printf("¹èÅÍ¸®°¡ °¨¼ÒÇÕ´Ï´Ù");
+        printf("ë°°í„°ë¦¬ê°€ ê°ì†Œí•©ë‹ˆë‹¤");
         Sleep(500);
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
         printf("                   ");
-        timek += 12; // ¹èÅÍ¸® °¨¼Ò
+        timek += 12; // ë°°í„°ë¦¬ ê°ì†Œ
         break;
     case 1:
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
-        printf("HP°¡ Áõ°¡ÇÕ´Ï´Ù");
+        printf("HPê°€ ì¦ê°€í•©ë‹ˆë‹¤");
         Sleep(500);
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
         printf("                   ");
-        HP += 1;  // HP°¡ Áõ°¡ÇÑ´Ù.
+        HP += 1;  // HPê°€ ì¦ê°€í•œë‹¤.
         break;
 
 
     case 2:
     case 3:
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
-        printf("¹èÅÍ¸®°¡ Áõ°¡ÇÕ´Ï´Ù");
+        printf("ë°°í„°ë¦¬ê°€ ì¦ê°€í•©ë‹ˆë‹¤");
         Sleep(500);
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
         printf("                   ");
-        timek -= 20; // ¹èÅÍ¸® Áõ°¡ 
+        timek -= 20; // ë°°í„°ë¦¬ ì¦ê°€ 
         break;
 
     case 4:
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
-        printf("°æºñº´ÀÌ Áõ°¡ÇÕ´Ï´Ù");
+        printf("ê²½ë¹„ë³‘ì´ ì¦ê°€í•©ë‹ˆë‹¤");
         Sleep(500);
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
         printf("                   ");
@@ -81,7 +81,7 @@ void judge_item(int i, struct strider* s)
 
     default:
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
-        printf("¿­¼è¸¦ Ã£¾Ò½À´Ï´Ù!");
+        printf("ì—´ì‡ ë¥¼ ì°¾ì•˜ìŠµë‹ˆë‹¤!");
         Sleep(500);
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
         printf("                  ");
@@ -97,14 +97,14 @@ void judge_easy_item(int i)
     case 5:
     case 6:
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
-        printf("¿­¼è¸¦ Ã£¾Ò½À´Ï´Ù!");
+        printf("ì—´ì‡ ë¥¼ ì°¾ì•˜ìŠµë‹ˆë‹¤!");
         Sleep(500);
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
         printf("                  ");
         break;
     default:
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
-        printf("(-. - ) ²Î! ¿­¼è À§Ä¡°¡ ¹Ù²î³×¿ä");
+        printf("(-. - ) ê½! ì—´ì‡  ìœ„ì¹˜ê°€ ë°”ë€Œë„¤ìš”");
         Sleep(500);
         gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
         printf("                                  ");
@@ -121,16 +121,16 @@ void eatItem(struct player player_info, struct items* item_array, struct strider
         if (item_array[i].x <= playerx + player_info.sw && item_array[i].x >= playerx - player_info.sw
             && item_array[i].y <= playery + player_info.sh && item_array[i].y >= playery - player_info.sh)
         {
-            gotoxy(0, 28, "FIND");
-            drawItem(item_array[i].x, item_array[i].y); // ½Ã¾ß ¹üÀ§¿¡ µé¾î¿À¸é ¾ÆÀÌÅÛ Ãâ·Â
+            //gotoxy(0, 28, "FIND");
+            drawItem(item_array[i].x, item_array[i].y); // ì‹œì•¼ ë²”ìœ„ì— ë“¤ì–´ì˜¤ë©´ ì•„ì´í…œ ì¶œë ¥
             if (item_array[i].x == playerx && item_array[i].y == playery) {
-                // Ãæµ¹ ½Ã ¹è¿­ 0,0,None·Î ÃÊ±âÈ­, ¾ÆÀÌÅÛ Áö¿ì°í Ä³¸¯ÅÍ ´Ù½Ã ±×¸®±â
+                // ì¶©ëŒ ì‹œ ë°°ì—´ 0,0,Noneë¡œ ì´ˆê¸°í™”, ì•„ì´í…œ ì§€ìš°ê³  ìºë¦­í„° ë‹¤ì‹œ ê·¸ë¦¬ê¸°
                 judge_item(i, s);
                 initItem(item_array, playerx, playery, i);
             }
         }
         else {
-            removeItem(item_array[i].x, item_array[i].y); // ½Ã¾ß ¹üÀ§ ¹Û¿¡ ³ª°¡¸é ¾ÆÀÌÅÛ Áö¿ì±â
+            removeItem(item_array[i].x, item_array[i].y); // ì‹œì•¼ ë²”ìœ„ ë°–ì— ë‚˜ê°€ë©´ ì•„ì´í…œ ì§€ìš°ê¸°
 
         }
     }
@@ -154,20 +154,20 @@ void eatItemStrider(struct strider* strider_info, struct items* item_array, int 
             do {
                 new_x = rand() % (MAP_WIDTH * 2 - 4) + 23;
                 new_y = rand() % (MAP_HEIGHT - 9) + 5;
-                unique = 1; // Áßº¹µÇÁö ¾ÊÀ» ¶§
+                unique = 1; // ì¤‘ë³µë˜ì§€ ì•Šì„ ë•Œ
 
-                // ¾ÆÀÌÅÛ ¹è¿­¿¡¼­ Áßº¹ ¿©ºÎ È®ÀÎ
+                // ì•„ì´í…œ ë°°ì—´ì—ì„œ ì¤‘ë³µ ì—¬ë¶€ í™•ì¸
                 for (int j = 0; j < MAX_ITEMS; j++) {
                     if (i != j && item_array[j].x == new_x && item_array[j].y == new_y) {
-                        unique = 0; // Áßº¹ ÀÖÀ¸¸é ´Ù½Ã ¹İº¹¹®
+                        unique = 0; // ì¤‘ë³µ ìˆìœ¼ë©´ ë‹¤ì‹œ ë°˜ë³µë¬¸
                         break;
                     }
                 }
-            } while (!unique); // Áßº¹ÀÌ ¾øÀ» ¶§±îÁö ¹İº¹
+            } while (!unique); // ì¤‘ë³µì´ ì—†ì„ ë•Œê¹Œì§€ ë°˜ë³µ
             item_array[i].x = new_x;
             item_array[i].y = new_y;
 
-            if (mode == NORMAL) drawItem(item_array[i].x, item_array[i].y); // ³ë¸Ö ¸ğµå¿¡¼­¸¸ ±×¸²
+            if (mode == NORMAL) drawItem(item_array[i].x, item_array[i].y); // ë…¸ë©€ ëª¨ë“œì—ì„œë§Œ ê·¸ë¦¼
         }
     }
 }

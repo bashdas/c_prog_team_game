@@ -1,7 +1,7 @@
 #include "main.h"
 
 /*
-	��� ���� �ҽ�����
+	경비병 관련 소스파일
 */
 
 void stridercoord(struct strider* strider, struct player player) {
@@ -119,58 +119,35 @@ void moveUDStrider(struct strider* strider_info) {
 	}
 }
 
-// ��񺴰� �÷��̾� �浹 ó�� �Լ�
+// 경비병과 플레이어 충돌 처리 함수
 int CDStrider(int px, int py, struct strider* strider_info) {
-	int c = 0;
-	if (strider_info[0].sx - 6 <= px &&
-		strider_info[0].sx + 12 >= px &&
-		strider_info[0].sy - 3 <= py &&
-		strider_info[0].sy + 3 >= py)
+	if (strider_info[0].sx - 6 <= px && strider_info[0].sx + 12 >= px && strider_info[0].sy - 3 <= py && strider_info[0].sy + 3 >= py)
 	{
-		drawLRStrider(strider_info[0].sx, strider_info[0].sy, 7, 0);
-		if ((strider_info[0].sx <= px &&
-			strider_info[0].sx + 7 >= px &&
-			strider_info[0].sy == py)) {
-			return FAIL_V;
-		}
-		if ((strider_info[0].sx + 8 == px &&
-			strider_info[0].sy == py)) {
-			drawPlayer(px, py);
-		}
+		// 1번 좌우 경비병이 플레이어 시야 범위에 들어온 경우
+		drawLRStrider(strider_info[0].sx, strider_info[0].sy, 7, 0); // 해당 경비병을 다시 그림(지워지는거 방지)
+		if ((strider_info[0].sx <= px && strider_info[0].sx + 7 >= px && strider_info[0].sy == py)|| // 1번 좌우 경비병의 범위에 들어옴
+			(strider_info[1].sx == px && strider_info[1].sy <= py && strider_info[1].sy + 3 >= py)|| // 1번 상하 경비병의 범위에 들어옴
+			(strider_info[2].sx <= px && strider_info[2].sx + 7 >= px && strider_info[2].sy == py)) { return FAIL_V; } // 2번 좌우 경비병의 범위에 들어옴 -> 충돌처리
+		if ((strider_info[0].sx + 8 == px && strider_info[0].sy == py)) { drawPlayer(px, py); } // 플레이어 지워지는거 방지
+		if (strider_info[1].sx == px && strider_info[1].sy + 4 == py) { drawPlayer(px, py); } // 플레이어 지워지는거 방지
+		if ((strider_info[2].sx + 8 == px && strider_info[2].sy == py)) { drawPlayer(px, py); } // 플레이어 지워지는거 방지
 	}
-	else if
-		(strider_info[1].sx - 6 <= px &&
-		strider_info[1].sx + 6 >= px &&
-		strider_info[1].sy <= py + 3 &&
-		strider_info[1].sy + 3 >= py - 3)
+	else if (strider_info[1].sx - 6 <= px && strider_info[1].sx + 6 >= px && strider_info[1].sy -3 <= py && strider_info[1].sy +6>= py)
 	{
-		drawUDStrider(strider_info[1].sx, strider_info[1].sy, 4, 0);
-		if (strider_info[1].sx == px &&
-			strider_info[1].sy <= py &&
-			strider_info[1].sy + 3 >= py) {
-			return FAIL_V;
-		}
-		if (strider_info[1].sx == px &&
-			strider_info[1].sy + 4 == py) {
-			drawPlayer(px,py);
-		}
+		// 1번 상하 경비병이 플레이어 시야 범위에 들어온 경우
+		drawUDStrider(strider_info[1].sx, strider_info[1].sy, 4, 0); // 해당 경비병을 다시 그림
+		// 1번 좌우 경비병의 범위에 들어온 경우가 없는 이유는 이 경우 첫번째 조건문으로 가기 때문에
+		if ((strider_info[1].sx == px && strider_info[1].sy <= py && strider_info[1].sy + 3 >= py)|| // 1번 상하 경비병의 범위에 들어옴
+			(strider_info[2].sx <= px && strider_info[2].sx + 7 >= px && strider_info[2].sy == py)) { return FAIL_V; } // 2번 좌우 경비병에 범위에 들어옴 -> 충돌처리
+		if (strider_info[1].sx == px && strider_info[1].sy + 4 == py) { drawPlayer(px,py); }
 	}
 	if (strider_info[2].on == 0) {
-		if (strider_info[2].sx - 6 <= px &&
-			strider_info[2].sx + 12 >= px &&
-			strider_info[2].sy - 3 <= py &&
-			strider_info[2].sy + 3 >= py)
+		// 2번 좌우 경비병이 생긴 경우에만 실행
+		if (strider_info[2].sx - 6 <= px && strider_info[2].sx + 12 >= px && strider_info[2].sy - 3 <= py && strider_info[2].sy + 3 >= py)
 		{
 			drawLRStrider(strider_info[2].sx, strider_info[2].sy, 7, 0);
-			if ((strider_info[2].sx <= px &&
-				strider_info[2].sx + 7 >= px &&
-				strider_info[2].sy == py)) {
-				return FAIL_V;
-			}
-			if ((strider_info[2].sx + 8 == px &&
-				strider_info[2].sy == py)) {
-				drawPlayer(px, py);
-			}
+			if ((strider_info[2].sx <= px && strider_info[2].sx + 7 >= px && strider_info[2].sy == py)) { return FAIL_V; }
+			if ((strider_info[2].sx + 8 == px && strider_info[2].sy == py)) { drawPlayer(px, py); }
 		}
 	}
 	return 0;

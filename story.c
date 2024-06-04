@@ -1,31 +1,31 @@
 #include "main.h"
 /*
-	½ºÅä¸® ¼Ò½ºÆÄÀÏ
+	ìŠ¤í† ë¦¬ ì†ŒìŠ¤íŒŒì¼
 		- void titleStory(void)
 		- void easyStory(void)
 		- void normalStory(void)
 		- void hardStory(void)
-		- int clearStory(void) : HOME ¹ÝÈ¯
-		- int failStory(void) : HOME ¹ÝÈ¯
+		- int clearStory(void) : HOME ë°˜í™˜
+		- int failStory(void) : HOME ë°˜í™˜
 */
 
 void titleStory(void) {
 	wchar_t titlestr[MAX_ROWS][MAX_COLS] = {
-		L"¿ì¸®ÀÇ °Ç±¹ÀÌ´Â µ¿±¼ ¼Ó¿¡ º¸¹°ÀÌ",
-		L"ÀÖ´Ù´Â ¼Ò½ÄÀ» µè°í º¸¹°À» Ã£À¸·¯",
-		L"È¥ÀÚ¼­ µ¿±¼ Å½ÇèÀ» ½ÃÀÛÇÕ´Ï´Ù...",
-		L"±ÍÇÑ º¸¹°À» Ã£À¸·¯ °Ç±¹ÀÌ´Â Á¡Á¡",
-		L"À¸½»ÇÏ°í ±íÀº °÷À¸·Î µé¾î°©´Ï´Ù.",
-		L"±× ¼ø°£... Äô!!!!! Ã¶ÄÀ!",
-		L"¾îµð¼±°¡ »ý±ä Ã¶¹®ÀÌ ³»·Á¿À´õ´Ï",
-		L"°Ç±¹ÀÌ´Â ÁöÇÏ°¨¿Á¿¡ °¤È÷°í¸¿´Ï´Ù.",
-		L"***\'ÁöÇÏ°¨¿Á\'***",
-		L"¹èÅÍ¸®°¡ ¶³¾îÁø ¼ÕÁ¤µç »çÀÌ·Î",
-		L"ÁöÇÏ°¨¿ÁÀÌ¶ó´Â ±Û±Í°¡ º¸ÀÌ°í",
-		L"°Ç±¹ÀÌ´Â ±×Á¦¾ß ÀÌ ¸ðµç °ÍÀÌ",
-		L"ÇÔÁ¤ÀÌ¾úÀ½À» ±ú´Ý½À´Ï´Ù",
-		L"°Ç±¹ÀÌ°¡ ¹«»çÈ÷ Å»ÃâÇÒ ¼ö ÀÖµµ·Ï",
-		L"µµ¿ÍÁÖÀÚ!"
+		L"ìš°ë¦¬ì˜ ê±´êµ­ì´ëŠ” ë™êµ´ ì†ì— ë³´ë¬¼ì´",
+		L"ìžˆë‹¤ëŠ” ì†Œì‹ì„ ë“£ê³  ë³´ë¬¼ì„ ì°¾ìœ¼ëŸ¬",
+		L"í˜¼ìžì„œ ë™êµ´ íƒí—˜ì„ ì‹œìž‘í•©ë‹ˆë‹¤...",
+		L"ê·€í•œ ë³´ë¬¼ì„ ì°¾ìœ¼ëŸ¬ ê±´êµ­ì´ëŠ” ì ì ",
+		L"ìœ¼ìŠ¥í•˜ê³  ê¹Šì€ ê³³ìœ¼ë¡œ ë“¤ì–´ê°‘ë‹ˆë‹¤.",
+		L"ê·¸ ìˆœê°„... ì¿µ!!!!! ì² ì»¥!",
+		L"ì–´ë””ì„ ê°€ ìƒê¸´ ì² ë¬¸ì´ ë‚´ë ¤ì˜¤ë”ë‹ˆ",
+		L"ê±´êµ­ì´ëŠ” ì§€í•˜ê°ì˜¥ì— ê°‡ížˆê³ ë§™ë‹ˆë‹¤.",
+		L"***\'ì§€í•˜ê°ì˜¥\'***",
+		L"ë°°í„°ë¦¬ê°€ ë–¨ì–´ì§„ ì†ì „ë“± ì‚¬ì´ë¡œ",
+		L"ì§€í•˜ê°ì˜¥ì´ë¼ëŠ” ê¸€ê·€ê°€ ë³´ì´ê³ ",
+		L"ê±´êµ­ì´ëŠ” ê·¸ì œì•¼ ì´ ëª¨ë“  ê²ƒì´",
+		L"í•¨ì •ì´ì—ˆìŒì„ ê¹¨ë‹«ìŠµë‹ˆë‹¤",
+		L"ê±´êµ­ì´ê°€ ë¬´ì‚¬ížˆ íƒˆì¶œí•  ìˆ˜ ìžˆë„ë¡",
+		L"ë„ì™€ì£¼ìž!"
 	};
 	gameMapDraw();
 	gotoxy1(MAP_X * 2 + 2, MAP_Y + 1);
@@ -40,11 +40,11 @@ void titleStory(void) {
 
 void easyStory(void) {
 	wchar_t easystr[MAX_ROWS][MAX_COLS] = {
-		L"°Ç±¹ÀÌ°¡ µé°í¿Â ¼ÕÀüµîÀÇ ¹èÅÍ¸®°¡",
-		L"¾ó¸¶ ³²Áö ¾Ê¾Ò´Ù...!",
-		L"¼ÕÀüµîÀÌ ²¨Áö±â Àü¿¡ °æºñº´µéÀ»",
-		L"ÇÇÇØ ¿­¼è 2°³¸¦ Ã£¾Æ Å»ÃâÇÏÀÚ!",
-		L"¸ñ¼ûÀº 5°³ÀÌ´Ù!"
+		L"ê±´êµ­ì´ê°€ ë“¤ê³ ì˜¨ ì†ì „ë“±ì˜ ë°°í„°ë¦¬ê°€",
+		L"ì–¼ë§ˆ ë‚¨ì§€ ì•Šì•˜ë‹¤...!",
+		L"ì†ì „ë“±ì´ êº¼ì§€ê¸° ì „ì— ê²½ë¹„ë³‘ë“¤ì„",
+		L"í”¼í•´ ì—´ì‡  2ê°œë¥¼ ì°¾ì•„ íƒˆì¶œí•˜ìž!",
+		L"ëª©ìˆ¨ì€ 5ê°œì´ë‹¤!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -61,12 +61,12 @@ void easyStory(void) {
 
 void normalStory(void) {
 	wchar_t normalstr[MAX_ROWS][MAX_COLS] = {
-		L"¾ó¸¶³ª Áö³µÀ»±î.....",
-		L"¼ÕÁ¤µîÀÌ ¸¹ÀÌ ¾îµÎ¿öÁö°í ¹è¿¡¼­´Â",
-		L"²¿¸£¸¤.. ¼Ò¸®°¡ °è¼Ó µé·Á¿Â´Ù.",
-		L"¸ñ¼ûµµ 4°³¹Û¿¡ ³²Áö ¾Ê¾Ò´Ù.",
-		L"¾î¼­ °æºñº´µéÀ» ÇÇÇØ Å»ÃâÇÏÀÚ!",
-		L"¿­¼è¸¦ 2°³¸¦ Ã£¾Æ Å»ÃâÇÏÀÚ!!"
+		L"ì–¼ë§ˆë‚˜ ì§€ë‚¬ì„ê¹Œ.....",
+		L"ì†ì „ë“±ì´ ë§Žì´ ì–´ë‘ì›Œì§€ê³  ë°°ì—ì„œëŠ”",
+		L"ê¼¬ë¥´ë¥µ.. ì†Œë¦¬ê°€ ê³„ì† ë“¤ë ¤ì˜¨ë‹¤.",
+		L"ëª©ìˆ¨ë„ 4ê°œë°–ì— ë‚¨ì§€ ì•Šì•˜ë‹¤.",
+		L"ì–´ì„œ ê²½ë¹„ë³‘ë“¤ì„ í”¼í•´ íƒˆì¶œí•˜ìž!",
+		L"ì—´ì‡ ë¥¼ 2ê°œë¥¼ ì°¾ì•„ íƒˆì¶œí•˜ìž!!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -83,13 +83,13 @@ void normalStory(void) {
 
 void hardStory(void) {
 	wchar_t hardstr[MAX_ROWS][MAX_COLS] = {
-		L"°¨¿Á¿¡ °¤ÈùÁö ¿À·¡.....",
-		L"¹Ù±ù¼¼»óÀÌ ³Ê¹«³ª ±×¸³´Ù.",
-		L"ÀÌÁ¦ ¼ÕÀüµîÀº °ÅÀÇ ²¨Á®°£´Ù.",
-		L"Ã¼·ÂÀÌ ¹Ù´Ú³ª ¸ñ¼ûÀÌ 3°³¹Û¿¡ ¾ø´Ù.",
-		L"½Ã¾ß°¡ ³Ð¾îÁø °æºñº´µéÀ» ÇÇÇØ",
-		L"¾ÆÀÌÅÛÀ» Àß È°¿ëÇÏ¿©",
-		L"¿­¼è 2°³¸¦ ¸ðÀ¸ÀÚ!"
+		L"ê°ì˜¥ì— ê°‡ížŒì§€ ì˜¤ëž˜.....",
+		L"ë°”ê¹¥ì„¸ìƒì´ ë„ˆë¬´ë‚˜ ê·¸ë¦½ë‹¤.",
+		L"ì´ì œ ì†ì „ë“±ì€ ê±°ì˜ êº¼ì ¸ê°„ë‹¤.",
+		L"ì²´ë ¥ì´ ë°”ë‹¥ë‚˜ ëª©ìˆ¨ì´ 3ê°œë°–ì— ì—†ë‹¤.",
+		L"ì‹œì•¼ê°€ ë„“ì–´ì§„ ê²½ë¹„ë³‘ë“¤ì„ í”¼í•´",
+		L"ì•„ì´í…œì„ ìž˜ í™œìš©í•˜ì—¬",
+		L"ì—´ì‡  2ê°œë¥¼ ëª¨ìœ¼ìž!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -106,8 +106,8 @@ void hardStory(void) {
 
 int clearStory(void) {
 	wchar_t clearstr[MAX_ROWS][MAX_COLS] = {
-		L"ÇÞºûÀÌ °Ç±¹ÀÌ¸¦ È¯ÇÏ°Ô ºñÃá´Ù.",
-		L"¿À·£ ³ë·Â ³¡¿¡ Å»Ãâ¿¡ ¼º°øÇß´Ù!"
+		L"í–‡ë¹›ì´ ê±´êµ­ì´ë¥¼ í™˜í•˜ê²Œ ë¹„ì¶˜ë‹¤.",
+		L"ì˜¤ëžœ ë…¸ë ¥ ëì— íƒˆì¶œì— ì„±ê³µí–ˆë‹¤!"
 	};
 	resetMapMain();
 	resetMapBottom();
@@ -124,9 +124,9 @@ int clearStory(void) {
 
 int failStory(void) {
 	wchar_t failstr[MAX_ROWS][MAX_COLS] = {
-		L"°Ç±¹ÀÌÀÇ Ã¼·ÂÀÌ ´Ù ¼Ò¸ðµÇ¾î",
-		L"Å»Ãâ¿¡ ½ÇÆÐÇß´Ù.",
-		L"½¬¾ú´Ù°¡ ´Ù½Ã µµÀüÇØ¾ß°Ú´Ù!"
+		L"ê±´êµ­ì´ì˜ ì²´ë ¥ì´ ë‹¤ ì†Œëª¨ë˜ì–´",
+		L"íƒˆì¶œì— ì‹¤íŒ¨í–ˆë‹¤.",
+		L"ì‰¬ì—ˆë‹¤ê°€ ë‹¤ì‹œ ë„ì „í•´ì•¼ê² ë‹¤!"
 	};
 	resetMapMain();
 	resetMapBottom();

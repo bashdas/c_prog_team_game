@@ -125,9 +125,20 @@ int CDStrider(int px, int py, struct strider* strider_info) {
 	{
 		// 1번 좌우 경비병이 플레이어 시야 범위에 들어온 경우
 		drawLRStrider(strider_info[0].sx, strider_info[0].sy, 7, 0); // 해당 경비병을 다시 그림(지워지는거 방지)
-		if ((strider_info[0].sx <= px && strider_info[0].sx + 7 >= px && strider_info[0].sy == py)|| // 1번 좌우 경비병의 범위에 들어옴
-			(strider_info[1].sx == px && strider_info[1].sy <= py && strider_info[1].sy + 3 >= py)|| // 1번 상하 경비병의 범위에 들어옴
-			(strider_info[2].sx <= px && strider_info[2].sx + 7 >= px && strider_info[2].sy == py)) { return FAIL_V; } // 2번 좌우 경비병의 범위에 들어옴 -> 충돌처리
+		if ((strider_info[0].sx <= px && strider_info[0].sx + 7 >= px && strider_info[0].sy == py) || // 1번 좌우 경비병의 범위에 들어옴
+			(strider_info[1].sx == px && strider_info[1].sy <= py && strider_info[1].sy + 3 >= py) || // 1번 상하 경비병의 범위에 들어옴
+			(strider_info[2].sx <= px && strider_info[2].sx + 7 >= px && strider_info[2].sy == py)) {// 2번 좌우 경비병의 범위에 들어옴 -> 충돌처리
+			if(HP>=1){
+				gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+				printf("경비병과 충돌하였습니다. HP가 1 감소합니다 (-. - )");
+				Sleep(500);
+				gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+				printf("                                                  ");
+				HP--;
+				HP_print(HP);
+			}
+			else { return FAIL_V; } 
+		}
 		if ((strider_info[0].sx + 8 == px && strider_info[0].sy == py)) { drawPlayer(px, py); } // 플레이어 지워지는거 방지
 		if (strider_info[1].sx == px && strider_info[1].sy + 4 == py) { drawPlayer(px, py); } // 플레이어 지워지는거 방지
 		if ((strider_info[2].sx + 8 == px && strider_info[2].sy == py)) { drawPlayer(px, py); } // 플레이어 지워지는거 방지
@@ -137,8 +148,20 @@ int CDStrider(int px, int py, struct strider* strider_info) {
 		// 1번 상하 경비병이 플레이어 시야 범위에 들어온 경우
 		drawUDStrider(strider_info[1].sx, strider_info[1].sy, 4, 0); // 해당 경비병을 다시 그림
 		// 1번 좌우 경비병의 범위에 들어온 경우가 없는 이유는 이 경우 첫번째 조건문으로 가기 때문에
-		if ((strider_info[1].sx == px && strider_info[1].sy <= py && strider_info[1].sy + 3 >= py)|| // 1번 상하 경비병의 범위에 들어옴
-			(strider_info[2].sx <= px && strider_info[2].sx + 7 >= px && strider_info[2].sy == py)) { return FAIL_V; } // 2번 좌우 경비병에 범위에 들어옴 -> 충돌처리
+		if ((strider_info[1].sx == px && strider_info[1].sy <= py && strider_info[1].sy + 3 >= py) || // 1번 상하 경비병의 범위에 들어옴
+			(strider_info[2].sx <= px && strider_info[2].sx + 7 >= px && strider_info[2].sy == py)) {  // 2번 좌우 경비병에 범위에 들어옴 -> 충돌처리
+			if (HP >= 1)
+			{
+				gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+				printf("경비병과 충돌하였습니다. HP가 1 감소합니다 (-. - )");
+				Sleep(500);
+				gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+				printf("                                                  ");
+				HP--;
+				HP_print(HP);
+			}
+			else { return FAIL_V; }
+		}
 		if (strider_info[1].sx == px && strider_info[1].sy + 4 == py) { drawPlayer(px,py); }
 	}
 	if (strider_info[2].on == 0) {
@@ -146,7 +169,19 @@ int CDStrider(int px, int py, struct strider* strider_info) {
 		if (strider_info[2].sx - 6 <= px && strider_info[2].sx + 12 >= px && strider_info[2].sy - 3 <= py && strider_info[2].sy + 3 >= py)
 		{
 			drawLRStrider(strider_info[2].sx, strider_info[2].sy, 7, 0);
-			if ((strider_info[2].sx <= px && strider_info[2].sx + 7 >= px && strider_info[2].sy == py)) { return FAIL_V; }
+			if ((strider_info[2].sx <= px && strider_info[2].sx + 7 >= px && strider_info[2].sy == py)) {
+				if (HP >= 1)
+				{
+					gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+					printf("경비병과 충돌하였습니다. HP가 1 감소합니다 (-. - )");
+					Sleep(500);
+					gotoxy1(MAP_X * 2 + 4, MAP_Y + MAP_HEIGHT - 4);
+					printf("                                                  ");
+					HP--;
+					HP_print(HP);
+				}
+				else { return FAIL_V; }
+			}
 			if ((strider_info[2].sx + 8 == px && strider_info[2].sy == py)) { drawPlayer(px, py); }
 		}
 	}
